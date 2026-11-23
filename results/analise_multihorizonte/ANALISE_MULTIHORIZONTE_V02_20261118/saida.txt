@@ -1,0 +1,535 @@
+== 0. Integridade (todas as runs; FAIL aborta)
+    base  h modo  git_sujo  commit  horizonte gate  lags_alvo_ok  lags_exog_ok  gam_lags_ok  n_pred_manifesto  n_pred_csv  n_folds  naive_MASE_1                  teste  max_iter_alpha                    status_alvo   ok
+  cetesb  1 full     False e6a63c3          1 PASS          True          True         True             95040       95040        4          True 2023-01-12..2024-12-31             NaN   PRELIMINARY_VALIDATED_TARGET True
+  cetesb  5 full     False 5436606          5 PASS          True          True         True             95040       95040        4          True 2023-01-12..2024-12-31             NaN   PRELIMINARY_VALIDATED_TARGET True
+  cetesb  7 full     False 49c2188          7 PASS          True          True         True             95040       95040        4          True 2023-01-12..2024-12-31             NaN   PRELIMINARY_VALIDATED_TARGET True
+  cetesb 15 full     False b5bb35f         15 PASS          True          True         True             95040       95040        4          True 2023-01-12..2024-12-31             NaN   PRELIMINARY_VALIDATED_TARGET True
+  cetesb 30 full     False e4828bc         30 PASS          True          True         True             95040       95040        4          True 2023-01-12..2024-12-31            50.0   PRELIMINARY_VALIDATED_TARGET True
+ espelho  1 full     False fc47077          1 PASS          True          True         True             76320       76320        4          True 2023-01-12..2024-12-31             NaN   PRELIMINARY_VALIDATED_TARGET True
+ espelho  5 full     False 768da9c          5 PASS          True          True         True             76320       76320        4          True 2023-01-12..2024-12-31            50.0   PRELIMINARY_VALIDATED_TARGET True
+ espelho  7 full     False 65b32c7          7 PASS          True          True         True             76320       76320        4          True 2023-01-12..2024-12-31            50.0   PRELIMINARY_VALIDATED_TARGET True
+ espelho 15 full     False bab8919         15 PASS          True          True         True             76320       76320        4          True 2023-01-12..2024-12-31            50.0   PRELIMINARY_VALIDATED_TARGET True
+ espelho 30 full     False 312da51         30 PASS          True          True         True             76320       76320        4          True 2023-01-12..2024-12-31            50.0   PRELIMINARY_VALIDATED_TARGET True
+    cams  1 full     False bcbcb8b          1 PASS          True          True         True             76320       76320        4          True 2023-01-12..2024-12-31             NaN   PRELIMINARY_VALIDATED_TARGET True
+    cams  5 full     False a3ea38f          5 PASS          True          True         True             76320       76320        4          True 2023-01-12..2024-12-31            50.0   PRELIMINARY_VALIDATED_TARGET True
+    cams  7 full     False b1e86b1          7 PASS          True          True         True             76320       76320        4          True 2023-01-12..2024-12-31            50.0   PRELIMINARY_VALIDATED_TARGET True
+    cams 15 full     False c5fb995         15 PASS          True          True         True             76320       76320        4          True 2023-01-12..2024-12-31            50.0   PRELIMINARY_VALIDATED_TARGET True
+    cams 30 full     False 19e7a5d         30 PASS          True          True         True             76320       76320        4          True 2023-01-12..2024-12-31            50.0   PRELIMINARY_VALIDATED_TARGET True
+ hibrida  1 full     False a83d034          1 PASS          True          True         True             95040       95040        4          True 2023-01-12..2024-12-31             NaN   PRELIMINARY_VALIDATED_TARGET True
+ hibrida  5 full     False f9c5434          5 PASS          True          True         True             95040       95040        4          True 2023-01-12..2024-12-31            50.0   PRELIMINARY_VALIDATED_TARGET True
+ hibrida  7 full     False 0d46197          7 PASS          True          True         True             95040       95040        4          True 2023-01-12..2024-12-31            50.0   PRELIMINARY_VALIDATED_TARGET True
+ hibrida 15 full     False e706728         15 PASS          True          True         True             95040       95040        4          True 2023-01-12..2024-12-31            50.0   PRELIMINARY_VALIDATED_TARGET True
+urgencia  1 full     False eeeef00          1 PASS          True          True         True             95040       95040        4          True 2023-01-12..2024-12-31            50.0 PRELIMINARY_UNVALIDATED_TARGET True
+urgencia  5 full     False 8325cee          5 PASS          True          True         True             95040       95040        4          True 2023-01-12..2024-12-31            50.0 PRELIMINARY_UNVALIDATED_TARGET True
+urgencia  7 full     False dfc3c57          7 PASS          True          True         True             95040       95040        4          True 2023-01-12..2024-12-31            50.0 PRELIMINARY_UNVALIDATED_TARGET True
+urgencia 15 full     False 1252ad5         15 PASS          True          True         True             95040       95040        4          True 2023-01-12..2024-12-31            50.0 PRELIMINARY_UNVALIDATED_TARGET True
+urgencia 30 full     False 8be599e         30 PASS          True          True         True             95040       95040        4          True 2023-01-12..2024-12-31            50.0 PRELIMINARY_UNVALIDATED_TARGET True
+  covidA  1 full     False 130b601          1 PASS          True          True         True             47520       47520        2          True 2025-03-06..2026-02-28            50.0 PRELIMINARY_UNVALIDATED_TARGET True
+  covidA  5 full     False 55847ee          5 PASS          True          True         True             47520       47520        2          True 2025-03-06..2026-02-28            50.0 PRELIMINARY_UNVALIDATED_TARGET True
+  covidA  7 full     False 093070b          7 PASS          True          True         True             47520       47520        2          True 2025-03-06..2026-02-28            50.0 PRELIMINARY_UNVALIDATED_TARGET True
+  covidA 15 full     False 6e40593         15 PASS          True          True         True             47520       47520        2          True 2025-03-06..2026-02-28            50.0 PRELIMINARY_UNVALIDATED_TARGET True
+  covidA 30 full     False 11d9ddb         30 PASS          True          True         True             47520       47520        2          True 2025-03-06..2026-02-28            50.0 PRELIMINARY_UNVALIDATED_TARGET True
+  covidB  1 full     False b3d5aaa          1 PASS          True          True         True             47520       47520        2          True 2025-03-06..2026-02-28            50.0 PRELIMINARY_UNVALIDATED_TARGET True
+  covidB  5 full     False 4b966d2          5 PASS          True          True         True             47520       47520        2          True 2025-03-06..2026-02-28            50.0 PRELIMINARY_UNVALIDATED_TARGET True
+  covidB  7 full     False 1745a07          7 PASS          True          True         True             47520       47520        2          True 2025-03-06..2026-02-28            50.0 PRELIMINARY_UNVALIDATED_TARGET True
+  covidB 15 full     False efdfc29         15 PASS          True          True         True             47520       47520        2          True 2025-03-06..2026-02-28            50.0 PRELIMINARY_UNVALIDATED_TARGET True
+  covidB 30 full     False e148a8e         30 PASS          True          True         True             47520       47520        2          True 2025-03-06..2026-02-28            50.0 PRELIMINARY_UNVALIDATED_TARGET True
+integridade PASS; datas de teste e Naïve idênticos entre bases (por h), urgência no mesmo teste, braços COVID no mesmo teste
+
+== A. cetesb: MAE AR_CAL por modelo × h (e Naïve, Seasonal Naïve do mesmo h)
+h              1      5      7      15     30
+xgboost     18.56  22.50  23.40  24.34  26.36
+sarimax     18.92  23.04  24.37  25.84  25.32
+lstm        19.01  22.56  23.64  25.32  26.76
+ingarch_nb  19.55  23.59  24.71  26.39  25.47
+gam_nb      21.91  25.35  26.28  27.24  27.52
+naive       28.71  34.13  28.87  37.05  37.84
+snaive      28.87  28.87  28.87  33.25  34.85
+-- RMSE AR_CAL
+h              1      5      7      15     30
+modelo                                       
+xgboost     24.79  29.77  30.93  31.25  33.67
+sarimax     24.91  29.59  31.25  32.14  31.20
+lstm        25.65  30.28  31.21  32.90  34.51
+ingarch_nb  26.21  30.84  32.20  33.54  32.14
+gam_nb      28.96  33.00  34.35  34.61  34.56
+-- MASE AR_CAL (Naïve do MESMO h; não comparar entre colunas)
+h              1      5      7      15     30
+modelo                                       
+xgboost     0.645  0.656  0.810  0.654  0.698
+sarimax     0.660  0.674  0.845  0.698  0.668
+lstm        0.662  0.660  0.821  0.683  0.710
+ingarch_nb  0.681  0.690  0.857  0.713  0.674
+gam_nb      0.763  0.741  0.909  0.734  0.726
+-- skill vs melhor ingênuo do mesmo h (1 − MAE/min(Naïve, SNaïve))
+h              1      5      7      15     30
+modelo                                       
+xgboost     0.354  0.221  0.190  0.268  0.244
+sarimax     0.341  0.202  0.156  0.223  0.274
+lstm        0.338  0.218  0.181  0.239  0.232
+ingarch_nb  0.319  0.183  0.144  0.206  0.269
+gam_nb      0.237  0.122  0.090  0.181  0.210
+-- ganho do calendário (MAE AR − MAE AR_CAL)
+h             1     5     7     15    30
+modelo                                  
+xgboost     3.46  3.47  3.54  5.62  7.64
+sarimax     0.41  0.68  0.83  1.56  2.46
+lstm        3.45  2.91  2.81  5.76  6.06
+ingarch_nb  5.92  3.58  2.96  6.06  6.05
+gam_nb      3.39  5.51  1.28  2.64  5.65
+-- melhor conjunto por modelo (MAE)
+h                               1                             5                             7                       15                      30
+modelo                                                                                                                                        
+xgboost               18.56 AR_CAL                  22.50 AR_CAL                  23.40 AR_CAL  23.77 AR_CAL_POLUENTES            26.36 AR_CAL
+sarimax     18.72 AR_CAL_POLUENTES  22.95 AR_CAL_METEO_PM25MEDIA  24.17 AR_CAL_METEO_PM25MEDIA            25.84 AR_CAL      25.21 AR_CAL_METEO
+lstm                  19.01 AR_CAL        22.53 AR_CAL_POLUENTES        23.31 AR_CAL_POLUENTES  25.02 AR_CAL_PM25MEDIA            26.76 AR_CAL
+ingarch_nb  19.25 AR_CAL_POLUENTES        23.40 AR_CAL_POLUENTES        24.55 AR_CAL_POLUENTES            26.39 AR_CAL            25.47 AR_CAL
+gam_nb      21.58 AR_CAL_POLUENTES        24.87 AR_CAL_POLUENTES        25.88 AR_CAL_POLUENTES  26.72 AR_CAL_POLUENTES  26.23 AR_CAL_POLUENTES
+-- ranking por MAE AR_CAL
+h=1: xgboost < sarimax < lstm < ingarch_nb < gam_nb | h=5: xgboost < lstm < sarimax < ingarch_nb < gam_nb | h=7: xgboost < lstm < sarimax < ingarch_nb < gam_nb | h=15: xgboost < lstm < sarimax < ingarch_nb < gam_nb | h=30: sarimax < ingarch_nb < xgboost < lstm < gam_nb
+
+== A. urgencia: MAE AR_CAL por modelo × h (e Naïve, Seasonal Naïve do mesmo h)
+h              1      5      7      15     30
+xgboost     14.88  17.61  18.51  20.99  22.45
+sarimax     14.26  17.66  18.72  21.17  21.46
+lstm        14.76  17.99  18.78  21.69  22.69
+ingarch_nb  14.94  18.41  19.18  21.52  21.71
+gam_nb      16.65  19.94  20.08  22.46  23.57
+naive       19.81  26.36  21.36  28.39  32.85
+snaive      21.36  21.36  21.36  27.05  30.41
+-- RMSE AR_CAL
+h              1      5      7      15     30
+modelo                                       
+xgboost     19.35  22.77  23.97  26.49  28.15
+sarimax     18.62  22.87  24.00  26.45  26.18
+lstm        19.33  23.52  24.53  27.29  28.44
+ingarch_nb  19.60  23.75  24.70  27.40  27.07
+gam_nb      21.48  26.12  25.84  28.15  28.89
+-- MASE AR_CAL (Naïve do MESMO h; não comparar entre colunas)
+h              1      5      7      15     30
+modelo                                       
+xgboost     0.749  0.665  0.865  0.738  0.683
+sarimax     0.719  0.668  0.876  0.746  0.652
+lstm        0.744  0.681  0.879  0.761  0.692
+ingarch_nb  0.753  0.697  0.898  0.759  0.661
+gam_nb      0.838  0.754  0.939  0.788  0.712
+-- skill vs melhor ingênuo do mesmo h (1 − MAE/min(Naïve, SNaïve))
+h              1      5      7      15     30
+modelo                                       
+xgboost     0.249  0.175  0.133  0.224  0.262
+sarimax     0.280  0.173  0.123  0.217  0.294
+lstm        0.255  0.158  0.121  0.198  0.254
+ingarch_nb  0.246  0.138  0.102  0.204  0.286
+gam_nb      0.160  0.066  0.060  0.170  0.225
+-- ganho do calendário (MAE AR − MAE AR_CAL)
+h             1     5     7     15    30
+modelo                                  
+xgboost     2.07  2.81  2.87  5.12  6.63
+sarimax     0.13  0.52  0.73  1.71  2.68
+lstm        1.09  1.24  1.23  3.90  5.82
+ingarch_nb  3.88  2.71  2.77  4.65  5.03
+gam_nb      1.40  5.38  0.60  1.64  4.40
+-- melhor conjunto por modelo (MAE)
+h                                     1                       5                       7                       15                      30
+modelo                                                                                                                                  
+xgboost          14.57 AR_CAL_METEO_PM25      17.58 AR_CAL_METEO  18.32 AR_CAL_POLUENTES  20.17 AR_CAL_POLUENTES  21.92 AR_CAL_POLUENTES
+sarimax     13.85 AR_CAL_METEO_PM25MEDIA      17.55 AR_CAL_METEO      18.42 AR_CAL_METEO  21.17 AR_CAL_PM25MEDIA            21.46 AR_CAL
+lstm              14.63 AR_CAL_PM25MEDIA  17.88 AR_CAL_PM25MEDIA  18.68 AR_CAL_POLUENTES  20.94 AR_CAL_PM25MEDIA  22.39 AR_CAL_POLUENTES
+ingarch_nb        14.55 AR_CAL_POLUENTES  17.87 AR_CAL_POLUENTES  18.71 AR_CAL_POLUENTES            21.52 AR_CAL            21.71 AR_CAL
+gam_nb            16.41 AR_CAL_POLUENTES  19.55 AR_CAL_POLUENTES  19.58 AR_CAL_POLUENTES  21.97 AR_CAL_POLUENTES  21.92 AR_CAL_POLUENTES
+-- ranking por MAE AR_CAL
+h=1: sarimax < lstm < xgboost < ingarch_nb < gam_nb | h=5: xgboost < sarimax < lstm < ingarch_nb < gam_nb | h=7: xgboost < sarimax < lstm < ingarch_nb < gam_nb | h=15: xgboost < sarimax < ingarch_nb < lstm < gam_nb | h=30: sarimax < ingarch_nb < xgboost < lstm < gam_nb
+
+== A. covidA: MAE AR_CAL por modelo × h (e Naïve, Seasonal Naïve do mesmo h)
+h              1      5      7      15     30
+xgboost     18.14  22.18  22.24  22.58  24.83
+sarimax     20.34  24.24  24.68  25.64  24.94
+lstm        18.77  21.63  21.59  24.37  24.66
+ingarch_nb  20.29  24.26  24.75  25.75  24.05
+gam_nb      21.84  27.53  26.18  27.12  25.09
+naive       27.71  36.86  28.97  37.68  37.53
+snaive      28.97  28.97  28.97  33.41  35.34
+-- RMSE AR_CAL
+h              1      5      7      15     30
+modelo                                       
+xgboost     24.45  29.39  29.35  28.84  32.39
+sarimax     26.39  30.61  31.42  32.50  31.64
+lstm        24.50  27.49  27.80  31.23  31.97
+ingarch_nb  26.94  31.36  31.87  32.91  30.67
+gam_nb      28.86  34.85  34.10  34.27  32.02
+-- MASE AR_CAL (Naïve do MESMO h; não comparar entre colunas)
+h              1      5      7      15     30
+modelo                                       
+xgboost     0.653  0.601  0.767  0.598  0.659
+sarimax     0.736  0.663  0.853  0.681  0.667
+lstm        0.677  0.589  0.745  0.646  0.656
+ingarch_nb  0.735  0.665  0.856  0.684  0.643
+gam_nb      0.787  0.746  0.903  0.719  0.666
+-- skill vs melhor ingênuo do mesmo h (1 − MAE/min(Naïve, SNaïve))
+h              1      5      7      15     30
+modelo                                       
+xgboost     0.345  0.234  0.232  0.324  0.297
+sarimax     0.266  0.163  0.148  0.233  0.294
+lstm        0.323  0.253  0.255  0.271  0.302
+ingarch_nb  0.268  0.162  0.145  0.229  0.319
+gam_nb      0.212  0.049  0.096  0.188  0.290
+-- ganho do calendário (MAE AR − MAE AR_CAL)
+h             1     5     7     15    30
+modelo                                  
+xgboost     3.82  5.11  5.48  7.11  8.35
+sarimax     0.24  0.92  1.27  3.01  5.92
+lstm        4.09  3.12  5.39  6.68  8.89
+ingarch_nb  5.20  3.91  4.41  5.41  8.36
+gam_nb      2.49  4.84  1.28  3.13  8.67
+-- melhor conjunto por modelo (MAE)
+h                               1                       5                             7                             15                      30
+modelo                                                                                                                                        
+xgboost               18.14 AR_CAL            22.18 AR_CAL                  22.24 AR_CAL                  22.58 AR_CAL          24.20 COMPLETO
+sarimax     20.03 AR_CAL_PM25MEDIA  24.16 AR_CAL_PM25MEDIA        24.40 AR_CAL_POLUENTES        25.44 AR_CAL_POLUENTES            24.94 AR_CAL
+lstm                  18.77 AR_CAL            21.63 AR_CAL                  21.59 AR_CAL                  24.37 AR_CAL            24.66 AR_CAL
+ingarch_nb  20.15 AR_CAL_PM25MEDIA  24.02 AR_CAL_PM25MEDIA  24.04 AR_CAL_METEO_POLUENTES        25.08 AR_CAL_POLUENTES            24.05 AR_CAL
+gam_nb      21.69 AR_CAL_POLUENTES  27.39 AR_CAL_POLUENTES        25.78 AR_CAL_POLUENTES  26.57 AR_CAL_METEO_POLUENTES  24.80 AR_CAL_PM25MEDIA
+-- ranking por MAE AR_CAL
+h=1: xgboost < lstm < ingarch_nb < sarimax < gam_nb | h=5: lstm < xgboost < sarimax < ingarch_nb < gam_nb | h=7: lstm < xgboost < sarimax < ingarch_nb < gam_nb | h=15: xgboost < lstm < sarimax < ingarch_nb < gam_nb | h=30: ingarch_nb < lstm < xgboost < sarimax < gam_nb
+
+== A. covidB: MAE AR_CAL por modelo × h (e Naïve, Seasonal Naïve do mesmo h)
+h              1      5      7      15     30
+xgboost     18.54  22.50  22.58  21.96  22.40
+sarimax     20.25  23.50  23.54  23.83  23.63
+lstm        19.00  21.43  21.53  22.00  22.09
+ingarch_nb  19.79  22.84  22.99  23.14  22.94
+gam_nb      20.49  23.58  23.27  23.55  22.09
+naive       27.71  36.86  28.97  37.68  37.53
+snaive      28.97  28.97  28.97  33.41  35.34
+-- RMSE AR_CAL
+h              1      5      7      15     30
+modelo                                       
+xgboost     24.52  28.46  28.65  28.11  28.08
+sarimax     26.13  29.42  29.76  30.11  29.92
+lstm        24.48  26.99  27.17  27.60  27.88
+ingarch_nb  26.42  29.48  29.75  29.90  29.70
+gam_nb      26.12  29.19  29.03  29.23  27.68
+-- MASE AR_CAL (Naïve do MESMO h; não comparar entre colunas)
+h              1      5      7      15     30
+modelo                                       
+xgboost     0.669  0.612  0.779  0.582  0.597
+sarimax     0.733  0.644  0.815  0.633  0.632
+lstm        0.688  0.587  0.743  0.584  0.591
+ingarch_nb  0.717  0.628  0.796  0.615  0.615
+gam_nb      0.742  0.644  0.805  0.625  0.590
+-- skill vs melhor ingênuo do mesmo h (1 − MAE/min(Naïve, SNaïve))
+h              1      5      7      15     30
+modelo                                       
+xgboost     0.331  0.223  0.220  0.343  0.366
+sarimax     0.269  0.189  0.187  0.287  0.332
+lstm        0.314  0.260  0.257  0.342  0.375
+ingarch_nb  0.286  0.211  0.206  0.307  0.351
+gam_nb      0.260  0.186  0.197  0.295  0.375
+-- ganho do calendário (MAE AR − MAE AR_CAL)
+h             1     5     7      15     30
+modelo                                    
+xgboost     3.58  4.60  4.80   6.66   9.73
+sarimax     0.42  1.81  2.57   4.85   7.10
+lstm        5.27  6.50  6.18  10.92  12.20
+ingarch_nb  5.72  6.00  6.12   9.53  12.69
+gam_nb      3.63  8.72  4.59   6.91  11.23
+-- melhor conjunto por modelo (MAE)
+h                               1                       5                       7                             15                            30
+modelo                                                                                                                                        
+xgboost               18.54 AR_CAL            22.50 AR_CAL            22.58 AR_CAL                  21.96 AR_CAL        22.26 AR_CAL_PM25MEDIA
+sarimax     20.15 AR_CAL_PM25MEDIA       23.22 AR_CAL_PM25       22.85 AR_CAL_PM25  23.27 AR_CAL_METEO_POLUENTES       23.43 AR_CAL_METEO_PM25
+lstm                  19.00 AR_CAL            21.43 AR_CAL            21.53 AR_CAL                  22.00 AR_CAL                  22.09 AR_CAL
+ingarch_nb  19.65 AR_CAL_PM25MEDIA  22.50 AR_CAL_PM25MEDIA  22.65 AR_CAL_PM25MEDIA            22.71 AR_CAL_METEO  22.33 AR_CAL_METEO_PM25MEDIA
+gam_nb      20.29 AR_CAL_PM25MEDIA       23.35 AR_CAL_PM25       22.45 AR_CAL_PM25                22.72 COMPLETO            21.42 AR_CAL_METEO
+-- ranking por MAE AR_CAL
+h=1: xgboost < lstm < ingarch_nb < sarimax < gam_nb | h=5: lstm < xgboost < ingarch_nb < sarimax < gam_nb | h=7: lstm < xgboost < ingarch_nb < gam_nb < sarimax | h=15: xgboost < lstm < ingarch_nb < gam_nb < sarimax | h=30: lstm < gam_nb < xgboost < ingarch_nb < sarimax
+
+== A2. Pares de modelos em AR_CAL: DM (teste_dm_v02, Holm na família modelos_AR_CAL) e critério por fold
+    base  h   lider  n_pares  n_sig_holm  n_sig_entre_modelos                                                                            sig_entre_modelos             vs_sarimax                vs_lstm          vs_ingarch_nb              vs_gam_nb             vs_xgboost
+  cetesb  1 xgboost       21          14                    4                       xgboost − gam_nb; sarimax − gam_nb; lstm − gam_nb; ingarch_nb − gam_nb -0.37 f2/4 pHolm=1.000 -0.45 f2/4 pHolm=0.795 -0.99 f2/4 pHolm=0.107 -3.35 f4/4 pHolm=0.000                    NaN
+  cetesb  5 xgboost       21          15                    4                       xgboost − gam_nb; sarimax − gam_nb; lstm − gam_nb; ingarch_nb − gam_nb -0.54 f3/4 pHolm=1.000 -0.06 f1/4 pHolm=1.000 -1.09 f3/4 pHolm=0.365 -2.85 f4/4 pHolm=0.000                    NaN
+  cetesb  7 xgboost       21          14                    4                       xgboost − gam_nb; sarimax − gam_nb; lstm − gam_nb; ingarch_nb − gam_nb -0.97 f3/4 pHolm=0.640 -0.24 f2/4 pHolm=0.778 -1.31 f3/4 pHolm=0.367 -2.88 f4/4 pHolm=0.000                    NaN
+  cetesb 15 xgboost       21          11                    1                                                                             xgboost − gam_nb -1.50 f3/4 pHolm=0.546 -0.98 f2/4 pHolm=0.546 -2.05 f3/4 pHolm=0.207 -2.90 f3/4 pHolm=0.026                    NaN
+  cetesb 30 sarimax       21          10                    0                                                                                                                 NaN -1.44 f2/4 pHolm=1.000 -0.15 f2/4 pHolm=1.000 -2.21 f3/4 pHolm=0.566 -1.05 f1/4 pHolm=1.000
+urgencia  1 sarimax       21          15                    5 xgboost − gam_nb; sarimax − ingarch_nb; sarimax − gam_nb; lstm − gam_nb; ingarch_nb − gam_nb                    NaN -0.50 f2/4 pHolm=0.320 -0.68 f4/4 pHolm=0.030 -2.39 f4/4 pHolm=0.000 -0.62 f4/4 pHolm=0.195
+urgencia  5 xgboost       21          14                    4                       xgboost − gam_nb; sarimax − gam_nb; lstm − gam_nb; ingarch_nb − gam_nb -0.04 f3/4 pHolm=1.000 -0.38 f3/4 pHolm=1.000 -0.79 f3/4 pHolm=0.424 -2.33 f4/4 pHolm=0.002                    NaN
+urgencia  7 xgboost       21          11                    1                                                                             sarimax − gam_nb -0.21 f3/4 pHolm=1.000 -0.27 f3/4 pHolm=1.000 -0.67 f3/4 pHolm=1.000 -1.57 f4/4 pHolm=0.103                    NaN
+urgencia 15 xgboost       21          10                    0                                                                                              -0.18 f3/4 pHolm=1.000 -0.70 f1/4 pHolm=1.000 -0.53 f3/4 pHolm=1.000 -1.47 f3/4 pHolm=1.000                    NaN
+urgencia 30 sarimax       21          10                    0                                                                                                                 NaN -1.24 f2/4 pHolm=1.000 -0.26 f2/4 pHolm=1.000 -2.12 f3/4 pHolm=0.656 -0.99 f1/4 pHolm=1.000
+
+== A3. Vencedor por fold (AR_CAL, MAE médio das sementes) e viés médio (ŷ − y) por fold, alvo total CETESB rica
+cetesb   h= 1: f1=sarimax f2=sarimax f3=xgboost f4=xgboost
+cetesb   h= 5: f1=sarimax f2=xgboost f3=lstm f4=lstm
+cetesb   h= 7: f1=sarimax f2=xgboost f3=xgboost f4=lstm
+cetesb   h=15: f1=sarimax f2=xgboost f3=xgboost f4=xgboost
+cetesb   h=30: f1=sarimax f2=xgboost f3=ingarch_nb f4=lstm
+urgencia h= 1: f1=sarimax f2=sarimax f3=sarimax f4=lstm
+urgencia h= 5: f1=sarimax f2=xgboost f3=xgboost f4=xgboost
+urgencia h= 7: f1=sarimax f2=xgboost f3=xgboost f4=xgboost
+urgencia h=15: f1=sarimax f2=xgboost f3=xgboost f4=xgboost
+urgencia h=30: f1=sarimax f2=gam_nb f3=xgboost f4=xgboost
+-- viés médio por fold (cetesb, AR_CAL; negativo = subprevisão)
+h            1                    5                    7                    15                   30                  
+fold          1    2    3    4     1    2    3    4     1    2    3    4     1    2    3    4     1     2     3     4
+modelo                                                                                                               
+xgboost    -6.2  0.1 -2.8 -1.7 -13.6 -0.9 -5.4 -7.4 -15.6 -2.1 -6.0 -8.3 -21.1  0.2 -8.2 -6.3 -30.7   0.5 -13.3 -10.1
+sarimax    -1.6  2.0 -1.5  0.7  -4.3  4.6 -3.2  1.2  -5.1  5.6 -3.8  1.2  -9.2  9.5 -7.0  1.4 -13.2  12.5  -8.7   0.0
+lstm       -8.3 -1.3 -3.3 -2.0 -14.3  0.5 -5.9 -4.5 -14.3  0.1 -6.8 -5.4 -21.3  1.9 -9.1 -6.0 -29.1   4.5 -14.3  -5.6
+ingarch_nb -4.7  0.1 -3.1 -1.6  -7.8  2.0 -4.2 -2.6  -9.3  2.7 -4.8 -3.1 -14.3  5.0 -7.4 -4.7 -20.2   6.2  -8.6  -7.8
+gam_nb     -1.9 -2.3 -1.0 -2.4  -5.8 -1.5 -3.8 -4.6  -6.9 -1.5 -4.3 -5.4 -14.1 -1.4 -9.0 -7.8 -25.0  -2.4 -14.4 -11.4
+-- média diária do alvo total por ano (sih_daily_lookahead.parquet): 2019: 143.4, 2020: 107.9, 2021: 120.4, 2022: 144.4, 2023: 155.2, 2024: 159.0
+-- fim do treino por fold (cetesb h=1): f1: 2022-07-15, f2: 2023-01-11, f3: 2023-07-10, f4: 2024-01-06
+
+== B. Covariáveis: conjunto ambiental − AR_CAL por modelo × h (critério por fold)
+-- nº de (modelo, conjunto) com melhora regular / piora regular / total, sobre AR_CAL
+h                1          5           7           15         30
+base                                                             
+cams      15+/9-/30  12+/5-/30    8+/8-/30   1+/12-/30  1+/12-/30
+cetesb    7+/22-/40  2+/16-/40  12+/13-/40   4+/23-/40  4+/18-/40
+covidA    9+/21-/40  6+/21-/40  11+/23-/40  12+/13-/40   3+/8-/40
+covidB    3+/22-/40  6+/16-/40    6+/7-/40   9+/15-/40  8+/11-/40
+espelho   14+/8-/30   7+/1-/30   13+/5-/30   0+/18-/30  3+/11-/30
+hibrida   6+/21-/40  4+/17-/40   9+/17-/40   3+/23-/40        NaN
+urgencia  14+/6-/40   6+/9-/40   14+/3-/40   3+/19-/40  3+/17-/40
+-- melhor ΔMAE ambiental por modelo × h, CETESB rica (conjunto, folds melhores)
+h                                     1                                   5                                   7                             15                            30
+modelo                                                                                                                                                                      
+xgboost     +0.10 AR_CAL_PM25MEDIA (1/4)        +0.06 AR_CAL_PM25MEDIA (1/4)        +0.18 AR_CAL_PM25MEDIA (0/4)  -0.57 AR_CAL_POLUENTES (3/4)  +0.14 AR_CAL_POLUENTES (1/4)
+sarimax     -0.20 AR_CAL_POLUENTES (2/4)  -0.09 AR_CAL_METEO_PM25MEDIA (2/4)  -0.20 AR_CAL_METEO_PM25MEDIA (3/4)  +0.05 AR_CAL_PM25MEDIA (2/4)      -0.11 AR_CAL_METEO (3/4)
+lstm        +0.03 AR_CAL_PM25MEDIA (2/4)        -0.03 AR_CAL_POLUENTES (0/4)        -0.34 AR_CAL_POLUENTES (1/4)  -0.29 AR_CAL_PM25MEDIA (1/4)  +0.02 AR_CAL_PM25MEDIA (0/4)
+ingarch_nb  -0.30 AR_CAL_POLUENTES (3/4)        -0.19 AR_CAL_POLUENTES (2/4)        -0.16 AR_CAL_POLUENTES (3/4)  +0.11 AR_CAL_PM25MEDIA (0/4)  +0.50 AR_CAL_PM25MEDIA (1/4)
+gam_nb      -0.33 AR_CAL_POLUENTES (4/4)        -0.48 AR_CAL_POLUENTES (3/4)        -0.40 AR_CAL_POLUENTES (3/4)  -0.52 AR_CAL_POLUENTES (3/4)  -1.29 AR_CAL_POLUENTES (3/4)
+
+== B2. Ablação com DM (teste_dm_v02; Holm por família ablacao_<modelo>): contrastes com p_holm < 0,05
+-- contagem por base × h: melhora (d<0) / piora (d>0) com p_holm<0,05 [entre colchetes: e critério §0.7]
+cetesb   h= 1: 0 melhora / 7 piora de 50 testes [0/3]; HAC = [8]
+cetesb   h= 5: 0 melhora / 5 piora de 50 testes [0/1]; HAC = [8]
+cetesb   h= 7: 1 melhora / 5 piora de 50 testes [0/2]; HAC = [8]
+cetesb   h=15: 0 melhora / 5 piora de 50 testes [0/2]; HAC = [14]
+cetesb   h=30: 0 melhora / 5 piora de 50 testes [0/4]; HAC = [29]
+urgencia h= 1: 2 melhora / 6 piora de 50 testes [2/2]; HAC = [8]
+urgencia h= 5: 1 melhora / 6 piora de 50 testes [0/1]; HAC = [8]
+urgencia h= 7: 1 melhora / 6 piora de 50 testes [0/1]; HAC = [8]
+urgencia h=15: 1 melhora / 3 piora de 50 testes [1/1]; HAC = [14]
+urgencia h=30: 0 melhora / 5 piora de 50 testes [0/1]; HAC = [29]
+-- melhoras com p_holm < 0,05
+    base  h         familia           contraste  d_medio      DM      p  p_holm  largura_HAC  folds  criterio_0_7
+  cetesb  7    ablacao_lstm  H2_media_com_meteo  -0.9145 -3.7937 0.0002  0.0013            8    0.0         False
+urgencia  1 ablacao_sarimax  H2_media_sem_meteo  -0.3151 -3.5016 0.0005  0.0049            8    4.0          True
+urgencia  1 ablacao_sarimax POLUENTES_sem_meteo  -0.3527 -3.1730 0.0016  0.0142            8    3.0          True
+urgencia  5    ablacao_lstm  H2_media_com_meteo  -0.6579 -3.2715 0.0011  0.0067            8    0.0         False
+urgencia  7    ablacao_lstm  H2_media_com_meteo  -0.7205 -2.8630 0.0043  0.0259            8    0.0         False
+urgencia 15 ablacao_xgboost POLUENTES_com_meteo  -0.8358 -3.9332 0.0001  0.0009           14    4.0          True
+-- pioras com p_holm < 0,05
+    base  h            familia                   contraste  d_medio     DM      p  p_holm  largura_HAC  folds  criterio_0_7
+  cetesb  1       ablacao_lstm         PM25_rico_sem_meteo   3.1723 6.4580 0.0000  0.0000            8    4.0          True
+  cetesb  1       ablacao_lstm         PM25_rico_com_meteo   2.3833 4.3535 0.0000  0.0001            8    0.0         False
+  cetesb  1       ablacao_lstm     rico_vs_media_com_meteo   2.4401 4.8229 0.0000  0.0000            8    2.0         False
+  cetesb  1       ablacao_lstm                       METEO   1.4559 4.3517 0.0000  0.0001            8    3.0          True
+  cetesb  1       ablacao_lstm           COMPLETO_vs_meteo   2.0761 4.0675 0.0001  0.0003            8    0.0         False
+  cetesb  1       ablacao_lstm COMPLETO_vs_meteo_poluentes   2.1990 5.0993 0.0000  0.0000            8    0.0         False
+  cetesb  1 ablacao_ingarch_nb COMPLETO_vs_meteo_poluentes   0.4960 2.9706 0.0031  0.0307            8    3.0          True
+  cetesb  5       ablacao_lstm         PM25_rico_sem_meteo   4.3881 5.2198 0.0000  0.0000            8    3.0          True
+  cetesb  5       ablacao_lstm         PM25_rico_com_meteo   2.0423 4.1957 0.0000  0.0002            8    0.0         False
+  cetesb  5       ablacao_lstm     rico_vs_media_com_meteo   2.3856 4.7962 0.0000  0.0000            8    2.0         False
+  cetesb  5       ablacao_lstm                       METEO   1.6907 2.9582 0.0032  0.0192            8    1.0         False
+  cetesb  5       ablacao_lstm           COMPLETO_vs_meteo   1.8747 3.8177 0.0001  0.0010            8    0.0         False
+  cetesb  7    ablacao_xgboost                       METEO   1.2679 3.5449 0.0004  0.0042            8    3.0          True
+  cetesb  7       ablacao_lstm         PM25_rico_sem_meteo   3.1015 3.9788 0.0001  0.0007            8    3.0          True
+  cetesb  7       ablacao_lstm         PM25_rico_com_meteo   1.6104 3.4777 0.0005  0.0038            8    0.0         False
+  cetesb  7       ablacao_lstm     rico_vs_media_com_meteo   2.5249 4.7981 0.0000  0.0000            8    2.0         False
+  cetesb  7       ablacao_lstm                       METEO   1.8952 3.0433 0.0024  0.0146            8    2.0         False
+  cetesb 15    ablacao_xgboost                       METEO   0.9195 2.9126 0.0037  0.0370           14    3.0          True
+  cetesb 15       ablacao_lstm         PM25_rico_sem_meteo   4.7911 4.5368 0.0000  0.0001           14    4.0          True
+  cetesb 15       ablacao_lstm     rico_vs_media_com_meteo   2.8792 3.6743 0.0003  0.0020           14    2.0         False
+  cetesb 15       ablacao_lstm         POLUENTES_sem_meteo   1.3789 2.8967 0.0039  0.0272           14    0.0         False
+  cetesb 15       ablacao_lstm                       METEO   1.7866 3.7117 0.0002  0.0020           14    2.0         False
+  cetesb 30       ablacao_lstm         PM25_rico_sem_meteo   3.9309 4.0763 0.0001  0.0005           29    3.0          True
+  cetesb 30       ablacao_lstm     rico_vs_media_com_meteo   2.6300 3.1386 0.0018  0.0159           29    3.0          True
+  cetesb 30 ablacao_ingarch_nb         PM25_rico_sem_meteo   4.3856 3.7589 0.0002  0.0018           29    4.0          True
+  cetesb 30 ablacao_ingarch_nb         PM25_rico_com_meteo   3.1233 2.9559 0.0032  0.0290           29    1.0         False
+  cetesb 30     ablacao_gam_nb          H2_media_com_meteo   0.4573 2.8887 0.0040  0.0398           29    4.0          True
+urgencia  1       ablacao_lstm         PM25_rico_sem_meteo   2.2297 5.9310 0.0000  0.0000            8    4.0          True
+urgencia  1       ablacao_lstm         PM25_rico_com_meteo   2.1780 5.0696 0.0000  0.0000            8    2.0         False
+urgencia  1       ablacao_lstm     rico_vs_media_com_meteo   2.5550 6.7947 0.0000  0.0000            8    4.0          True
+urgencia  1       ablacao_lstm                       METEO   0.8504 3.4366 0.0006  0.0031            8    1.0         False
+urgencia  1       ablacao_lstm           COMPLETO_vs_meteo   2.0693 4.4420 0.0000  0.0001            8    0.0         False
+urgencia  1       ablacao_lstm COMPLETO_vs_meteo_poluentes   1.9851 4.5045 0.0000  0.0001            8    0.0         False
+urgencia  5       ablacao_lstm         PM25_rico_sem_meteo   3.8413 5.3296 0.0000  0.0000            8    4.0          True
+urgencia  5       ablacao_lstm         PM25_rico_com_meteo   2.4834 5.1155 0.0000  0.0000            8    0.0         False
+urgencia  5       ablacao_lstm     rico_vs_media_com_meteo   3.1413 6.4818 0.0000  0.0000            8    1.0         False
+urgencia  5       ablacao_lstm                       METEO   1.5883 3.4461 0.0006  0.0042            8    2.0         False
+urgencia  5       ablacao_lstm           COMPLETO_vs_meteo   1.3621 3.0638 0.0023  0.0108            8    0.0         False
+urgencia  5       ablacao_lstm COMPLETO_vs_meteo_poluentes   1.4081 3.0792 0.0022  0.0108            8    0.0         False
+urgencia  7       ablacao_lstm         PM25_rico_sem_meteo   3.8853 5.1430 0.0000  0.0000            8    3.0          True
+urgencia  7       ablacao_lstm         PM25_rico_com_meteo   2.1338 4.2335 0.0000  0.0002            8    0.0         False
+urgencia  7       ablacao_lstm     rico_vs_media_com_meteo   2.8542 5.6269 0.0000  0.0000            8    2.0         False
+urgencia  7       ablacao_lstm                       METEO   1.6849 2.9677 0.0031  0.0217            8    2.0         False
+urgencia  7       ablacao_lstm           COMPLETO_vs_meteo   1.2664 2.6768 0.0076  0.0304            8    0.0         False
+urgencia  7       ablacao_lstm COMPLETO_vs_meteo_poluentes   1.4684 2.8500 0.0045  0.0259            8    0.0         False
+urgencia 15       ablacao_lstm         PM25_rico_sem_meteo   4.0788 5.4433 0.0000  0.0000           14    4.0          True
+urgencia 15       ablacao_lstm         PM25_rico_com_meteo   2.8589 4.8984 0.0000  0.0000           14    1.0         False
+urgencia 15       ablacao_lstm     rico_vs_media_com_meteo   3.4789 5.7033 0.0000  0.0000           14    2.0         False
+urgencia 30       ablacao_lstm         PM25_rico_sem_meteo   3.2869 4.1424 0.0000  0.0004           29    2.0         False
+urgencia 30       ablacao_lstm     rico_vs_media_com_meteo   2.7289 3.6554 0.0003  0.0025           29    1.0         False
+urgencia 30 ablacao_ingarch_nb         PM25_rico_sem_meteo   3.7172 3.5276 0.0004  0.0045           29    1.0         False
+urgencia 30 ablacao_ingarch_nb         PM25_rico_com_meteo   2.7244 2.9400 0.0034  0.0305           29    1.0         False
+urgencia 30     ablacao_gam_nb          H2_media_com_meteo   0.3970 2.9088 0.0037  0.0374           29    4.0          True
+
+== C. Bases por h (referência = CETESB rica; compara_fontes_v02, conjuntos comuns; Δ = base − CETESB rica)
+  aviso h=1: h1_v02_cetesbmin_cetesbmin_classicos_full_20261022-092503: pareamento recortado aos 8 conjuntos comuns a todas as runs; fora: ['AR_CAL_METEO_PM25MEDIA', 'AR_CAL_PM25MEDIA']
+  aviso h=1: h1_v02_cams_cams_classicos_full_20261023-002643: pareamento recortado aos 8 conjuntos comuns a todas as runs; fora: ['AR_CAL_METEO_PM25MEDIA', 'AR_CAL_PM25MEDIA']
+  aviso h=5: mh_h5_cetesbmin_cetesbmin_full_20261114-055302: pareamento recortado aos 8 conjuntos comuns a todas as runs; fora: ['AR_CAL_METEO_PM25MEDIA', 'AR_CAL_PM25MEDIA']
+  aviso h=5: mh_h5_cams_cams_full_20261114-090118: pareamento recortado aos 8 conjuntos comuns a todas as runs; fora: ['AR_CAL_METEO_PM25MEDIA', 'AR_CAL_PM25MEDIA']
+  aviso h=7: mh_h7_cetesbmin_cetesbmin_full_20261114-064037: pareamento recortado aos 8 conjuntos comuns a todas as runs; fora: ['AR_CAL_METEO_PM25MEDIA', 'AR_CAL_PM25MEDIA']
+  aviso h=7: mh_h7_cams_cams_full_20261114-095706: pareamento recortado aos 8 conjuntos comuns a todas as runs; fora: ['AR_CAL_METEO_PM25MEDIA', 'AR_CAL_PM25MEDIA']
+  aviso h=15: mh_h15_cetesbmin_cetesbmin_full_20261114-072915: pareamento recortado aos 8 conjuntos comuns a todas as runs; fora: ['AR_CAL_METEO_PM25MEDIA', 'AR_CAL_PM25MEDIA']
+  aviso h=15: mh_h15_cams_cams_full_20261114-105441: pareamento recortado aos 8 conjuntos comuns a todas as runs; fora: ['AR_CAL_METEO_PM25MEDIA', 'AR_CAL_PM25MEDIA']
+  aviso h=30: mh_h30_cetesbmin_cetesbmin_full_20261114-081453: pareamento recortado aos 8 conjuntos comuns a todas as runs; fora: ['AR_CAL_METEO_PM25MEDIA', 'AR_CAL_PM25MEDIA']
+  aviso h=30: mh_h30_cams_cams_full_20261114-114939: pareamento recortado aos 8 conjuntos comuns a todas as runs; fora: ['AR_CAL_METEO_PM25MEDIA', 'AR_CAL_PM25MEDIA']
+-- critério por fold (só conjuntos afetados pela troca): melhor/pior/indistinguível que CETESB rica
+h                1           5           7           15          30
+base                                                               
+cams     13M/3P/14~  17M/3P/10~  11M/5P/14~  10M/7P/13~  11M/4P/15~
+espelho  15M/1P/14~   9M/2P/19~   8M/4P/18~   9M/6P/15~   9M/4P/17~
+hibrida  1M/14P/15~   2M/8P/20~   4M/8P/18~  5M/12P/13~         NaN
+-- controles com Δ ≠ 0 (tem de ser 0): 0
+
+== C2. DM entre bases (teste_dm_fontes; Holm por família base × modelo; DM < 0 favorece a base comparada)
+-- base comparada melhor/pior que CETESB rica (p_holm < 0,05), por h
+h                     1         5         7         15        30
+base                                                            
+CAMS            7+/1-/30  7+/0-/30  5+/0-/30  4+/0-/30  2+/0-/30
+CETESB_espelho  9+/0-/30  5+/0-/30  4+/0-/30  4+/0-/30  3+/0-/30
+HIBRIDA         0+/2-/35  0+/2-/35  0+/1-/35  0+/3-/35       NaN
+-- detalhe por modelo (só onde há significância)
+ h           base     modelo  testes  melhor  pior                                                               conjuntos_melhor                                          conjuntos_pior
+ 1           CAMS     gam_nb       6       2     0                                                AR_CAL_METEO; AR_CAL_METEO_PM25                                                        
+ 1           CAMS ingarch_nb       6       2     0                                                    AR_CAL_METEO_PM25; COMPLETO                                                        
+ 1           CAMS       lstm       6       3     0                                       AR_CAL_METEO_PM25; AR_CAL_PM25; COMPLETO                                                        
+ 1           CAMS    sarimax       6       0     1                                                                                                                       AR_CAL_POLUENTES
+ 1 CETESB_espelho     gam_nb       6       2     0                                                AR_CAL_METEO; AR_CAL_METEO_PM25                                                        
+ 1 CETESB_espelho ingarch_nb       6       2     0                                                AR_CAL_METEO; AR_CAL_METEO_PM25                                                        
+ 1 CETESB_espelho       lstm       6       5     0       AR_CAL_METEO; AR_CAL_METEO_PM25; AR_CAL_PM25; AR_CAL_POLUENTES; COMPLETO                                                        
+ 1        HIBRIDA       lstm       7       0     1                                                                                                                 AR_CAL_METEO_POLUENTES
+ 1        HIBRIDA    xgboost       7       0     1                                                                                                                 AR_CAL_METEO_PM25MEDIA
+ 5           CAMS ingarch_nb       6       2     0                                                AR_CAL_METEO; AR_CAL_METEO_PM25                                                        
+ 5           CAMS       lstm       6       5     0 AR_CAL_METEO; AR_CAL_METEO_PM25; AR_CAL_METEO_POLUENTES; AR_CAL_PM25; COMPLETO                                                        
+ 5 CETESB_espelho       lstm       6       5     0 AR_CAL_METEO; AR_CAL_METEO_PM25; AR_CAL_METEO_POLUENTES; AR_CAL_PM25; COMPLETO                                                        
+ 5        HIBRIDA    xgboost       7       0     2                                                                                                         AR_CAL_METEO_PM25; AR_CAL_PM25
+ 7           CAMS ingarch_nb       6       1     0                                                              AR_CAL_METEO_PM25                                                        
+ 7           CAMS       lstm       6       4     0                         AR_CAL_METEO; AR_CAL_METEO_PM25; AR_CAL_PM25; COMPLETO                                                        
+ 7 CETESB_espelho       lstm       6       4     0                         AR_CAL_METEO; AR_CAL_METEO_PM25; AR_CAL_PM25; COMPLETO                                                        
+ 7        HIBRIDA       lstm       7       0     1                                                                                                                 AR_CAL_METEO_PM25MEDIA
+15           CAMS       lstm       6       4     0                     AR_CAL_METEO_PM25; AR_CAL_PM25; AR_CAL_POLUENTES; COMPLETO                                                        
+15 CETESB_espelho       lstm       6       4     0                     AR_CAL_METEO_PM25; AR_CAL_PM25; AR_CAL_POLUENTES; COMPLETO                                                        
+15        HIBRIDA    sarimax       7       0     3                                                                                AR_CAL_METEO; AR_CAL_METEO_PM25; AR_CAL_METEO_POLUENTES
+30           CAMS ingarch_nb       6       1     0                                                                    AR_CAL_PM25                                                        
+30           CAMS       lstm       6       1     0                                                                    AR_CAL_PM25                                                        
+30 CETESB_espelho ingarch_nb       6       1     0                                                                    AR_CAL_PM25                                                        
+30 CETESB_espelho       lstm       6       2     0                                                 AR_CAL_METEO_PM25; AR_CAL_PM25                                                        
+
+== D. COVID: braço B (treino desde 2023) − braço A (desde 2019); teste 2025-03-06..2026-02-28 (2 folds)
+   alvo 2025–2026 = PRELIMINARY_UNVALIDATED_TARGET (sem conferência TabNet); B também treina com menos dados
+h= 1 n_treino A=[2020, 2200] B=[559, 739]; status alvo A=PRELIMINARY_UNVALIDATED_TARGET
+h= 5 n_treino A=[2012, 2192] B=[551, 731]; status alvo A=PRELIMINARY_UNVALIDATED_TARGET
+h= 7 n_treino A=[2008, 2188] B=[547, 727]; status alvo A=PRELIMINARY_UNVALIDATED_TARGET
+h=15 n_treino A=[1992, 2172] B=[531, 711]; status alvo A=PRELIMINARY_UNVALIDATED_TARGET
+h=30 n_treino A=[1962, 2142] B=[501, 681]; status alvo A=PRELIMINARY_UNVALIDATED_TARGET
+-- ΔMAE B − A em AR_CAL (critério por fold, 2/2)
+h                   1           5           7           15          30
+modelo                                                                
+xgboost       +0.40(~)    +0.31(~)    +0.34(~)    -0.61(~)  -2.43(A<B)
+sarimax     -0.09(A<B)  -0.74(A<B)  -1.14(A<B)  -1.81(A<B)  -1.31(A<B)
+lstm          +0.23(~)    -0.20(~)    -0.06(~)  -2.37(A<B)    -2.57(~)
+ingarch_nb  -0.50(A<B)  -1.42(A<B)  -1.76(A<B)  -2.60(A<B)    -1.11(~)
+gam_nb      -1.35(A<B)  -3.96(A<B)  -2.92(A<B)  -3.57(A<B)  -3.00(A<B)
+-- MAE AR_CAL por braço
+covidA: h=1: xgboost 18.14, sarimax 20.34, lstm 18.77, ingarch_nb 20.29, gam_nb 21.84 | h=5: xgboost 22.18, sarimax 24.24, lstm 21.63, ingarch_nb 24.26, gam_nb 27.53 | h=7: xgboost 22.24, sarimax 24.68, lstm 21.59, ingarch_nb 24.75, gam_nb 26.18 | h=15: xgboost 22.58, sarimax 25.64, lstm 24.37, ingarch_nb 25.75, gam_nb 27.12 | h=30: xgboost 24.83, sarimax 24.94, lstm 24.66, ingarch_nb 24.05, gam_nb 25.09
+covidB: h=1: xgboost 18.54, sarimax 20.25, lstm 19.00, ingarch_nb 19.79, gam_nb 20.49 | h=5: xgboost 22.50, sarimax 23.50, lstm 21.43, ingarch_nb 22.84, gam_nb 23.58 | h=7: xgboost 22.58, sarimax 23.54, lstm 21.53, ingarch_nb 22.99, gam_nb 23.27 | h=15: xgboost 21.96, sarimax 23.83, lstm 22.00, ingarch_nb 23.14, gam_nb 23.55 | h=30: xgboost 22.40, sarimax 23.63, lstm 22.09, ingarch_nb 22.94, gam_nb 22.09
+
+== D2. DM B × A (teste_dm_fontes --testar-sem-ambiente; AR e AR_CAL testados; Holm por modelo; DM < 0 favorece B)
+-- por h: B melhor / B pior (p_holm < 0,05) / testes  [B melhor também no critério por fold]
+h= 1: 0 / 2 / 50  [0]
+h= 5: 10 / 1 / 50  [10]
+h= 7: 10 / 0 / 50  [10]
+h=15: 11 / 0 / 50  [11]
+h=30: 5 / 0 / 50  [4]
+-- AR_CAL: d̄ (B − A), p_holm
+h                      1              5              7              15             30
+modelo                                                                               
+xgboost     +0.40 p=1.000  +0.31 p=1.000  +0.34 p=1.000  -0.61 p=1.000  -2.43 p=0.694
+sarimax     -0.09 p=1.000  -0.74 p=1.000  -1.14 p=1.000  -1.81 p=0.317  -1.31 p=1.000
+lstm        +0.23 p=0.590  -0.20 p=1.000  -0.06 p=1.000  -2.37 p=0.718  -2.57 p=1.000
+ingarch_nb  -0.50 p=0.555  -1.42 p=0.430  -1.76 p=0.326  -2.60 p=0.074  -1.11 p=0.726
+gam_nb      -1.35 p=0.263  -3.96 p=0.000  -2.92 p=0.017  -3.57 p=0.004  -3.00 p=0.080
+-- PM2,5 rico × média nos braços (MAE AR_CAL_PM25 − AR_CAL_PM25MEDIA, LSTM e INGARCH-NB)
+covidA: h=1: lstm +1.02, ingarch_nb +0.37 | h=5: lstm +0.98, ingarch_nb +1.52 | h=7: lstm +1.73, ingarch_nb +1.68 | h=15: lstm +0.89, ingarch_nb +1.78 | h=30: lstm +0.38, ingarch_nb +2.62
+covidB: h=1: lstm +1.62, ingarch_nb +0.20 | h=5: lstm +1.89, ingarch_nb +0.52 | h=7: lstm +2.18, ingarch_nb +0.03 | h=15: lstm +2.16, ingarch_nb +0.29 | h=30: lstm +1.37, ingarch_nb +0.60
+
+== E. Robustez: dp entre folds / dp entre sementes (MAE AR_CAL), CETESB rica e urgência
+-- cetesb
+h                  1          5          7          15         30
+modelo                                                           
+xgboost     2.34/0.21  3.47/0.30  3.45/0.28  4.34/0.44  7.41/0.56
+sarimax        1.90/—     2.74/—     2.89/—     2.01/—     3.25/—
+lstm        1.88/0.31  2.55/0.55  2.73/0.68  3.23/0.63  5.27/1.37
+ingarch_nb     2.13/—     2.79/—     2.85/—     1.95/—     3.45/—
+gam_nb         2.57/—     2.82/—     3.65/—     3.16/—     5.39/—
+-- urgencia
+h                  1          5          7          15         30
+modelo                                                           
+xgboost     1.49/0.10  2.80/0.16  2.56/0.22  3.47/0.31  5.98/0.41
+sarimax        1.37/—     2.07/—     2.14/—     2.15/—     3.29/—
+lstm        1.24/0.31  2.08/0.38  2.20/0.52  3.59/1.29  3.76/1.18
+ingarch_nb     1.27/—     2.04/—     2.12/—     1.97/—     3.61/—
+gam_nb         1.92/—     2.71/—     2.70/—     3.42/—     5.63/—
+
+-- custo: duração de cada run (manifest.proveniencia início → fim), horas
+h          1    5     7     15   30
+base                               
+cams      3.2  0.9   1.0   0.9  0.9
+cetesb    2.4  5.8   4.1   3.5  6.3
+covidA    1.9  1.9   1.9   1.8  1.7
+covidB    0.7  0.7   0.7   0.7  0.7
+espelho   1.0  0.8   0.8   0.8  0.8
+hibrida   5.2  5.9  22.7  25.1  NaN
+urgencia  3.2  9.2  11.4   3.1  3.5
+   (duração de relógio, inclui concorrência com outras runs e a máquina; tempo de ajuste por modelo só existe para GAM-NB e INGARCH-NB — `tempo_ajuste_s` em parametros_por_execucao)
+
+== E2. GAM-NB: iterações da alternância α ↔ λ (n_iteracoes_alpha) e teto max_iter_alpha; tempo de ajuste GAM-NB e INGARCH-NB
+    base  h  n_ajustes_gam  iter_alpha_max  ajustes_acima_de_10 max_iter_alpha  tempo_gam_h  tempo_ingarch_h
+  cetesb  1             40               4                    0           [10]         0.11             0.00
+  cetesb  5             40              10                    0           [10]         0.35             0.01
+  cetesb  7             40               6                    0           [10]         0.22             0.00
+  cetesb 15             40               5                    0           [10]         0.23             0.00
+  cetesb 30             40              11                    1           [50]         0.19             0.00
+ espelho  1             32               2                    0           [10]         0.03             0.00
+ espelho  5             32               3                    0           [50]         0.04             0.00
+ espelho  7             32               2                    0           [50]         0.04             0.00
+ espelho 15             32               2                    0           [50]         0.04             0.00
+ espelho 30             32               2                    0           [50]         0.04             0.00
+    cams  1             32               2                    0           [10]         0.05             0.00
+    cams  5             32               2                    0           [50]         0.04             0.00
+    cams  7             32               2                    0           [50]         0.05             0.00
+    cams 15             32               2                    0           [50]         0.05             0.00
+    cams 30             32               2                    0           [50]         0.06             0.00
+ hibrida  1             40               4                    0           [10]         0.22             0.01
+ hibrida  5             40               4                    0           [50]         0.27             0.01
+ hibrida  7             40              13                    1           [50]         0.38             0.01
+ hibrida 15             40               6                    0           [50]         0.40             0.01
+urgencia  1             40               4                    0           [50]         0.14             0.00
+urgencia  5             40               4                    0           [50]         0.19             0.00
+urgencia  7             40               3                    0           [50]         0.18             0.00
+urgencia 15             40               4                    0           [50]         0.18             0.00
+urgencia 30             40              15                    1           [50]         0.22             0.00
+  covidA  1             20               2                    0           [50]         0.08             0.00
+  covidA  5             20               4                    0           [50]         0.09             0.00
+  covidA  7             20               4                    0           [50]         0.09             0.00
+  covidA 15             20               4                    0           [50]         0.09             0.00
+  covidA 30             20               8                    0           [50]         0.10             0.00
+  covidB  1             20               6                    0           [50]         0.06             0.00
+  covidB  5             20              10                    0           [50]         0.07             0.00
+  covidB  7             20               5                    0           [50]         0.06             0.00
+  covidB 15             20               4                    0           [50]         0.06             0.00
+  covidB 30             20               8                    0           [50]         0.06             0.00

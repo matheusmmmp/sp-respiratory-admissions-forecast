@@ -1,0 +1,20 @@
+{
+  "n_linhas_metrics_by_fold": 528,
+  "n_linhas_model_comparison": 52,
+  "n_previsoes": 95040,
+  "dif_max_por_fold_semente": {
+    "MAE": 7.105427357601002e-15,
+    "RMSE": 7.105427357601002e-15,
+    "R2": 4.440892098500626e-16,
+    "MASE": 3.3306690738754696e-16
+  },
+  "dif_max_agregado": {
+    "MAE_medio": 7.105427357601002e-15,
+    "MAE_std_fold": 2.3314683517128287e-15,
+    "RMSE_medio": 7.105427357601002e-15,
+    "R2_medio": 1.6653345369377348e-16,
+    "MASE_medio": 1.1102230246251565e-16
+  },
+  "n_datas_teste": 720,
+  "n_folds": 4
+}

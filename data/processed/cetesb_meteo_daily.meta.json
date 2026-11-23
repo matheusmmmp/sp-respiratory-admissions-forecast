@@ -1,0 +1,75 @@
+{
+  "fonte": "CETESB/QUALAR, tela 'Exportar Dados Avançado'",
+  "recorte": "município de São Paulo",
+  "regra_diaria": "média/min/max das horas válidas, exigindo >= 18 de 24",
+  "sem_dt": "D_t não é calculado: dispersão espacial de temperatura mede topografia e ilha de calor, não exposição. Ver o cabeçalho do módulo.",
+  "temp_amplitude": "temp_max - temp_min, variação térmica intradiária",
+  "dias_sem_cobertura": 0,
+  "dias_descartados_por_cobertura": {
+    "temp": 524,
+    "ur": 454,
+    "vv": 483
+  },
+  "limitacao_valido": "a tela Avançado não traz a coluna Válido",
+  "extraido_em": "2026-07-27T16:07:32",
+  "coleta": {
+    "arquivos_usados": 54,
+    "arquivos_ignorados": 14,
+    "estacoes_fora_do_recorte": [
+      "Carapicuíba",
+      "Guarulhos-Paço Municipal",
+      "Guarulhos-Pimentas",
+      "S.Bernardo-Centro",
+      "Taboão da Serra"
+    ],
+    "registros_antes_dedup": 1420488,
+    "repeticoes_descartadas": 608433,
+    "variaveis_encontradas": [
+      "temp",
+      "ur",
+      "vv"
+    ],
+    "estacoes": [
+      "Capão Redondo",
+      "Interlagos",
+      "Itaim Paulista",
+      "Marg.Tietê-Pte Remédios",
+      "Mooca",
+      "Parque D.Pedro II",
+      "Pico do Jaraguá",
+      "Pinheiros",
+      "Santana",
+      "Santo Amaro"
+    ],
+    "periodo": [
+      "2019-01-01",
+      "2024-12-31"
+    ]
+  },
+  "por_variavel": [
+    {
+      "variavel": "temp",
+      "estacoes": 6,
+      "dias": 2192,
+      "media": 20.46,
+      "n_est_medio": 4.17,
+      "dias_1_estacao": 2
+    },
+    {
+      "variavel": "ur",
+      "estacoes": 6,
+      "dias": 2192,
+      "media": 72.0,
+      "n_est_medio": 3.6,
+      "dias_1_estacao": 6
+    },
+    {
+      "variavel": "vv",
+      "estacoes": 10,
+      "dias": 2192,
+      "media": 1.75,
+      "n_est_medio": 7.47,
+      "dias_1_estacao": 0
+    }
+  ]
+}

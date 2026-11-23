@@ -1,0 +1,121 @@
+runs: {"urgencia": {"1": "ur_h1_cetesb_cetesb_full_20261116-191534", "5": "ur_h5_cetesb_cetesb_full_20261116-222823", "7": "ur_h7_cetesb_cetesb_full_20261117-073926", "15": "ur_h15_cetesb_cetesb_full_20261117-190532", "30": "ur_h30_cetesb_cetesb_full_20261117-221426"}, "total": {"1": "h1_v02_cetesb_cetesb_classicos_full_20261022-211834", "5": "mh_h5_cetesb_cetesb_full_20261110-211453", "7": "mh_h7_cetesb_cetesb_full_20261111-030322", "15": "mh_h15_cetesb_cetesb_full_20261111-070926", "30": "mh_h30_cetesb_cetesb_full_20261113-104814"}}
+
+== A. AR_CAL, h=1, urgência (formato tab:desempenho-arcal)
+        modelo   MASE     MAE    RMSE     R2  dp_folds  dp_sem
+       XGBoost 0.7494 14.8775 19.3480 0.6010    1.4851  0.0970
+       SARIMAX 0.7188 14.2622 18.6166 0.6333    1.3737     NaN
+          LSTM 0.7440 14.7580 19.3253 0.6051    1.2353  0.3074
+    INGARCH-NB 0.7531 14.9392 19.5971 0.5983    1.2714     NaN
+        GAM-NB 0.8383 16.6510 21.4812 0.5148    1.9176     NaN
+         Naïve 1.0000 19.8139 25.6765 0.2939    1.0882     NaN
+Seasonal Naïve 1.0758 21.3597 27.4919 0.2116    2.2506     NaN
+
+== B. AR_CAL por horizonte, dois alvos
+-- MAE
+alvo             total                                 urgencia                                
+h                   1       5       7       15      30       1       5       7       15      30
+modelo                                                                                         
+GAM-NB          21.905  25.352  26.281  27.237  27.523   16.651  19.940  20.085  22.460  23.575
+INGARCH-NB      19.546  23.590  24.710  26.390  25.470   14.939  18.406  19.182  21.519  21.714
+LSTM            19.011  22.563  23.642  25.319  26.757   14.758  17.990  18.776  21.689  22.693
+Naïve           28.711  34.128  28.871  37.053  37.842   19.814  26.360  21.360  28.390  32.849
+SARIMAX         18.923  23.040  24.370  25.841  25.316   14.262  17.659  18.723  21.174  21.456
+Seasonal Naïve  28.871  28.871  28.871  33.254  34.853   21.360  21.360  21.360  27.049  30.411
+XGBoost         18.557  22.503  23.397  24.338  26.363   14.878  17.614  18.511  20.992  22.447
+-- MASE
+alvo            total                             urgencia                            
+h                  1      5      7      15     30       1      5      7      15     30
+modelo                                                                                
+GAM-NB          0.763  0.741  0.909  0.734  0.726    0.838  0.754  0.939  0.788  0.712
+INGARCH-NB      0.681  0.690  0.857  0.713  0.674    0.753  0.697  0.898  0.759  0.661
+LSTM            0.662  0.660  0.821  0.683  0.710    0.744  0.681  0.879  0.761  0.692
+Naïve           1.000  1.000  1.000  1.000  1.000    1.000  1.000  1.000  1.000  1.000
+SARIMAX         0.660  0.674  0.845  0.698  0.668    0.719  0.668  0.876  0.746  0.652
+Seasonal Naïve  1.007  0.844  1.000  0.897  0.917    1.076  0.809  1.000  0.952  0.922
+XGBoost         0.645  0.656  0.810  0.654  0.698    0.749  0.665  0.865  0.738  0.683
+
+== C. MAE por dia da semana, AR_CAL, h=1 (todas as sementes)
+total média do alvo no teste: 157.76 | sábados: 103 de 720 | média sábado: 157.16 demais: 157.86
+urgencia média do alvo no teste: 135.79 | sábados: 103 de 720 | média sábado: 120.34 demais: 138.37
+    alvo     modelo  MAE_sab  MAE_demais  frac_erro_sab  razao
+   total     GAM-NB   43.718      18.264          0.286  2.394
+   total INGARCH-NB   35.865      16.822          0.262  2.132
+   total       LSTM   33.794      16.544          0.254  2.043
+   total      Naïve   35.796      27.528          0.178  1.300
+   total    SARIMAX   37.082      15.891          0.280  2.333
+   total    XGBoost   33.308      16.094          0.257  2.070
+urgencia     GAM-NB   15.880      16.780          0.136  0.946
+urgencia INGARCH-NB   14.647      14.988          0.140  0.977
+urgencia       LSTM   13.352      14.993          0.129  0.891
+urgencia      Naïve   18.282      20.070          0.132  0.911
+urgencia    SARIMAX   14.246      14.265          0.143  0.999
+urgencia    XGBoost   13.639      15.084          0.131  0.904
+
+== D. MASE por conjunto, urgência h=1 (formato tab:ablation-covariaveis)
+model                   xgboost  sarimax    lstm  ingarch_nb  gam_nb
+feature_set                                                         
+AR                       0.8548   0.7254  0.7999      0.9497  0.9091
+AR_CAL                   0.7494   0.7188  0.7440      0.7531  0.8383
+AR_CAL_METEO             0.7355   0.7023  0.7866      0.7405  0.8309
+AR_CAL_METEO_PM25        0.7340   0.7050  0.8940      0.7553  0.8417
+AR_CAL_METEO_PM25MEDIA   0.7374   0.6983  0.7677      0.7503  0.8336
+AR_CAL_METEO_POLUENTES   0.7392   0.7031  0.7909      0.7518  0.8292
+AR_CAL_PM25              0.7411   0.7052  0.8548      0.7417  0.8446
+AR_CAL_PM25MEDIA         0.7419   0.7031  0.7378      0.7414  0.8302
+AR_CAL_POLUENTES         0.7388   0.7016  0.7652      0.7332  0.8264
+COMPLETO                 0.7406   0.7080  0.8904      0.7623  0.8390
+
+== E. H2 (formato tab:pm25-h2), dois alvos, h=1
+-- total
+    modelo  MAE_M1  dp_folds_M1  dp_sem_M1  d M1→M3 folds M1→M3  p_holm M1→M3  d M1→média folds M1→média  p_holm M1→média  d M0→M2 folds M0→M2  p_holm M0→M2
+   XGBoost  19.101        2.393      0.238    0.075         0/4         1.000      -0.021            0/4            1.000    0.099         2/4         1.000
+   SARIMAX  18.833        2.050        NaN    0.049         1/4         1.000      -0.030            4/4            1.000   -0.179         1/4         0.795
+      LSTM  20.467        2.959      1.389    2.383         0/4         0.000      -0.057            0/4            1.000    0.029         1/4         1.000
+INGARCH-NB  19.652        2.085        NaN    0.363         4/4         0.057       0.113            3/4            0.377   -0.217         3/4         0.515
+    GAM-NB  21.995        2.604        NaN    0.201         1/4         1.000       0.022            2/4            1.000   -0.227         1/4         0.484
+-- urgencia
+    modelo  MAE_M1  dp_folds_M1  dp_sem_M1  d M1→M3 folds M1→M3  p_holm M1→M3  d M1→média folds M1→média  p_holm M1→média  d M0→M2 folds M0→M2  p_holm M0→M2
+   XGBoost  14.597        1.364      0.194   -0.026         0/4         1.000       0.039            0/4            1.000   -0.148         1/4         1.000
+   SARIMAX  13.932        1.193        NaN    0.052         1/4         0.983      -0.078            3/4            0.489   -0.315         4/4         0.005
+      LSTM  15.608        1.943      1.410    2.178         2/4         0.000      -0.377            0/4            0.065   -0.124         2/4         0.891
+INGARCH-NB  14.699        1.422        NaN    0.294         3/4         0.084       0.199            4/4            0.062   -0.233         4/4         0.122
+    GAM-NB  16.501        1.776        NaN    0.209         1/4         1.000       0.058            3/4            1.000   -0.155         2/4         1.000
+
+== F. H2 por horizonte, urgência: ΔMAE (folds §0.7) por contraste
+-- M1→M3  (* = critério §0.7 atendido)
+h                      1              5              7              15             30
+modelo                                                                               
+GAM-NB       +0.209 (1/4)   +0.055 (2/4)   +0.055 (2/4)  +0.266 (3/4*)   -0.174 (2/4)
+INGARCH-NB  +0.294 (3/4*)  +0.473 (3/4*)  +0.535 (3/4*)  +0.938 (4/4*)   +2.724 (1/4)
+LSTM         +2.178 (2/4)   +2.483 (0/4)   +2.134 (0/4)   +2.859 (1/4)   +2.180 (0/4)
+SARIMAX      +0.052 (1/4)   +0.085 (1/4)   +0.094 (2/4)   +0.212 (1/4)  +0.097 (3/4*)
+XGBoost      -0.026 (0/4)   +0.113 (1/4)   +0.025 (0/4)   -0.018 (2/4)  +0.822 (4/4*)
+-- M1→média  (* = critério §0.7 atendido)
+h                      1              5              7              15             30
+modelo                                                                               
+GAM-NB      +0.058 (3/4*)   +0.087 (1/4)   +0.065 (1/4)   +0.047 (2/4)  +0.397 (4/4*)
+INGARCH-NB  +0.199 (4/4*)   +0.157 (1/4)  +0.252 (4/4*)  +0.140 (4/4*)  +0.163 (3/4*)
+LSTM         -0.377 (0/4)   -0.658 (0/4)   -0.720 (0/4)   -0.620 (1/4)   -0.549 (2/4)
+SARIMAX     -0.078 (3/4*)  +0.036 (3/4*)  +0.049 (3/4*)  +0.071 (4/4*)   +0.056 (2/4)
+XGBoost      +0.039 (0/4)   +0.209 (1/4)   +0.162 (0/4)   -0.106 (0/4)   -0.033 (0/4)
+-- M0→M2  (* = critério §0.7 atendido)
+h                      1              5              7              15             30
+modelo                                                                               
+GAM-NB       -0.155 (2/4)   +0.058 (2/4)  -0.195 (3/4*)  +0.348 (3/4*)  -0.094 (3/4*)
+INGARCH-NB  -0.233 (4/4*)  +0.049 (3/4*)  +0.269 (3/4*)  +0.106 (3/4*)   +0.627 (1/4)
+LSTM         -0.124 (2/4)   -0.109 (0/4)   -0.088 (0/4)   -0.751 (0/4)   -0.013 (0/4)
+SARIMAX     -0.315 (4/4*)  -0.031 (3/4*)  -0.126 (4/4*)  -0.006 (3/4*)  +0.090 (4/4*)
+XGBoost      -0.148 (1/4)   +0.065 (1/4)   -0.053 (0/4)   -0.135 (0/4)   -0.236 (0/4)
+
+nº de reduções (ΔMAE<0) com §0.7 atendido, por contraste e h:
+h          1   5   7   15  30
+contraste                    
+M0→M2       2   1   2   1   1
+M1→M3       0   0   0   0   0
+M1→média    1   0   0   0   0
+nº de aumentos (ΔMAE>0) com §0.7 atendido:
+h          1   5   7   15  30
+contraste                    
+M0→M2       0   1   1   2   1
+M1→M3       1   1   1   2   2
+M1→média    2   1   2   2   2

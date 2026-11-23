@@ -1,0 +1,27 @@
+{
+  "gerado_em": "2026-11-16T15:50:09",
+  "script": "D:\\Project\\dados_extensao_2026-11\\painel_carater\\preparar_dados_painel.py",
+  "entradas_sha256": {
+    "D:\\Project\\dados_extensao_2026-11\\analise_dow\\aih_alvo_enriquecido.parquet": "9c0f1133f0dde20ced97d656037b325d0dc51a1673ea18a3eeaf78b5ec5455e1",
+    "D:\\Project\\dataspell_workspace_template\\data\\processed\\sih_daily_lookahead_2019_2026.parquet": "a886f93b13d254bbe8d540e1a8c27b277da18ee3a6304daed396efc222c14827",
+    "D:\\Project\\dataspell_workspace_template\\reports\\experiments\\h1_v02_cetesb_cetesb_classicos_full_20261022-211834\\predictions.csv": "134a121dd4c1ed79bf15131427696f4ea61da805c58da79b9e36f13d99cbedc5",
+    "D:\\Project\\dataspell_workspace_template\\reports\\experiments\\mh_h5_cetesb_cetesb_full_20261110-211453\\predictions.csv": "5ad20ea2154284ae5db8cd8cce44940ab28b4c314b9bf24ce6b4698a73b43b26",
+    "D:\\Project\\dataspell_workspace_template\\reports\\experiments\\mh_h7_cetesb_cetesb_full_20261111-030322\\predictions.csv": "dc8b110fe52cfc67c70f45fe342a245d78176455e44f0c56717a633617efe486",
+    "D:\\Project\\dataspell_workspace_template\\reports\\experiments\\mh_h15_cetesb_cetesb_full_20261111-070926\\predictions.csv": "bf8189ca421769e1ff872664cdfe82bbd19279552ff32f43cc934e3d30455ef2",
+    "D:\\Project\\dataspell_workspace_template\\reports\\experiments\\mh_h30_cetesb_cetesb_full_20261113-104814\\predictions.csv": "59af023dbd85140827d3b0c64c256ff45ae170dd1c5e057da733a71a02c97149"
+  },
+  "runs_por_horizonte": {
+    "1": "h1_v02_cetesb_cetesb_classicos_full_20261022-211834",
+    "5": "mh_h5_cetesb_cetesb_full_20261110-211453",
+    "7": "mh_h7_cetesb_cetesb_full_20261111-030322",
+    "15": "mh_h15_cetesb_cetesb_full_20261111-070926",
+    "30": "mh_h30_cetesb_cetesb_full_20261113-104814"
+  },
+  "cnes_destacado": "2091550",
+  "regras": [
+    "só agregados; nenhum N_AIH",
+    "estabelecimento × ano com < 5 internações suprimido",
+    "erros: conjunto AR_CAL, previsões médias das sementes por data",
+    "2025–2026: alvo sem conferência contra o TabNet (PROTOCOLO §0.22)"
+  ]
+}

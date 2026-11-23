@@ -1,0 +1,70 @@
+[project]
+name = "sp-respiratory-admissions-forecast"
+version = "0.1.0"
+description = "Daily forecasting of respiratory hospital admissions (ICD-10 J00–J99) in São Paulo city, 1–30 days ahead, with 7 models under one temporal validation protocol."
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+license = { text = "MIT" }
+authors = [{ name = "Matheus de Medeiros Pereira" }]
+keywords = ["time-series", "forecasting", "public-health", "air-pollution", "pm2.5", "xgboost", "lstm", "sarimax"]
+
+# Versões travadas no lock executado da dissertação:
+# docs/requirements-executado-20260727-163313.txt (Python 3.11.0, Windows).
+dependencies = [
+  "numpy==2.4.1",
+  "pandas==3.0.0",
+  "pyarrow==23.0.0",
+  "scipy==1.17.0",
+  "scikit-learn==1.8.0",
+  "statsmodels==0.14.6",
+  "patsy==1.0.2",
+  "xgboost==3.2.0",
+  "tensorflow==2.20.0",
+  "keras==3.13.1",
+  "matplotlib==3.10.8",
+  "pyyaml==6.0.3",
+  "joblib==1.5.3",
+  # dependências opcionais do pandas usadas pelo runner (summary.md e model_comparison.tex)
+  "jinja2==3.1.6",
+  "tabulate==0.10.0",
+  # leitura dos DBC/DBF do DATASUS (src/ingestion/sih_build_lookahead.py)
+  "datasus-dbc==0.1.3",
+  "dbc-to-dbf==1.0.1",
+  "dbfread==2.0.7",
+]
+
+[project.optional-dependencies]
+# download e reconstrução do CAMS (src/ingestion/cams_*.py)
+ingest = [
+  "cdsapi==0.7.7",
+  "xarray==2025.12.0",
+  "netCDF4==1.7.4",
+]
+# preenchidos pelo gerente a partir dos relatórios dos workers WP3/WP4/WP2
+app = []
+api = []
+tracking = []
+
+[dependency-groups]
+dev = [
+  "pytest==9.1.1",
+  "ruff>=0.14",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning", "ignore::FutureWarning"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = ["notebooks", "results", "data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]

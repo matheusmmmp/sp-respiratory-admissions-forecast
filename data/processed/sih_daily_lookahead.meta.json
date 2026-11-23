@@ -1,0 +1,670 @@
+{
+  "fonte": "SIH/SUS - DATASUS, AIH-RD (microdados)",
+  "obtido_por": "datasus-fetcher 0.4.1 (2019-01..2024-12) + FTP direto (2025-01..2025-06)",
+  "motivo_ftp_direto": "datasus-fetcher 0.4.1 nao lista competencias de 2025 (falha silenciosa, exit 0)",
+  "dataset": "sih-rd",
+  "grupo": "RD",
+  "uf": "SP",
+  "municipio_ibge": "3550308",
+  "criterio_espacial": "MUNIC_RES (residencia) startswith 355030",
+  "campo_data": "DT_INTER",
+  "campo_cid": "DIAG_PRINC",
+  "regra_cid": "str(DIAG_PRINC).strip().upper().startswith('J')",
+  "regra_contagem": "N_AIH distintas por dia de internacao",
+  "periodo_epidemiologico": [
+    "2019-01-01",
+    "2024-12-31"
+  ],
+  "periodo_administrativo": [
+    "201901",
+    "202506"
+  ],
+  "look_ahead_competencias": 6,
+  "look_ahead_justificativa": "medido: 4 competencias posteriores capturam 99,8% das internacoes do mes",
+  "extraido_em": "2026-07-26T21:07:23",
+  "total_linhas_somadas": 303372,
+  "total_aih_distintas": 303295,
+  "duplicatas_entre_competencias": 77,
+  "dt_inter_invalidas": 0,
+  "registros_fora_do_periodo": 29700,
+  "dias": 2192,
+  "dias_com_zero": 0,
+  "ident_distribuicao": {
+    "1": 303295,
+    "5": 77
+  },
+  "totais_anuais": {
+    "2019": 52335,
+    "2020": 39482,
+    "2021": 43941,
+    "2022": 52718,
+    "2023": 56640,
+    "2024": 58179
+  },
+  "competencias": {
+    "201901": {
+      "arquivo": "sih-rd_201901-sp_20200310.dbf",
+      "registros_lidos": 211529,
+      "J_e_municipio": 3458,
+      "aih_novas": 1597,
+      "aih_repetidas": 0,
+      "segundos": 10.2
+    },
+    "201902": {
+      "arquivo": "sih-rd_201902-sp_20200405.dbf",
+      "registros_lidos": 203599,
+      "J_e_municipio": 2968,
+      "aih_novas": 2445,
+      "aih_repetidas": 0,
+      "segundos": 9.6
+    },
+    "201903": {
+      "arquivo": "sih-rd_201903-sp_20200604.dbf",
+      "registros_lidos": 217474,
+      "J_e_municipio": 3910,
+      "aih_novas": 3727,
+      "aih_repetidas": 1,
+      "segundos": 10.3
+    },
+    "201904": {
+      "arquivo": "sih-rd_201904-sp_20200604.dbf",
+      "registros_lidos": 221678,
+      "J_e_municipio": 5545,
+      "aih_novas": 5512,
+      "aih_repetidas": 2,
+      "segundos": 10.6
+    },
+    "201905": {
+      "arquivo": "sih-rd_201905-sp_20200704.dbf",
+      "registros_lidos": 227301,
+      "J_e_municipio": 5292,
+      "aih_novas": 5285,
+      "aih_repetidas": 0,
+      "segundos": 10.9
+    },
+    "201906": {
+      "arquivo": "sih-rd_201906-sp_20200804.dbf",
+      "registros_lidos": 216433,
+      "J_e_municipio": 4929,
+      "aih_novas": 4923,
+      "aih_repetidas": 2,
+      "segundos": 10.4
+    },
+    "201907": {
+      "arquivo": "sih-rd_201907-sp_20201006.dbf",
+      "registros_lidos": 221477,
+      "J_e_municipio": 4734,
+      "aih_novas": 4730,
+      "aih_repetidas": 1,
+      "segundos": 10.8
+    },
+    "201908": {
+      "arquivo": "sih-rd_201908-sp_20201006.dbf",
+      "registros_lidos": 227118,
+      "J_e_municipio": 4554,
+      "aih_novas": 4549,
+      "aih_repetidas": 0,
+      "segundos": 11.6
+    },
+    "201909": {
+      "arquivo": "sih-rd_201909-sp_20201118.dbf",
+      "registros_lidos": 217446,
+      "J_e_municipio": 4458,
+      "aih_novas": 4454,
+      "aih_repetidas": 0,
+      "segundos": 11.0
+    },
+    "201910": {
+      "arquivo": "sih-rd_201910-sp_20201207.dbf",
+      "registros_lidos": 226223,
+      "J_e_municipio": 4874,
+      "aih_novas": 4871,
+      "aih_repetidas": 0,
+      "segundos": 10.9
+    },
+    "201911": {
+      "arquivo": "sih-rd_201911-sp_20210114.dbf",
+      "registros_lidos": 211605,
+      "J_e_municipio": 4151,
+      "aih_novas": 4149,
+      "aih_repetidas": 0,
+      "segundos": 10.3
+    },
+    "201912": {
+      "arquivo": "sih-rd_201912-sp_20210205.dbf",
+      "registros_lidos": 204599,
+      "J_e_municipio": 3807,
+      "aih_novas": 3805,
+      "aih_repetidas": 0,
+      "segundos": 10.2
+    },
+    "202001": {
+      "arquivo": "sih-rd_202001-sp_20210405.dbf",
+      "registros_lidos": 215766,
+      "J_e_municipio": 3433,
+      "aih_novas": 3431,
+      "aih_repetidas": 0,
+      "segundos": 10.5
+    },
+    "202002": {
+      "arquivo": "sih-rd_202002-sp_20210507.dbf",
+      "registros_lidos": 205588,
+      "J_e_municipio": 3293,
+      "aih_novas": 3291,
+      "aih_repetidas": 0,
+      "segundos": 9.8
+    },
+    "202003": {
+      "arquivo": "sih-rd_202003-sp_20210507.dbf",
+      "registros_lidos": 208684,
+      "J_e_municipio": 4872,
+      "aih_novas": 4870,
+      "aih_repetidas": 0,
+      "segundos": 10.1
+    },
+    "202004": {
+      "arquivo": "sih-rd_202004-sp_20220110.dbf",
+      "registros_lidos": 158154,
+      "J_e_municipio": 3688,
+      "aih_novas": 3685,
+      "aih_repetidas": 1,
+      "segundos": 13.3
+    },
+    "202005": {
+      "arquivo": "sih-rd_202005-sp_20220110.dbf",
+      "registros_lidos": 163154,
+      "J_e_municipio": 3413,
+      "aih_novas": 3411,
+      "aih_repetidas": 0,
+      "segundos": 13.9
+    },
+    "202006": {
+      "arquivo": "sih-rd_202006-sp_20220110.dbf",
+      "registros_lidos": 172034,
+      "J_e_municipio": 3763,
+      "aih_novas": 3761,
+      "aih_repetidas": 0,
+      "segundos": 14.4
+    },
+    "202007": {
+      "arquivo": "sih-rd_202007-sp_20220110.dbf",
+      "registros_lidos": 186658,
+      "J_e_municipio": 3820,
+      "aih_novas": 3818,
+      "aih_repetidas": 0,
+      "segundos": 15.9
+    },
+    "202008": {
+      "arquivo": "sih-rd_202008-sp_20220207.dbf",
+      "registros_lidos": 184527,
+      "J_e_municipio": 3224,
+      "aih_novas": 3219,
+      "aih_repetidas": 1,
+      "segundos": 16.1
+    },
+    "202009": {
+      "arquivo": "sih-rd_202009-sp_20220207.dbf",
+      "registros_lidos": 190926,
+      "J_e_municipio": 2845,
+      "aih_novas": 2843,
+      "aih_repetidas": 1,
+      "segundos": 16.1
+    },
+    "202010": {
+      "arquivo": "sih-rd_202010-sp_20220207.dbf",
+      "registros_lidos": 196014,
+      "J_e_municipio": 2666,
+      "aih_novas": 2661,
+      "aih_repetidas": 2,
+      "segundos": 16.5
+    },
+    "202011": {
+      "arquivo": "sih-rd_202011-sp_20220207.dbf",
+      "registros_lidos": 195262,
+      "J_e_municipio": 2745,
+      "aih_novas": 2741,
+      "aih_repetidas": 2,
+      "segundos": 17.2
+    },
+    "202012": {
+      "arquivo": "sih-rd_202012-sp_20220307.dbf",
+      "registros_lidos": 188128,
+      "J_e_municipio": 2390,
+      "aih_novas": 2386,
+      "aih_repetidas": 2,
+      "segundos": 16.7
+    },
+    "202101": {
+      "arquivo": "sih-rd_202101-sp_20220307.dbf",
+      "registros_lidos": 195978,
+      "J_e_municipio": 2915,
+      "aih_novas": 2912,
+      "aih_repetidas": 1,
+      "segundos": 10.1
+    },
+    "202102": {
+      "arquivo": "sih-rd_202102-sp_20220411.dbf",
+      "registros_lidos": 191120,
+      "J_e_municipio": 3160,
+      "aih_novas": 3157,
+      "aih_repetidas": 1,
+      "segundos": 9.6
+    },
+    "202103": {
+      "arquivo": "sih-rd_202103-sp_20220504.dbf",
+      "registros_lidos": 199489,
+      "J_e_municipio": 3931,
+      "aih_novas": 3927,
+      "aih_repetidas": 2,
+      "segundos": 10.4
+    },
+    "202104": {
+      "arquivo": "sih-rd_202104-sp_20220504.dbf",
+      "registros_lidos": 192501,
+      "J_e_municipio": 2778,
+      "aih_novas": 2775,
+      "aih_repetidas": 1,
+      "segundos": 9.6
+    },
+    "202105": {
+      "arquivo": "sih-rd_202105-sp_20220603.dbf",
+      "registros_lidos": 202051,
+      "J_e_municipio": 2845,
+      "aih_novas": 2841,
+      "aih_repetidas": 2,
+      "segundos": 10.0
+    },
+    "202106": {
+      "arquivo": "sih-rd_202106-sp_20220706.dbf",
+      "registros_lidos": 201017,
+      "J_e_municipio": 3031,
+      "aih_novas": 3027,
+      "aih_repetidas": 2,
+      "segundos": 9.7
+    },
+    "202107": {
+      "arquivo": "sih-rd_202107-sp_20220804.dbf",
+      "registros_lidos": 200591,
+      "J_e_municipio": 3114,
+      "aih_novas": 3110,
+      "aih_repetidas": 2,
+      "segundos": 9.9
+    },
+    "202108": {
+      "arquivo": "sih-rd_202108-sp_20220906.dbf",
+      "registros_lidos": 201312,
+      "J_e_municipio": 3443,
+      "aih_novas": 3439,
+      "aih_repetidas": 2,
+      "segundos": 10.4
+    },
+    "202109": {
+      "arquivo": "sih-rd_202109-sp_20221005.dbf",
+      "registros_lidos": 196878,
+      "J_e_municipio": 3533,
+      "aih_novas": 3528,
+      "aih_repetidas": 3,
+      "segundos": 10.7
+    },
+    "202110": {
+      "arquivo": "sih-rd_202110-sp_20221103.dbf",
+      "registros_lidos": 195013,
+      "J_e_municipio": 3995,
+      "aih_novas": 3990,
+      "aih_repetidas": 3,
+      "segundos": 10.5
+    },
+    "202111": {
+      "arquivo": "sih-rd_202111-sp_20221206.dbf",
+      "registros_lidos": 197590,
+      "J_e_municipio": 4456,
+      "aih_novas": 4451,
+      "aih_repetidas": 3,
+      "segundos": 10.2
+    },
+    "202112": {
+      "arquivo": "sih-rd_202112-sp_20230104.dbf",
+      "registros_lidos": 203150,
+      "J_e_municipio": 5032,
+      "aih_novas": 5027,
+      "aih_repetidas": 3,
+      "segundos": 11.6
+    },
+    "202201": {
+      "arquivo": "sih-rd_202201-sp_20230206.dbf",
+      "registros_lidos": 199070,
+      "J_e_municipio": 4709,
+      "aih_novas": 4704,
+      "aih_repetidas": 3,
+      "segundos": 17.0
+    },
+    "202202": {
+      "arquivo": "sih-rd_202202-sp_20230309.dbf",
+      "registros_lidos": 191763,
+      "J_e_municipio": 3030,
+      "aih_novas": 3025,
+      "aih_repetidas": 3,
+      "segundos": 10.6
+    },
+    "202203": {
+      "arquivo": "sih-rd_202203-sp_20230405.dbf",
+      "registros_lidos": 214984,
+      "J_e_municipio": 4254,
+      "aih_novas": 4249,
+      "aih_repetidas": 3,
+      "segundos": 11.2
+    },
+    "202204": {
+      "arquivo": "sih-rd_202204-sp_20230508.dbf",
+      "registros_lidos": 205573,
+      "J_e_municipio": 4562,
+      "aih_novas": 4557,
+      "aih_repetidas": 3,
+      "segundos": 10.1
+    },
+    "202205": {
+      "arquivo": "sih-rd_202205-sp_20230605.dbf",
+      "registros_lidos": 206283,
+      "J_e_municipio": 4554,
+      "aih_novas": 4549,
+      "aih_repetidas": 3,
+      "segundos": 10.3
+    },
+    "202206": {
+      "arquivo": "sih-rd_202206-sp_20230705.dbf",
+      "registros_lidos": 210807,
+      "J_e_municipio": 4452,
+      "aih_novas": 4448,
+      "aih_repetidas": 3,
+      "segundos": 9.9
+    },
+    "202207": {
+      "arquivo": "sih-rd_202207-sp_20230803.dbf",
+      "registros_lidos": 220407,
+      "J_e_municipio": 4920,
+      "aih_novas": 4916,
+      "aih_repetidas": 3,
+      "segundos": 11.6
+    },
+    "202208": {
+      "arquivo": "sih-rd_202208-sp_20230904.dbf",
+      "registros_lidos": 220379,
+      "J_e_municipio": 4338,
+      "aih_novas": 4334,
+      "aih_repetidas": 2,
+      "segundos": 11.2
+    },
+    "202209": {
+      "arquivo": "sih-rd_202209-sp_20231004.dbf",
+      "registros_lidos": 221328,
+      "J_e_municipio": 4268,
+      "aih_novas": 4264,
+      "aih_repetidas": 2,
+      "segundos": 11.2
+    },
+    "202210": {
+      "arquivo": "sih-rd_202210-sp_20231106.dbf",
+      "registros_lidos": 220173,
+      "J_e_municipio": 4973,
+      "aih_novas": 4969,
+      "aih_repetidas": 2,
+      "segundos": 11.3
+    },
+    "202211": {
+      "arquivo": "sih-rd_202211-sp_20231205.dbf",
+      "registros_lidos": 213602,
+      "J_e_municipio": 4867,
+      "aih_novas": 4863,
+      "aih_repetidas": 2,
+      "segundos": 10.6
+    },
+    "202212": {
+      "arquivo": "sih-rd_202212-sp_20240105.dbf",
+      "registros_lidos": 211850,
+      "J_e_municipio": 4375,
+      "aih_novas": 4372,
+      "aih_repetidas": 2,
+      "segundos": 10.7
+    },
+    "202301": {
+      "arquivo": "sih-rd_202301-sp_20240205.dbf",
+      "registros_lidos": 210225,
+      "J_e_municipio": 3778,
+      "aih_novas": 3775,
+      "aih_repetidas": 1,
+      "segundos": 10.8
+    },
+    "202302": {
+      "arquivo": "sih-rd_202302-sp_20240307.dbf",
+      "registros_lidos": 202499,
+      "J_e_municipio": 4068,
+      "aih_novas": 4065,
+      "aih_repetidas": 1,
+      "segundos": 11.5
+    },
+    "202303": {
+      "arquivo": "sih-rd_202303-sp_20240409.dbf",
+      "registros_lidos": 233649,
+      "J_e_municipio": 4864,
+      "aih_novas": 4861,
+      "aih_repetidas": 1,
+      "segundos": 12.3
+    },
+    "202304": {
+      "arquivo": "sih-rd_202304-sp_20240616.dbf",
+      "registros_lidos": 218158,
+      "J_e_municipio": 4807,
+      "aih_novas": 4804,
+      "aih_repetidas": 1,
+      "segundos": 11.0
+    },
+    "202305": {
+      "arquivo": "sih-rd_202305-sp_20240616.dbf",
+      "registros_lidos": 229386,
+      "J_e_municipio": 5739,
+      "aih_novas": 5736,
+      "aih_repetidas": 1,
+      "segundos": 13.2
+    },
+    "202306": {
+      "arquivo": "sih-rd_202306-sp_20240805.dbf",
+      "registros_lidos": 232263,
+      "J_e_municipio": 5714,
+      "aih_novas": 5711,
+      "aih_repetidas": 1,
+      "segundos": 12.5
+    },
+    "202307": {
+      "arquivo": "sih-rd_202307-sp_20240805.dbf",
+      "registros_lidos": 227183,
+      "J_e_municipio": 5133,
+      "aih_novas": 5132,
+      "aih_repetidas": 0,
+      "segundos": 12.1
+    },
+    "202308": {
+      "arquivo": "sih-rd_202308-sp_20240905.dbf",
+      "registros_lidos": 237476,
+      "J_e_municipio": 5248,
+      "aih_novas": 5247,
+      "aih_repetidas": 0,
+      "segundos": 11.8
+    },
+    "202309": {
+      "arquivo": "sih-rd_202309-sp_20241008.dbf",
+      "registros_lidos": 223515,
+      "J_e_municipio": 4510,
+      "aih_novas": 4510,
+      "aih_repetidas": 0,
+      "segundos": 10.6
+    },
+    "202310": {
+      "arquivo": "sih-rd_202310-sp_20241107.dbf",
+      "registros_lidos": 224391,
+      "J_e_municipio": 4529,
+      "aih_novas": 4528,
+      "aih_repetidas": 0,
+      "segundos": 11.9
+    },
+    "202311": {
+      "arquivo": "sih-rd_202311-sp_20250105.dbf",
+      "registros_lidos": 218054,
+      "J_e_municipio": 4470,
+      "aih_novas": 4469,
+      "aih_repetidas": 0,
+      "segundos": 12.8
+    },
+    "202312": {
+      "arquivo": "sih-rd_202312-sp_20250105.dbf",
+      "registros_lidos": 217339,
+      "J_e_municipio": 4006,
+      "aih_novas": 4005,
+      "aih_repetidas": 0,
+      "segundos": 21.8
+    },
+    "202401": {
+      "arquivo": "sih-rd_202401-sp_20250209.dbf",
+      "registros_lidos": 222849,
+      "J_e_municipio": 3531,
+      "aih_novas": 3530,
+      "aih_repetidas": 0,
+      "segundos": 10.5
+    },
+    "202402": {
+      "arquivo": "sih-rd_202402-sp_20250311.dbf",
+      "registros_lidos": 221117,
+      "J_e_municipio": 3548,
+      "aih_novas": 3547,
+      "aih_repetidas": 0,
+      "segundos": 10.2
+    },
+    "202403": {
+      "arquivo": "sih-rd_202403-sp_20250405.dbf",
+      "registros_lidos": 241806,
+      "J_e_municipio": 4631,
+      "aih_novas": 4630,
+      "aih_repetidas": 0,
+      "segundos": 14.3
+    },
+    "202404": {
+      "arquivo": "sih-rd_202404-sp_20250508.dbf",
+      "registros_lidos": 244842,
+      "J_e_municipio": 5404,
+      "aih_novas": 5404,
+      "aih_repetidas": 0,
+      "segundos": 13.9
+    },
+    "202405": {
+      "arquivo": "sih-rd_202405-sp_20250606.dbf",
+      "registros_lidos": 246414,
+      "J_e_municipio": 5340,
+      "aih_novas": 5340,
+      "aih_repetidas": 0,
+      "segundos": 13.9
+    },
+    "202406": {
+      "arquivo": "sih-rd_202406-sp_20250706.dbf",
+      "registros_lidos": 240552,
+      "J_e_municipio": 5418,
+      "aih_novas": 5418,
+      "aih_repetidas": 0,
+      "segundos": 13.8
+    },
+    "202407": {
+      "arquivo": "sih-rd_202407-sp_20250804.dbf",
+      "registros_lidos": 241470,
+      "J_e_municipio": 5114,
+      "aih_novas": 5114,
+      "aih_repetidas": 0,
+      "segundos": 12.0
+    },
+    "202408": {
+      "arquivo": "sih-rd_202408-sp_20250905.dbf",
+      "registros_lidos": 246085,
+      "J_e_municipio": 5459,
+      "aih_novas": 5459,
+      "aih_repetidas": 0,
+      "segundos": 13.4
+    },
+    "202409": {
+      "arquivo": "sih-rd_202409-sp_20251006.dbf",
+      "registros_lidos": 240093,
+      "J_e_municipio": 4837,
+      "aih_novas": 4837,
+      "aih_repetidas": 0,
+      "segundos": 13.4
+    },
+    "202410": {
+      "arquivo": "sih-rd_202410-sp_20251106.dbf",
+      "registros_lidos": 250130,
+      "J_e_municipio": 4879,
+      "aih_novas": 4879,
+      "aih_repetidas": 0,
+      "segundos": 13.9
+    },
+    "202411": {
+      "arquivo": "sih-rd_202411-sp_20251205.dbf",
+      "registros_lidos": 234425,
+      "J_e_municipio": 5220,
+      "aih_novas": 5220,
+      "aih_repetidas": 0,
+      "segundos": 13.6
+    },
+    "202412": {
+      "arquivo": "sih-rd_202412-sp_20260107.dbf",
+      "registros_lidos": 225756,
+      "J_e_municipio": 5023,
+      "aih_novas": 5023,
+      "aih_repetidas": 0,
+      "segundos": 12.2
+    },
+    "202501": {
+      "arquivo": "sih-rd_202501-sp_20260208.dbf",
+      "registros_lidos": 238144,
+      "J_e_municipio": 4186,
+      "aih_novas": 1920,
+      "aih_repetidas": 0,
+      "segundos": 13.4
+    },
+    "202502": {
+      "arquivo": "sih-rd_202502-sp_20260307.dbf",
+      "registros_lidos": 231291,
+      "J_e_municipio": 3545,
+      "aih_novas": 375,
+      "aih_repetidas": 0,
+      "segundos": 13.1
+    },
+    "202503": {
+      "arquivo": "sih-rd_202503-sp_20260407.dbf",
+      "registros_lidos": 245839,
+      "J_e_municipio": 4490,
+      "aih_novas": 147,
+      "aih_repetidas": 0,
+      "segundos": 13.4
+    },
+    "202504": {
+      "arquivo": "sih-rd_202504-sp_20260506.dbf",
+      "registros_lidos": 244996,
+      "J_e_municipio": 5459,
+      "aih_novas": 7,
+      "aih_repetidas": 0,
+      "segundos": 13.5
+    },
+    "202505": {
+      "arquivo": "sih-rd_202505-sp_20260606.dbf",
+      "registros_lidos": 259070,
+      "J_e_municipio": 5965,
+      "aih_novas": 4,
+      "aih_repetidas": 0,
+      "segundos": 14.2
+    },
+    "202506": {
+      "arquivo": "sih-rd_202506-sp_20260706.dbf",
+      "registros_lidos": 245373,
+      "J_e_municipio": 5790,
+      "aih_novas": 0,
+      "aih_repetidas": 0,
+      "segundos": 13.6
+    }
+  }
+}

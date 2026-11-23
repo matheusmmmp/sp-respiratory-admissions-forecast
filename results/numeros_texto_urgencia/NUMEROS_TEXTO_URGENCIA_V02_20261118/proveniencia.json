@@ -1,0 +1,55 @@
+{
+  "script": "src/experiments/numeros_texto_urgencia.py",
+  "commit": "c075c69479a1f0bee452bc2d75448933a70d8015",
+  "git_sujo": false,
+  "gerado_em": "2026-11-18T11:51:17",
+  "python": "3.11.0",
+  "pandas": "3.0.0",
+  "runs": {
+    "urgencia": {
+      "1": "ur_h1_cetesb_cetesb_full_20261116-191534",
+      "5": "ur_h5_cetesb_cetesb_full_20261116-222823",
+      "7": "ur_h7_cetesb_cetesb_full_20261117-073926",
+      "15": "ur_h15_cetesb_cetesb_full_20261117-190532",
+      "30": "ur_h30_cetesb_cetesb_full_20261117-221426"
+    },
+    "total": {
+      "1": "h1_v02_cetesb_cetesb_classicos_full_20261022-211834",
+      "5": "mh_h5_cetesb_cetesb_full_20261110-211453",
+      "7": "mh_h7_cetesb_cetesb_full_20261111-030322",
+      "15": "mh_h15_cetesb_cetesb_full_20261111-070926",
+      "30": "mh_h30_cetesb_cetesb_full_20261113-104814"
+    }
+  },
+  "artefatos_sha256": {
+    "reports/experiments/ur_h1_cetesb_cetesb_full_20261116-191534/manifest.json": "bc381f9721489d7a457ce32bbf34e992f66ac8a8daa1adbc14ada4f0923487e9",
+    "reports/experiments/ur_h5_cetesb_cetesb_full_20261116-222823/manifest.json": "e93214db219b1ef74852f8470ce734406da38629ddccfd007fdbfa713ea8cb3d",
+    "reports/experiments/ur_h7_cetesb_cetesb_full_20261117-073926/manifest.json": "33c6cf2064d1094166d60fe433ec38c239fa14812aba6bcf6a1c8b7f9cc4ae1e",
+    "reports/experiments/ur_h15_cetesb_cetesb_full_20261117-190532/manifest.json": "e1a01e0c394bbb69909553c071b638e761661fd5f9a3cfb604b65883fff6f2e5",
+    "reports/experiments/ur_h30_cetesb_cetesb_full_20261117-221426/manifest.json": "4f741a7a1e4276232a80eb7a8e943637f1fd6b79687b33ba493774b0beb65d20",
+    "reports/experiments/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/manifest.json": "b069eed0d25217dc740263a42426ac2f5075bec8074b4c684027f9a6169bf6b6",
+    "reports/experiments/mh_h5_cetesb_cetesb_full_20261110-211453/manifest.json": "211a1cce1a9e1676fe0db964281373d2c402cac8617d23379b9ae368d280ea3d",
+    "reports/experiments/mh_h7_cetesb_cetesb_full_20261111-030322/manifest.json": "6ce7ea8aeec2b7b4e67132234cff43ceaa58ec278593d72e25e18a4906a46567",
+    "reports/experiments/mh_h15_cetesb_cetesb_full_20261111-070926/manifest.json": "1bd10d21e1662f92d74cce816ef2e291a19c9d7a9cc239210ce206c5286e82af",
+    "reports/experiments/mh_h30_cetesb_cetesb_full_20261113-104814/manifest.json": "26409192a827d4e66519a1a84255943c3fe5299e4a34cdcf4cdd98a90dcdef5f",
+    "reports/experiments/ur_h1_cetesb_cetesb_full_20261116-191534/model_comparison.csv": "bf65ae9da1dcdcf4d677039996415635cd883659ad155e2b6cf599f635fe66c3",
+    "reports/experiments/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/model_comparison.csv": "ad3eaf8cdcae7d8660b754d45e488c14932a291147ddca1a4f9584e1235e00a7",
+    "reports/experiments/mh_h5_cetesb_cetesb_full_20261110-211453/model_comparison.csv": "995e2c03ddd7bc0fd53869780525aa3be678cd8b2bf5b310066407b2739aed7f",
+    "reports/experiments/mh_h7_cetesb_cetesb_full_20261111-030322/model_comparison.csv": "080a14f22aba980b8a11764199223983b792a91092710ff1012e4446b543a467",
+    "reports/experiments/mh_h15_cetesb_cetesb_full_20261111-070926/model_comparison.csv": "e5812a18fb92b086485b91ace725271a9f8f734d482c66d553f74e7fac7418ad",
+    "reports/experiments/mh_h30_cetesb_cetesb_full_20261113-104814/model_comparison.csv": "8aea148ab261359bd20345bcf43cdb83fa24d83ce898129ec82f7b1be504a5e3",
+    "reports/experiments/ur_h5_cetesb_cetesb_full_20261116-222823/model_comparison.csv": "ca096e45b8d87022b3533c3d6ce9ea8efb4676c228823f80d08a20dd04e41931",
+    "reports/experiments/ur_h7_cetesb_cetesb_full_20261117-073926/model_comparison.csv": "117a8752d7455566db75ea74d074662ab2138dd4772c687a7a7e9bb5723b20e3",
+    "reports/experiments/ur_h15_cetesb_cetesb_full_20261117-190532/model_comparison.csv": "1c2c71ba842a6f3ba4bb2c93aa2bac75cd40bcbe5ca9ad2f1a95b19ac4570bc9",
+    "reports/experiments/ur_h30_cetesb_cetesb_full_20261117-221426/model_comparison.csv": "950d594e1f347fd5a4e8bae7c294bd2af3870b16f1434c673c098e7799044b03",
+    "reports/experiments/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/predictions.csv": "134a121dd4c1ed79bf15131427696f4ea61da805c58da79b9e36f13d99cbedc5",
+    "reports/experiments/ur_h1_cetesb_cetesb_full_20261116-191534/predictions.csv": "44a77e7edd17e60bca529fc186b873c68a03347ed4d0ba8447335e5ae4be102e",
+    "reports/experiments/TESTES_DM_h1_v02_cetesb_cetesb_classicos_full_20261022-211834/dm_contrastes.csv": "193bece2813a54938a380fe8d2200e8688333ece9436f4d80d0a4b6f87bd8728",
+    "reports/experiments/TESTES_DM_ur_h1_cetesb_cetesb_full_20261116-191534/dm_contrastes.csv": "3b42c73775fde33c178911a1f01ed236fd202ed7e7bd096d41250d4ff9527652",
+    "reports/experiments/TESTES_DM_ur_h5_cetesb_cetesb_full_20261116-222823/dm_contrastes.csv": "88dcad690de8db1b48b17cfc46f613756bd461fa4e9bff1631a66142f10006e6",
+    "reports/experiments/TESTES_DM_ur_h7_cetesb_cetesb_full_20261117-073926/dm_contrastes.csv": "f39a429e5ae9bf05fad9f424f46d0d8375f208a0f38f013f2cc4480f0424ad9b",
+    "reports/experiments/TESTES_DM_ur_h15_cetesb_cetesb_full_20261117-190532/dm_contrastes.csv": "d320fb6b1fd2ea9f69534f121b85c265c2e71c4dd645b923cec13c12f51c304d",
+    "reports/experiments/TESTES_DM_ur_h30_cetesb_cetesb_full_20261117-221426/dm_contrastes.csv": "c52d0e35b217fd5a8f44cd137c4c81759b3bb250124de861fe5b11c44c1774a1"
+  },
+  "descricao": "Números das tabelas de urgência do cap. 6 (desempenho AR_CAL, erro de sábado, ablação, H2) e MAE por horizonte nos dois alvos; nenhum valor digitado."
+}

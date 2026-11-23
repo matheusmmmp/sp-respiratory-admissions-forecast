@@ -1,0 +1,589 @@
+h,base,modelo,conjunto,n_folds,folds_melhora_acima_do_ruido,folds_piora_acima_do_ruido,delta_MAE_medio,ruido_semente_medio,veredito,n_pares,pares_com_melhora,max_abs_delta,afetado_pela_troca
+1,cams,gam_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,cams,gam_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,cams,gam_nb,AR_CAL_METEO,4,4,0,-0.3868222459303077,0.0,MELHOR que a referência (critério §0.7),4,4,0.6818172878433764,True
+1,cams,gam_nb,AR_CAL_METEO_PM25,4,4,0,-0.5893057102068635,0.0,MELHOR que a referência (critério §0.7),4,4,0.8704886639208276,True
+1,cams,gam_nb,AR_CAL_METEO_POLUENTES,4,3,1,-0.19089171565214702,0.0,MELHOR que a referência (critério §0.7),4,3,0.7538958914487424,True
+1,cams,gam_nb,AR_CAL_PM25,4,3,1,-0.24359484597578085,0.0,MELHOR que a referência (critério §0.7),4,3,0.6690901434365877,True
+1,cams,gam_nb,AR_CAL_POLUENTES,4,2,2,0.19368617315106018,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.48507262470478096,True
+1,cams,gam_nb,COMPLETO,4,3,1,-0.44798486994497555,0.0,MELHOR que a referência (critério §0.7),4,3,0.9058786349450685,True
+1,cams,ingarch_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,cams,ingarch_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,cams,ingarch_nb,AR_CAL_METEO,4,4,0,-0.2550270067416509,0.0,MELHOR que a referência (critério §0.7),4,4,0.4387517438262982,True
+1,cams,ingarch_nb,AR_CAL_METEO_PM25,4,4,0,-0.7016000131887328,0.0,MELHOR que a referência (critério §0.7),4,4,1.2314526114870041,True
+1,cams,ingarch_nb,AR_CAL_METEO_POLUENTES,4,4,0,-0.5515365719544301,0.0,MELHOR que a referência (critério §0.7),4,4,1.2277808463423803,True
+1,cams,ingarch_nb,AR_CAL_PM25,4,2,2,-0.13898917727667826,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.5021053913009297,True
+1,cams,ingarch_nb,AR_CAL_POLUENTES,4,1,3,0.1781197526446494,0.0,PIOR que a referência (critério §0.7),4,1,0.5432656305160037,True
+1,cams,ingarch_nb,COMPLETO,4,4,0,-1.0089203847561077,0.0,MELHOR que a referência (critério §0.7),4,4,1.2860665970623302,True
+1,cams,lstm,AR,4,0,0,0.0,0.20024355374169572,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+1,cams,lstm,AR_CAL,4,0,0,0.0,0.31028309113991154,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+1,cams,lstm,AR_CAL_METEO,4,0,0,-0.660741973453098,1.5616258467701567,indistinguível (diferença dentro do ruído de semente),20,13,9.762430657280817,True
+1,cams,lstm,AR_CAL_METEO_PM25,4,3,0,-2.8394757334391287,1.2929036247048162,MELHOR que a referência (critério §0.7),20,18,8.0196043226454,True
+1,cams,lstm,AR_CAL_METEO_POLUENTES,4,0,0,-0.25794940948486345,0.9908772242922541,indistinguível (diferença dentro do ruído de semente),20,11,2.918192291259764,True
+1,cams,lstm,AR_CAL_PM25,4,4,0,-3.109762857225206,1.254768203604823,MELHOR que a referência (critério §0.7),20,18,9.014377254909938,True
+1,cams,lstm,AR_CAL_POLUENTES,4,2,0,-0.5890351592169869,0.5077905002377051,indistinguível (diferença dentro do ruído de semente),20,19,1.906311967637805,True
+1,cams,lstm,COMPLETO,4,3,0,-2.2247406175401476,1.7704350879052164,MELHOR que a referência (critério §0.7),20,17,7.706677203708221,True
+1,cams,naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,cams,sarimax,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,cams,sarimax,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,cams,sarimax,AR_CAL_METEO,4,2,2,-0.02772218412853844,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.11796530413900541,True
+1,cams,sarimax,AR_CAL_METEO_PM25,4,2,2,-0.0767070289908851,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.3031867111759041,True
+1,cams,sarimax,AR_CAL_METEO_POLUENTES,4,2,2,-0.02197233090063433,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.3457815515460343,True
+1,cams,sarimax,AR_CAL_PM25,4,0,4,0.1525872499371257,0.0,PIOR que a referência (critério §0.7),4,0,0.3007899157474796,True
+1,cams,sarimax,AR_CAL_POLUENTES,4,0,4,0.2800225977721542,0.0,PIOR que a referência (critério §0.7),4,0,0.3775035963563411,True
+1,cams,sarimax,COMPLETO,4,2,2,-0.06781648051248457,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.6097636475466715,True
+1,cams,seasonal_naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,cams,xgboost,AR,4,0,0,0.0,0.289918170807996,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+1,cams,xgboost,AR_CAL,4,0,0,0.0,0.21358335001606832,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+1,cams,xgboost,AR_CAL_METEO,4,0,0,0.10628737555609771,0.2530206123850543,indistinguível (diferença dentro do ruído de semente),20,9,0.9202168782552143,True
+1,cams,xgboost,AR_CAL_METEO_PM25,4,0,0,0.07742495430840377,0.2684306077201657,indistinguível (diferença dentro do ruído de semente),20,10,0.7292650858561203,True
+1,cams,xgboost,AR_CAL_METEO_POLUENTES,4,1,1,0.05244153552585154,0.26475947168166414,indistinguível (diferença dentro do ruído de semente),20,6,0.7320581648084818,True
+1,cams,xgboost,AR_CAL_PM25,4,1,0,-0.026779935624864477,0.2478617480662169,indistinguível (diferença dentro do ruído de semente),20,11,1.1410667843288849,True
+1,cams,xgboost,AR_CAL_POLUENTES,4,3,0,-0.3400802315606001,0.27328956929509246,MELHOR que a referência (critério §0.7),20,15,1.2279292636447536,True
+1,cams,xgboost,COMPLETO,4,1,1,0.13314548492431708,0.3078684263603613,indistinguível (diferença dentro do ruído de semente),20,10,1.4532761043972435,True
+1,espelho,gam_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,espelho,gam_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,espelho,gam_nb,AR_CAL_METEO,4,4,0,-0.23295165326945888,0.0,MELHOR que a referência (critério §0.7),4,4,0.36218225788433145,True
+1,espelho,gam_nb,AR_CAL_METEO_PM25,4,4,0,-0.421402098610578,0.0,MELHOR que a referência (critério §0.7),4,4,0.6759234026236633,True
+1,espelho,gam_nb,AR_CAL_METEO_POLUENTES,4,2,2,-0.027186548378259623,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.5452355312945265,True
+1,espelho,gam_nb,AR_CAL_PM25,4,3,1,-0.3274460748950938,0.0,MELHOR que a referência (critério §0.7),4,3,0.7927691890638151,True
+1,espelho,gam_nb,AR_CAL_POLUENTES,4,2,2,0.15565484791885797,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.44863058474517103,True
+1,espelho,gam_nb,COMPLETO,4,4,0,-0.3358494315492413,0.0,MELHOR que a referência (critério §0.7),4,4,0.7144620923818898,True
+1,espelho,ingarch_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,espelho,ingarch_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,espelho,ingarch_nb,AR_CAL_METEO,4,4,0,-0.26807428552211654,0.0,MELHOR que a referência (critério §0.7),4,4,0.6394311906467749,True
+1,espelho,ingarch_nb,AR_CAL_METEO_PM25,4,4,0,-0.4775996332150729,0.0,MELHOR que a referência (critério §0.7),4,4,1.2180741472501992,True
+1,espelho,ingarch_nb,AR_CAL_METEO_POLUENTES,4,2,2,-0.22702918270295136,0.0,indistinguível (diferença dentro do ruído de semente),4,2,1.047484333833026,True
+1,espelho,ingarch_nb,AR_CAL_PM25,4,3,1,-0.23549822708742685,0.0,MELHOR que a referência (critério §0.7),4,3,0.4241112720409106,True
+1,espelho,ingarch_nb,AR_CAL_POLUENTES,4,2,2,0.15474180588054054,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.4020974314123542,True
+1,espelho,ingarch_nb,COMPLETO,4,4,0,-0.6846745565359491,0.0,MELHOR que a referência (critério §0.7),4,4,1.0778656196738865,True
+1,espelho,lstm,AR,4,0,0,0.0,0.20024355374169572,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+1,espelho,lstm,AR_CAL,4,0,0,0.0,0.31028309113991154,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+1,espelho,lstm,AR_CAL_METEO,4,0,0,-0.7657283507453078,1.4350801257661625,indistinguível (diferença dentro do ruído de semente),20,14,10.383237965901696,True
+1,espelho,lstm,AR_CAL_METEO_PM25,4,3,0,-2.6618309148152672,1.2929036247048162,MELHOR que a referência (critério §0.7),20,17,8.215871598985458,True
+1,espelho,lstm,AR_CAL_METEO_POLUENTES,4,0,0,-0.27150140126546174,0.9733127478287782,indistinguível (diferença dentro do ruído de semente),20,11,2.5822128719753685,True
+1,espelho,lstm,AR_CAL_PM25,4,4,0,-3.1433381674024785,1.2556277291253721,MELHOR que a referência (critério §0.7),20,19,9.28600090874566,True
+1,espelho,lstm,AR_CAL_POLUENTES,4,2,0,-0.5936566967434362,0.5191117987978795,indistinguível (diferença dentro do ruído de semente),20,14,2.3717020246717695,True
+1,espelho,lstm,COMPLETO,4,2,0,-2.3317548476325145,1.9320873926036033,indistinguível (diferença dentro do ruído de semente),20,16,9.035511101616756,True
+1,espelho,naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,espelho,sarimax,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,espelho,sarimax,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,espelho,sarimax,AR_CAL_METEO,4,4,0,-0.08106767077236876,0.0,MELHOR que a referência (critério §0.7),4,4,0.10121384803096944,True
+1,espelho,sarimax,AR_CAL_METEO_PM25,4,3,1,-0.17063291560105665,0.0,MELHOR que a referência (critério §0.7),4,3,0.358193639105572,True
+1,espelho,sarimax,AR_CAL_METEO_POLUENTES,4,3,1,-0.09934350669931069,0.0,MELHOR que a referência (critério §0.7),4,3,0.3915649551283362,True
+1,espelho,sarimax,AR_CAL_PM25,4,4,0,-0.10288093238044649,0.0,MELHOR que a referência (critério §0.7),4,4,0.19502275254203028,True
+1,espelho,sarimax,AR_CAL_POLUENTES,4,1,3,0.07342875227379597,0.0,PIOR que a referência (critério §0.7),4,1,0.20016233303963205,True
+1,espelho,sarimax,COMPLETO,4,3,1,-0.20532381188089932,0.0,MELHOR que a referência (critério §0.7),4,3,0.7130492074000472,True
+1,espelho,seasonal_naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,espelho,xgboost,AR,4,0,0,0.0,0.289918170807996,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+1,espelho,xgboost,AR_CAL,4,0,0,0.0,0.21358335001606832,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+1,espelho,xgboost,AR_CAL_METEO,4,2,0,-0.19541874355740008,0.25716795731004327,indistinguível (diferença dentro do ruído de semente),20,13,0.8013093736436616,True
+1,espelho,xgboost,AR_CAL_METEO_PM25,4,1,0,-0.13661022822062244,0.30033391802179976,indistinguível (diferença dentro do ruído de semente),20,13,1.0369572109646263,True
+1,espelho,xgboost,AR_CAL_METEO_POLUENTES,4,2,0,-0.20958401150173633,0.26110102868839935,indistinguível (diferença dentro do ruído de semente),20,15,0.8521332210964623,True
+1,espelho,xgboost,AR_CAL_PM25,4,1,2,-0.0823067304823132,0.222681577786945,indistinguível (diferença dentro do ruído de semente),20,9,1.4465237511528883,True
+1,espelho,xgboost,AR_CAL_POLUENTES,4,2,0,-0.21710691240098734,0.24966673035569387,indistinguível (diferença dentro do ruído de semente),20,16,1.0406577216254327,True
+1,espelho,xgboost,COMPLETO,4,2,0,-0.2523872587415898,0.3333738745921966,indistinguível (diferença dentro do ruído de semente),20,15,1.0744696299234988,True
+1,hibrida,gam_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,hibrida,gam_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,hibrida,gam_nb,AR_CAL_METEO,4,4,0,-0.2557983594486988,0.0,MELHOR que a referência (critério §0.7),4,4,0.4153345008757192,True
+1,hibrida,gam_nb,AR_CAL_METEO_PM25,4,2,2,-0.046549189016916515,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.3648565691368155,True
+1,hibrida,gam_nb,AR_CAL_METEO_POLUENTES,4,1,3,0.017483097479057186,0.0,PIOR que a referência (critério §0.7),4,1,0.3502195501143497,True
+1,hibrida,gam_nb,AR_CAL_PM25,4,1,3,0.08286500339718472,0.0,PIOR que a referência (critério §0.7),4,1,0.18994002630178386,True
+1,hibrida,gam_nb,AR_CAL_POLUENTES,4,2,2,0.017211822130930976,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.18593281616204038,True
+1,hibrida,gam_nb,COMPLETO,4,1,3,0.34800811472474535,0.0,PIOR que a referência (critério §0.7),4,1,1.030343350341834,True
+1,hibrida,ingarch_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,hibrida,ingarch_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,hibrida,ingarch_nb,AR_CAL_METEO,4,1,3,0.0765090155977104,0.0,PIOR que a referência (critério §0.7),4,1,0.19569524865336163,True
+1,hibrida,ingarch_nb,AR_CAL_METEO_PM25,4,2,2,0.159790894422132,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.6463703308936921,True
+1,hibrida,ingarch_nb,AR_CAL_METEO_POLUENTES,4,1,3,0.18587987721378596,0.0,PIOR que a referência (critério §0.7),4,1,0.6759636535095979,True
+1,hibrida,ingarch_nb,AR_CAL_PM25,4,0,4,0.06711589665332873,0.0,PIOR que a referência (critério §0.7),4,0,0.14638586935809172,True
+1,hibrida,ingarch_nb,AR_CAL_POLUENTES,4,1,3,0.14235296337399106,0.0,PIOR que a referência (critério §0.7),4,1,0.44842851664773775,True
+1,hibrida,ingarch_nb,COMPLETO,4,1,3,0.35088511740837625,0.0,PIOR que a referência (critério §0.7),4,1,0.7516000829009002,True
+1,hibrida,lstm,AR,4,0,0,0.0,0.20024355374169572,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+1,hibrida,lstm,AR_CAL,4,0,0,0.0,0.31028309113991154,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+1,hibrida,lstm,AR_CAL_METEO,4,0,1,0.028928714328341515,1.4313149614105165,indistinguível (diferença dentro do ruído de semente),20,7,8.52525465223524,True
+1,hibrida,lstm,AR_CAL_METEO_PM25,4,0,1,0.2677721701727964,1.6496679892507213,indistinguível (diferença dentro do ruído de semente),20,9,5.371126514010957,True
+1,hibrida,lstm,AR_CAL_METEO_POLUENTES,4,0,3,0.7977045991685666,1.033155883093647,PIOR que a referência (critério §0.7),20,5,2.862173461914068,True
+1,hibrida,lstm,AR_CAL_PM25,4,0,0,0.23409437179565434,1.7562411999790768,indistinguível (diferença dentro do ruído de semente),20,10,5.7423590342203745,True
+1,hibrida,lstm,AR_CAL_POLUENTES,4,1,0,-0.21763649410671793,0.6626502264376024,indistinguível (diferença dentro do ruído de semente),20,10,1.6081882052951464,True
+1,hibrida,lstm,COMPLETO,4,0,1,-0.5576451174418129,1.8415916430253454,indistinguível (diferença dentro do ruído de semente),20,12,7.171095021565751,True
+1,hibrida,naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,hibrida,sarimax,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,hibrida,sarimax,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,hibrida,sarimax,AR_CAL_METEO,4,1,3,0.06376299750198111,0.0,PIOR que a referência (critério §0.7),4,1,0.18381626832144704,True
+1,hibrida,sarimax,AR_CAL_METEO_PM25,4,1,3,0.040359457051544645,0.0,PIOR que a referência (critério §0.7),4,1,0.128322314362336,True
+1,hibrida,sarimax,AR_CAL_METEO_POLUENTES,4,1,3,0.02175860327887147,0.0,PIOR que a referência (critério §0.7),4,1,0.12361390554823615,True
+1,hibrida,sarimax,AR_CAL_PM25,4,1,3,0.016545464389335685,0.0,PIOR que a referência (critério §0.7),4,1,0.08168620823200001,True
+1,hibrida,sarimax,AR_CAL_POLUENTES,4,2,2,-0.004710357547042854,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.11120073759459714,True
+1,hibrida,sarimax,COMPLETO,4,1,3,0.09012361143955872,0.0,PIOR que a referência (critério §0.7),4,1,0.19129375311463903,True
+1,hibrida,seasonal_naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+1,hibrida,xgboost,AR,4,0,0,0.0,0.289918170807996,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+1,hibrida,xgboost,AR_CAL,4,0,0,0.0,0.21358335001606832,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+1,hibrida,xgboost,AR_CAL_METEO,4,0,1,0.20842893600463785,0.27543922406223637,indistinguível (diferença dentro do ruído de semente),20,7,1.316139263576936,True
+1,hibrida,xgboost,AR_CAL_METEO_PM25,4,0,0,0.15485518561469275,0.38419487972349875,indistinguível (diferença dentro do ruído de semente),20,5,1.0389880710177977,True
+1,hibrida,xgboost,AR_CAL_METEO_POLUENTES,4,0,1,0.11677226172553201,0.26411639150823024,indistinguível (diferença dentro do ruído de semente),20,7,0.6987814161512595,True
+1,hibrida,xgboost,AR_CAL_PM25,4,0,1,0.047563421461317104,0.24480012148453706,indistinguível (diferença dentro do ruído de semente),20,9,0.6809427473280145,True
+1,hibrida,xgboost,AR_CAL_POLUENTES,4,0,0,-0.0610687107510028,0.23623398346332208,indistinguível (diferença dentro do ruído de semente),20,10,1.0899533589680992,True
+1,hibrida,xgboost,COMPLETO,4,0,1,0.16701232062445825,0.34162236313451766,indistinguível (diferença dentro do ruído de semente),20,5,0.7364715576171861,True
+5,cams,gam_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,cams,gam_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,cams,gam_nb,AR_CAL_METEO,4,3,1,-0.23076379070551933,0.0,MELHOR que a referência (critério §0.7),4,3,0.5579605501504972,True
+5,cams,gam_nb,AR_CAL_METEO_PM25,4,3,1,-0.6788013333086589,0.0,MELHOR que a referência (critério §0.7),4,3,1.027544990083502,True
+5,cams,gam_nb,AR_CAL_METEO_POLUENTES,4,3,1,-0.24112791247694432,0.0,MELHOR que a referência (critério §0.7),4,3,1.211525403725691,True
+5,cams,gam_nb,AR_CAL_PM25,4,2,2,-0.2662213616132867,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.73122812423901,True
+5,cams,gam_nb,AR_CAL_POLUENTES,4,1,3,0.44218256307616954,0.0,PIOR que a referência (critério §0.7),4,1,0.89223089567691,True
+5,cams,gam_nb,COMPLETO,4,3,1,-0.4913970081748582,0.0,MELHOR que a referência (critério §0.7),4,3,1.0518959858089225,True
+5,cams,ingarch_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,cams,ingarch_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,cams,ingarch_nb,AR_CAL_METEO,4,4,0,-0.6725176369682799,0.0,MELHOR que a referência (critério §0.7),4,4,1.0756272095848374,True
+5,cams,ingarch_nb,AR_CAL_METEO_PM25,4,4,0,-1.6806813214914165,0.0,MELHOR que a referência (critério §0.7),4,4,2.808779776439163,True
+5,cams,ingarch_nb,AR_CAL_METEO_POLUENTES,4,3,1,-0.9245412835681641,0.0,MELHOR que a referência (critério §0.7),4,3,1.4500054044313266,True
+5,cams,ingarch_nb,AR_CAL_PM25,4,3,1,-0.5271642979781577,0.0,MELHOR que a referência (critério §0.7),4,3,1.3962120436557726,True
+5,cams,ingarch_nb,AR_CAL_POLUENTES,4,1,3,0.2292430180374856,0.0,PIOR que a referência (critério §0.7),4,1,1.095990090340532,True
+5,cams,ingarch_nb,COMPLETO,4,4,0,-1.4161779344644136,0.0,MELHOR que a referência (critério §0.7),4,4,2.7960203039887332,True
+5,cams,lstm,AR,4,0,0,0.0,0.41269222900122976,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+5,cams,lstm,AR_CAL,4,0,0,0.0,0.5490027605460168,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+5,cams,lstm,AR_CAL_METEO,4,2,0,-1.349808519151476,1.3996245665558509,indistinguível (diferença dentro do ruído de semente),20,17,6.6195883009168845,True
+5,cams,lstm,AR_CAL_METEO_PM25,4,4,0,-3.086362427605523,2.3439772767793707,MELHOR que a referência (critério §0.7),20,18,10.242078018188476,True
+5,cams,lstm,AR_CAL_METEO_POLUENTES,4,3,0,-1.6843578423394097,1.8779925144394969,MELHOR que a referência (critério §0.7),20,15,7.301316621568464,True
+5,cams,lstm,AR_CAL_PM25,4,4,0,-4.425434712304008,2.63212659922434,MELHOR que a referência (critério §0.7),20,20,13.419982825385194,True
+5,cams,lstm,AR_CAL_POLUENTES,4,0,0,0.02183057996961678,0.7531944209971483,indistinguível (diferença dentro do ruído de semente),20,9,1.8214316050211572,True
+5,cams,lstm,COMPLETO,4,2,0,-2.6361180029975024,2.1123617105293113,indistinguível (diferença dentro do ruído de semente),20,17,9.07342745463053,True
+5,cams,naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,cams,sarimax,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,cams,sarimax,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,cams,sarimax,AR_CAL_METEO,4,3,1,-0.1412938988036423,0.0,MELHOR que a referência (critério §0.7),4,3,0.48835974400331494,True
+5,cams,sarimax,AR_CAL_METEO_PM25,4,3,1,-0.24541231590422008,0.0,MELHOR que a referência (critério §0.7),4,3,0.5450069956860482,True
+5,cams,sarimax,AR_CAL_METEO_POLUENTES,4,3,1,-0.24030386032814377,0.0,MELHOR que a referência (critério §0.7),4,3,0.5284932438103134,True
+5,cams,sarimax,AR_CAL_PM25,4,1,3,-0.010295581288584543,0.0,PIOR que a referência (critério §0.7),4,1,0.19402612946966258,True
+5,cams,sarimax,AR_CAL_POLUENTES,4,3,1,-0.011442240489612843,0.0,MELHOR que a referência (critério §0.7),4,3,0.29282569949752,True
+5,cams,sarimax,COMPLETO,4,3,1,-0.1863268252855077,0.0,MELHOR que a referência (critério §0.7),4,3,0.5096206581837492,True
+5,cams,seasonal_naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,cams,xgboost,AR,4,0,0,0.0,0.17784422810724412,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+5,cams,xgboost,AR_CAL,4,0,0,0.0,0.2970503978890949,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+5,cams,xgboost,AR_CAL_METEO,4,1,1,-0.007972323099771826,0.35947774368670005,indistinguível (diferença dentro do ruído de semente),20,9,1.5509429507785377,True
+5,cams,xgboost,AR_CAL_METEO_PM25,4,0,2,0.17268194622463734,0.30867979904985343,indistinguível (diferença dentro do ruído de semente),20,6,1.0227930704752595,True
+5,cams,xgboost,AR_CAL_METEO_POLUENTES,4,0,2,0.08241208182440829,0.3008350060978622,indistinguível (diferença dentro do ruído de semente),20,5,1.3580061170789968,True
+5,cams,xgboost,AR_CAL_PM25,4,0,1,0.22617706934611093,0.3823858472609426,indistinguível (diferença dentro do ruído de semente),20,6,1.0400243123372377,True
+5,cams,xgboost,AR_CAL_POLUENTES,4,0,0,0.0677446556091315,0.3097386959560148,indistinguível (diferença dentro do ruído de semente),20,11,1.0345829433865035,True
+5,cams,xgboost,COMPLETO,4,2,1,-0.060352325439452584,0.3160728910257939,indistinguível (diferença dentro do ruído de semente),20,11,0.8718463049994583,True
+5,espelho,gam_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,espelho,gam_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,espelho,gam_nb,AR_CAL_METEO,4,2,2,-0.11652345202470826,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.41410226866156563,True
+5,espelho,gam_nb,AR_CAL_METEO_PM25,4,3,1,-0.21513514680603496,0.0,MELHOR que a referência (critério §0.7),4,3,0.6437876716514808,True
+5,espelho,gam_nb,AR_CAL_METEO_POLUENTES,4,1,3,0.08827494783671952,0.0,PIOR que a referência (critério §0.7),4,1,1.066015991482928,True
+5,espelho,gam_nb,AR_CAL_PM25,4,2,2,-0.1314486954899472,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.9547128417067334,True
+5,espelho,gam_nb,AR_CAL_POLUENTES,4,1,3,0.31201041634248305,0.0,PIOR que a referência (critério §0.7),4,1,0.7979398237448478,True
+5,espelho,gam_nb,COMPLETO,4,2,2,-0.1682655749649573,0.0,indistinguível (diferença dentro do ruído de semente),4,2,1.0735465820657986,True
+5,espelho,ingarch_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,espelho,ingarch_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,espelho,ingarch_nb,AR_CAL_METEO,4,2,2,-0.30058279682885924,0.0,indistinguível (diferença dentro do ruído de semente),4,2,1.0392387517566029,True
+5,espelho,ingarch_nb,AR_CAL_METEO_PM25,4,3,1,-0.8557704981716752,0.0,MELHOR que a referência (critério §0.7),4,3,1.7846305437313497,True
+5,espelho,ingarch_nb,AR_CAL_METEO_POLUENTES,4,2,2,-0.07812119187698041,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.8977601193540004,True
+5,espelho,ingarch_nb,AR_CAL_PM25,4,3,1,-0.43231589241079593,0.0,MELHOR que a referência (critério §0.7),4,3,1.0488660916361994,True
+5,espelho,ingarch_nb,AR_CAL_POLUENTES,4,2,2,0.2536065155578253,0.0,indistinguível (diferença dentro do ruído de semente),4,2,1.3153334294239976,True
+5,espelho,ingarch_nb,COMPLETO,4,3,1,-0.642024734763222,0.0,MELHOR que a referência (critério §0.7),4,3,1.7030997743111094,True
+5,espelho,lstm,AR,4,0,0,0.0,0.41269222900122976,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+5,espelho,lstm,AR_CAL,4,0,0,0.0,0.5490027605460168,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+5,espelho,lstm,AR_CAL_METEO,4,1,0,-0.7230540466308599,1.3663670124482536,indistinguível (diferença dentro do ruído de semente),20,13,6.308436499701607,True
+5,espelho,lstm,AR_CAL_METEO_PM25,4,2,0,-2.3379998355441622,2.26251631010052,indistinguível (diferença dentro do ruído de semente),20,14,9.280001195271808,True
+5,espelho,lstm,AR_CAL_METEO_POLUENTES,4,2,0,-1.1629697651333275,1.8504943141706542,indistinguível (diferença dentro do ruído de semente),20,15,9.412054146660697,True
+5,espelho,lstm,AR_CAL_PM25,4,4,0,-4.351427188449435,2.63212659922434,MELHOR que a referência (critério §0.7),20,20,13.047449239095052,True
+5,espelho,lstm,AR_CAL_POLUENTES,4,0,0,0.13747518539428577,0.7531944209971483,indistinguível (diferença dentro do ruído de semente),20,8,1.9536430358886712,True
+5,espelho,lstm,COMPLETO,4,1,0,-2.4675107002258287,2.1123617105293113,indistinguível (diferença dentro do ruído de semente),20,17,5.843965742323139,True
+5,espelho,naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,espelho,sarimax,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,espelho,sarimax,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,espelho,sarimax,AR_CAL_METEO,4,3,1,-0.11699893089785185,0.0,MELHOR que a referência (critério §0.7),4,3,0.2697386038293281,True
+5,espelho,sarimax,AR_CAL_METEO_PM25,4,2,2,-0.1300773563801947,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.3268979858748686,True
+5,espelho,sarimax,AR_CAL_METEO_POLUENTES,4,3,1,-0.08833807535575833,0.0,MELHOR que a referência (critério §0.7),4,3,0.33357343955907837,True
+5,espelho,sarimax,AR_CAL_PM25,4,4,0,-0.03140178245985581,0.0,MELHOR que a referência (critério §0.7),4,4,0.055154076491117365,True
+5,espelho,sarimax,AR_CAL_POLUENTES,4,2,2,0.00022204810888659665,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.2689697074471873,True
+5,espelho,sarimax,COMPLETO,4,3,1,-0.14885021241396856,0.0,MELHOR que a referência (critério §0.7),4,3,0.40601440211015216,True
+5,espelho,seasonal_naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,espelho,xgboost,AR,4,0,0,0.0,0.17784422810724412,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+5,espelho,xgboost,AR_CAL,4,0,0,0.0,0.2970503978890949,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+5,espelho,xgboost,AR_CAL_METEO,4,2,0,-0.12088884353637752,0.33294483545312764,indistinguível (diferença dentro do ruído de semente),20,14,1.1385239919026695,True
+5,espelho,xgboost,AR_CAL_METEO_PM25,4,1,0,-0.09904219521416432,0.28167067106927224,indistinguível (diferença dentro do ruído de semente),20,12,0.6617105695936445,True
+5,espelho,xgboost,AR_CAL_METEO_POLUENTES,4,0,0,-0.010568890041775528,0.3057810866758099,indistinguível (diferença dentro do ruído de semente),20,14,0.8597527398003493,True
+5,espelho,xgboost,AR_CAL_PM25,4,1,0,-0.15086516062418587,0.35680914205221387,indistinguível (diferença dentro do ruído de semente),20,13,0.9046165890163849,True
+5,espelho,xgboost,AR_CAL_POLUENTES,4,0,1,0.025120834774442352,0.28615141928634874,indistinguível (diferença dentro do ruído de semente),20,10,0.7851565466986763,True
+5,espelho,xgboost,COMPLETO,4,1,0,-0.18676654603746223,0.4445304671945297,indistinguível (diferença dentro do ruído de semente),20,13,1.093666119045679,True
+5,hibrida,gam_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,hibrida,gam_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,hibrida,gam_nb,AR_CAL_METEO,4,3,1,-0.21300135300909329,0.0,MELHOR que a referência (critério §0.7),4,3,0.8177386522883658,True
+5,hibrida,gam_nb,AR_CAL_METEO_PM25,4,2,2,-0.1707029564246456,0.0,indistinguível (diferença dentro do ruído de semente),4,2,1.1041030975154449,True
+5,hibrida,gam_nb,AR_CAL_METEO_POLUENTES,4,2,2,-0.04393704465390691,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.5595662069150897,True
+5,hibrida,gam_nb,AR_CAL_PM25,4,2,2,0.022025141111939206,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.15613116179813602,True
+5,hibrida,gam_nb,AR_CAL_POLUENTES,4,1,3,0.1139338706753481,0.0,PIOR que a referência (critério §0.7),4,1,0.3080804173466589,True
+5,hibrida,gam_nb,COMPLETO,4,1,3,0.4302323650994566,0.0,PIOR que a referência (critério §0.7),4,1,1.348751602853575,True
+5,hibrida,ingarch_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,hibrida,ingarch_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,hibrida,ingarch_nb,AR_CAL_METEO,4,4,0,-0.2911897577159941,0.0,MELHOR que a referência (critério §0.7),4,4,0.5685776557522217,True
+5,hibrida,ingarch_nb,AR_CAL_METEO_PM25,4,2,2,-0.020853770697007334,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.37646492802268483,True
+5,hibrida,ingarch_nb,AR_CAL_METEO_POLUENTES,4,2,2,0.15340454626968825,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.6892856873671427,True
+5,hibrida,ingarch_nb,AR_CAL_PM25,4,0,4,0.2161904064568203,0.0,PIOR que a referência (critério §0.7),4,0,0.4059703225660165,True
+5,hibrida,ingarch_nb,AR_CAL_POLUENTES,4,0,4,0.2971588349890091,0.0,PIOR que a referência (critério §0.7),4,0,0.5060399843236318,True
+5,hibrida,ingarch_nb,COMPLETO,4,1,3,0.5181974178926225,0.0,PIOR que a referência (critério §0.7),4,1,1.5893744489013528,True
+5,hibrida,lstm,AR,4,0,0,0.0,0.41269222900122976,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+5,hibrida,lstm,AR_CAL,4,0,0,0.0,0.5490027605460168,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+5,hibrida,lstm,AR_CAL_METEO,4,0,1,0.33296379513210683,1.98901648840193,indistinguível (diferença dentro do ruído de semente),20,7,6.396388117472334,True
+5,hibrida,lstm,AR_CAL_METEO_PM25,4,0,1,-0.11353543387519008,2.204860023324622,indistinguível (diferença dentro do ruído de semente),20,6,7.184936820136173,True
+5,hibrida,lstm,AR_CAL_METEO_POLUENTES,4,0,0,-0.45532349904378294,1.9553418207778266,indistinguível (diferença dentro do ruído de semente),20,11,5.924506590101451,True
+5,hibrida,lstm,AR_CAL_PM25,4,0,0,-0.6858681170145662,2.7848900772095666,indistinguível (diferença dentro do ruído de semente),20,13,6.231792577107754,True
+5,hibrida,lstm,AR_CAL_POLUENTES,4,0,0,0.1785828569200296,0.891595687395664,indistinguível (diferença dentro do ruído de semente),20,8,2.23240746392144,True
+5,hibrida,lstm,COMPLETO,4,0,0,-0.22667427062988216,2.453296008273467,indistinguível (diferença dentro do ruído de semente),20,9,6.8823854658338774,True
+5,hibrida,naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,hibrida,sarimax,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,hibrida,sarimax,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,hibrida,sarimax,AR_CAL_METEO,4,2,2,-0.08794512249813558,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.42894099044195855,True
+5,hibrida,sarimax,AR_CAL_METEO_PM25,4,2,2,-0.06341403196357476,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.5050530137776512,True
+5,hibrida,sarimax,AR_CAL_METEO_POLUENTES,4,2,2,-0.03866248591350718,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.37117033419011136,True
+5,hibrida,sarimax,AR_CAL_PM25,4,1,3,0.054078832866349735,0.0,PIOR que a referência (critério §0.7),4,1,0.13443005953688214,True
+5,hibrida,sarimax,AR_CAL_POLUENTES,4,2,2,0.03296004181592593,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.1559494891042199,True
+5,hibrida,sarimax,COMPLETO,4,2,2,0.07053160727458252,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.4941741719658488,True
+5,hibrida,seasonal_naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+5,hibrida,xgboost,AR,4,0,0,0.0,0.17784422810724412,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+5,hibrida,xgboost,AR_CAL,4,0,0,0.0,0.2970503978890949,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+5,hibrida,xgboost,AR_CAL_METEO,4,0,2,0.19888608720567563,0.35569372532690585,indistinguível (diferença dentro do ruído de semente),20,5,1.0663575490315758,True
+5,hibrida,xgboost,AR_CAL_METEO_PM25,4,0,4,0.39611458248562365,0.2524855208333856,PIOR que a referência (critério §0.7),20,1,1.0676603105333093,True
+5,hibrida,xgboost,AR_CAL_METEO_POLUENTES,4,0,3,0.114938110775417,0.29484258070004915,PIOR que a referência (critério §0.7),20,5,1.5809566497802763,True
+5,hibrida,xgboost,AR_CAL_PM25,4,0,2,0.36203066507975235,0.3548622383669828,indistinguível (diferença dentro do ruído de semente),20,3,1.1291128794352225,True
+5,hibrida,xgboost,AR_CAL_POLUENTES,4,0,2,0.2444030846489806,0.3106962959883787,indistinguível (diferença dentro do ruído de semente),20,5,1.1885127597384972,True
+5,hibrida,xgboost,COMPLETO,4,0,1,0.07795372009277345,0.3261914042385351,indistinguível (diferença dentro do ruído de semente),20,7,1.0081381479899107,True
+7,cams,gam_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,cams,gam_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,cams,gam_nb,AR_CAL_METEO,4,4,0,-0.44106092149880993,0.0,MELHOR que a referência (critério §0.7),4,4,0.8156308975281412,True
+7,cams,gam_nb,AR_CAL_METEO_PM25,4,2,2,-0.6199001201487917,0.0,indistinguível (diferença dentro do ruído de semente),4,2,1.834612733171138,True
+7,cams,gam_nb,AR_CAL_METEO_POLUENTES,4,2,2,-0.19628303523764234,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.9275265953069081,True
+7,cams,gam_nb,AR_CAL_PM25,4,1,3,0.18982063489105094,0.0,PIOR que a referência (critério §0.7),4,1,0.5578424227193892,True
+7,cams,gam_nb,AR_CAL_POLUENTES,4,1,3,0.3699323247205051,0.0,PIOR que a referência (critério §0.7),4,1,0.8469963521720061,True
+7,cams,gam_nb,COMPLETO,4,3,1,-0.4368454750301751,0.0,MELHOR que a referência (critério §0.7),4,3,1.1656941034856416,True
+7,cams,ingarch_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,cams,ingarch_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,cams,ingarch_nb,AR_CAL_METEO,4,4,0,-0.2609147771926912,0.0,MELHOR que a referência (critério §0.7),4,4,0.41134324230631947,True
+7,cams,ingarch_nb,AR_CAL_METEO_PM25,4,4,0,-1.3422899390204028,0.0,MELHOR que a referência (critério §0.7),4,4,2.2521185696754102,True
+7,cams,ingarch_nb,AR_CAL_METEO_POLUENTES,4,3,1,-0.6831743871848097,0.0,MELHOR que a referência (critério §0.7),4,3,1.6718047041404915,True
+7,cams,ingarch_nb,AR_CAL_PM25,4,3,1,-1.1038208441774993,0.0,MELHOR que a referência (critério §0.7),4,3,1.8651422519693597,True
+7,cams,ingarch_nb,AR_CAL_POLUENTES,4,1,3,0.17931135468165227,0.0,PIOR que a referência (critério §0.7),4,1,1.8783536467846567,True
+7,cams,ingarch_nb,COMPLETO,4,4,0,-1.39222074372032,0.0,MELHOR que a referência (critério §0.7),4,4,1.7096889128478345,True
+7,cams,lstm,AR,4,0,0,0.0,0.2420981606861607,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+7,cams,lstm,AR_CAL,4,0,0,0.0,0.6820764976922069,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+7,cams,lstm,AR_CAL_METEO,4,1,0,-1.2286599689059785,1.5945812871234624,indistinguível (diferença dentro do ruído de semente),20,16,5.515373611450194,True
+7,cams,lstm,AR_CAL_METEO_PM25,4,2,0,-2.78505836698744,2.5110289142197955,indistinguível (diferença dentro do ruído de semente),20,18,9.118623140123155,True
+7,cams,lstm,AR_CAL_METEO_POLUENTES,4,0,0,-0.8962488916185172,2.0050847328181494,indistinguível (diferença dentro do ruído de semente),20,12,8.609340879652233,True
+7,cams,lstm,AR_CAL_PM25,4,4,0,-3.261388223436143,1.732013429719934,MELHOR que a referência (critério §0.7),20,20,9.530746714274088,True
+7,cams,lstm,AR_CAL_POLUENTES,4,0,1,0.2749639447530118,0.9854826661501889,indistinguível (diferença dentro do ruído de semente),20,7,2.444698291354708,True
+7,cams,lstm,COMPLETO,4,1,0,-2.2167216279771598,2.3831994395311416,indistinguível (diferença dentro do ruído de semente),20,15,7.593623945448137,True
+7,cams,naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,cams,sarimax,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,cams,sarimax,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,cams,sarimax,AR_CAL_METEO,4,3,1,-0.13526433925641523,0.0,MELHOR que a referência (critério §0.7),4,3,0.3752935606956811,True
+7,cams,sarimax,AR_CAL_METEO_PM25,4,2,2,-0.17066800287783046,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.6558486895183435,True
+7,cams,sarimax,AR_CAL_METEO_POLUENTES,4,2,2,-0.16933287533902508,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.962060502138339,True
+7,cams,sarimax,AR_CAL_PM25,4,1,3,0.09180749284857281,0.0,PIOR que a referência (critério §0.7),4,1,0.302282829093091,True
+7,cams,sarimax,AR_CAL_POLUENTES,4,1,3,0.19496408295366674,0.0,PIOR que a referência (critério §0.7),4,1,0.42464166283650684,True
+7,cams,sarimax,COMPLETO,4,3,1,-0.21131125175356047,0.0,MELHOR que a referência (critério §0.7),4,3,0.6606771377282712,True
+7,cams,seasonal_naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,cams,xgboost,AR,4,0,0,0.0,0.38932155513696853,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+7,cams,xgboost,AR_CAL,4,0,0,0.0,0.28066437961471774,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+7,cams,xgboost,AR_CAL_METEO,4,2,0,-0.347028172810872,0.43161455589432424,indistinguível (diferença dentro do ruído de semente),20,17,2.13416887919108,True
+7,cams,xgboost,AR_CAL_METEO_PM25,4,3,0,-0.4550784111022967,0.38294494152899106,MELHOR que a referência (critério §0.7),20,17,1.3756030612521712,True
+7,cams,xgboost,AR_CAL_METEO_POLUENTES,4,1,0,-0.28388793309529614,0.5342020792812359,indistinguível (diferença dentro do ruído de semente),20,14,2.7364611307779896,True
+7,cams,xgboost,AR_CAL_PM25,4,1,2,0.059253054724800164,0.29388439175764725,indistinguível (diferença dentro do ruído de semente),20,8,1.2522424062093123,True
+7,cams,xgboost,AR_CAL_POLUENTES,4,1,1,-0.2713823466830797,0.4436079192029986,indistinguível (diferença dentro do ruído de semente),20,12,2.6407442728678383,True
+7,cams,xgboost,COMPLETO,4,1,0,-0.08660458882649741,0.3943697091218223,indistinguível (diferença dentro do ruído de semente),20,12,1.3477123260498054,True
+7,espelho,gam_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,espelho,gam_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,espelho,gam_nb,AR_CAL_METEO,4,3,1,-0.2886812320545191,0.0,MELHOR que a referência (critério §0.7),4,3,0.705122126750954,True
+7,espelho,gam_nb,AR_CAL_METEO_PM25,4,3,1,-0.2157108332233877,0.0,MELHOR que a referência (critério §0.7),4,3,0.862686035951711,True
+7,espelho,gam_nb,AR_CAL_METEO_POLUENTES,4,1,3,0.1905378952893786,0.0,PIOR que a referência (critério §0.7),4,1,0.810420088026202,True
+7,espelho,gam_nb,AR_CAL_PM25,4,1,3,0.030152324677412246,0.0,PIOR que a referência (critério §0.7),4,1,0.3464564210825394,True
+7,espelho,gam_nb,AR_CAL_POLUENTES,4,1,3,0.27971975954082584,0.0,PIOR que a referência (critério §0.7),4,1,1.02853206972474,True
+7,espelho,gam_nb,COMPLETO,4,3,1,-0.09574912053609985,0.0,MELHOR que a referência (critério §0.7),4,3,0.9721815947856101,True
+7,espelho,ingarch_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,espelho,ingarch_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,espelho,ingarch_nb,AR_CAL_METEO,4,2,2,-0.12377588859652722,0.0,indistinguível (diferença dentro do ruído de semente),4,2,1.3000491512260162,True
+7,espelho,ingarch_nb,AR_CAL_METEO_PM25,4,2,2,-0.6289751645658015,0.0,indistinguível (diferença dentro do ruído de semente),4,2,2.2847626237469036,True
+7,espelho,ingarch_nb,AR_CAL_METEO_POLUENTES,4,3,1,0.009122898819597047,0.0,MELHOR que a referência (critério §0.7),4,3,1.3671697683633148,True
+7,espelho,ingarch_nb,AR_CAL_PM25,4,3,1,-0.9486243832787711,0.0,MELHOR que a referência (critério §0.7),4,3,2.0818090843790564,True
+7,espelho,ingarch_nb,AR_CAL_POLUENTES,4,2,2,0.1597365203106884,0.0,indistinguível (diferença dentro do ruído de semente),4,2,2.156032029568763,True
+7,espelho,ingarch_nb,COMPLETO,4,4,0,-0.7129148564934669,0.0,MELHOR que a referência (critério §0.7),4,4,1.2345374129971738,True
+7,espelho,lstm,AR,4,0,0,0.0,0.2420981606861607,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+7,espelho,lstm,AR_CAL,4,0,0,0.0,0.6820764976922069,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+7,espelho,lstm,AR_CAL_METEO,4,1,0,-0.8653480678134493,1.5166260647357044,indistinguível (diferença dentro do ruído de semente),20,12,7.269996515909831,True
+7,espelho,lstm,AR_CAL_METEO_PM25,4,2,0,-2.169381164974636,2.5110289142197955,indistinguível (diferença dentro do ruído de semente),20,14,9.830298911200632,True
+7,espelho,lstm,AR_CAL_METEO_POLUENTES,4,0,0,-0.34378189298841755,1.8165615551782284,indistinguível (diferença dentro do ruído de semente),20,10,9.685984420776364,True
+7,espelho,lstm,AR_CAL_PM25,4,4,0,-3.0759775627983923,1.732013429719934,MELHOR que a referência (critério §0.7),20,19,10.30811420016818,True
+7,espelho,lstm,AR_CAL_POLUENTES,4,0,1,0.5440252812703447,0.9282085515402719,indistinguível (diferença dentro do ruído de semente),20,6,2.736767450968429,True
+7,espelho,lstm,COMPLETO,4,1,0,-1.884085983700222,2.270389215428721,indistinguível (diferença dentro do ruído de semente),20,14,7.720179706149633,True
+7,espelho,naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,espelho,sarimax,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,espelho,sarimax,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,espelho,sarimax,AR_CAL_METEO,4,3,1,-0.056693331088434995,0.0,MELHOR que a referência (critério §0.7),4,3,0.20883500867020643,True
+7,espelho,sarimax,AR_CAL_METEO_PM25,4,2,2,-0.09431559251853461,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.5872978858456861,True
+7,espelho,sarimax,AR_CAL_METEO_POLUENTES,4,2,2,-0.10687766780799368,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.9187671192812275,True
+7,espelho,sarimax,AR_CAL_PM25,4,2,2,0.034254780108669,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.35587810432654976,True
+7,espelho,sarimax,AR_CAL_POLUENTES,4,1,3,0.17189037457163092,0.0,PIOR que a referência (critério §0.7),4,1,0.48383322021242847,True
+7,espelho,sarimax,COMPLETO,4,2,2,0.01417369530185919,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.6610686166772801,True
+7,espelho,seasonal_naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,espelho,xgboost,AR,4,0,0,0.0,0.38932155513696853,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+7,espelho,xgboost,AR_CAL,4,0,0,0.0,0.28066437961471774,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+7,espelho,xgboost,AR_CAL_METEO,4,0,0,0.11127764807807043,0.4750329042974889,indistinguível (diferença dentro do ruído de semente),20,8,1.5486095004611542,True
+7,espelho,xgboost,AR_CAL_METEO_PM25,4,1,0,-0.040090569390192246,0.427703856486055,indistinguível (diferença dentro do ruído de semente),20,14,1.4879723442925332,True
+7,espelho,xgboost,AR_CAL_METEO_POLUENTES,4,0,0,0.18711686028374555,0.482155261119168,indistinguível (diferença dentro do ruído de semente),20,6,1.555547247992621,True
+7,espelho,xgboost,AR_CAL_PM25,4,2,0,-0.24870613945854902,0.26323694144394794,indistinguível (diferença dentro do ruído de semente),20,14,1.165961329142256,True
+7,espelho,xgboost,AR_CAL_POLUENTES,4,1,1,-0.14107338163587818,0.38145154730167635,indistinguível (diferença dentro do ruído de semente),20,12,2.177571233113607,True
+7,espelho,xgboost,COMPLETO,4,1,2,0.29612224366929835,0.39651262421792816,indistinguível (diferença dentro do ruído de semente),20,8,2.0062126583523217,True
+7,hibrida,gam_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,hibrida,gam_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,hibrida,gam_nb,AR_CAL_METEO,4,4,0,-0.2515377999989079,0.0,MELHOR que a referência (critério §0.7),4,4,0.6128880544598339,True
+7,hibrida,gam_nb,AR_CAL_METEO_PM25,4,3,1,-0.14775333025709791,0.0,MELHOR que a referência (critério §0.7),4,3,0.6683559075865766,True
+7,hibrida,gam_nb,AR_CAL_METEO_POLUENTES,4,2,2,-0.09989842677157057,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.5323008839444121,True
+7,hibrida,gam_nb,AR_CAL_PM25,4,1,3,0.13126980818274614,0.0,PIOR que a referência (critério §0.7),4,1,0.3525804672829729,True
+7,hibrida,gam_nb,AR_CAL_POLUENTES,4,1,3,0.15738135830555766,0.0,PIOR que a referência (critério §0.7),4,1,0.4140428126201172,True
+7,hibrida,gam_nb,COMPLETO,4,1,3,0.27400284536826547,0.0,PIOR que a referência (critério §0.7),4,1,1.240317681631982,True
+7,hibrida,ingarch_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,hibrida,ingarch_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,hibrida,ingarch_nb,AR_CAL_METEO,4,3,1,0.1369284499483232,0.0,MELHOR que a referência (critério §0.7),4,3,1.3464065843435442,True
+7,hibrida,ingarch_nb,AR_CAL_METEO_PM25,4,3,1,-0.0684123188397896,0.0,MELHOR que a referência (critério §0.7),4,3,0.7869027641726092,True
+7,hibrida,ingarch_nb,AR_CAL_METEO_POLUENTES,4,2,2,0.47398748604126606,0.0,indistinguível (diferença dentro do ruído de semente),4,2,2.0917309855576214,True
+7,hibrida,ingarch_nb,AR_CAL_PM25,4,2,2,0.05033867974135031,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.6051390214832679,True
+7,hibrida,ingarch_nb,AR_CAL_POLUENTES,4,1,3,0.2403147487814481,0.0,PIOR que a referência (critério §0.7),4,1,1.0051573580783604,True
+7,hibrida,ingarch_nb,COMPLETO,4,0,4,1.3232054712666441,0.0,PIOR que a referência (critério §0.7),4,0,3.029106321577494,True
+7,hibrida,lstm,AR,4,0,0,0.0,0.2420981606861607,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+7,hibrida,lstm,AR_CAL,4,0,0,0.0,0.6820764976922069,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+7,hibrida,lstm,AR_CAL_METEO,4,0,1,0.0305517959594738,2.2725848204594317,indistinguível (diferença dentro do ruído de semente),20,9,8.286908552381735,True
+7,hibrida,lstm,AR_CAL_METEO_PM25,4,0,0,-0.005871539645724851,2.67808207604879,indistinguível (diferença dentro do ruído de semente),20,8,8.41026204427084,True
+7,hibrida,lstm,AR_CAL_METEO_POLUENTES,4,1,0,-0.5454824935065389,1.8498597411917896,indistinguível (diferença dentro do ruído de semente),20,12,5.673895984225801,True
+7,hibrida,lstm,AR_CAL_PM25,4,0,0,0.6715667406717947,2.666047704823323,indistinguível (diferença dentro do ruído de semente),20,12,8.344899453057188,True
+7,hibrida,lstm,AR_CAL_POLUENTES,4,0,0,-0.030164464314778677,1.0377099670066137,indistinguível (diferença dentro do ruído de semente),20,11,2.42649926079644,True
+7,hibrida,lstm,COMPLETO,4,0,1,-0.7815438376532668,2.3471601861458966,indistinguível (diferença dentro do ruído de semente),20,12,9.488303544786245,True
+7,hibrida,naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,hibrida,sarimax,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,hibrida,sarimax,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,hibrida,sarimax,AR_CAL_METEO,4,1,3,0.03063206473281621,0.0,PIOR que a referência (critério §0.7),4,1,0.2159208939139674,True
+7,hibrida,sarimax,AR_CAL_METEO_PM25,4,2,2,0.022497134968554988,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.10875085879503033,True
+7,hibrida,sarimax,AR_CAL_METEO_POLUENTES,4,2,2,0.16034154377352294,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.4611795259528506,True
+7,hibrida,sarimax,AR_CAL_PM25,4,2,2,0.037503621171014245,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.21507854520450564,True
+7,hibrida,sarimax,AR_CAL_POLUENTES,4,1,3,0.03983100385982752,0.0,PIOR que a referência (critério §0.7),4,1,0.20576929360836616,True
+7,hibrida,sarimax,COMPLETO,4,1,3,-0.004119765605936188,0.0,PIOR que a referência (critério §0.7),4,1,0.35071239437090185,True
+7,hibrida,seasonal_naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+7,hibrida,xgboost,AR,4,0,0,0.0,0.38932155513696853,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+7,hibrida,xgboost,AR_CAL,4,0,0,0.0,0.28066437961471774,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+7,hibrida,xgboost,AR_CAL_METEO,4,0,1,0.1535499000549308,0.4565096960410378,indistinguível (diferença dentro do ruído de semente),20,7,1.3714329189724417,True
+7,hibrida,xgboost,AR_CAL_METEO_PM25,4,1,0,-0.19009756724039698,0.3239792900649941,indistinguível (diferença dentro do ruído de semente),20,13,1.0804686228434228,True
+7,hibrida,xgboost,AR_CAL_METEO_POLUENTES,4,0,0,0.03612802081637945,0.4790518948773348,indistinguível (diferença dentro do ruído de semente),20,10,2.328951136271158,True
+7,hibrida,xgboost,AR_CAL_PM25,4,0,1,0.1393141916063101,0.29315678711757537,indistinguível (diferença dentro do ruído de semente),20,9,0.9264486948649129,True
+7,hibrida,xgboost,AR_CAL_POLUENTES,4,0,0,-0.04279368294609967,0.47495588595495675,indistinguível (diferença dentro do ruído de semente),20,10,2.0882932874891473,True
+7,hibrida,xgboost,COMPLETO,4,0,1,0.19607095718383827,0.3772590451481582,indistinguível (diferença dentro do ruído de semente),20,7,1.566517512003582,True
+15,cams,gam_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,cams,gam_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,cams,gam_nb,AR_CAL_METEO,4,4,0,-0.381695495086813,0.0,MELHOR que a referência (critério §0.7),4,4,0.9700531898714679,True
+15,cams,gam_nb,AR_CAL_METEO_PM25,4,3,1,-0.8607610196989901,0.0,MELHOR que a referência (critério §0.7),4,3,2.1620080291427364,True
+15,cams,gam_nb,AR_CAL_METEO_POLUENTES,4,2,2,0.18979888193098482,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.9837336699640815,True
+15,cams,gam_nb,AR_CAL_PM25,4,2,2,-0.023437254115100004,0.0,indistinguível (diferença dentro do ruído de semente),4,2,2.3931065343633833,True
+15,cams,gam_nb,AR_CAL_POLUENTES,4,1,3,0.6519234717829399,0.0,PIOR que a referência (critério §0.7),4,1,1.3526779721400466,True
+15,cams,gam_nb,COMPLETO,4,3,1,0.3911338762499561,0.0,MELHOR que a referência (critério §0.7),4,3,2.751251634503511,True
+15,cams,ingarch_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,cams,ingarch_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,cams,ingarch_nb,AR_CAL_METEO,4,2,2,-0.442001804047468,0.0,indistinguível (diferença dentro do ruído de semente),4,2,1.7797842884979076,True
+15,cams,ingarch_nb,AR_CAL_METEO_PM25,4,3,1,-1.2952793917870196,0.0,MELHOR que a referência (critério §0.7),4,3,3.0402379967671145,True
+15,cams,ingarch_nb,AR_CAL_METEO_POLUENTES,4,2,2,-1.9173276735071223,0.0,indistinguível (diferença dentro do ruído de semente),4,2,8.343917597143175,True
+15,cams,ingarch_nb,AR_CAL_PM25,4,3,1,-1.0995966530241938,0.0,MELHOR que a referência (critério §0.7),4,3,3.6870806297751813,True
+15,cams,ingarch_nb,AR_CAL_POLUENTES,4,1,3,-0.85918369213773,0.0,PIOR que a referência (critério §0.7),4,1,6.344153742508297,True
+15,cams,ingarch_nb,COMPLETO,4,3,1,-1.8698976071398103,0.0,MELHOR que a referência (critério §0.7),4,3,5.31682850549959,True
+15,cams,lstm,AR,4,0,0,0.0,0.6553416004240229,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+15,cams,lstm,AR_CAL,4,0,0,0.0,0.6286974021098245,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+15,cams,lstm,AR_CAL_METEO,4,2,0,-1.1104697799682612,2.029180601154856,indistinguível (diferença dentro do ruído de semente),20,13,9.578060616387258,True
+15,cams,lstm,AR_CAL_METEO_PM25,4,3,0,-3.402715392642552,2.997296622407587,MELHOR que a referência (critério §0.7),20,17,9.035430441962351,True
+15,cams,lstm,AR_CAL_METEO_POLUENTES,4,2,0,-1.4573961491054954,1.667353493367953,indistinguível (diferença dentro do ruído de semente),20,14,6.638890584309898,True
+15,cams,lstm,AR_CAL_PM25,4,4,0,-4.9956688245137535,2.3276411324067166,MELHOR que a referência (critério §0.7),20,20,13.052975209554038,True
+15,cams,lstm,AR_CAL_POLUENTES,4,1,0,-1.6248952696058487,2.1506292276362453,indistinguível (diferença dentro do ruído de semente),20,15,9.321384980943474,True
+15,cams,lstm,COMPLETO,4,2,0,-2.7605609003702813,3.056535769681308,indistinguível (diferença dentro do ruído de semente),20,15,9.083980984157986,True
+15,cams,naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,cams,sarimax,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,cams,sarimax,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,cams,sarimax,AR_CAL_METEO,4,0,4,0.18452433553317782,0.0,PIOR que a referência (critério §0.7),4,0,0.25022220401776707,True
+15,cams,sarimax,AR_CAL_METEO_PM25,4,1,3,0.18427888665877035,0.0,PIOR que a referência (critério §0.7),4,1,0.7146971619488021,True
+15,cams,sarimax,AR_CAL_METEO_POLUENTES,4,0,4,0.2961091704940726,0.0,PIOR que a referência (critério §0.7),4,0,0.7695601322022867,True
+15,cams,sarimax,AR_CAL_PM25,4,3,1,-0.20489371771620224,0.0,MELHOR que a referência (critério §0.7),4,3,0.7885598374642235,True
+15,cams,sarimax,AR_CAL_POLUENTES,4,2,2,-0.08622708891272435,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.4295903757884183,True
+15,cams,sarimax,COMPLETO,4,1,3,0.06980546480993777,0.0,PIOR que a referência (critério §0.7),4,1,0.5158174732874024,True
+15,cams,seasonal_naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,cams,xgboost,AR,4,0,0,0.0,0.4595764347498173,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+15,cams,xgboost,AR_CAL,4,0,0,0.0,0.44055372889749367,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+15,cams,xgboost,AR_CAL_METEO,4,3,0,-0.45853762944539367,0.4451887291041362,MELHOR que a referência (critério §0.7),20,14,1.96290473937988,True
+15,cams,xgboost,AR_CAL_METEO_PM25,4,2,0,-0.3779817263285308,0.48842911158727476,indistinguível (diferença dentro do ruído de semente),20,14,1.502245330810542,True
+15,cams,xgboost,AR_CAL_METEO_POLUENTES,4,1,1,0.023719965616861155,0.6215036860178418,indistinguível (diferença dentro do ruído de semente),20,13,1.2217240227593322,True
+15,cams,xgboost,AR_CAL_PM25,4,2,1,0.12283178117540208,0.42241303681865094,indistinguível (diferença dentro do ruído de semente),20,12,1.4318132188585082,True
+15,cams,xgboost,AR_CAL_POLUENTES,4,0,4,0.87197159661187,0.38264751049743584,PIOR que a referência (critério §0.7),20,2,2.7749701605902786,True
+15,cams,xgboost,COMPLETO,4,1,2,0.23403304629855523,0.4590005275997596,indistinguível (diferença dentro do ruído de semente),20,7,2.305119620429142,True
+15,espelho,gam_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,espelho,gam_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,espelho,gam_nb,AR_CAL_METEO,4,2,2,0.017148089622903484,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.749900419573283,True
+15,espelho,gam_nb,AR_CAL_METEO_PM25,4,3,1,-0.08308136107314468,0.0,MELHOR que a referência (critério §0.7),4,3,2.393857286917193,True
+15,espelho,gam_nb,AR_CAL_METEO_POLUENTES,4,0,4,0.967382725689685,0.0,PIOR que a referência (critério §0.7),4,0,1.492382858489833,True
+15,espelho,gam_nb,AR_CAL_PM25,4,3,1,-0.04814977244846652,0.0,MELHOR que a referência (critério §0.7),4,3,2.070258281601312,True
+15,espelho,gam_nb,AR_CAL_POLUENTES,4,1,3,0.8251142233004565,0.0,PIOR que a referência (critério §0.7),4,1,1.6108598224962165,True
+15,espelho,gam_nb,COMPLETO,4,1,3,1.3805622728701499,0.0,PIOR que a referência (critério §0.7),4,1,4.178210561003372,True
+15,espelho,ingarch_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,espelho,ingarch_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,espelho,ingarch_nb,AR_CAL_METEO,4,3,1,-0.7842086872790661,0.0,MELHOR que a referência (critério §0.7),4,3,1.87099138697819,True
+15,espelho,ingarch_nb,AR_CAL_METEO_PM25,4,3,1,-1.1977131732239412,0.0,MELHOR que a referência (critério §0.7),4,3,2.605969495775579,True
+15,espelho,ingarch_nb,AR_CAL_METEO_POLUENTES,4,2,2,-1.0541131166548556,0.0,indistinguível (diferença dentro do ruído de semente),4,2,7.8830841061076455,True
+15,espelho,ingarch_nb,AR_CAL_PM25,4,3,1,-1.3145702117825762,0.0,MELHOR que a referência (critério §0.7),4,3,3.5703066346226997,True
+15,espelho,ingarch_nb,AR_CAL_POLUENTES,4,1,3,-1.0462062601405666,0.0,PIOR que a referência (critério §0.7),4,1,6.835284621818477,True
+15,espelho,ingarch_nb,COMPLETO,4,3,1,-1.0901313691425587,0.0,MELHOR que a referência (critério §0.7),4,3,6.212088428982803,True
+15,espelho,lstm,AR,4,0,0,0.0,0.6553416004240229,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+15,espelho,lstm,AR_CAL,4,0,0,0.0,0.6286974021098245,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+15,espelho,lstm,AR_CAL_METEO,4,0,1,-0.15660985310872386,1.6543211558245658,indistinguível (diferença dentro do ruído de semente),20,9,11.213486226399738,True
+15,espelho,lstm,AR_CAL_METEO_PM25,4,3,0,-2.8763269297281924,2.8048884067252255,MELHOR que a referência (critério §0.7),20,17,8.018493313259555,True
+15,espelho,lstm,AR_CAL_METEO_POLUENTES,4,0,0,-0.3249982325236003,1.5332752754549988,indistinguível (diferença dentro do ruído de semente),20,12,3.9181633843315993,True
+15,espelho,lstm,AR_CAL_PM25,4,4,0,-5.084997740851508,2.3276411324067166,MELHOR que a referência (critério §0.7),20,20,13.906316333346897,True
+15,espelho,lstm,AR_CAL_POLUENTES,4,1,0,-1.251106452941895,2.1506292276362453,indistinguível (diferença dentro do ruído de semente),20,11,9.709427430894642,True
+15,espelho,lstm,COMPLETO,4,2,0,-2.007890279557971,3.056535769681308,indistinguível (diferença dentro do ruído de semente),20,15,8.609750154283311,True
+15,espelho,naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,espelho,sarimax,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,espelho,sarimax,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,espelho,sarimax,AR_CAL_METEO,4,1,3,-0.011844300228658788,0.0,PIOR que a referência (critério §0.7),4,1,0.14773630042765973,True
+15,espelho,sarimax,AR_CAL_METEO_PM25,4,2,2,-0.06768414301817316,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.637786840310337,True
+15,espelho,sarimax,AR_CAL_METEO_POLUENTES,4,2,2,0.011306071142678675,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.23536183494814722,True
+15,espelho,sarimax,AR_CAL_PM25,4,2,2,-0.1461383894782209,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.6350552692712128,True
+15,espelho,sarimax,AR_CAL_POLUENTES,4,3,1,-0.03022498869689816,0.0,MELHOR que a referência (critério §0.7),4,3,0.16806747227123608,True
+15,espelho,sarimax,COMPLETO,4,2,2,-0.13765045294688338,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.610244139520681,True
+15,espelho,seasonal_naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,espelho,xgboost,AR,4,0,0,0.0,0.4595764347498173,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+15,espelho,xgboost,AR_CAL,4,0,0,0.0,0.44055372889749367,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+15,espelho,xgboost,AR_CAL_METEO,4,0,1,0.07927467134263767,0.4028978736275002,indistinguível (diferença dentro do ruído de semente),20,10,1.3359654320610908,True
+15,espelho,xgboost,AR_CAL_METEO_PM25,4,2,1,0.17802170647515295,0.5105368115988946,indistinguível (diferença dentro do ruído de semente),20,11,1.699033440483941,True
+15,espelho,xgboost,AR_CAL_METEO_POLUENTES,4,0,1,0.4790001996358233,0.5043343238808474,indistinguível (diferença dentro do ruído de semente),20,5,2.968414603339305,True
+15,espelho,xgboost,AR_CAL_PM25,4,2,1,0.06727091895209511,0.4315648398857791,indistinguível (diferença dentro do ruído de semente),20,10,1.3868715498182453,True
+15,espelho,xgboost,AR_CAL_POLUENTES,4,0,4,0.9109792115953228,0.4115890294890696,PIOR que a referência (critério §0.7),20,0,3.851403003268775,True
+15,espelho,xgboost,COMPLETO,4,0,2,0.7039655282762313,0.48402927776952076,indistinguível (diferença dentro do ruído de semente),20,5,2.6021139780680365,True
+15,hibrida,gam_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,hibrida,gam_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,hibrida,gam_nb,AR_CAL_METEO,4,4,0,-0.64731864091691,0.0,MELHOR que a referência (critério §0.7),4,4,0.9791984428298441,True
+15,hibrida,gam_nb,AR_CAL_METEO_PM25,4,4,0,-0.6765962387354847,0.0,MELHOR que a referência (critério §0.7),4,4,1.3245720180440124,True
+15,hibrida,gam_nb,AR_CAL_METEO_POLUENTES,4,3,1,-0.23134274151276735,0.0,MELHOR que a referência (critério §0.7),4,3,1.1212949849310974,True
+15,hibrida,gam_nb,AR_CAL_PM25,4,2,2,0.010554349867363477,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.08466072072634745,True
+15,hibrida,gam_nb,AR_CAL_POLUENTES,4,0,4,0.16304554722835984,0.0,PIOR que a referência (critério §0.7),4,0,0.4038829056412325,True
+15,hibrida,gam_nb,COMPLETO,4,1,3,0.5314168132396295,0.0,PIOR que a referência (critério §0.7),4,1,1.9197376454458137,True
+15,hibrida,ingarch_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,hibrida,ingarch_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,hibrida,ingarch_nb,AR_CAL_METEO,4,3,1,0.3876839536887102,0.0,MELHOR que a referência (critério §0.7),4,3,3.372607803567373,True
+15,hibrida,ingarch_nb,AR_CAL_METEO_PM25,4,1,3,0.5577780825704339,0.0,PIOR que a referência (critério §0.7),4,1,2.316398892580114,True
+15,hibrida,ingarch_nb,AR_CAL_METEO_POLUENTES,4,0,4,1.2855206334132836,0.0,PIOR que a referência (critério §0.7),4,0,3.296064250359599,True
+15,hibrida,ingarch_nb,AR_CAL_PM25,4,1,3,0.13948868577100892,0.0,PIOR que a referência (critério §0.7),4,1,0.6733362515131844,True
+15,hibrida,ingarch_nb,AR_CAL_POLUENTES,4,1,3,0.45119289610510993,0.0,PIOR que a referência (critério §0.7),4,1,1.745338585107799,True
+15,hibrida,ingarch_nb,COMPLETO,4,1,3,1.344404971787779,0.0,PIOR que a referência (critério §0.7),4,1,2.2761815121759668,True
+15,hibrida,lstm,AR,4,0,0,0.0,0.6553416004240229,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+15,hibrida,lstm,AR_CAL,4,0,0,0.0,0.6286974021098245,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+15,hibrida,lstm,AR_CAL_METEO,4,0,0,-0.07851839701334633,1.696760582534249,indistinguível (diferença dentro do ruído de semente),20,10,8.033457268608938,True
+15,hibrida,lstm,AR_CAL_METEO_PM25,4,0,0,0.1474830288357193,3.0148073913391946,indistinguível (diferença dentro do ruído de semente),20,10,8.164517084757485,True
+15,hibrida,lstm,AR_CAL_METEO_POLUENTES,4,0,0,0.5683797030978737,1.9514777221725703,indistinguível (diferença dentro do ruído de semente),20,9,5.810132217407226,True
+15,hibrida,lstm,AR_CAL_PM25,4,0,0,0.19031073040432495,3.7124133700216175,indistinguível (diferença dentro do ruído de semente),20,13,7.159566497802736,True
+15,hibrida,lstm,AR_CAL_POLUENTES,4,0,0,-0.004250382317436796,2.3345202698604055,indistinguível (diferença dentro do ruído de semente),20,10,5.035513348049594,True
+15,hibrida,lstm,COMPLETO,4,0,0,-0.08214052200317462,3.1223930506946944,indistinguível (diferença dentro do ruído de semente),20,9,5.867555703057185,True
+15,hibrida,naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,hibrida,sarimax,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,hibrida,sarimax,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,hibrida,sarimax,AR_CAL_METEO,4,0,4,0.3848217080861902,0.0,PIOR que a referência (critério §0.7),4,0,0.5709589283676557,True
+15,hibrida,sarimax,AR_CAL_METEO_PM25,4,0,4,0.49221049734488087,0.0,PIOR que a referência (critério §0.7),4,0,0.7560933057809365,True
+15,hibrida,sarimax,AR_CAL_METEO_POLUENTES,4,0,4,0.4953196560033808,0.0,PIOR que a referência (critério §0.7),4,0,0.7074721249202014,True
+15,hibrida,sarimax,AR_CAL_PM25,4,3,1,0.012277898113597807,0.0,MELHOR que a referência (critério §0.7),4,3,0.15792766656264234,True
+15,hibrida,sarimax,AR_CAL_POLUENTES,4,0,4,0.04556469648316508,0.0,PIOR que a referência (critério §0.7),4,0,0.08632789697677978,True
+15,hibrida,sarimax,COMPLETO,4,0,4,0.3686067660947847,0.0,PIOR que a referência (critério §0.7),4,0,0.6899152929745256,True
+15,hibrida,seasonal_naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+15,hibrida,xgboost,AR,4,0,0,0.0,0.4595764347498173,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+15,hibrida,xgboost,AR_CAL,4,0,0,0.0,0.44055372889749367,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+15,hibrida,xgboost,AR_CAL_METEO,4,0,1,0.12857627444797098,0.4439783916623866,indistinguível (diferença dentro do ruído de semente),20,7,1.909691280788845,True
+15,hibrida,xgboost,AR_CAL_METEO_PM25,4,0,0,0.006064758300782638,0.3452689609599169,indistinguível (diferença dentro do ruído de semente),20,8,0.6448288387722414,True
+15,hibrida,xgboost,AR_CAL_METEO_POLUENTES,4,1,1,0.2701599502563468,0.5112642180565613,indistinguível (diferença dentro do ruído de semente),20,9,2.26301036410862,True
+15,hibrida,xgboost,AR_CAL_PM25,4,0,1,-0.015377585093180116,0.461388606887301,indistinguível (diferença dentro do ruído de semente),20,7,1.5184358808729392,True
+15,hibrida,xgboost,AR_CAL_POLUENTES,4,0,2,0.2552781995137522,0.5238700115999365,indistinguível (diferença dentro do ruído de semente),20,9,2.460545221964516,True
+15,hibrida,xgboost,COMPLETO,4,0,1,0.1858208592732744,0.4829047376264507,indistinguível (diferença dentro do ruído de semente),20,6,1.2809274037679046,True
+30,cams,gam_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,cams,gam_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,cams,gam_nb,AR_CAL_METEO,4,3,1,-0.4993776023005383,0.0,MELHOR que a referência (critério §0.7),4,3,1.8783614207695116,True
+30,cams,gam_nb,AR_CAL_METEO_PM25,4,3,1,-0.46204683904438504,0.0,MELHOR que a referência (critério §0.7),4,3,2.8511400261073234,True
+30,cams,gam_nb,AR_CAL_METEO_POLUENTES,4,2,2,0.7171759324989289,0.0,indistinguível (diferença dentro do ruído de semente),4,2,4.5531774094563,True
+30,cams,gam_nb,AR_CAL_PM25,4,2,2,0.34348666178964127,0.0,indistinguível (diferença dentro do ruído de semente),4,2,3.3346585914049243,True
+30,cams,gam_nb,AR_CAL_POLUENTES,4,1,3,1.2440481697922516,0.0,PIOR que a referência (critério §0.7),4,1,4.422202563290778,True
+30,cams,gam_nb,COMPLETO,4,2,2,1.247614691385567,0.0,indistinguível (diferença dentro do ruído de semente),4,2,5.209457526424487,True
+30,cams,ingarch_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,cams,ingarch_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,cams,ingarch_nb,AR_CAL_METEO,4,1,3,2.3117747275116276,0.0,PIOR que a referência (critério §0.7),4,1,5.119766919698609,True
+30,cams,ingarch_nb,AR_CAL_METEO_PM25,4,3,1,-0.9925848077512605,0.0,MELHOR que a referência (critério §0.7),4,3,3.753492280323634,True
+30,cams,ingarch_nb,AR_CAL_METEO_POLUENTES,4,2,2,0.8418729205668782,0.0,indistinguível (diferença dentro do ruído de semente),4,2,4.3078754104792125,True
+30,cams,ingarch_nb,AR_CAL_PM25,4,4,0,-4.07675696373381,0.0,MELHOR que a referência (critério §0.7),4,4,8.404618988232784,True
+30,cams,ingarch_nb,AR_CAL_POLUENTES,4,3,1,-0.8876300875737382,0.0,MELHOR que a referência (critério §0.7),4,3,1.4471592657064818,True
+30,cams,ingarch_nb,COMPLETO,4,2,2,-2.2234654972748613,0.0,indistinguível (diferença dentro do ruído de semente),4,2,6.1629216695248665,True
+30,cams,lstm,AR,4,0,0,0.0,0.9595689712285829,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+30,cams,lstm,AR_CAL,4,0,0,0.0,1.3680385683174034,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+30,cams,lstm,AR_CAL_METEO,4,2,0,-0.6686275482177733,1.9514247082938123,indistinguível (diferença dentro do ruído de semente),20,12,4.373773066202801,True
+30,cams,lstm,AR_CAL_METEO_PM25,4,0,0,-2.097440329657662,2.996645237163932,indistinguível (diferença dentro do ruído de semente),20,15,9.977207607693138,True
+30,cams,lstm,AR_CAL_METEO_POLUENTES,4,1,0,-0.7422850396898056,2.287677597148556,indistinguível (diferença dentro do ruído de semente),20,14,4.9732404496934635,True
+30,cams,lstm,AR_CAL_PM25,4,3,0,-4.120086388058133,2.5059082121154974,MELHOR que a referência (critério §0.7),20,18,14.49970605638292,True
+30,cams,lstm,AR_CAL_POLUENTES,4,2,1,-0.3262445894877119,1.6864979460865879,indistinguível (diferença dentro do ruído de semente),20,15,7.785553232828775,True
+30,cams,lstm,COMPLETO,4,0,1,-1.1238752810160317,2.739049733639045,indistinguível (diferença dentro do ruído de semente),20,13,12.341910001966689,True
+30,cams,naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,cams,sarimax,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,cams,sarimax,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,cams,sarimax,AR_CAL_METEO,4,0,4,0.3829664519123668,0.0,PIOR que a referência (critério §0.7),4,0,0.9298744661189744,True
+30,cams,sarimax,AR_CAL_METEO_PM25,4,2,2,0.24298369388449537,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.845333597493255,True
+30,cams,sarimax,AR_CAL_METEO_POLUENTES,4,3,1,-0.07392158028684559,0.0,MELHOR que a referência (critério §0.7),4,3,0.37995702859360847,True
+30,cams,sarimax,AR_CAL_PM25,4,3,1,-0.0796718952321358,0.0,MELHOR que a referência (critério §0.7),4,3,0.40092894584430994,True
+30,cams,sarimax,AR_CAL_POLUENTES,4,4,0,-0.21057345927829552,0.0,MELHOR que a referência (critério §0.7),4,4,0.45893787384641627,True
+30,cams,sarimax,COMPLETO,4,1,3,0.0026159656028506006,0.0,PIOR que a referência (critério §0.7),4,1,0.958559218974063,True
+30,cams,seasonal_naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,cams,xgboost,AR,4,0,0,0.0,0.4161398004622092,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+30,cams,xgboost,AR_CAL,4,0,0,0.0,0.5572070283742724,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+30,cams,xgboost,AR_CAL_METEO,4,2,0,-0.6787033589681003,0.4191456099659948,indistinguível (diferença dentro do ruído de semente),20,16,3.4385898166232636,True
+30,cams,xgboost,AR_CAL_METEO_PM25,4,3,0,-1.392460553910998,0.400626336148697,MELHOR que a referência (critério §0.7),20,16,3.013692728678386,True
+30,cams,xgboost,AR_CAL_METEO_POLUENTES,4,2,0,-0.785399350060358,0.5628080326700623,indistinguível (diferença dentro do ruído de semente),20,15,3.175763744778102,True
+30,cams,xgboost,AR_CAL_PM25,4,2,0,-1.0631825447082517,0.6925724200843889,indistinguível (diferença dentro do ruído de semente),20,15,3.4385901133219363,True
+30,cams,xgboost,AR_CAL_POLUENTES,4,1,0,-0.38631775326199025,0.6275119756011128,indistinguível (diferença dentro do ruído de semente),20,13,2.8386474609374943,True
+30,cams,xgboost,COMPLETO,4,3,0,-1.0729004859924318,0.37783385969073346,MELHOR que a referência (critério §0.7),20,16,2.837063005235457,True
+30,espelho,gam_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,espelho,gam_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,espelho,gam_nb,AR_CAL_METEO,4,3,1,-0.09111557273360482,0.0,MELHOR que a referência (critério §0.7),4,3,0.7863404237269762,True
+30,espelho,gam_nb,AR_CAL_METEO_PM25,4,2,2,0.17345191269727422,0.0,indistinguível (diferença dentro do ruído de semente),4,2,2.5558741953241473,True
+30,espelho,gam_nb,AR_CAL_METEO_POLUENTES,4,2,2,1.2653694728844513,0.0,indistinguível (diferença dentro do ruído de semente),4,2,4.592198485449824,True
+30,espelho,gam_nb,AR_CAL_PM25,4,2,2,0.2287666237679291,0.0,indistinguível (diferença dentro do ruído de semente),4,2,3.1359389487462614,True
+30,espelho,gam_nb,AR_CAL_POLUENTES,4,1,3,1.3713221606423192,0.0,PIOR que a referência (critério §0.7),4,1,4.080025191491917,True
+30,espelho,gam_nb,COMPLETO,4,1,3,2.764767485190651,0.0,PIOR que a referência (critério §0.7),4,1,8.711522953832723,True
+30,espelho,ingarch_nb,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,espelho,ingarch_nb,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,espelho,ingarch_nb,AR_CAL_METEO,4,2,2,-0.3916947141699483,0.0,indistinguível (diferença dentro do ruído de semente),4,2,3.497908145337071,True
+30,espelho,ingarch_nb,AR_CAL_METEO_PM25,4,2,2,-2.7455239878216533,0.0,indistinguível (diferença dentro do ruído de semente),4,2,8.61313915224203,True
+30,espelho,ingarch_nb,AR_CAL_METEO_POLUENTES,4,1,3,0.3597516177918285,0.0,PIOR que a referência (critério §0.7),4,1,3.430810220142064,True
+30,espelho,ingarch_nb,AR_CAL_PM25,4,4,0,-3.883394906604593,0.0,MELHOR que a referência (critério §0.7),4,4,8.276064902304434,True
+30,espelho,ingarch_nb,AR_CAL_POLUENTES,4,2,2,-0.3202268428387711,0.0,indistinguível (diferença dentro do ruído de semente),4,2,1.5135217720066017,True
+30,espelho,ingarch_nb,COMPLETO,4,3,1,-2.263853852588295,0.0,MELHOR que a referência (critério §0.7),4,3,13.025921068558336,True
+30,espelho,lstm,AR,4,0,0,0.0,0.9595689712285829,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+30,espelho,lstm,AR_CAL,4,0,0,0.0,1.3680385683174034,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+30,espelho,lstm,AR_CAL_METEO,4,1,0,-0.7332967334323466,1.9327318988929902,indistinguível (diferença dentro do ruído de semente),20,15,7.896028264363608,True
+30,espelho,lstm,AR_CAL_METEO_PM25,4,3,0,-2.6770227707756895,2.6706631012247017,MELHOR que a referência (critério §0.7),20,16,9.67886038886176,True
+30,espelho,lstm,AR_CAL_METEO_POLUENTES,4,1,0,-0.9560192341274691,2.031309306296793,indistinguível (diferença dentro do ruído de semente),20,13,7.414593760172529,True
+30,espelho,lstm,AR_CAL_PM25,4,3,0,-3.9114937739902067,2.6280290484620323,MELHOR que a referência (critério §0.7),20,17,13.093909708658856,True
+30,espelho,lstm,AR_CAL_POLUENTES,4,1,1,0.15139084074232223,1.6864979460865879,indistinguível (diferença dentro do ruído de semente),20,11,7.571219804551866,True
+30,espelho,lstm,COMPLETO,4,2,1,-1.7483008193969725,2.6750007949540073,indistinguível (diferença dentro do ruído de semente),20,13,12.87983801099989,True
+30,espelho,naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,espelho,sarimax,AR,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,espelho,sarimax,AR_CAL,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,espelho,sarimax,AR_CAL_METEO,4,1,3,0.12511684299258796,0.0,PIOR que a referência (critério §0.7),4,1,0.5070751635134201,True
+30,espelho,sarimax,AR_CAL_METEO_PM25,4,2,2,0.04872051695370416,0.0,indistinguível (diferença dentro do ruído de semente),4,2,0.5410432336374882,True
+30,espelho,sarimax,AR_CAL_METEO_POLUENTES,4,3,1,-0.17406406448725775,0.0,MELHOR que a referência (critério §0.7),4,3,0.47491810441470506,True
+30,espelho,sarimax,AR_CAL_PM25,4,3,1,-0.0340128158973485,0.0,MELHOR que a referência (critério §0.7),4,3,0.37883829085097886,True
+30,espelho,sarimax,AR_CAL_POLUENTES,4,3,1,-0.10283547252379499,0.0,MELHOR que a referência (critério §0.7),4,3,0.3149712460136449,True
+30,espelho,sarimax,COMPLETO,4,3,1,-0.1839214347681759,0.0,MELHOR que a referência (critério §0.7),4,3,0.6603135676888243,True
+30,espelho,seasonal_naive,baseline,4,0,0,0.0,0.0,controle: conjunto não contém o bloco trocado (Δ = 0),4,0,0.0,False
+30,espelho,xgboost,AR,4,0,0,0.0,0.4161398004622092,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+30,espelho,xgboost,AR_CAL,4,0,0,0.0,0.5572070283742724,controle: conjunto não contém o bloco trocado (Δ = 0),20,0,0.0,False
+30,espelho,xgboost,AR_CAL_METEO,4,1,0,-0.10086161507500682,0.38204361912883267,indistinguível (diferença dentro do ruído de semente),20,13,1.3281442430284258,True
+30,espelho,xgboost,AR_CAL_METEO_PM25,4,2,0,-0.6449748653835707,0.524408071676655,indistinguível (diferença dentro do ruído de semente),20,13,2.7883383433024065,True
+30,espelho,xgboost,AR_CAL_METEO_POLUENTES,4,0,0,0.0028271145290790986,0.5628080326700623,indistinguível (diferença dentro do ruído de semente),20,10,2.335642793443469,True
+30,espelho,xgboost,AR_CAL_PM25,4,2,1,-0.3502435451083709,0.4456735117340802,indistinguível (diferença dentro do ruído de semente),20,12,2.167262013753259,True
+30,espelho,xgboost,AR_CAL_POLUENTES,4,0,1,0.23770810021294475,0.6176785390879016,indistinguível (diferença dentro do ruído de semente),20,10,2.643310928344725,True
+30,espelho,xgboost,COMPLETO,4,2,1,-0.1977306111653645,0.4483562395444921,indistinguível (diferença dentro do ruído de semente),20,14,2.8127575344509523,True

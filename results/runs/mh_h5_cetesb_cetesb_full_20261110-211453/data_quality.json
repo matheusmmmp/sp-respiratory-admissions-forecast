@@ -1,0 +1,144 @@
+{
+  "veredito": "PASS",
+  "n_checagens": 11,
+  "n_fail": 0,
+  "n_warn": 1,
+  "n_pass": 10,
+  "checagens": [
+    {
+      "nome": "indice_e_data",
+      "status": "PASS",
+      "detalhe": "tipo=DatetimeIndex",
+      "dados": {
+        "tipo": "DatetimeIndex"
+      }
+    },
+    {
+      "nome": "datas_crescentes",
+      "status": "PASS",
+      "detalhe": "ordenada",
+      "dados": {
+        "monotonica": true
+      }
+    },
+    {
+      "nome": "datas_unicas",
+      "status": "PASS",
+      "detalhe": "sem duplicadas",
+      "dados": {
+        "n_duplicadas": 0
+      }
+    },
+    {
+      "nome": "frequencia_diaria",
+      "status": "PASS",
+      "detalhe": "2192 dias de 2192 esperados",
+      "dados": {
+        "n_dias": 2192,
+        "n_esperados": 2192,
+        "n_buracos": 0,
+        "buracos": []
+      }
+    },
+    {
+      "nome": "periodo_coberto",
+      "status": "PASS",
+      "detalhe": "2019-01-01 a 2024-12-31",
+      "dados": {
+        "inicio": "2019-01-01",
+        "fim": "2024-12-31",
+        "pedido_inicio": "2019-01-01",
+        "pedido_fim": "2024-12-31"
+      }
+    },
+    {
+      "nome": "alvo_sem_missing",
+      "status": "PASS",
+      "detalhe": "sem NaN",
+      "dados": {
+        "n_nan": 0
+      }
+    },
+    {
+      "nome": "alvo_nao_negativo",
+      "status": "PASS",
+      "detalhe": "todos >= 0",
+      "dados": {
+        "n_negativos": 0
+      }
+    },
+    {
+      "nome": "alvo_zeros",
+      "status": "PASS",
+      "detalhe": "nenhum dia com zero internações",
+      "dados": {
+        "n_zeros": 0
+      }
+    },
+    {
+      "nome": "alvo_outliers",
+      "status": "PASS",
+      "detalhe": "0 dias com |z| > 5.0 (NÃO removidos: pico é o fenômeno)",
+      "dados": {
+        "n_outliers": 0,
+        "z_limite": 5.0,
+        "media": 138.365,
+        "desvio": 41.472,
+        "minimo": 44.0,
+        "maximo": 269.0,
+        "datas": []
+      }
+    },
+    {
+      "nome": "cobertura_cetesb_poluentes",
+      "status": "WARN",
+      "detalhe": "2192/2192 dias (100.0%), 88 células NaN",
+      "dados": {
+        "n_dias_comuns": 2192,
+        "cobertura": 1.0,
+        "n_celulas_nan": 88,
+        "colunas": [
+          "co_media",
+          "co_n_estacoes",
+          "co_dt",
+          "no2_media",
+          "no2_n_estacoes",
+          "no2_dt",
+          "o3_media",
+          "o3_n_estacoes",
+          "o3_dt",
+          "pm10_media",
+          "pm10_n_estacoes",
+          "pm10_dt",
+          "pm25_media",
+          "pm25_n_estacoes",
+          "pm25_dt",
+          "so2_media",
+          "so2_n_estacoes",
+          "so2_dt"
+        ]
+      }
+    },
+    {
+      "nome": "cobertura_cetesb_meteo",
+      "status": "PASS",
+      "detalhe": "2192/2192 dias (100.0%), 0 células NaN",
+      "dados": {
+        "n_dias_comuns": 2192,
+        "cobertura": 1.0,
+        "n_celulas_nan": 0,
+        "colunas": [
+          "temp_media",
+          "temp_n_estacoes",
+          "temp_min",
+          "temp_max",
+          "temp_amplitude",
+          "ur_media",
+          "ur_n_estacoes",
+          "vv_media",
+          "vv_n_estacoes"
+        ]
+      }
+    }
+  ]
+}

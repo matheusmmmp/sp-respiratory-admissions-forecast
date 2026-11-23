@@ -1,0 +1,12 @@
+grupo,sensivel,total,eletivas,eletivas_cema
+J00–J06 infecções agudas das vias aéreas sup.,True,9050,1132,0
+J09–J11 influenza,True,3914,187,0
+J12–J18 pneumonias,True,153309,4811,0
+J20–J22 bronquite e bronquiolite agudas,True,54124,316,0
+J30–J39 outras doenças das vias aéreas sup.,False,39243,35958,11206
+"J40–J47 crônicas das vias aéreas inf. (DPOC, asma)",True,56609,1869,4
+J60–J70 doenças por agentes externos,False,2849,103,0
+J80–J84 intersticiais,False,6168,870,0
+J85–J86 supurativas,False,1955,352,0
+J90–J94 pleura,False,15527,2082,0
+"J95–J99 outras (pós-proced., insuf. resp.)",False,26010,3738,0

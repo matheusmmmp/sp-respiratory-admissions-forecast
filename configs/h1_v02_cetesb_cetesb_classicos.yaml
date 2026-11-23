@@ -1,0 +1,183 @@
+# ============================================================================
+# h1_v02_cetesb_cetesb_classicos — rodada PRINCIPAL sobre a base CETESB rica (2026-10-22)
+#
+# DECISAO DO PESQUISADOR (2026-10-22): a fonte ambiental principal da pesquisa e a CETESB/QUALAR;
+# o CAMS fica como fonte alternativa (analise de sensibilidade nas variaveis comparaveis).
+# Esta config e a copia de configs/h1_v02_cetesbmin_cetesbmin_classicos.yaml (sete modelos,
+# PROTOCOLO 0.16/0.18/0.19/0.20) com TRES diferencas:
+#   1. fonte_pm25: cetesb / fonte_meteo: cetesb (representacao rica; era cetesb_min, o espelho do CAMS);
+#   2. bloco customizado PM25_MEDIA (so pm25_media) e dois conjuntos de ablacao a mais
+#      (AR_CAL_PM25MEDIA, AR_CAL_METEO_PM25MEDIA), para a H2 poder ser lida sobre a concentracao
+#      media isolada, separada da especificacao enriquecida (media + n_estacoes + D_t);
+#   3. run.nome e os conjuntos do smoke.
+# Todo o resto e identico: count:poisson fixo, 5 sementes, 4 folds x 180 dias, mesmas grades.
+#
+# Variaveis que esta base entrega (verificado em data/processed/*.csv e no relatorio_dataset da run
+# h1_v02_cetesb_cetesb_full_20261019-112445):
+#   PM25      = pm25_media, pm25_n_estacoes, pm25_dt                (3 series x 5 defasagens = 15)
+#   POLUENTES = pm10_media, no2_media, o3_media, co_media           (4 x 5 = 20); so2_media EXCLUIDO
+#               pela regra de cobertura do construtor (2 dias sem nenhuma estacao com >= 18 h validas:
+#               2021-01-10 e 2021-01-11) — descarte registrado em relatorio_dataset.poluentes_descartados.
+#               Nao ha regra aprovada para imputar; fica como pendencia metodologica (PROTOCOLO 0.21).
+#   METEO     = temp_media, temp_min, temp_max, temp_amplitude, ur_media, vv_media (6 x 5 = 30)
+#   AR = 6 defasagens do alvo; CAL = 8 colunas de calendario. Total 79 features (COMPLETO).
+# ============================================================================
+# Benchmark — h=1. Nenhuma decisão científica fora deste arquivo.
+#
+# Modelos: naive, seasonal_naive, xgboost, lstm + sarimax, gam_nb, ingarch_nb (PROTOCOLO 0.8/0.16).
+# TCN, TCN-LSTM e TFT NAO estao implementados no repositorio (nao ha classe em src/models/): pendentes.
+
+run:
+  nome: h1_v02_cetesb_cetesb_classicos
+  seed: 42
+  # §4.1 exige >=5 sementes, com média e dispersão. NUNCA reporte a melhor semente.
+  # Baselines e modelos clássicos são determinísticos e rodam com uma só.
+  sementes: [42, 43, 44, 45, 46]
+
+dados:
+  sih: data/processed/sih_daily_lookahead.parquet
+  cams: data/processed/cams_daily_v2.csv     # exigido pelo construtor (eixo de datas/colunas CAMS); nao entra nas features
+  inicio: 2019-01-01
+  fim: 2024-12-31
+
+  # FONTE PRINCIPAL (decisao 2026-10-22): CETESB/QUALAR, representacao rica.
+  fonte_pm25: cetesb
+  cetesb: data/processed/cetesb_poluentes_daily.csv
+  fonte_meteo: cetesb
+  meteo: data/processed/cetesb_meteo_daily.csv
+  # As duas fontes sao a MESMA base (CETESB/CETESB) — PROTOCOLO 0.16: bases nao se misturam.
+  permitir_duas_fontes: true
+  # Gate do alvo (§6). VALIDADO em 2026-07-27 contra o TabNet/DATASUS.
+  # Ver reports/experiments/validacao_tabnet/ e src/experiments/validacao_tabnet.py.
+  alvo:
+    validado_contra_fonte_oficial: true
+    validacao:
+      fonte: "TabNet/DATASUS — Morbidade Hospitalar do SUS por local de residência, SP"
+      coluna_comparada: "Ano/mês atendimento (equivalente a DT_INTER)"
+      data: 2026-07-27
+      meses_comparados: 72
+      correlacao_mensal: 0.999983      # excluindo out-dez/2024, região do look-ahead
+      erro_absoluto_medio_mensal: 14.1
+      maior_divergencia_anual_pct: 0.41
+      vies_sistematico_pct: -0.34      # nossa série ligeiramente abaixo; ver ressalva
+      ressalva: >
+        Viés constante de -0,34% em 68 dos 69 meses fora da região de look-ahead.
+        Magnitude estável em seis anos. Provável diferença de definição entre o
+        incremento "Internações" do TabNet e a nossa contagem por N_AIH distinta.
+        EM ABERTO — não bloqueia, mas merece uma investigação.
+    target_source: "SIH/SUS DATASUS — AIH-RD (microdados), datasus-fetcher + FTP direto"
+    target_definition: "contagem diária de AIH distintas (N_AIH) com DIAG_PRINC iniciando em J"
+    spatial_criterion: "MUNIC_RES (residência) = 355030"
+    CID_rule: "str(DIAG_PRINC).strip().upper().startswith('J')"
+    date_field: "DT_INTER"
+    start_date: "2019-01-01"
+    end_date: "2024-12-31"
+    observacao: "look-ahead de 6 competências (2025-01..06); margem medida em 4 (99,8%)"
+
+experimento:
+  horizonte: 1              # h=1. A infraestrutura aceita 1..7; esta rodada usa 1.
+  periodo_sazonal: 7
+  lags_alvo: [1, 2, 3, 7, 14, 28]
+  lags_exogenas: [1, 2, 3, 7, 14]
+  lookback: 28              # janela da LSTM
+
+split:
+  protocolo: rolling_origin
+  n_folds: 4
+  dias_teste: 180
+  dias_validacao: 180
+  treino_minimo: 730        # >= 2 anos antes do primeiro teste
+
+# Bloco customizado: a concentracao media de PM2.5 SOZINHA, com as mesmas defasagens do bloco
+# cheio. Na base rica o bloco PM25 padrao traz tambem pm25_n_estacoes e pm25_dt; o contraste
+# AR_CAL -> AR_CAL_PM25 mede portanto a especificacao enriquecida, nao a concentracao isolada.
+# As colunas geradas (pm25_media_lag{1,2,3,7,14}) sao as mesmas do bloco PM25, logo o GAM-NB
+# aplica o mesmo spline a pm25_media_lag1 nos dois casos.
+blocos_customizados:
+  PM25_MEDIA:   {fonte: pm25, colunas: [pm25_media], lags: [1, 2, 3, 7, 14]}
+
+# Ablação progressiva (os oito conjuntos do protocolo + dois de leitura da H2 sobre a média isolada).
+feature_sets:
+  AR:                       [AR]
+  AR_CAL:                   [AR, CAL]
+  AR_CAL_METEO:             [AR, CAL, METEO]
+  # --- H2, especificacao rica: PM25 = media + n_estacoes + D_t ---
+  AR_CAL_PM25:              [AR, CAL, PM25]
+  AR_CAL_METEO_PM25:        [AR, CAL, METEO, PM25]
+  # --- H2, concentracao media isolada (bloco customizado) ---
+  AR_CAL_PM25MEDIA:         [AR, CAL, PM25_MEDIA]
+  AR_CAL_METEO_PM25MEDIA:   [AR, CAL, METEO, PM25_MEDIA]
+  # --- os demais poluentes (pm10, no2, o3, co), isolados do PM2.5 ---
+  AR_CAL_POLUENTES:         [AR, CAL, POLUENTES]
+  AR_CAL_METEO_POLUENTES:   [AR, CAL, METEO, POLUENTES]
+  # --- conjunto completo ---
+  COMPLETO:                 [AR, CAL, METEO, PM25, POLUENTES]
+
+modelos:
+  naive:
+    ativo: true
+  seasonal_naive:
+    ativo: true
+  xgboost:
+    ativo: true
+    # DECISAO 2026-09-20: objetivo fixado a priori (count:poisson).
+    objetivo: count:poisson
+    selecionar_objetivo: false
+    n_estimators: 600
+    max_depth: 5
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+    min_child_weight: 5
+    reg_lambda: 1.0
+    early_stopping_rounds: 50
+  lstm:
+    ativo: true
+    unidades: 32
+    dropout: 0.2
+    learning_rate: 0.001
+    epocas: 150
+    batch_size: 32
+    paciencia: 15
+  # ---- trilha classica (PROTOCOLO 0.8; 0.18 homologado; 0.19 e 0.20 [PROPOSTO]) ----
+  sarimax:
+    ativo: true
+    # grade (p,d,q)x(P,D,Q)_7: p,q em {0,1,2}, d,P,D,Q em {0,1}, p+q+P+Q <= 4 (124 ordens); AICc no treino do fold.
+    grade:
+      p: [0, 1, 2]
+      d: [0, 1]
+      q: [0, 1, 2]
+      P: [0, 1]
+      D: [0, 1]
+      Q: [0, 1]
+      soma_maxima: 4
+    truncar_negativos: true      # PROTOCOLO 0.18 (i)
+    excluir_blocos: [AR]         # PROTOCOLO 0.18 (iii)
+    maxiter: 200
+    n_jobs: 8
+  gam_nb:
+    ativo: true
+    k_splines: 5                 # PROTOCOLO 0.19
+  ingarch_nb:
+    ativo: true
+    excluir_blocos: [AR]         # PROTOCOLO 0.20
+
+# Reduções aplicadas com --smoke. Nunca misturar com resultado científico.
+smoke:
+  n_folds: 1
+  dias_teste: 30
+  dias_validacao: 60
+  treino_minimo: 365
+  sementes: [42, 43]
+  epocas: 3
+  n_estimators: 30
+  # exercita o bloco customizado, o bloco POLUENTES rico e o conjunto completo
+  feature_sets: [AR, AR_CAL_PM25MEDIA, AR_CAL_METEO_POLUENTES, COMPLETO]
+  sarimax_grade:
+    p: [0, 1]
+    d: [0, 1]
+    q: [0, 1]
+    P: [0]
+    D: [0, 1]
+    Q: [0]
+    soma_maxima: 4

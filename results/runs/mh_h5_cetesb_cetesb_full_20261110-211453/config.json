@@ -1,0 +1,267 @@
+{
+  "run": {
+    "nome": "mh_h5_cetesb_cetesb",
+    "seed": 42,
+    "sementes": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ]
+  },
+  "dados": {
+    "sih": "data/processed/sih_daily_lookahead.parquet",
+    "cams": "data/processed/cams_daily_v2.csv",
+    "inicio": "2019-01-01",
+    "fim": "2024-12-31",
+    "fonte_pm25": "cetesb",
+    "cetesb": "data/processed/cetesb_poluentes_daily.csv",
+    "fonte_meteo": "cetesb",
+    "meteo": "data/processed/cetesb_meteo_daily.csv",
+    "permitir_duas_fontes": true,
+    "alvo": {
+      "validado_contra_fonte_oficial": true,
+      "validacao": {
+        "fonte": "TabNet/DATASUS — Morbidade Hospitalar do SUS por local de residência, SP",
+        "coluna_comparada": "Ano/mês atendimento (equivalente a DT_INTER)",
+        "data": "2026-07-27",
+        "meses_comparados": 72,
+        "correlacao_mensal": 0.999983,
+        "erro_absoluto_medio_mensal": 14.1,
+        "maior_divergencia_anual_pct": 0.41,
+        "vies_sistematico_pct": -0.34,
+        "ressalva": "Viés constante de -0,34% em 68 dos 69 meses fora da região de look-ahead. Magnitude estável em seis anos. Provável diferença de definição entre o incremento \"Internações\" do TabNet e a nossa contagem por N_AIH distinta. EM ABERTO — não bloqueia, mas merece uma investigação.\n"
+      },
+      "target_source": "SIH/SUS DATASUS — AIH-RD (microdados), datasus-fetcher + FTP direto",
+      "target_definition": "contagem diária de AIH distintas (N_AIH) com DIAG_PRINC iniciando em J",
+      "spatial_criterion": "MUNIC_RES (residência) = 355030",
+      "CID_rule": "str(DIAG_PRINC).strip().upper().startswith('J')",
+      "date_field": "DT_INTER",
+      "start_date": "2019-01-01",
+      "end_date": "2024-12-31",
+      "observacao": "look-ahead de 6 competências (2025-01..06); margem medida em 4 (99,8%)"
+    }
+  },
+  "experimento": {
+    "horizonte": 5,
+    "periodo_sazonal": 7,
+    "lags_alvo": [
+      5,
+      6,
+      7,
+      11,
+      18,
+      32
+    ],
+    "lags_exogenas": [
+      5,
+      6,
+      7,
+      11,
+      18
+    ],
+    "lookback": 28
+  },
+  "split": {
+    "protocolo": "rolling_origin",
+    "n_folds": 4,
+    "dias_teste": 180,
+    "dias_validacao": 180,
+    "treino_minimo": 730
+  },
+  "blocos_customizados": {
+    "PM25_MEDIA": {
+      "fonte": "pm25",
+      "colunas": [
+        "pm25_media"
+      ],
+      "lags": [
+        5,
+        6,
+        7,
+        11,
+        18
+      ]
+    }
+  },
+  "feature_sets": {
+    "AR": [
+      "AR"
+    ],
+    "AR_CAL": [
+      "AR",
+      "CAL"
+    ],
+    "AR_CAL_METEO": [
+      "AR",
+      "CAL",
+      "METEO"
+    ],
+    "AR_CAL_PM25": [
+      "AR",
+      "CAL",
+      "PM25"
+    ],
+    "AR_CAL_METEO_PM25": [
+      "AR",
+      "CAL",
+      "METEO",
+      "PM25"
+    ],
+    "AR_CAL_PM25MEDIA": [
+      "AR",
+      "CAL",
+      "PM25_MEDIA"
+    ],
+    "AR_CAL_METEO_PM25MEDIA": [
+      "AR",
+      "CAL",
+      "METEO",
+      "PM25_MEDIA"
+    ],
+    "AR_CAL_POLUENTES": [
+      "AR",
+      "CAL",
+      "POLUENTES"
+    ],
+    "AR_CAL_METEO_POLUENTES": [
+      "AR",
+      "CAL",
+      "METEO",
+      "POLUENTES"
+    ],
+    "COMPLETO": [
+      "AR",
+      "CAL",
+      "METEO",
+      "PM25",
+      "POLUENTES"
+    ]
+  },
+  "modelos": {
+    "naive": {
+      "ativo": true
+    },
+    "seasonal_naive": {
+      "ativo": true
+    },
+    "xgboost": {
+      "ativo": true,
+      "objetivo": "count:poisson",
+      "selecionar_objetivo": false,
+      "n_estimators": 600,
+      "max_depth": 5,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "min_child_weight": 5,
+      "reg_lambda": 1.0,
+      "early_stopping_rounds": 50
+    },
+    "lstm": {
+      "ativo": true,
+      "unidades": 32,
+      "dropout": 0.2,
+      "learning_rate": 0.001,
+      "epocas": 150,
+      "batch_size": 32,
+      "paciencia": 15
+    },
+    "sarimax": {
+      "ativo": true,
+      "grade": {
+        "p": [
+          0,
+          1,
+          2
+        ],
+        "d": [
+          0,
+          1
+        ],
+        "q": [
+          0,
+          1,
+          2
+        ],
+        "P": [
+          0,
+          1
+        ],
+        "D": [
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "soma_maxima": 4
+      },
+      "truncar_negativos": true,
+      "excluir_blocos": [
+        "AR"
+      ],
+      "maxiter": 200,
+      "n_jobs": 8
+    },
+    "gam_nb": {
+      "ativo": true,
+      "k_splines": 5,
+      "lags_ar": [
+        5,
+        11
+      ]
+    },
+    "ingarch_nb": {
+      "ativo": true,
+      "excluir_blocos": [
+        "AR"
+      ]
+    }
+  },
+  "smoke": {
+    "n_folds": 1,
+    "dias_teste": 30,
+    "dias_validacao": 60,
+    "treino_minimo": 365,
+    "sementes": [
+      42,
+      43
+    ],
+    "epocas": 3,
+    "n_estimators": 30,
+    "feature_sets": [
+      "AR",
+      "AR_CAL_PM25MEDIA",
+      "AR_CAL_METEO_POLUENTES",
+      "COMPLETO"
+    ],
+    "sarimax_grade": {
+      "p": [
+        0,
+        1
+      ],
+      "d": [
+        0,
+        1
+      ],
+      "q": [
+        0,
+        1
+      ],
+      "P": [
+        0
+      ],
+      "D": [
+        0,
+        1
+      ],
+      "Q": [
+        0
+      ],
+      "soma_maxima": 4
+    }
+  }
+}

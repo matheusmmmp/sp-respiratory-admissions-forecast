@@ -1,0 +1,24 @@
+codigo_qualar,nome_qualar,mede_pm25,codigo_arcgis,lat,lon,municipio
+63,Santana,True,63.0,-23.505993,-46.62896,São Paulo
+64,Santo Amaro,True,64.0,-23.654977,-46.709998,São Paulo
+72,Parque D.Pedro II,True,48.0,-23.544846,-46.627676,São Paulo
+73,Congonhas,True,15.0,-23.61632,-46.663466,São Paulo
+83,Ibirapuera,True,28.0,-23.591842,-46.660688,São Paulo
+84,Lapa,False,,,,São Paulo
+85,Mooca,True,44.0,-23.549734,-46.600417,São Paulo
+90,Cambuci,False,,,,São Paulo
+91,Cerqueira César,True,12.0,-23.553543,-46.672705,São Paulo
+94,Centro,False,,,,São Paulo
+95,Cid.Universitária-USP-Ipen,True,14.0,-23.566342,-46.737414,São Paulo
+96,N.Senhora do Ó,True,45.0,-23.480099,-46.692052,São Paulo
+97,Itaquera,True,32.0,-23.580015,-46.466651,São Paulo
+98,Grajaú-Parelheiros,True,23.0,-23.776266,-46.696961,São Paulo
+99,Pinheiros,True,54.0,-23.56146,-46.702017,São Paulo
+236,S.Miguel Paulista,False,,,,São Paulo
+262,Interlagos,True,30.0,-23.680508,-46.675043,São Paulo
+266,Itaim Paulista,True,31.0,-23.501547,-46.420737,São Paulo
+269,Capão Redondo,True,9.0,-23.668356,-46.780043,São Paulo
+270,Marg.Tietê-Pte Remédios,True,40.0,-23.518706,-46.74332,São Paulo
+284,Pico do Jaraguá,True,53.0,-23.456269,-46.766098,São Paulo
+293,Perus,True,,,,São Paulo
+295,Sapopemba,True,,,,São Paulo

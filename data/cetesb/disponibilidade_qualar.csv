@@ -1,0 +1,115 @@
+codigo_qualar;nome;parametro;a2019;a2020;a2021;a2022;a2023;a2024
+63;Santana;MP10;0;0;0;0;0;0
+63;Santana;MP2.5;1;1;1;1;1;1
+63;Santana;NO2;0;0;0;0;0;0
+63;Santana;SO2;0;0;0;0;0;0
+63;Santana;O3;1;1;1;1;1;1
+63;Santana;CO;0;0;0;0;0;0
+64;Santo Amaro;MP10;1;1;1;1;1;0
+64;Santo Amaro;MP2.5;0;0;0;0;1;1
+64;Santo Amaro;NO2;0;0;0;0;0;0
+64;Santo Amaro;SO2;0;0;0;0;0;0
+64;Santo Amaro;O3;1;1;1;1;1;1
+64;Santo Amaro;CO;1;1;1;1;1;1
+72;Parque D.Pedro II;MP10;1;1;1;1;1;1
+72;Parque D.Pedro II;MP2.5;1;1;1;1;1;1
+72;Parque D.Pedro II;NO2;1;1;1;1;1;1
+72;Parque D.Pedro II;SO2;1;0;0;0;0;0
+72;Parque D.Pedro II;O3;1;1;1;1;1;1
+72;Parque D.Pedro II;CO;1;1;1;1;1;1
+73;Congonhas;MP10;1;1;1;1;1;1
+73;Congonhas;MP2.5;1;1;1;1;1;1
+73;Congonhas;NO2;1;1;1;1;1;1
+73;Congonhas;SO2;1;1;1;1;1;1
+73;Congonhas;O3;0;0;0;0;0;0
+73;Congonhas;CO;1;1;1;1;1;1
+83;Ibirapuera;MP10;0;0;0;0;0;0
+83;Ibirapuera;MP2.5;1;1;1;1;1;1
+83;Ibirapuera;NO2;1;1;1;1;1;1
+83;Ibirapuera;SO2;0;0;0;0;0;0
+83;Ibirapuera;O3;1;1;1;1;1;1
+83;Ibirapuera;CO;1;1;1;1;1;1
+85;Mooca;MP10;0;0;0;0;0;0
+85;Mooca;MP2.5;1;1;1;1;1;1
+85;Mooca;NO2;0;0;0;0;0;0
+85;Mooca;SO2;0;0;0;0;0;0
+85;Mooca;O3;1;1;1;1;1;1
+85;Mooca;CO;1;1;1;1;1;1
+91;Cerqueira César;MP10;1;1;1;1;1;1
+91;Cerqueira César;MP2.5;0;0;0;0;0;1
+91;Cerqueira César;NO2;1;1;1;1;1;1
+91;Cerqueira César;SO2;1;1;1;1;1;1
+91;Cerqueira César;O3;0;0;0;0;0;0
+91;Cerqueira César;CO;1;1;1;1;1;1
+95;Cid.Universitária-USP-Ipen;MP10;0;0;0;0;0;0
+95;Cid.Universitária-USP-Ipen;MP2.5;1;1;1;1;1;1
+95;Cid.Universitária-USP-Ipen;NO2;0;0;0;0;0;0
+95;Cid.Universitária-USP-Ipen;SO2;0;0;0;0;0;0
+95;Cid.Universitária-USP-Ipen;O3;1;1;1;1;1;1
+95;Cid.Universitária-USP-Ipen;CO;0;0;0;0;0;0
+96;N.Senhora do Ó;MP10;1;1;1;1;1;0
+96;N.Senhora do Ó;MP2.5;0;0;0;0;0;1
+96;N.Senhora do Ó;NO2;0;0;0;0;0;0
+96;N.Senhora do Ó;SO2;0;0;0;0;0;0
+96;N.Senhora do Ó;O3;1;1;1;1;1;1
+96;N.Senhora do Ó;CO;0;0;0;0;0;0
+97;Itaquera;MP10;0;0;0;0;0;0
+97;Itaquera;MP2.5;0;0;0;0;0;1
+97;Itaquera;NO2;0;0;0;0;0;0
+97;Itaquera;SO2;0;0;0;0;0;0
+97;Itaquera;O3;1;1;1;1;1;1
+97;Itaquera;CO;0;0;0;0;0;0
+98;Grajaú-Parelheiros;MP10;1;1;1;1;1;1
+98;Grajaú-Parelheiros;MP2.5;1;1;1;1;1;1
+98;Grajaú-Parelheiros;NO2;0;0;0;0;0;0
+98;Grajaú-Parelheiros;SO2;0;0;0;0;0;0
+98;Grajaú-Parelheiros;O3;1;1;1;1;1;1
+98;Grajaú-Parelheiros;CO;1;1;1;1;1;1
+99;Pinheiros;MP10;1;1;1;1;1;1
+99;Pinheiros;MP2.5;1;1;1;1;1;1
+99;Pinheiros;NO2;1;1;1;1;1;1
+99;Pinheiros;SO2;0;0;0;0;0;0
+99;Pinheiros;O3;1;1;1;1;1;1
+99;Pinheiros;CO;1;1;1;1;1;1
+262;Interlagos;MP10;1;1;1;1;1;0
+262;Interlagos;MP2.5;0;0;0;0;1;1
+262;Interlagos;NO2;1;1;1;1;1;1
+262;Interlagos;SO2;1;1;1;1;1;1
+262;Interlagos;O3;1;1;1;1;1;1
+262;Interlagos;CO;0;0;0;0;0;0
+266;Itaim Paulista;MP10;1;1;1;1;1;1
+266;Itaim Paulista;MP2.5;1;1;1;1;1;1
+266;Itaim Paulista;NO2;1;1;1;1;1;1
+266;Itaim Paulista;SO2;0;0;0;0;0;0
+266;Itaim Paulista;O3;1;1;1;1;1;1
+266;Itaim Paulista;CO;0;0;0;0;0;0
+269;Capão Redondo;MP10;1;1;1;1;1;0
+269;Capão Redondo;MP2.5;0;0;0;0;1;1
+269;Capão Redondo;NO2;0;0;0;0;0;0
+269;Capão Redondo;SO2;0;0;0;0;0;0
+269;Capão Redondo;O3;1;1;1;1;1;1
+269;Capão Redondo;CO;0;0;0;0;0;0
+270;Marg.Tietê-Pte Remédios;MP10;1;1;1;1;1;1
+270;Marg.Tietê-Pte Remédios;MP2.5;1;1;1;1;1;1
+270;Marg.Tietê-Pte Remédios;NO2;1;1;1;1;1;1
+270;Marg.Tietê-Pte Remédios;SO2;1;1;1;1;1;1
+270;Marg.Tietê-Pte Remédios;O3;0;0;0;0;0;0
+270;Marg.Tietê-Pte Remédios;CO;1;1;1;1;1;1
+284;Pico do Jaraguá;MP10;0;0;0;0;0;0
+284;Pico do Jaraguá;MP2.5;1;1;1;1;1;1
+284;Pico do Jaraguá;NO2;1;1;1;1;1;1
+284;Pico do Jaraguá;SO2;0;0;0;0;0;0
+284;Pico do Jaraguá;O3;1;1;1;1;1;1
+284;Pico do Jaraguá;CO;0;0;0;0;0;0
+293;Perus;MP10;1;1;1;1;1;1
+293;Perus;MP2.5;1;1;1;1;1;1
+293;Perus;NO2;0;0;0;0;0;0
+293;Perus;SO2;0;0;0;0;0;0
+293;Perus;O3;1;1;1;1;1;1
+293;Perus;CO;0;0;0;0;0;0
+295;Sapopemba;MP10;0;0;0;0;0;0
+295;Sapopemba;MP2.5;0;0;0;0;0;0
+295;Sapopemba;NO2;0;0;0;0;0;0
+295;Sapopemba;SO2;0;0;0;0;0;0
+295;Sapopemba;O3;0;0;0;0;0;0
+295;Sapopemba;CO;0;0;0;0;0;0

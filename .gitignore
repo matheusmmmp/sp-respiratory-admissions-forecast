@@ -1,0 +1,31 @@
+# credenciais — nunca versionar
+.env
+.cdsapirc
+*.pem
+*.key
+
+# ambiente
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# saída do runner (resultados exibidos ficam em results/, copiados de runs identificadas)
+reports/
+mlruns/
+mlartifacts/
+
+# dados brutos e horários (só agregados diários entram)
+data/raw/
+data/cetesb/hourly_by_station/
+data/cetesb/hourly_pm25/
+data/processed/*microdados*
+
+# notebooks
+.ipynb_checkpoints/

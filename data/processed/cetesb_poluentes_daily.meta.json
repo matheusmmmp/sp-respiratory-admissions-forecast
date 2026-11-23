@@ -1,0 +1,109 @@
+{
+  "fonte": "CETESB/QUALAR, tela 'Exportar Dados Avançado'",
+  "regra_diaria": "média das horas válidas, exigindo >= 18 de 24",
+  "regra_dt": "sigma amostral (ddof=1)/(media+1e-9), exigindo >= 2 estações",
+  "poluentes_presentes": [
+    "co",
+    "no2",
+    "o3",
+    "pm10",
+    "pm25",
+    "so2"
+  ],
+  "poluentes_ausentes": [],
+  "motivo_ausentes": "SO2, O3 e CO ficaram nas 22 exportações interrompidas por HTTP 503 do QUALAR. O CAMS nunca os entregou (fallback silencioso do downloader).",
+  "limitacao_valido": "a tela Avançado não traz a coluna Válido; se ela exclui inválidos como a tela simples permanece [EM ABERTO]",
+  "extraido_em": "2026-07-27T15:44:58",
+  "coleta": {
+    "arquivos_usados": 191,
+    "arquivos_ignorados": 14,
+    "estacoes_fora_do_municipio": [
+      "Bauru",
+      "Campinas-V.União",
+      "Guaratinguetá",
+      "Guarulhos-Paço Municipal",
+      "Guarulhos-Pimentas",
+      "Jundiaí",
+      "Limeira",
+      "Mauá",
+      "Osasco",
+      "Paulínia-Sta Terezinha",
+      "Piracicaba",
+      "Ribeirão Preto",
+      "Rio Claro-Jd.Guanabara",
+      "S.Bernardo-Centro",
+      "S.José Campos-Jd.Satelite",
+      "Santa Gertrudes",
+      "Santos-Ponta da Praia",
+      "São Caetano do Sul",
+      "São José do Rio Preto",
+      "São Sebastião",
+      "Taubaté"
+    ],
+    "registros_antes_dedup": 3954672,
+    "registros_apos_dedup": 3722808,
+    "repeticoes_descartadas": 231864,
+    "poluentes_encontrados": [
+      "co",
+      "no2",
+      "o3",
+      "pm10",
+      "pm25",
+      "so2"
+    ],
+    "periodo": [
+      "2019-01-01",
+      "2024-12-31"
+    ]
+  },
+  "por_poluente": [
+    {
+      "poluente": "co",
+      "estacoes": 9,
+      "dias": 2192,
+      "media": 0.51,
+      "dias_com_dt": 2192,
+      "n_est_medio": 7.38
+    },
+    {
+      "poluente": "no2",
+      "estacoes": 10,
+      "dias": 2192,
+      "media": 36.63,
+      "dias_com_dt": 2192,
+      "n_est_medio": 7.3
+    },
+    {
+      "poluente": "o3",
+      "estacoes": 15,
+      "dias": 2192,
+      "media": 42.46,
+      "dias_com_dt": 2192,
+      "n_est_medio": 12.83
+    },
+    {
+      "poluente": "pm10",
+      "estacoes": 14,
+      "dias": 2192,
+      "media": 28.02,
+      "dias_com_dt": 2192,
+      "n_est_medio": 9.47
+    },
+    {
+      "poluente": "pm25",
+      "estacoes": 18,
+      "dias": 2192,
+      "media": 15.54,
+      "dias_com_dt": 2192,
+      "n_est_medio": 10.6
+    },
+    {
+      "poluente": "so2",
+      "estacoes": 7,
+      "dias": 2190,
+      "media": 1.73,
+      "dias_com_dt": 2108,
+      "n_est_medio": 3.12
+    }
+  ]
+}
