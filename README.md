@@ -106,7 +106,7 @@ Docker (`docker-compose.yml`, one image, three services):
 docker compose up            # app (Streamlit) on :8501, api (FastAPI) on :8000, mlflow on :5000
 ```
 
-- Streamlit app, local: <http://localhost:8501> (see `app/`). Shows the target series, the results by horizon and the Saturday panel, every number read from `results/` or `notebooks/dados_painel/`.
+- Streamlit app, live: <https://sp-respiratory-admissions-forecast.streamlit.app> (Streamlit Community Cloud, deployed 2026-11-23); local: <http://localhost:8501> (see `app/`). Shows the target series, the results by horizon and the Saturday panel, every number read from `results/` or `notebooks/dados_painel/`.
 - FastAPI, local: <http://localhost:8000> (see `api/`; `GET /health`, `GET /forecast`). Serves demonstration XGBoost `AR_CAL` models from `models_demo/`, trained on the whole series with one seed, which is **not** the dissertation protocol; the model card (`models_demo/MODEL_CARD.md`) says so. Because the canonical feature builder only materialises observed target dates, the API answers only for origins whose target `origem + h` falls inside the 2019–2024 history (in-sample by construction).
 - MLflow, local: <http://localhost:5000>. `tracking/importar_runs.py` copies `config.json`, `manifest.json` and `metrics.json` of the runs in `results/runs/` into a file store; nothing is recomputed.
 
