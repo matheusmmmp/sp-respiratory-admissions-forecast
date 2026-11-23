@@ -11,15 +11,22 @@ import pandas as pd  # noqa: E402
 import plotly.graph_objects as go  # noqa: E402
 import streamlit as st  # noqa: E402
 import ui  # noqa: E402
+from i18n import fmt_num, t  # noqa: E402
 
-ui.configurar_pagina("Overview", "📈")
-st.title("Overview — the target series and the test windows")
+ui.configurar_pagina("ov.titulo_aba", "📈")
+st.title(t("ov.titulo"))
 ui.aviso_provisorio()
 
 m = g.modo()
 c = g.CHROME[m]
 
-alvo = st.radio("Target", options=list(dados.ALVOS), format_func=dados.ALVOS.get, horizontal=True, key="ov_alvo")
+alvo = st.radio(
+    t("alvo.rotulo"),
+    options=list(dados.ALVOS),
+    format_func={a: t(f"alvo.{a}") for a in dados.ALVOS}.get,
+    horizontal=True,
+    key="ov_alvo",
+)
 serie = dados.carregar_alvo(alvo)
 meta = dados.carregar_meta_alvo(alvo)
 run_h1 = dados.run_de(alvo, 1)
@@ -27,14 +34,14 @@ folds = dados.carregar_folds(run_h1)
 
 # --- Key figures ---------------------------------------------------------------------------
 c1, c2, c3, c4 = st.columns(4)
-c1.metric("Days", f"{meta['dias']:,}")
-c2.metric("Distinct AIH (2019–2024)", f"{meta['total_aih_distintas']:,}")
-c3.metric("Mean admissions / day", f"{serie['internacoes'].mean():.1f}")
-c4.metric("Days with zero admissions", f"{meta['dias_com_zero']:,}")
-ui.fonte(dados.rel_alvo(alvo), dados.rel_meta_alvo(alvo), nota="mean computed from the parquet series")
+c1.metric(t("ov.kpi_dias"), fmt_num(meta["dias"], 0))
+c2.metric(t("ov.kpi_aih"), fmt_num(meta["total_aih_distintas"], 0))
+c3.metric(t("ov.kpi_media"), fmt_num(serie["internacoes"].mean(), 1))
+c4.metric(t("ov.kpi_zero"), fmt_num(meta["dias_com_zero"], 0))
+ui.fonte(dados.rel_alvo(alvo), dados.rel_meta_alvo(alvo), nota=t("ov.nota_media"))
 
 # --- Daily series with fold test windows ----------------------------------------------------
-st.subheader("Daily admissions and the four fold test windows")
+st.subheader(t("ov.sub_serie"))
 fig = go.Figure()
 cor_alvo = g.cores_series(m)["nao_eletivo" if alvo == "urgencia" else "total"]
 if alvo == "total":
@@ -42,10 +49,10 @@ if alvo == "total":
 fig.add_scatter(
     x=serie.index,
     y=serie["internacoes"],
-    name="Admissions / day",
+    name=t("unid.internacoes_dia"),
     mode="lines",
     line=dict(color=cor_alvo, width=1.5),
-    hovertemplate="%{y} admissions<extra></extra>",
+    hovertemplate=t("ov.hover_serie") + "<extra></extra>",
 )
 for _, f in folds.iterrows():
     fig.add_vrect(
@@ -58,23 +65,18 @@ for _, f in folds.iterrows():
         annotation_position="top left",
         annotation_font=dict(color=c["text2"], size=11),
     )
-g.layout(fig, y="Admissions / day", hover="x unified", altura=400, legenda=False, m=m)
+g.layout(fig, y=t("unid.internacoes_dia"), hover="x unified", altura=400, legenda=False, m=m)
 fig.update_xaxes(rangeslider=dict(visible=True, thickness=0.06), tickformat="%m/%Y")
 fig.update_yaxes(rangemode="tozero")
 g.mostrar(fig, key="ov_serie")
-ui.fonte(
-    dados.rel_alvo(alvo),
-    dados.rel_run(run_h1, "folds.csv"),
-    run=run_h1,
-    nota="shaded = test window of each fold (same dates in every run)",
-)
+ui.fonte(dados.rel_alvo(alvo), dados.rel_run(run_h1, "folds.csv"), run=run_h1, nota=t("ov.nota_folds"))
 
-with st.expander("Fold table (training / validation / test dates)"):
+with st.expander(t("ov.exp_folds")):
     st.dataframe(folds, hide_index=True, width="stretch")
     ui.fonte(dados.rel_run(run_h1, "folds.csv"), run=run_h1)
 
 # --- Annual totals -----------------------------------------------------------------------
-st.subheader("Admissions per year")
+st.subheader(t("ov.sub_anual"))
 anuais = pd.Series(meta["totais_anuais"]).rename_axis("year").reset_index(name="admissions")
 fig = go.Figure(
     go.Bar(
@@ -82,45 +84,45 @@ fig = go.Figure(
         y=anuais["admissions"],
         marker=dict(color=cor_alvo, cornerradius=4),
         width=0.22,
-        text=[f"{v:,}" for v in anuais["admissions"]],
+        text=[fmt_num(v, 0) for v in anuais["admissions"]],
         textposition="outside",
         textfont=dict(color=c["text2"]),
-        hovertemplate="%{x}: %{y:,} admissions<extra></extra>",
+        hovertemplate=t("ov.hover_anual") + "<extra></extra>",
     )
 )
-g.layout(fig, y="Admissions / year", hover="closest", altura=320, legenda=False, m=m)
+g.layout(fig, y=t("ov.eixo_anual"), hover="closest", altura=320, legenda=False, m=m)
 fig.update_yaxes(rangemode="tozero")
 g.mostrar(fig, key="ov_anuais")
-ui.fonte(dados.rel_meta_alvo(alvo), nota="field `totais_anuais`")
+ui.fonte(dados.rel_meta_alvo(alvo), nota=t("ov.nota_anual"))
 
 # --- PM2.5 -------------------------------------------------------------------------------
-st.subheader("PM2.5 — daily mean over CETESB stations in São Paulo city")
+st.subheader(t("ov.sub_pm25"))
 pm = dados.carregar_pm25()
 meta_pm = dados.carregar_meta_poluentes()
 fig = go.Figure()
 fig.add_scatter(
     x=pm.index,
     y=pm["pm25_media"],
-    name="PM2.5 daily mean (µg/m³)",
+    name=t("ov.serie_pm25"),
     mode="lines",
     line=dict(color=g.SLOTS[m][2], width=1.5),
     customdata=pm["pm25_n_estacoes"],
-    hovertemplate="%{y:.1f} µg/m³ · %{customdata} stations<extra></extra>",
+    hovertemplate=t("ov.hover_pm25") + "<extra></extra>",
 )
-g.layout(fig, y="PM2.5 (µg/m³)", hover="x unified", altura=340, legenda=False, m=m)
+g.layout(fig, y=t("ov.eixo_pm25"), hover="x unified", altura=340, legenda=False, m=m)
 fig.update_xaxes(rangeslider=dict(visible=True, thickness=0.06), tickformat="%m/%Y")
 fig.update_yaxes(rangemode="tozero")
 g.mostrar(fig, key="ov_pm25")
-ui.fonte(dados.REL_POLUENTES, dados.REL_META_POLUENTES, nota=f"daily rule: {meta_pm['regra_diaria']}")
+ui.fonte(dados.REL_POLUENTES, dados.REL_META_POLUENTES, nota=t("ov.nota_regra", regra=meta_pm["regra_diaria"]))
 
 c1, c2, c3 = st.columns(3)
-c1.metric("Mean PM2.5 (µg/m³)", f"{pm['pm25_media'].mean():.1f}")
-c2.metric("Mean stations / day", f"{pm['pm25_n_estacoes'].mean():.1f}")
-c3.metric("Days without a valid station", f"{int(pm['pm25_media'].isna().sum()):,}")
-ui.fonte(dados.REL_POLUENTES, nota="computed from the csv columns pm25_media and pm25_n_estacoes")
+c1.metric(t("ov.kpi_pm25"), fmt_num(pm["pm25_media"].mean(), 1))
+c2.metric(t("ov.kpi_estacoes"), fmt_num(pm["pm25_n_estacoes"].mean(), 1))
+c3.metric(t("ov.kpi_sem_estacao"), fmt_num(int(pm["pm25_media"].isna().sum()), 0))
+ui.fonte(dados.REL_POLUENTES, nota=t("ov.nota_pm25"))
 
 # --- How the series were built -------------------------------------------------------------
-with st.expander("How the target series is built (from the .meta.json next to the parquet)"):
+with st.expander(t("ov.exp_alvo")):
     chaves = [
         "fonte",
         "dataset",
@@ -146,7 +148,7 @@ with st.expander("How the target series is built (from the .meta.json next to th
     st.json({k: meta[k] for k in chaves if k in meta})
     ui.fonte(dados.rel_meta_alvo(alvo))
 
-with st.expander("How the PM2.5 series is built (from cetesb_poluentes_daily.meta.json)"):
+with st.expander(t("ov.exp_pm25")):
     pm25_info = [p for p in meta_pm.get("por_poluente", []) if p.get("poluente") == "pm25"]
     st.json(
         {

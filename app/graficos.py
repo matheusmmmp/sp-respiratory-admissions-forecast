@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import plotly.graph_objects as go
 import streamlit as st
+from i18n import separadores_plotly
 
 # Slots categóricos (references/palette.md da skill dataviz), ordem fixa.
 SLOTS = {
@@ -19,13 +20,8 @@ SLOTS = {
 # Ordem fixa modelo -> slot (mesma cor em todas as páginas).
 ORDEM_MODELOS = ["XGBoost", "SARIMAX", "LSTM", "INGARCH-NB", "GAM-NB", "Naïve", "Seasonal Naïve"]
 # Séries do painel do sábado (entidades distintas dos modelos; slots 1–3 validam all-pairs).
+# Os nomes de exibição ficam em i18n (`serie.<col>`).
 ORDEM_SERIES = ["nao_eletivo", "eletivo", "cema"]
-NOME_SERIE = {
-    "total": "Total (current target)",
-    "nao_eletivo": "Non-elective (urgent target)",
-    "eletivo": "Elective",
-    "cema": "CNES 2091550",
-}
 
 CHROME = {
     "light": dict(surface="#fcfcfb", text="#0b0b0b", text2="#52514e", muted="#898781", grid="#e1e0d9", axis="#c3c2b7"),
@@ -92,6 +88,7 @@ def layout(
         legend=dict(orientation="h", yanchor="bottom", y=1.02, x=0, font=dict(color=c["text2"]), title=None),
         bargap=0.35,
         bargroupgap=0.08,
+        separators=separadores_plotly(),
     )
     eixos = dict(
         gridcolor=c["grid"],

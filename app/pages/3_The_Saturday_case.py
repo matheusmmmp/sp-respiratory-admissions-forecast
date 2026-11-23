@@ -1,7 +1,8 @@
 """The Saturday case — elective surgery campaigns on Saturdays and why the urgent target exists.
 
 Port of the sections of `notebooks/gerar_notebook.py` (panel `painel_carater_internacao.ipynb`), reading only
-the aggregates in `notebooks/dados_painel/`. Decision D7: the establishment is cited by its CNES code (2091550).
+the aggregates in `notebooks/dados_painel/`. Decision D7 (extended 2026-11-23): the establishment may be cited by
+name and CNES code together ("Instituto CEMA", CNES 2091550); the name is read from the csv, never typed.
 """
 
 import sys
@@ -16,25 +17,20 @@ import pandas as pd  # noqa: E402
 import plotly.graph_objects as go  # noqa: E402
 import streamlit as st  # noqa: E402
 import ui  # noqa: E402
+from i18n import fmt_num, t  # noqa: E402
 from plotly.subplots import make_subplots  # noqa: E402
 
-ui.configurar_pagina("The Saturday case", "📅")
-st.title("The Saturday case")
+ui.configurar_pagina("sab.titulo_aba", "📅")
+st.title(t("sab.titulo"))
 ui.aviso_provisorio()
-st.markdown(
-    "Since 2022 the daily count of respiratory admissions shows **Saturday spikes** that no environmental or "
-    "epidemiological signal explains. They are **elective surgery campaigns** (mostly tonsils/adenoids, J35, and "
-    "nasal septum, J34) concentrated in one establishment, **CNES 2091550**. The admission character recorded in "
-    "the AIH (`CAR_INT`) separates them cleanly, which is why a second target — **urgent = non-elective** — exists. "
-    "Descriptive reading, no formal test. For 2025–2026 the target has not yet been checked against TabNet."
-)
+st.markdown(t("sab.intro"))
 
 m = g.modo()
 c = g.CHROME[m]
 cs = g.cores_series(m)
 cm = g.cores_modelos(m)
-DOW = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-MESES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+DOW = t("dow")
+MESES = t("meses")
 NEUTRO = c["muted"]
 
 D = dados.carregar_painel_diario().copy()
@@ -51,17 +47,15 @@ def razao(s: pd.Series) -> pd.Series:
 
 
 # --- 1. Overview ---------------------------------------------------------------------------
-st.header("1. Three series in one target")
+st.header(t("sab.h1"))
 r_tot, r_ne = razao(D["total"]), razao(D["nao_eletivo"])
 sab22 = (D["dow"] == 5) & (D.index.year >= 2022)
 k1, k2, k3, k4 = st.columns(4)
-k1.metric("Admissions (Jan 2019 – Feb 2026)", f"{int(D['total'].sum()):,}")
-k2.metric("Mean per day", f"{D['total'].mean():.1f}")
-k3.metric("Elective share of the total target", f"{100 * D['eletivo'].sum() / D['total'].sum():.1f}%")
-k4.metric(
-    "Atypical Saturdays 2022+ (total → urgent)", f"{int((r_tot[sab22] > 1.3).sum())} → {int((r_ne[sab22] > 1.3).sum())}"
-)
-ui.fonte(REL_DIARIO, nota="atypical = 30% or more above the local level (centred 29-day rolling median)")
+k1.metric(t("sab.kpi_total"), fmt_num(int(D["total"].sum()), 0))
+k2.metric(t("sab.kpi_media"), fmt_num(D["total"].mean(), 1))
+k3.metric(t("sab.kpi_eletivas"), fmt_num(100 * D["eletivo"].sum() / D["total"].sum(), 1) + "%")
+k4.metric(t("sab.kpi_atipicos"), f"{int((r_tot[sab22] > 1.3).sum())} → {int((r_ne[sab22] > 1.3).sum())}")
+ui.fonte(REL_DIARIO, nota=t("sab.nota_atipicos"))
 
 s = D[["total", "nao_eletivo", "eletivo"]].resample("W").mean()
 fig = go.Figure()
@@ -69,19 +63,19 @@ for col in ["total", "nao_eletivo", "eletivo"]:
     fig.add_scatter(
         x=s.index,
         y=s[col],
-        name=g.NOME_SERIE[col],
+        name=t(f"serie.{col}"),
         mode="lines",
         line=dict(color=cs[col], width=2),
-        hovertemplate="%{y:.1f}<extra>" + g.NOME_SERIE[col] + "</extra>",
+        hovertemplate="%{y:.1f}<extra>" + t(f"serie.{col}") + "</extra>",
     )
-g.layout(fig, titulo="Weekly mean of admissions per day", y="Admissions / day", altura=380, m=m)
+g.layout(fig, titulo=t("sab.fig_semanal"), y=t("unid.internacoes_dia"), altura=380, m=m)
 fig.update_xaxes(rangeslider=dict(visible=True, thickness=0.06), tickformat="%m/%Y")
 fig.update_yaxes(rangemode="tozero")
 g.mostrar(fig, key="sab_semanal")
-ui.fonte(REL_DIARIO, nota=f"panel generated {MAN['gerado_em']}")
+ui.fonte(REL_DIARIO, nota=t("sab.nota_painel", quando=MAN["gerado_em"]))
 
 # --- 2. Day of week -------------------------------------------------------------------------
-st.header("2. Day of the week")
+st.header(t("sab.h2"))
 anual = D.groupby([D.index.year, "dow"])["total"].mean().unstack()
 fig = go.Figure(
     go.Heatmap(
@@ -94,117 +88,103 @@ fig = go.Figure(
         text=anual.round(0).values,
         texttemplate="%{text:.0f}",
         textfont=dict(size=11),
-        colorbar=dict(title="Adm./day", tickfont=dict(color=c["muted"]), outlinewidth=0),
-        hovertemplate="%{y} · %{x}: %{z:.1f} admissions/day<extra></extra>",
+        colorbar=dict(title=t("unid.adm_dia_curto"), tickfont=dict(color=c["muted"]), outlinewidth=0),
+        hovertemplate=t("sab.hover_dow") + "<extra></extra>",
     )
 )
-g.layout(
-    fig,
-    titulo="Mean admissions per day, by weekday and year (total target)",
-    hover="closest",
-    altura=360,
-    legenda=False,
-    m=m,
-)
+g.layout(fig, titulo=t("sab.fig_dow"), hover="closest", altura=360, legenda=False, m=m)
 fig.update_layout(margin=dict(l=70))
 fig.update_xaxes(showgrid=False)
 fig.update_yaxes(showgrid=False, autorange="reversed")
 g.mostrar(fig, key="sab_heat_dow")
 ui.fonte(REL_DIARIO)
 
-periodo = st.radio("Period", options=["2022–Feb 2026", "2019–2021", "All"], horizontal=True, key="sab_periodo")
-ini, fim = {"2019–2021": ("2019", "2021"), "2022–Feb 2026": ("2022", "2026"), "All": ("2019", "2026")}[periodo]
+PERIODOS = {"per_2022": ("2022", "2026"), "per_2019": ("2019", "2021"), "per_tudo": ("2019", "2026")}
+periodo = st.radio(
+    t("sab.periodo"),
+    options=list(PERIODOS),
+    format_func={p: t(f"sab.{p}") for p in PERIODOS}.get,
+    horizontal=True,
+    key="sab_periodo",
+)
+ini, fim = PERIODOS[periodo]
 linhas = []
 for col in ["total", "nao_eletivo"]:
     r = razao(D[col])[ini:fim]
     for i, dn in enumerate(DOW):
         x = r[r.index.dayofweek == i]
         linhas.append(dict(dia=dn, serie=col, iqr=x.quantile(0.75) - x.quantile(0.25), atipicos=int((x > 1.3).sum())))
-t = pd.DataFrame(linhas)
+tt = pd.DataFrame(linhas)
 fig = go.Figure()
 for col in ["total", "nao_eletivo"]:
-    d = t[t["serie"] == col]
+    d = tt[tt["serie"] == col]
     fig.add_bar(
         x=d["dia"],
         y=d["iqr"],
-        name=g.NOME_SERIE[col],
+        name=t(f"serie.{col}"),
         marker=dict(color=cs[col], cornerradius=4),
         customdata=d["atipicos"],
-        hovertemplate="IQR %{y:.3f} · %{customdata} days ≥ 30% above<extra>" + g.NOME_SERIE[col] + "</extra>",
+        hovertemplate=t("sab.hover_iqr") + "<extra>" + t(f"serie.{col}") + "</extra>",
     )
 g.layout(
-    fig,
-    titulo=f"How much each weekday oscillates around the local level ({periodo})",
-    y="Interquartile range of y / local level",
-    hover="closest",
-    altura=360,
-    m=m,
+    fig, titulo=t("sab.fig_iqr", periodo=t(f"sab.{periodo}")), y=t("sab.eixo_iqr"), hover="closest", altura=360, m=m
 )
 fig.update_layout(barmode="group", bargap=0.4)
 g.mostrar(fig, key="sab_iqr")
-ui.fonte(REL_DIARIO, nota="ratio = y / centred 29-day rolling median; computed from diario.csv")
+ui.fonte(REL_DIARIO, nota=t("sab.nota_iqr"))
 
 # --- 3. Saturdays and CNES 2091550 ----------------------------------------------------------
-st.header("3. Saturdays and CNES 2091550")
+st.header(t("sab.h3"))
 sab = D[D["dow"] == 5]
 fig = go.Figure()
 fig.add_scatter(
     x=sab.index,
     y=sab["total_sem_cema"],
-    name="Without CNES 2091550",
+    name=t("sab.sem_cema"),
     mode="lines",
     line=dict(color=cs["nao_eletivo"], width=2),
-    hovertemplate="%{y}<extra>without CNES 2091550</extra>",
+    hovertemplate="%{y}<extra>" + t("sab.sem_cema") + "</extra>",
 )
 fig.add_scatter(
     x=sab.index,
     y=sab["total"],
-    name="All establishments",
+    name=t("sab.todos_estab"),
     mode="lines",
     fill="tonexty",
     fillcolor=cs["cema"] + "33",
     line=dict(color=cs["total"], width=2),
-    hovertemplate="%{y}<extra>all establishments</extra>",
+    hovertemplate="%{y}<extra>" + t("sab.todos_estab") + "</extra>",
 )
-g.layout(
-    fig, titulo="Admissions on each Saturday (shaded = CNES 2091550)", y="Admissions per Saturday", altura=380, m=m
-)
+g.layout(fig, titulo=t("sab.fig_cema"), y=t("sab.eixo_sabado"), altura=380, m=m)
 fig.update_xaxes(rangeslider=dict(visible=True, thickness=0.06), tickformat="%m/%Y")
 fig.update_yaxes(rangemode="tozero")
 g.mostrar(fig, key="sab_cema_serie")
-ui.fonte(REL_DIARIO, nota=f"highlighted establishment: CNES {MAN['cnes_destacado']} (manifest.json)")
+ui.fonte(REL_DIARIO, nota=t("sab.nota_cema", cnes=MAN["cnes_destacado"]))
 
 rs = razao(D["total"])[D["dow"] == 5].to_frame("r")
 rs["semana"] = (rs.index.day - 1) // 7 + 1
-rs["periodo"] = np.where(rs.index.year <= 2021, "2019–2021", "2022–Feb 2026")
-t = rs.groupby(["periodo", "semana"])["r"].median().reset_index()
+rs["periodo"] = np.where(rs.index.year <= 2021, "per_2019", "per_2022")
+tt = rs.groupby(["periodo", "semana"])["r"].median().reset_index()
 fig = go.Figure()
-for per, cor in [("2019–2021", NEUTRO), ("2022–Feb 2026", cs["eletivo"])]:
-    d = t[t["periodo"] == per]
+for per, cor in [("per_2019", NEUTRO), ("per_2022", cs["eletivo"])]:
+    d = tt[tt["periodo"] == per]
     fig.add_bar(
-        x=[f"{int(s)}{'st' if s == 1 else 'nd' if s == 2 else 'rd' if s == 3 else 'th'} Saturday" for s in d["semana"]],
+        x=[t(f"sab.ord{int(k)}") for k in d["semana"]],
         y=d["r"],
-        name=per,
+        name=t(f"sab.{per}"),
         marker=dict(color=cor, cornerradius=4),
-        hovertemplate="median ratio %{y:.2f}<extra>" + per + "</extra>",
+        hovertemplate=t("sab.hover_razao") + "<extra>" + t(f"sab.{per}") + "</extra>",
     )
 fig.add_hline(y=1, line=dict(color=c["axis"], width=1))
-g.layout(
-    fig,
-    titulo="The peak falls on the first three Saturdays of the month (since 2022)",
-    y="Median ratio (1 = ordinary day)",
-    hover="closest",
-    altura=340,
-    m=m,
-)
+g.layout(fig, titulo=t("sab.fig_semana_mes"), y=t("sab.eixo_razao"), hover="closest", altura=340, m=m)
 fig.update_layout(barmode="group", bargap=0.4)
 g.mostrar(fig, key="sab_semana_mes")
-ui.fonte(REL_DIARIO, nota="median of y / local level over the Saturdays of each rank within the month")
+ui.fonte(REL_DIARIO, nota=t("sab.nota_razao"))
 
 cal = sab[["cema"]].rename(columns={"cema": "n"}).copy()
 cal["ano"] = cal.index.year.astype(str)
 cal["coluna"] = [f"{MESES[d.month - 1]}-{(d.day - 1) // 7 + 1}" for d in cal.index]
-ordem = [f"{mm}-{s}" for mm in MESES for s in range(1, 6)]
+ordem = [f"{mm}-{k}" for mm in MESES for k in range(1, 6)]
 piv = cal.pivot_table(index="ano", columns="coluna", values="n", aggfunc="sum").reindex(
     columns=[o for o in ordem if o in set(cal["coluna"])]
 )
@@ -216,42 +196,29 @@ fig = go.Figure(
         colorscale=g.escala_sequencial(m, "laranja"),
         xgap=2,
         ygap=2,
-        colorbar=dict(title="Admissions", tickfont=dict(color=c["muted"]), outlinewidth=0),
-        hovertemplate="%{y} · %{x}: %{z} admissions<extra></extra>",
+        colorbar=dict(title=t("sab.colorbar_int"), tickfont=dict(color=c["muted"]), outlinewidth=0),
+        hovertemplate=t("sab.hover_cal") + "<extra></extra>",
     )
 )
-g.layout(
-    fig,
-    titulo="Calendar: admissions of CNES 2091550 on each Saturday (month–rank of the Saturday)",
-    hover="closest",
-    altura=320,
-    legenda=False,
-    m=m,
-)
+g.layout(fig, titulo=t("sab.fig_cal"), hover="closest", altura=320, legenda=False, m=m)
 fig.update_xaxes(showgrid=False, tickangle=-90, tickfont=dict(size=9))
 fig.update_yaxes(showgrid=False, autorange="reversed")
 g.mostrar(fig, key="sab_calendario")
-ui.fonte(REL_DIARIO, nota="column `cema` = admissions of CNES 2091550")
+ui.fonte(REL_DIARIO, nota=t("sab.nota_cal"))
 
-st.markdown(
-    "**Registration delay since 2022** — % of AIH by months between admission and the billing competence "
-    "(4 = four or more). Saturday is not registered later than the other days:"
-)
+st.markdown(t("sab.atraso"))
 at = dados.carregar_painel_atraso().copy()
 at.index = DOW[: len(at)]
-ui.tabela(at.rename(columns=lambda k: f"{k} month(s)"), casas=1, width="stretch")
+ui.tabela(at.rename(columns=lambda k: t("sab.col_meses", k=k)), casas=1, width="stretch")
 ui.fonte(dados.rel_painel("atraso_registro_2022_mais.csv"))
 
 # --- 4. Character of admission and ICD groups ----------------------------------------------
-st.header("4. Admission character and ICD-10 groups")
+st.header(t("sab.h4"))
 G = dados.carregar_painel_grupos_cid().copy()
 G["pct"] = 100 * G["eletivas"] / G["total"]
 G = G.sort_values("pct")
 fig = go.Figure()
-for sens, nome, cor in [
-    (True, "Plausible mechanism of pollution effect", cs["nao_eletivo"]),
-    (False, "Other groups", NEUTRO),
-]:
+for sens, nome, cor in [(True, t("sab.mecanismo"), cs["nao_eletivo"]), (False, t("sab.outros_grupos"), NEUTRO)]:
     d = G[G["sensivel"] == sens]
     fig.add_bar(
         x=d["pct"],
@@ -261,26 +228,21 @@ for sens, nome, cor in [
         marker=dict(color=cor, cornerradius=4),
         width=0.6,
         customdata=np.stack([d["eletivas"], d["total"], d["eletivas_cema"]], axis=1),
-        hovertemplate="%{x:.1f}% elective · %{customdata[0]:,} of %{customdata[1]:,} · %{customdata[2]:,} elective at CNES 2091550<extra>"
-        + nome
-        + "</extra>",
+        hovertemplate=t("sab.hover_cid") + "<extra>" + nome + "</extra>",
     )
-g.layout(
-    fig,
-    titulo="What the urgent target excludes, by ICD-10 group (% elective in the group)",
-    x="% elective in the group (leaves the urgent target)",
-    hover="closest",
-    altura=460,
-    m=m,
-)
+g.layout(fig, titulo=t("sab.fig_cid"), x=t("sab.eixo_cid"), hover="closest", altura=460, m=m)
 fig.update_xaxes(range=[0, 100], ticksuffix="%")
 fig.update_layout(barmode="overlay", margin=dict(l=300))
 g.mostrar(fig, key="sab_cid")
 sens = G[G["sensivel"]]
 st.markdown(
-    f"Groups with a plausible pollution mechanism: **{int(sens['eletivas'].sum()):,}** elective admissions out of "
-    f"**{int(sens['total'].sum()):,}** ({100 * sens['eletivas'].sum() / sens['total'].sum():.1f}%); "
-    f"**{int(sens['eletivas_cema'].sum()):,}** of them at CNES 2091550."
+    t(
+        "sab.texto_sensiveis",
+        eletivas=fmt_num(int(sens["eletivas"].sum()), 0),
+        total=fmt_num(int(sens["total"].sum()), 0),
+        pct=fmt_num(100 * sens["eletivas"].sum() / sens["total"].sum(), 1),
+        cema=fmt_num(int(sens["eletivas_cema"].sum()), 0),
+    )
 )
 ui.fonte(dados.rel_painel("grupos_cid.csv"))
 
@@ -291,63 +253,63 @@ fig = make_subplots(
     cols=1,
     shared_xaxes=True,
     vertical_spacing=0.10,
-    subplot_titles=("Non-elective (stay in the urgent target)", "Elective (leave the target)"),
+    subplot_titles=(t("sab.sub_nao_eletivas"), t("sab.sub_eletivas")),
 )
 fig.add_scatter(
     x=mm_.index,
     y=mm_["sens_nao_eletivo"],
     row=1,
     col=1,
-    name="Non-elective",
+    name=t("sab.nao_eletivas"),
     mode="lines",
     line=dict(color=cs["nao_eletivo"], width=2),
-    hovertemplate="%{y:.1f}<extra>non-elective</extra>",
+    hovertemplate="%{y:.1f}<extra>" + t("sab.nao_eletivas") + "</extra>",
 )
 fig.add_scatter(
     x=mm_.index,
     y=mm_["sens_eletivo"],
     row=2,
     col=1,
-    name="Elective",
+    name=t("sab.eletivas"),
     mode="lines",
     line=dict(color=cs["eletivo"], width=2),
-    hovertemplate="%{y:.1f}<extra>elective</extra>",
+    hovertemplate="%{y:.1f}<extra>" + t("sab.eletivas") + "</extra>",
 )
-g.layout(
-    fig,
-    titulo=f"Pollution-sensitive groups: monthly mean per day (correlation 2019–2024: {corr:.2f})",
-    altura=480,
-    legenda=False,
-    m=m,
-)
-fig.update_yaxes(rangemode="tozero", title_text="Adm./day")
+g.layout(fig, titulo=t("sab.fig_sens", corr=fmt_num(corr, 2)), altura=480, legenda=False, m=m)
+fig.update_yaxes(rangemode="tozero", title_text=t("unid.adm_dia_curto"))
 fig.update_xaxes(tickformat="%m/%Y")
 for ann in fig.layout.annotations:
     ann.font.color = c["text2"]
 g.mostrar(fig, key="sab_sens")
-ui.fonte(REL_DIARIO, nota="columns sens_nao_eletivo and sens_eletivo; correlation computed from the monthly means")
+ui.fonte(REL_DIARIO, nota=t("sab.nota_sens"))
 
-st.markdown("**Profile of the two subsets** (age in years, length of stay in days):")
+st.markdown(t("sab.perfil"))
 P = dados.carregar_painel_perfil().rename(
     columns={
-        "internacoes": "admissions",
-        "idade_mediana": "median age",
-        "pct_menor_15": "% under 15",
-        "permanencia_mediana": "median stay",
-        "pct_permanencia_ate_1_dia": "% stay ≤ 1 day",
-        "pct_obito": "% death",
+        "internacoes": t("sab.col_internacoes"),
+        "idade_mediana": t("sab.col_idade"),
+        "pct_menor_15": t("sab.col_menor15"),
+        "permanencia_mediana": t("sab.col_permanencia"),
+        "pct_permanencia_ate_1_dia": t("sab.col_perm1"),
+        "pct_obito": t("sab.col_obito"),
     }
 )
 ui.tabela(P, casas=1, width="stretch")
 ui.fonte(dados.rel_painel("perfil.csv"))
 
 # --- 5. Establishments ---------------------------------------------------------------------
-st.header("5. Establishments with most elective admissions on Saturdays")
+st.header(t("sab.h5"))
 E = dados.carregar_painel_estabelecimentos()
+METRICAS_ESTAB = {"met_eletivas_sab": "eletivas_sabado", "met_eletivas": "eletivas", "met_total": "total"}
 metrica = st.radio(
-    "Metric", options=["Elective on Saturdays", "Elective (all days)", "Total"], horizontal=True, key="sab_estab"
+    t("metrica"),
+    options=list(METRICAS_ESTAB),
+    format_func={k: t(f"sab.{k}") for k in METRICAS_ESTAB}.get,
+    horizontal=True,
+    key="sab_estab",
 )
-col = {"Elective on Saturdays": "eletivas_sabado", "Elective (all days)": "eletivas", "Total": "total"}[metrica]
+col = METRICAS_ESTAB[metrica]
+nome_metrica = t(f"sab.{metrica}")
 fig = go.Figure()
 for cnes, d in E.sort_values("ano").groupby("CNES"):
     destaque = cnes == MAN["cnes_destacado"]
@@ -363,8 +325,8 @@ for cnes, d in E.sort_values("ano").groupby("CNES"):
     )
 g.layout(
     fig,
-    titulo=f"{metrica} per year — 15 establishments with most elective Saturday admissions (highlight: CNES {MAN['cnes_destacado']})",
-    y=metrica + " / year",
+    titulo=t("sab.fig_estab", metrica=nome_metrica, cnes=MAN["cnes_destacado"]),
+    y=t("sab.eixo_estab", metrica=nome_metrica),
     hover="closest",
     altura=440,
     m=m,
@@ -373,36 +335,35 @@ fig.update_layout(legend=dict(orientation="v", x=1.01, y=1, yanchor="top"))
 fig.update_yaxes(rangemode="tozero")
 g.mostrar(fig, key="sab_estab_fig")
 nome_destaque = E.loc[E["CNES"] == MAN["cnes_destacado"], "nome"].iloc[0]
-ui.fonte(
-    dados.rel_painel("estabelecimentos_ano.csv"),
-    nota=(
-        "cells with fewer than 5 admissions are suppressed at the source (gaps in the lines); the highlighted "
-        f"establishment is {nome_destaque}, name read from the column `nome` of this csv; the other establishments "
-        "appear by code only, as in the csv; name and code are public information of the CNES registry"
-    ),
-)
+ui.fonte(dados.rel_painel("estabelecimentos_ano.csv"), nota=t("sab.nota_estab", nome=nome_destaque))
 
 # --- 6. Effect on the models ----------------------------------------------------------------
-st.header("6. Effect on the models (common set AR_CAL, CETESB base)")
+st.header(t("sab.h6"))
 M = dados.carregar_painel_erros_modelos().copy()
 M["dow"] = M["target_date"].dt.dayofweek
 M["mutirao"] = (M["dow"] == 5) & ((M["target_date"].dt.day - 1) // 7 < 3) & (M["target_date"].dt.year >= 2022)
 c1, c2 = st.columns(2)
 h_sel = c1.radio(
-    "Horizon", options=sorted(M["h"].unique()), format_func=lambda h: f"h = {h}", horizontal=True, key="sab_h"
+    t("horizonte"), options=sorted(M["h"].unique()), format_func=lambda h: f"h = {h}", horizontal=True, key="sab_h"
 )
-metr = c2.radio("Metric", options=["MAE", "Bias"], horizontal=True, key="sab_metr")
+metr = c2.radio(
+    t("metrica"),
+    options=["met_mae", "met_vies"],
+    format_func={k: t(f"sab.{k}") for k in ("met_mae", "met_vies")}.get,
+    horizontal=True,
+    key="sab_metr",
+)
 x = M[M["h"] == h_sel]
 run_x = x["run"].iloc[0]
-if metr == "MAE":
-    t = x.assign(v=x["erro"].abs()).groupby(["modelo", "dow"])["v"].mean().reset_index()
-    rot = "MAE (admissions / day)"
+if metr == "met_mae":
+    tt = x.assign(v=x["erro"].abs()).groupby(["modelo", "dow"])["v"].mean().reset_index()
+    rot = t("mh.eixo_mae")
 else:
-    t = x.groupby(["modelo", "dow"])["erro"].mean().reset_index().rename(columns={"erro": "v"})
-    rot = "Bias (observed − predicted)"
+    tt = x.groupby(["modelo", "dow"])["erro"].mean().reset_index().rename(columns={"erro": "v"})
+    rot = t("sab.eixo_vies")
 fig = go.Figure()
 for nome in g.ORDEM_MODELOS:
-    d = t[t["modelo"] == nome].sort_values("dow")
+    d = tt[tt["modelo"] == nome].sort_values("dow")
     if d.empty:
         continue
     fig.add_bar(
@@ -412,17 +373,29 @@ for nome in g.ORDEM_MODELOS:
         marker=dict(color=cm[nome], cornerradius=3),
         hovertemplate="%{y:.2f}<extra>" + nome + "</extra>",
     )
-g.layout(fig, titulo=f"{metr} by weekday — h = {h_sel}", y=rot, hover="closest", altura=400, m=m)
+g.layout(fig, titulo=t("sab.fig_modelos", metrica=t(f"sab.{metr}"), h=h_sel), y=rot, hover="closest", altura=400, m=m)
 fig.update_layout(barmode="group", bargap=0.3, bargroupgap=0.1)
 g.mostrar(fig, key="sab_modelos")
-ui.fonte(
-    dados.rel_painel("erros_modelos_ar_cal.csv"), run=run_x, nota="seed-mean predictions per target date, total target"
-)
+ui.fonte(dados.rel_painel("erros_modelos_ar_cal.csv"), run=run_x, nota=t("sab.nota_modelos"))
+
+# Nota sobre a definição do MAE: os quatro números são lidos/calculados dos arquivos, nunca digitados.
+es_bruto = dados.carregar_erro_sabado_h1()
+arcal_h1 = dados.carregar_arcal_dois_alvos()
+ref_sab = es_bruto[(es_bruto["alvo"] == "total") & (es_bruto["modelo"] == "XGBoost")]["MAE_sab"].iloc[0]
+ref_geral = arcal_h1[(arcal_h1["alvo"] == "total") & (arcal_h1["h"] == 1) & (arcal_h1["modelo"] == "XGBoost")][
+    "MAE"
+].iloc[0]
+x1 = M[(M["h"] == 1) & (M["modelo"] == "XGBoost")]
+aqui_geral = x1["erro"].abs().mean()
+aqui_sab = x1.loc[x1["dow"] == 5, "erro"].abs().mean()
 st.caption(
-    "Note on the MAE definition: in this section (chart and table below) MAE is computed on **seed-mean predictions** "
-    "(one prediction per date, from erros_modelos_ar_cal.csv), so it is at most the **seed-mean MAE** reported in the "
-    "README, in arcal_por_horizonte_dois_alvos.csv and in erro_sabado_h1.csv (mean of the MAE of each seed; "
-    "18.56 overall and 33.31 on Saturdays at h = 1 for XGBoost, against 18.45 and 33.21 here)."
+    t(
+        "sab.nota_mae_def",
+        ref_geral=fmt_num(ref_geral, 2),
+        ref_sab=fmt_num(ref_sab, 2),
+        aqui_geral=fmt_num(aqui_geral, 2),
+        aqui_sab=fmt_num(aqui_sab, 2),
+    )
 )
 
 part = (
@@ -432,47 +405,39 @@ part = (
         lambda d: pd.Series(
             {
                 "MAE": d["a"].mean(),
-                "MAE outside campaign Saturdays": d["a"][~d["mutirao"]].mean(),
-                "% of absolute error on campaign Saturdays": 100 * d["a"][d["mutirao"]].sum() / d["a"].sum(),
-                "% of dates": 100 * d["mutirao"].mean(),
+                t("sab.col_mae_fora"): d["a"][~d["mutirao"]].mean(),
+                t("sab.col_pct_erro"): 100 * d["a"][d["mutirao"]].sum() / d["a"].sum(),
+                t("sab.col_pct_datas"): 100 * d["mutirao"].mean(),
             }
         ),
         include_groups=False,
     )
-    .reindex([n for n in g.ORDEM_MODELOS if n in set(t["modelo"])])
+    .reindex([n for n in g.ORDEM_MODELOS if n in set(tt["modelo"])])
 )
-st.markdown("**How much of the error comes from the 1st–3rd Saturday of the month (2022+)**, total target:")
+st.markdown(t("sab.quanto_erro"))
 ui.tabela(part, casas=1, width="stretch")
 ui.fonte(dados.rel_painel("erros_modelos_ar_cal.csv"), run=run_x)
 
-st.markdown(
-    "**Saturday error at h = 1, both targets** — MAE on Saturdays vs. the other days, share of the absolute "
-    "error on Saturdays and the ratio MAE_sat / MAE_other:"
-)
-es = dados.carregar_erro_sabado_h1().rename(
+st.markdown(t("sab.erro_h1"))
+es = es_bruto.rename(
     columns={
-        "alvo": "target",
-        "modelo": "model",
-        "MAE_sab": "MAE Saturdays",
-        "MAE_demais": "MAE other days",
-        "frac_erro_sab": "share of abs. error on Saturdays",
-        "razao": "ratio",
+        "alvo": t("sab.col_alvo"),
+        "modelo": t("sab.col_modelo"),
+        "MAE_sab": t("sab.col_mae_sab"),
+        "MAE_demais": t("sab.col_mae_demais"),
+        "frac_erro_sab": t("sab.col_frac"),
+        "razao": t("sab.col_razao"),
     }
 )
 ui.tabela(es, casas=3, hide_index=True, width="stretch")
 runs_h1 = dados.carregar_runs_por_horizonte()
-ui.fonte(dados.REL_ERRO_SABADO_H1, nota=f"runs: total `{runs_h1['total'][1]}`; urgent `{runs_h1['urgencia'][1]}`")
+ui.fonte(
+    dados.REL_ERRO_SABADO_H1, nota=t("sab.nota_erro_h1", total=runs_h1["total"][1], urgencia=runs_h1["urgencia"][1])
+)
 
 # --- 7. The decision -----------------------------------------------------------------------
-st.header("7. The decision under discussion (PROTOCOLO §0.23, proposed)")
-st.markdown(
-    "- **Non-elective (urgent) target** for the PM2.5 question: the criterion is the admission character recorded "
-    "in the AIH, applied equally to every day, hospital and ICD code, without excluding any establishment.\n"
-    "- **Total target** stays for hospital-demand forecasting (a bed occupied by an elective admission still counts).\n"
-    "- What leaves: mostly scheduled upper-airway surgery (J30–J39). In the groups with a plausible pollution "
-    "mechanism the elective share is small (section 4) and does not follow the seasonality.\n"
-    "- Open point for the advisor: which of the two targets is the main outcome of the dissertation."
-)
-with st.expander("Provenance of the panel data (manifest.json)"):
+st.header(t("sab.h7"))
+st.markdown(t("sab.decisao"))
+with st.expander(t("sab.exp_manifest")):
     st.json(MAN)
     ui.fonte(REL_MANIFEST)

@@ -36,7 +36,7 @@ NOME_MODELO = {
     "seasonal_naive": "Seasonal Naïve",
 }
 ORDEM_MODELOS = list(NOME_MODELO.values())
-ALVOS = {"total": "Total (all admissions)", "urgencia": "Urgent (non-elective only)"}
+ALVOS = ("total", "urgencia")  # rótulos de exibição em i18n (`alvo.<alvo>`)
 HORIZONTES = [1, 5, 7, 15, 30]
 
 
