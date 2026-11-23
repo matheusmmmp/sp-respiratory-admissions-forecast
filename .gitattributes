@@ -24,3 +24,12 @@
 *.bat text eol=crlf
 *.cmd text eol=crlf
 *.ps1 text eol=crlf
+
+# Dados agregados e artefatos de runs: bytes preservados exatamente como foram
+# executados na dissertação (os manifests, o models_demo/metadata.json e o
+# docs/INVENTARIO_FASE0.tsv registram o sha256 desses bytes; a normalização de
+# fim de linha quebraria a verificação num clone).
+data/** -text
+results/** -text
+notebooks/dados_painel/** -text
+configs/** -text
