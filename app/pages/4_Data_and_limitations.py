@@ -9,7 +9,7 @@ import dados  # noqa: E402
 import pandas as pd  # noqa: E402
 import streamlit as st  # noqa: E402
 import ui  # noqa: E402
-from i18n import t  # noqa: E402
+from i18n import fmt_num, t  # noqa: E402
 
 ui.configurar_pagina("dl.titulo_aba", "📚")
 st.title(t("dl.titulo"))
@@ -41,18 +41,20 @@ st.markdown(
 
 
 def _linhas(meta: dict) -> dict:
+    # A coluna mistura contagens e a data de extração: tudo vira str (números via fmt_num), para que o Arrow
+    # não precise adivinhar o tipo da coluna (o Streamlit Cloud logava "Serialization ... unsuccessful").
     return {
-        t("dl.lin_linhas"): meta["total_linhas_somadas"],
-        t("dl.lin_aih"): meta["total_aih_distintas"],
-        t("dl.lin_dup"): meta["duplicatas_entre_competencias"],
-        t("dl.lin_invalidas"): meta["dt_inter_invalidas"],
-        t("dl.lin_dias"): meta["dias"],
-        t("dl.lin_zero"): meta["dias_com_zero"],
-        t("dl.lin_extraido"): meta["extraido_em"],
+        t("dl.lin_linhas"): fmt_num(meta["total_linhas_somadas"], 0),
+        t("dl.lin_aih"): fmt_num(meta["total_aih_distintas"], 0),
+        t("dl.lin_dup"): fmt_num(meta["duplicatas_entre_competencias"], 0),
+        t("dl.lin_invalidas"): fmt_num(meta["dt_inter_invalidas"], 0),
+        t("dl.lin_dias"): fmt_num(meta["dias"], 0),
+        t("dl.lin_zero"): fmt_num(meta["dias_com_zero"], 0),
+        t("dl.lin_extraido"): str(meta["extraido_em"]),
     }
 
 
-comp = pd.DataFrame({t("dl.col_total"): _linhas(meta_t), t("dl.col_urg"): _linhas(meta_u)})
+comp = pd.DataFrame({t("dl.col_total"): _linhas(meta_t), t("dl.col_urg"): _linhas(meta_u)}).astype(str)
 st.dataframe(comp, width="stretch")
 ui.fonte(dados.rel_meta_alvo("total"), dados.rel_meta_alvo("urgencia"))
 
