@@ -42,13 +42,18 @@ ingest = [
 ]
 # preenchidos pelo gerente a partir dos relatórios dos workers WP3/WP4/WP2
 app = []
-api = []
+api = [
+  "fastapi==0.165.0",
+  "uvicorn==0.54.0",
+]
 tracking = []
 
 [dependency-groups]
 dev = [
   "pytest==9.1.1",
   "ruff>=0.14",
+  # TestClient da API (tests/test_api_forecast.py)
+  "httpx==0.28.1",
 ]
 
 [tool.uv]

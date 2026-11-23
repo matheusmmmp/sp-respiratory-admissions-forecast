@@ -1,0 +1,283 @@
+{
+  "modelo": "xgboost_ar_cal",
+  "versao": "ba6d6c40-20261123",
+  "data_treino": "2026-11-23T19:13:21+00:00",
+  "aviso": "demonstration model: trained on the whole 2019-2024 history with a single seed for the API demo; not a dissertation result. Reference evaluation: models_demo/MODEL_CARD.md.",
+  "feature_set": "AR_CAL",
+  "horizontes": [
+    1,
+    7,
+    30
+  ],
+  "seed": 42,
+  "entradas": {
+    "sih": {
+      "arquivo": "data/processed/sih_daily_lookahead.parquet",
+      "sha256": "ba6d6c40f227648e49cf730276957b7db41082ffde189fa402aa233de166dfa9"
+    },
+    "cams": {
+      "arquivo": "data/processed/cams_daily_v2.csv",
+      "sha256": "58e047c05555bf2732b486c689524664f8cb7439bb1a7650c33fe4e3dfcdf116"
+    },
+    "cetesb": {
+      "arquivo": "data/processed/cetesb_poluentes_daily.csv",
+      "sha256": "2b93501c0e5b19f55fe15eeba3727dc2bf09fbbc05acbd4513e97870e70a18e8"
+    },
+    "meteo": {
+      "arquivo": "data/processed/cetesb_meteo_daily.csv",
+      "sha256": "129dee9515c6f31ce5d6b537155ec9fcf22943a41f6d3f7b39f36fa1d23c0873"
+    },
+    "periodo": [
+      "2019-01-01",
+      "2024-12-31"
+    ]
+  },
+  "ambiente": {
+    "python": "3.11.0",
+    "xgboost": "3.2.0",
+    "numpy": "2.4.1",
+    "pandas": "3.0.0"
+  },
+  "modelos": {
+    "1": {
+      "horizonte": 1,
+      "config": "configs/h1_v02_cetesb_cetesb_classicos.yaml",
+      "arquivo": "models_demo/xgboost_ar_cal_h1.ubj",
+      "arquivo_sha256": "ef5789c517f4a84ea2f4e9dddc77a3f20ec824aea6b22e585ff36e01e163f92b",
+      "arquivo_bytes": 1520898,
+      "feature_set": "AR_CAL",
+      "blocos": [
+        "AR",
+        "CAL"
+      ],
+      "features": [
+        "y_lag1",
+        "y_lag2",
+        "y_lag3",
+        "y_lag7",
+        "y_lag14",
+        "y_lag28",
+        "dow",
+        "mes",
+        "feriado",
+        "fim_de_semana",
+        "sin1",
+        "cos1",
+        "sin2",
+        "cos2"
+      ],
+      "lags_alvo": [
+        1,
+        2,
+        3,
+        7,
+        14,
+        28
+      ],
+      "lags_exogenas": [
+        1,
+        2,
+        3,
+        7,
+        14
+      ],
+      "lag_minimo_das_features": 1,
+      "n_linhas_treino": 2164,
+      "primeira_data_alvo": "2019-01-29",
+      "ultima_data_alvo": "2024-12-31",
+      "primeira_origem_valida": "2019-01-28",
+      "ultima_origem_valida": "2024-12-30",
+      "linhas_removidas_warmup": 28,
+      "hiperparametros": {
+        "objective": "count:poisson",
+        "seed": 42,
+        "tree_method": "hist",
+        "n_jobs": 4,
+        "early_stopping": false,
+        "n_estimators": 600,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "min_child_weight": 5.0,
+        "reg_lambda": 1.0
+      },
+      "segundos_treino": 0.74,
+      "referencia": {
+        "run_id": "h1_v02_cetesb_cetesb_classicos_full_20261022-211834",
+        "arquivo": "results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/model_comparison.csv",
+        "xgboost_ar_cal": {
+          "MAE_medio": 18.55664036220974,
+          "MAE_std_fold": 2.343156456697166,
+          "RMSE_medio": 24.79059751723886,
+          "MASE_medio": 0.6450363220356312,
+          "n_folds": 4,
+          "n_sementes": 5
+        },
+        "naive": {
+          "MAE_medio": 28.71111111111111
+        }
+      }
+    },
+    "7": {
+      "horizonte": 7,
+      "config": "configs/multihorizonte/mh_h7_cetesb_cetesb.yaml",
+      "arquivo": "models_demo/xgboost_ar_cal_h7.ubj",
+      "arquivo_sha256": "a5350344370faa564953592b044be051e2599115769ad76187c102ee3ecb95e2",
+      "arquivo_bytes": 1533343,
+      "feature_set": "AR_CAL",
+      "blocos": [
+        "AR",
+        "CAL"
+      ],
+      "features": [
+        "y_lag7",
+        "y_lag8",
+        "y_lag9",
+        "y_lag13",
+        "y_lag20",
+        "y_lag34",
+        "dow",
+        "mes",
+        "feriado",
+        "fim_de_semana",
+        "sin1",
+        "cos1",
+        "sin2",
+        "cos2"
+      ],
+      "lags_alvo": [
+        7,
+        8,
+        9,
+        13,
+        20,
+        34
+      ],
+      "lags_exogenas": [
+        7,
+        8,
+        9,
+        13,
+        20
+      ],
+      "lag_minimo_das_features": 7,
+      "n_linhas_treino": 2158,
+      "primeira_data_alvo": "2019-02-04",
+      "ultima_data_alvo": "2024-12-31",
+      "primeira_origem_valida": "2019-01-28",
+      "ultima_origem_valida": "2024-12-24",
+      "linhas_removidas_warmup": 34,
+      "hiperparametros": {
+        "objective": "count:poisson",
+        "seed": 42,
+        "tree_method": "hist",
+        "n_jobs": 4,
+        "early_stopping": false,
+        "n_estimators": 600,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "min_child_weight": 5.0,
+        "reg_lambda": 1.0
+      },
+      "segundos_treino": 0.36,
+      "referencia": {
+        "run_id": "mh_h7_cetesb_cetesb_full_20261111-030322",
+        "arquivo": "results/runs/mh_h7_cetesb_cetesb_full_20261111-030322/model_comparison.csv",
+        "xgboost_ar_cal": {
+          "MAE_medio": 23.397312622070316,
+          "MAE_std_fold": 3.4522582446225174,
+          "RMSE_medio": 30.925176567658895,
+          "MASE_medio": 0.809546395994956,
+          "n_folds": 4,
+          "n_sementes": 5
+        },
+        "naive": {
+          "MAE_medio": 28.870833333333334
+        }
+      }
+    },
+    "30": {
+      "horizonte": 30,
+      "config": "configs/multihorizonte/mh_h30_cetesb_cetesb.yaml",
+      "arquivo": "models_demo/xgboost_ar_cal_h30.ubj",
+      "arquivo_sha256": "247c9f59f5a649ef4c3bc231c7ea7bc3e0f3ee843c2868b00cb8ce2b487c319a",
+      "arquivo_bytes": 1557210,
+      "feature_set": "AR_CAL",
+      "blocos": [
+        "AR",
+        "CAL"
+      ],
+      "features": [
+        "y_lag30",
+        "y_lag31",
+        "y_lag32",
+        "y_lag36",
+        "y_lag43",
+        "y_lag57",
+        "dow",
+        "mes",
+        "feriado",
+        "fim_de_semana",
+        "sin1",
+        "cos1",
+        "sin2",
+        "cos2"
+      ],
+      "lags_alvo": [
+        30,
+        31,
+        32,
+        36,
+        43,
+        57
+      ],
+      "lags_exogenas": [
+        30,
+        31,
+        32,
+        36,
+        43
+      ],
+      "lag_minimo_das_features": 30,
+      "n_linhas_treino": 2135,
+      "primeira_data_alvo": "2019-02-27",
+      "ultima_data_alvo": "2024-12-31",
+      "primeira_origem_valida": "2019-01-28",
+      "ultima_origem_valida": "2024-12-01",
+      "linhas_removidas_warmup": 57,
+      "hiperparametros": {
+        "objective": "count:poisson",
+        "seed": 42,
+        "tree_method": "hist",
+        "n_jobs": 4,
+        "early_stopping": false,
+        "n_estimators": 600,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "min_child_weight": 5.0,
+        "reg_lambda": 1.0
+      },
+      "segundos_treino": 0.36,
+      "referencia": {
+        "run_id": "mh_h30_cetesb_cetesb_full_20261113-104814",
+        "arquivo": "results/runs/mh_h30_cetesb_cetesb_full_20261113-104814/model_comparison.csv",
+        "xgboost_ar_cal": {
+          "MAE_medio": 26.36273511250814,
+          "MAE_std_fold": 7.41442817648629,
+          "RMSE_medio": 33.67174946226804,
+          "MASE_medio": 0.6975282381140449,
+          "n_folds": 4,
+          "n_sementes": 5
+        },
+        "naive": {
+          "MAE_medio": 37.84166666666667
+        }
+      }
+    }
+  }
+}
