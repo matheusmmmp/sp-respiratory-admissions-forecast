@@ -1,0 +1,74 @@
+# ============================================================================
+# docker compose up  -> três serviços a partir da MESMA imagem (Dockerfile,
+# alvo `runtime`):
+#
+#   app     Streamlit   http://localhost:8501   app/Home.py         (WP3)
+#   api     FastAPI     http://localhost:8000   api.main:app        (WP4)
+#   mlflow  MLflow UI   http://localhost:5000   file store ./mlruns (WP2)
+#
+# Contratos assumidos (os pacotes app/, api/ e tracking/ são escritos em
+# paralelo por outros workers; este arquivo foi escrito contra os caminhos e
+# portas do PLANO_PORTFOLIO.md, não contra código existente):
+#   - `app/Home.py` é a página inicial do Streamlit; extra `app` do pyproject
+#     deve conter `streamlit`.
+#   - `api/main.py` expõe `app` (FastAPI) com `GET /health`; extra `api` deve
+#     conter `fastapi` e `uvicorn`.
+#   - MLflow lê o file store `./mlruns` (gitignored), gravado no host por
+#     `tracking/importar_runs.py`; extra `tracking` deve conter `mlflow`.
+#   Se um extra ainda estiver vazio, o serviço correspondente falha alto no
+#   `up` (comando inexistente) — intencional: nada é contornado em silêncio.
+#
+# `results/` e `data/` já vão dentro da imagem (agregados pequenos); são
+# montados somente-leitura por cima para que edições locais apareçam sem
+# rebuild. `./mlruns` é montado leitura/escrita e criado se não existir.
+# ============================================================================
+
+x-build: &build
+  context: .
+  dockerfile: Dockerfile
+  target: runtime
+
+x-common: &common
+  image: sp-respiratory-admissions-forecast:local
+  env_file:
+    - path: .env
+      required: false        # só placeholders em .env.example; o .env real nunca é versionado
+  restart: unless-stopped
+
+services:
+  app:
+    <<: *common
+    build: *build
+    command: ["streamlit", "run", "app/Home.py", "--server.address=0.0.0.0", "--server.port=8501", "--server.headless=true"]
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./results:/app/results:ro
+      - ./data:/app/data:ro
+      - ./notebooks/dados_painel:/app/notebooks/dados_painel:ro
+    environment:
+      STREAMLIT_BROWSER_GATHER_USAGE_STATS: "false"
+
+  api:
+    <<: *common
+    command: ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models_demo:/app/models_demo:ro
+      - ./data:/app/data:ro
+    healthcheck:
+      # sem curl na imagem slim: usa a própria stdlib
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3).status == 200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+  mlflow:
+    <<: *common
+    command: ["mlflow", "server", "--host", "0.0.0.0", "--port", "5000", "--backend-store-uri", "/app/mlruns", "--default-artifact-root", "/app/mlruns"]
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/app/mlruns

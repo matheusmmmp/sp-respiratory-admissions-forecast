@@ -1,0 +1,47 @@
+# Nunca entram na imagem: credenciais e material local
+.env
+.env.*
+!.env.example
+.cdsapirc
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Git e ambientes locais
+.git
+.gitignore
+.gitattributes
+.github
+.pre-commit-config.yaml
+.venv
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.ruff_cache
+.mypy_cache
+.idea
+.vscode
+.DS_Store
+Thumbs.db
+
+# Saída de runs e do MLflow (montadas por volume no compose, nunca copiadas)
+reports
+mlruns
+mlartifacts
+
+# Dados brutos/horários e microdados (só agregados diários entram)
+data/raw
+data/cetesb/hourly_by_station
+data/cetesb/hourly_pm25
+data/processed/*microdados*
+
+# Notebooks executados e pacotes de revisão
+**/.ipynb_checkpoints
+handoff*
+*.zip
+
+# Arquivos de empacotamento (não são usados dentro da imagem)
+Dockerfile
+docker-compose.yml
+Makefile

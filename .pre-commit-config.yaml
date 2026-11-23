@@ -1,0 +1,45 @@
+# pre-commit: `uv run --with pre-commit pre-commit install` (uma vez) e depois
+# os hooks rodam a cada commit; `make precommit` roda em todos os arquivos.
+#
+# ruff fica restrito aos pacotes novos do portfólio — src/ e tests/ são cópia
+# curada da dissertação com avisos de estilo herdados (decisão do gerente).
+# gitleaks (segredos), detect-private-key e check-added-large-files cobrem o
+# repositório inteiro, inclusive data/ e results/ (sem `exclude` global).
+# Os hooks que reescrevem arquivos (whitespace, fim de arquivo, EOL) não
+# tocam em dados agregados nem em artefatos de runs.
+default_language_version:
+  python: python3.11
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+        exclude: ^(data/|results/|notebooks/dados_painel/)
+      - id: end-of-file-fixer
+        exclude: ^(data/|results/|notebooks/dados_painel/)
+      - id: mixed-line-ending
+        args: [--fix=lf]
+        exclude: ^(data/|results/|notebooks/dados_painel/)
+      - id: check-added-large-files
+        args: [--maxkb=2500]       # maior arquivo versionado hoje: ~2,2 MB (notebooks/dados_painel)
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: detect-private-key
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.6                   # mesma versão do uv.lock
+    hooks:
+      - id: ruff-check
+        files: ^(app|api|tracking|models_demo)/
+        args: [--fix]
+      - id: ruff-format
+        files: ^(app|api|tracking|models_demo)/
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.3
+    hooks:
+      - id: gitleaks                 # varre o diff staged a cada commit

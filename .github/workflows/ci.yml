@@ -1,0 +1,96 @@
+# CI — ruff (pacotes novos), pytest e smoke, com cache do uv.
+# Python 3.11 fixo (pyproject: requires-python ">=3.11,<3.12"; lock ==3.11.*).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: "3.11"
+  UV_FROZEN: "1"          # uv sync/run nunca atualizam o uv.lock no CI
+  PYTHONUNBUFFERED: "1"
+  TF_CPP_MIN_LOG_LEVEL: "2"
+  MPLBACKEND: "Agg"
+
+jobs:
+  lint:
+    name: ruff
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Instalar só o grupo dev (ruff)
+        run: uv sync --only-dev
+      - name: ruff nos pacotes novos (bloqueante)
+        # src/ e tests/ são cópia curada da dissertação e têm avisos de estilo
+        # herdados; o lint bloqueante cobre só o código escrito para o portfólio.
+        # Diretórios ainda inexistentes são ignorados.
+        run: |
+          paths=""
+          for d in app api tracking models_demo; do
+            if [ -d "$d" ]; then paths="$paths $d"; fi
+          done
+          if [ -z "$paths" ]; then
+            echo "nenhum dos caminhos novos existe ainda; nada a verificar"
+          else
+            uv run ruff check $paths
+            uv run ruff format --check $paths
+          fi
+      - name: ruff no código herdado (informativo)
+        continue-on-error: true
+        run: uv run ruff check src tests --statistics --output-format github
+
+  test:
+    name: pytest
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Instalar dependências (lock)
+        run: uv sync --all-extras
+      - name: pytest
+        run: uv run pytest -q
+
+  smoke:
+    name: smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Instalar dependências (lock)
+        run: uv sync --all-extras
+      - name: smoke do pipeline (nunca é resultado)
+        run: uv run python -m src.experiments.run_preliminary --config configs/smoke.yaml --smoke
+      - name: Guardar saída do smoke
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-reports
+          path: reports/
+          if-no-files-found: warn
+          retention-days: 7
