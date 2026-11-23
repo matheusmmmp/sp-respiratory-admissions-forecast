@@ -72,3 +72,6 @@ services:
       - "5000:5000"
     volumes:
       - ./mlruns:/app/mlruns
+    environment:
+      # MLflow >= 3.18 mantém o file store em "maintenance mode" e recusa subir sem isto.
+      MLFLOW_ALLOW_FILE_STORE: "true"
