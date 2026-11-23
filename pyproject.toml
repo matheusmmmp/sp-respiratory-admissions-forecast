@@ -41,7 +41,10 @@ ingest = [
   "netCDF4==1.7.4",
 ]
 # preenchidos pelo gerente a partir dos relatórios dos workers WP3/WP4/WP2
-app = []
+app = [
+  "streamlit==1.67.0",
+  "plotly==7.1.0",
+]
 api = [
   "fastapi==0.165.0",
   "uvicorn==0.54.0",

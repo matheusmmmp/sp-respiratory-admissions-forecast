@@ -19,10 +19,10 @@ md("""
 **Internações respiratórias (CID-10 J00–J99), residentes do município de São Paulo, jan/2019 a fev/2026.**
 Fonte: SIH/SUS, AIH-RD (microdados), agregados por dia, grupo de CID e estabelecimento. Diagnóstico do PROTOCOLO §0.23.
 
-**Como usar no Google Colab:** *Ambiente de execução → Executar tudo*. A primeira célula conecta o Google Drive
-e lê os arquivos da pasta `Meu Drive/Dashboard PM2.5` (só dados agregados, sem nenhum registro de paciente). Na
-primeira vez o Colab pede permissão para acessar o Drive. Se a pasta não estiver lá, a célula pede o `dados_painel.zip`.
-No Jupyter local, deixe a pasta `dados_painel/` ao lado do notebook.
+**Como usar.** No Jupyter local (ou no repositório público), a primeira célula lê a pasta `dados_painel/` ao lado do
+notebook — só dados agregados, sem nenhum registro de paciente. No Google Colab (*Ambiente de execução → Executar
+tudo*), se a pasta não estiver ao lado do notebook, a célula tenta `Meu Drive/Dashboard PM2.5` e, por último, pede o
+`dados_painel.zip`; na primeira vez o Colab pede permissão para acessar o Drive.
 
 > Leitura descritiva, sem teste formal. Em 2025–2026 o alvo ainda não foi conferido contra o TabNet.
 """)
@@ -42,28 +42,27 @@ except ImportError:
     NO_COLAB = False
 pio.renderers.default = "colab" if NO_COLAB else "notebook"
 
-PASTA_DRIVE = "/content/drive/MyDrive/Dashboard PM2.5"
+# Padrão (repositório público / Jupyter local): a pasta dados_painel/ ao lado do notebook.
 BASE = "dados_painel"
-if NO_COLAB:
-    from google.colab import drive
-    drive.mount("/content/drive")
-    if os.path.exists(os.path.join(PASTA_DRIVE, "diario.csv")):
-        BASE = PASTA_DRIVE
-    elif os.path.exists(os.path.join(PASTA_DRIVE, "dados_painel.zip")):
-        zipfile.ZipFile(os.path.join(PASTA_DRIVE, "dados_painel.zip")).extractall("dados_painel")
-    else:
-        print("Pasta do Drive sem os dados:", PASTA_DRIVE, "— vou pedir o zip.")
-print("Lendo os dados de:", BASE)
-
-if BASE == "dados_painel" and not os.path.isdir("dados_painel"):
+if not os.path.exists(os.path.join(BASE, "diario.csv")):
     if os.path.exists("dados_painel.zip"):
         zipfile.ZipFile("dados_painel.zip").extractall("dados_painel")
     elif NO_COLAB:
-        from google.colab import files
-        enviado = files.upload()  # escolha dados_painel.zip
-        zipfile.ZipFile(io.BytesIO(next(iter(enviado.values())))).extractall("dados_painel")
+        # Fallback do Colab: pasta do Drive, zip no Drive ou upload manual.
+        PASTA_DRIVE = "/content/drive/MyDrive/Dashboard PM2.5"
+        from google.colab import drive
+        drive.mount("/content/drive")
+        if os.path.exists(os.path.join(PASTA_DRIVE, "diario.csv")):
+            BASE = PASTA_DRIVE
+        elif os.path.exists(os.path.join(PASTA_DRIVE, "dados_painel.zip")):
+            zipfile.ZipFile(os.path.join(PASTA_DRIVE, "dados_painel.zip")).extractall("dados_painel")
+        else:
+            print("Pasta do Drive sem os dados:", PASTA_DRIVE, "— envie o dados_painel.zip.")
+            enviado = files.upload()  # escolha dados_painel.zip
+            zipfile.ZipFile(io.BytesIO(next(iter(enviado.values())))).extractall("dados_painel")
     else:
-        raise FileNotFoundError("Coloque a pasta dados_painel/ ou dados_painel.zip ao lado do notebook")
+        raise FileNotFoundError("Coloque a pasta dados_painel/ (ou dados_painel.zip) ao lado do notebook")
+print("Lendo os dados de:", BASE)
 
 D = pd.read_csv(f"{BASE}/diario.csv", parse_dates=["data"]).set_index("data")
 G = pd.read_csv(f"{BASE}/grupos_cid.csv")
