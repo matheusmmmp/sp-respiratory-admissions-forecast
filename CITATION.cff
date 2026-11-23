@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below. Results are provisional (pre-defence)."
+type: software
+title: "sp-respiratory-admissions-forecast: daily forecasting of respiratory hospital admissions in São Paulo city, 1 to 30 days ahead, with seven models under one temporal validation protocol"
+version: 0.1.0
+date-released: "2026-11-23"
+license: MIT
+authors:
+  - family-names: "Pereira"
+    given-names: "Matheus de Medeiros"
+    affiliation: "Programa de Pós-Graduação em Ciência da Computação (PPGCC), Universidade Federal de Santa Catarina (UFSC)"
+keywords:
+  - time-series forecasting
+  - public health
+  - hospital admissions
+  - air pollution
+  - PM2.5
+  - SIH/SUS
+  - XGBoost
+  - LSTM
+  - SARIMAX
+  - INGARCH
+  - GAM
+abstract: >-
+  Code, aggregated daily data and identified run artefacts for forecasting the daily
+  count of hospital admissions with a respiratory principal diagnosis (ICD-10 J00-J99)
+  among residents of the municipality of São Paulo, Brazil, 2019-2024, 1 to 30 days
+  ahead. Seven models (Naive, Seasonal Naive, XGBoost, LSTM, SARIMAX, GAM-NB,
+  INGARCH-NB) are evaluated under the same rolling-origin protocol (4 folds x 180 test
+  days, 5 seeds for the stochastic models) with paired Diebold-Mariano tests and Holm
+  correction. Environmental covariates come from CETESB/QUALAR (main source) and CAMS
+  (alternative source). Derived from a master's dissertation at PPGCC/UFSC, advised by
+  Renato Fileto and co-advised by Simone S. Werner. All results are provisional
+  (pre-defence).
+references:
+  - type: thesis
+    title: "PM2.5 e internações respiratórias (CID-10 J00-J99), município de São Paulo, 2019-2024 (master's dissertation, in preparation)"
+    authors:
+      - family-names: "Pereira"
+        given-names: "Matheus de Medeiros"
+    institution:
+      name: "Universidade Federal de Santa Catarina, Programa de Pós-Graduação em Ciência da Computação"
+    year: 2026
+    notes: "Advisor: Renato Fileto. Co-advisor: Simone S. Werner. Not yet defended; no DOI."
