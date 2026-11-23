@@ -65,3 +65,7 @@ The copied `results/testes_dm/TESTES_DM_<RUN_ID>/` folders contain the reports a
 ## 6. Provenance of the copied artefacts
 
 `docs/INVENTARIO_FASE0.tsv` lists, for every file copied from the dissertation repository, its origin path, destination path and sha256. The analysis folders carry their own `proveniencia.json` with the sha256 of each input artefact, the commit and the library versions at generation time.
+
+### Verifying the copied files
+
+`uv run python docs/scripts/verificar_inventario.py` compares every entry of `docs/INVENTARIO_FASE0.tsv` with the checkout. Data, results, configs and the Saturday panel are stored byte for byte (`-text` in `.gitattributes`), so their sha256 must match exactly on any operating system; this is also what keeps the sha256 recorded in the run manifests and in `models_demo/metadata.json` valid. Code and docs are normalised to LF by Git, so for them the script compares after mapping CRLF to LF. The only file changed on purpose after the copy is `notebooks/gerar_notebook.py` (it reads `notebooks/dados_painel/` instead of Google Drive); the script lists it as a declared edit. Expected output on a fresh clone: 0 errors.
