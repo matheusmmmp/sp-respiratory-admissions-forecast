@@ -3,7 +3,7 @@
 # em .venv, dependências travadas em uv.lock). Receitas POSIX simples: valem
 # em Linux/CI e no Git Bash do Windows.
 #
-#   make test     pytest (tests/; ~5 min, inclui LSTM)
+#   make test     pytest (tests/; alguns minutos, inclui LSTM)
 #   make smoke    teste de fumaça do pipeline (nunca é resultado)
 #   make lint     ruff nos pacotes novos (app api tracking models_demo)
 #   make app      Streamlit em http://localhost:8501

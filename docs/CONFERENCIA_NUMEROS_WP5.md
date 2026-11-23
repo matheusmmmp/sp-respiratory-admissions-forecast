@@ -1,8 +1,8 @@
 # Conferência de números — WP5 (README, docs/, data/README.md)
 
-Gerado por `docs/scripts/conferir_numeros.py` em 2026-11-23 16:19. Cada linha: onde o número aparece, o número como exibido, o arquivo de origem, a chave/seletor e o valor lido. Arredondamento: MAE 2 casas, MASE e skill 3 casas, contagens exatas. As tabelas do README são geradas por `docs/scripts/tabela_readme.py`, que também exige igualdade (|diff| <= 1e-9) entre `model_comparison.csv`, `A_modelos_por_h.csv` e `arcal_por_horizonte_dois_alvos.csv`.
+Gerado por `docs/scripts/conferir_numeros.py` em 2026-11-23 16:49. Cada linha: onde o número aparece, o número como exibido, o arquivo de origem, a chave/seletor e o valor lido. Arredondamento: MAE 2 casas, MASE e skill 3 casas, contagens exatas. As tabelas do README são geradas por `docs/scripts/tabela_readme.py`, que também exige igualdade (|diff| <= 1e-9) entre `model_comparison.csv`, `A_modelos_por_h.csv` e `arcal_por_horizonte_dois_alvos.csv`.
 
-Total: 404 números; VERIFICADO: 404; DIVERGENTE: 0.
+Total: 418 números; VERIFICADO: 418; DIVERGENTE: 0.
 
 | # | Onde | Número exibido | Arquivo | Chave / seletor | Valor lido | Status |
 |---:|---|---|---|---|---|---|
@@ -292,124 +292,138 @@ Total: 404 números; VERIFICADO: 404; DIVERGENTE: 0.
 | 284 | README reading: lowest MAE urgencia h=7 | XGBoost | `results/runs/ur_h7_cetesb_cetesb_full_20261117-073926/model_comparison.csv` | argmin MAE_medio over trained models, AR_CAL | XGBoost | VERIFICADO |
 | 285 | README reading: lowest MAE urgencia h=15 | XGBoost | `results/runs/ur_h15_cetesb_cetesb_full_20261117-190532/model_comparison.csv` | argmin MAE_medio over trained models, AR_CAL | XGBoost | VERIFICADO |
 | 286 | README reading: lowest MAE urgencia h=30 | SARIMAX | `results/runs/ur_h30_cetesb_cetesb_full_20261117-221426/model_comparison.csv` | argmin MAE_medio over trained models, AR_CAL | SARIMAX | VERIFICADO |
-| 287 | README/LESSONS 1: XGBoost MAE Saturday (total) | 33.31 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=XGBoost,MAE_sab | 33.30770688843958 | VERIFICADO |
-| 288 | README/LESSONS 1: XGBoost MAE other days (total) | 16.09 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=XGBoost,MAE_demais | 16.09414465361708 | VERIFICADO |
-| 289 | README/LESSONS 1: XGBoost ratio (total) | 2.07 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=XGBoost,razao | 2.069554338257662 | VERIFICADO |
-| 290 | README/LESSONS 1: SARIMAX MAE Saturday (total) | 37.08 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=SARIMAX,MAE_sab | 37.08164383154383 | VERIFICADO |
-| 291 | README/LESSONS 1: SARIMAX MAE other days (total) | 15.89 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=SARIMAX,MAE_demais | 15.891406209173018 | VERIFICADO |
-| 292 | README/LESSONS 1: SARIMAX ratio (total) | 2.33 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=SARIMAX,razao | 2.333440058321531 | VERIFICADO |
-| 293 | README/LESSONS 1: LSTM MAE Saturday (total) | 33.79 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=LSTM,MAE_sab | 33.79374826672008 | VERIFICADO |
-| 294 | README/LESSONS 1: LSTM MAE other days (total) | 16.54 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=LSTM,MAE_demais | 16.54355473696123 | VERIFICADO |
-| 295 | README/LESSONS 1: LSTM ratio (total) | 2.04 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=LSTM,razao | 2.0427138425829887 | VERIFICADO |
-| 296 | README/LESSONS 1: INGARCH-NB MAE Saturday (total) | 35.86 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=INGARCH-NB,MAE_sab | 35.86477785821118 | VERIFICADO |
-| 297 | README/LESSONS 1: INGARCH-NB MAE other days (total) | 16.82 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=INGARCH-NB,MAE_demais | 16.821665410370766 | VERIFICADO |
-| 298 | README/LESSONS 1: INGARCH-NB ratio (total) | 2.13 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=INGARCH-NB,razao | 2.1320586864187714 | VERIFICADO |
-| 299 | README/LESSONS 1: GAM-NB MAE Saturday (total) | 43.72 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=GAM-NB,MAE_sab | 43.71834711455449 | VERIFICADO |
-| 300 | README/LESSONS 1: GAM-NB MAE other days (total) | 18.26 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=GAM-NB,MAE_demais | 18.263772353190795 | VERIFICADO |
-| 301 | README/LESSONS 1: GAM-NB ratio (total) | 2.39 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=GAM-NB,razao | 2.393719450128638 | VERIFICADO |
-| 302 | README/LESSONS 1: XGBoost MAE Saturday (urgent) | 13.64 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=urgencia,modelo=XGBoost,MAE_sab | 13.638909238056073 | VERIFICADO |
-| 303 | README/LESSONS 1: XGBoost MAE other days (urgent) | 15.08 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=urgencia,modelo=XGBoost,MAE_demais | 15.084299645818032 | VERIFICADO |
-| 304 | README/LESSONS 1: XGBoost ratio (urgent) | 0.90 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=urgencia,modelo=XGBoost,razao | 0.9041791503947828 | VERIFICADO |
-| 305 | LESSONS 1: every urgent ratio below 1 | True | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=urgencia, razao < 1 for all trained models | True | VERIFICADO |
-| 306 | LESSONS 1: Saturdays in the test set | 103 of 720 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/saida.txt` | section C 'sábados: N de M' | 103 of 720 | VERIFICADO |
-| 307 | LESSONS 1: CNES 2091550 elective Saturdays 2019 | 244 | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2019,eletivas_sabado | 244 | VERIFICADO |
-| 308 | LESSONS 1: CNES 2091550 elective Saturdays 2021 | 302 | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2021,eletivas_sabado | 302 | VERIFICADO |
-| 309 | LESSONS 1: CNES 2091550 elective Saturdays 2022 | 1,291 | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2022,eletivas_sabado | 1291 | VERIFICADO |
-| 310 | LESSONS 1: CNES 2091550 elective Saturdays 2023 | 1,562 | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2023,eletivas_sabado | 1562 | VERIFICADO |
-| 311 | LESSONS 1: CNES 2091550 elective Saturdays 2024 | 1,343 | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2024,eletivas_sabado | 1343 | VERIFICADO |
-| 312 | LESSONS 1: CNES 2091550 total == eletivas 2022 | True | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2022,total==eletivas | True | VERIFICADO |
-| 313 | LESSONS 1: CNES 2091550 total == eletivas 2023 | True | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2023,total==eletivas | True | VERIFICADO |
-| 314 | LESSONS 1: CNES 2091550 total == eletivas 2024 | True | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2024,total==eletivas | True | VERIFICADO |
-| 315 | LESSONS 1: CEMA slice admissions | 6,870 | `notebooks/dados_painel/perfil.csv` | recorte='Eletiva, sábado, CNES 2091550',internacoes | 6870.0 | VERIFICADO |
-| 316 | LESSONS 1: CEMA slice median age | 9 | `notebooks/dados_painel/perfil.csv` | same row, idade_mediana | 9.0 | VERIFICADO |
-| 317 | LESSONS 1: CEMA slice % under 15 | 69.8 | `notebooks/dados_painel/perfil.csv` | same row, pct_menor_15 | 69.8 | VERIFICADO |
-| 318 | LESSONS 1: CEMA slice median stay | 0 | `notebooks/dados_painel/perfil.csv` | same row, permanencia_mediana | 0.0 | VERIFICADO |
-| 319 | LESSONS 1: CEMA slice % stay <= 1 day | 99.7 | `notebooks/dados_painel/perfil.csv` | same row, pct_permanencia_ate_1_dia | 99.7 | VERIFICADO |
-| 320 | LESSONS 1: CEMA slice % deaths | 0.0 | `notebooks/dados_painel/perfil.csv` | same row, pct_obito | 0.0 | VERIFICADO |
-| 321 | LESSONS 1: non-elective median stay | 5 | `notebooks/dados_painel/perfil.csv` | recorte='Não eletiva',permanencia_mediana | 5.0 | VERIFICADO |
-| 322 | LESSONS 1: non-elective % deaths | 10.2 | `notebooks/dados_painel/perfil.csv` | recorte='Não eletiva',pct_obito | 10.2 | VERIFICADO |
-| 323 | LESSONS 1: J30-J39 total | 39,243 | `notebooks/dados_painel/grupos_cid.csv` | grupo J30–J39,total | 39243 | VERIFICADO |
-| 324 | LESSONS 1: J30-J39 elective | 35,958 | `notebooks/dados_painel/grupos_cid.csv` | grupo J30–J39,eletivas | 35958 | VERIFICADO |
-| 325 | LESSONS 1: J30-J39 elective at CEMA | 11,206 | `notebooks/dados_painel/grupos_cid.csv` | grupo J30–J39,eletivas_cema | 11206 | VERIFICADO |
-| 326 | LESSONS 1: J12-J18 elective | 4,811 | `notebooks/dados_painel/grupos_cid.csv` | grupo J12–J18,eletivas | 4811 | VERIFICADO |
-| 327 | LESSONS 1: J12-J18 total | 153,309 | `notebooks/dados_painel/grupos_cid.csv` | grupo J12–J18,total | 153309 | VERIFICADO |
-| 328 | LESSONS 1: elective fraction 2019-2024 within 12% to 14% | True | `notebooks/dados_painel/diario.csv` | sum(eletivo)/sum(total) per year 2019..2024 | True | VERIFICADO |
-| 329 | data/README/LESSONS 3: distinct admissions (total) | 303,295 | `data/processed/sih_daily_lookahead.meta.json` | total_aih_distintas | 303295 | VERIFICADO |
-| 330 | data/README/LESSONS 3: duplicates across monthly files | 77 | `data/processed/sih_daily_lookahead.meta.json` | duplicatas_entre_competencias | 77 | VERIFICADO |
-| 331 | data/README/LESSONS 3: records outside period | 29,700 | `data/processed/sih_daily_lookahead.meta.json` | registros_fora_do_periodo | 29700 | VERIFICADO |
-| 332 | data/README: invalid dates | 0 | `data/processed/sih_daily_lookahead.meta.json` | dt_inter_invalidas | 0 | VERIFICADO |
-| 333 | data/README: days with zero | 0 | `data/processed/sih_daily_lookahead.meta.json` | dias_com_zero | 0 | VERIFICADO |
-| 334 | data/README: days | 2,192 | `data/processed/sih_daily_lookahead.meta.json` | dias | 2192 | VERIFICADO |
-| 335 | data/README/REPRODUCIBILITY: monthly files read | 78 | `data/processed/sih_daily_lookahead.meta.json` | len(competencias) | 78 | VERIFICADO |
-| 336 | data/README: administrative period | 2019-01 to 2025-06 | `data/processed/sih_daily_lookahead.meta.json` | periodo_administrativo | 2019-01 to 2025-06 | VERIFICADO |
-| 337 | data/README: look-ahead months | 6 | `data/processed/sih_daily_lookahead.meta.json` | look_ahead_competencias | 6 | VERIFICADO |
-| 338 | data/README: look-ahead justification 99.8% | 99,8% | `data/processed/sih_daily_lookahead.meta.json` | look_ahead_justificativa (substring) | 99,8% | VERIFICADO |
-| 339 | data/README: annual totals (total) | 52,335; 39,482; 43,941; 52,718; 56,640; 58,179 | `data/processed/sih_daily_lookahead.meta.json` | totais_anuais 2019..2024 | 52,335; 39,482; 43,941; 52,718; 56,640; 58,179 | VERIFICADO |
-| 340 | data/README/LESSONS 1: urgent admissions kept | 263,399 | `data/processed/sih_daily_lookahead_urgencia.meta.json` | total_aih_distintas | 263399 | VERIFICADO |
-| 341 | data/README/LESSONS 1: elective excluded | 39,896 | `data/processed/sih_daily_lookahead_urgencia.meta.json` | filtro_carater_internacao.aih_excluidas_carater | 39896 | VERIFICADO |
-| 342 | data/README: CAR_INT codes accepted | 02, 03, 04, 05, 06 | `data/processed/sih_daily_lookahead_urgencia.meta.json` | filtro_carater_internacao.codigos_aceitos | 02, 03, 04, 05, 06 | VERIFICADO |
-| 343 | data/README: only codes 01 and 02 occur | 01, 02 | `data/processed/sih_daily_lookahead_urgencia.meta.json` | filtro_carater_internacao.aih_por_car_int_primeira_ocorrencia (keys) | 01, 02 | VERIFICADO |
-| 344 | data/README: annual totals (urgent) | 45,197; 34,734; 38,445; 46,159; 48,893; 49,971 | `data/processed/sih_daily_lookahead_urgencia.meta.json` | totais_anuais 2019..2024 | 45,197; 34,734; 38,445; 46,159; 48,893; 49,971 | VERIFICADO |
-| 345 | data/README: urgent target built on | 2026-11-16 | `data/processed/sih_daily_lookahead_urgencia.meta.json` | extraido_em[:10] | 2026-11-16 | VERIFICADO |
-| 346 | data/README: sih_daily_lookahead.parquet rows | 2,192 | `data/processed/sih_daily_lookahead.parquet` | len | 2192 | VERIFICADO |
-| 347 | data/README: sih_daily_lookahead.parquet columns | internacoes, linhas_brutas | `data/processed/sih_daily_lookahead.parquet` | columns | internacoes, linhas_brutas | VERIFICADO |
-| 348 | data/README: sih_daily_lookahead.parquet period | 2019-01-01 to 2024-12-31 | `data/processed/sih_daily_lookahead.parquet` | index min..max | 2019-01-01 to 2024-12-31 | VERIFICADO |
-| 349 | data/README: sih_daily_lookahead_urgencia.parquet rows | 2,192 | `data/processed/sih_daily_lookahead_urgencia.parquet` | len | 2192 | VERIFICADO |
-| 350 | data/README: sih_daily_lookahead_urgencia.parquet columns | internacoes, linhas_brutas | `data/processed/sih_daily_lookahead_urgencia.parquet` | columns | internacoes, linhas_brutas | VERIFICADO |
-| 351 | data/README: sih_daily_lookahead_urgencia.parquet period | 2019-01-01 to 2024-12-31 | `data/processed/sih_daily_lookahead_urgencia.parquet` | index min..max | 2019-01-01 to 2024-12-31 | VERIFICADO |
-| 352 | data/README: pm25 stations | 18 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[pm25].estacoes | 18 | VERIFICADO |
-| 353 | data/README: pm25 mean stations/day | 10.6 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[pm25].n_est_medio | 10.6 | VERIFICADO |
-| 354 | data/README: pm10 stations | 14 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[pm10].estacoes | 14 | VERIFICADO |
-| 355 | data/README: pm10 mean stations/day | 9.5 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[pm10].n_est_medio | 9.47 | VERIFICADO |
-| 356 | data/README: no2 stations | 10 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[no2].estacoes | 10 | VERIFICADO |
-| 357 | data/README: no2 mean stations/day | 7.3 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[no2].n_est_medio | 7.3 | VERIFICADO |
-| 358 | data/README: o3 stations | 15 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[o3].estacoes | 15 | VERIFICADO |
-| 359 | data/README: o3 mean stations/day | 12.8 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[o3].n_est_medio | 12.83 | VERIFICADO |
-| 360 | data/README: co stations | 9 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[co].estacoes | 9 | VERIFICADO |
-| 361 | data/README: co mean stations/day | 7.4 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[co].n_est_medio | 7.38 | VERIFICADO |
-| 362 | data/README: so2 stations | 7 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[so2].estacoes | 7 | VERIFICADO |
-| 363 | data/README: so2 mean stations/day | 3.1 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[so2].n_est_medio | 3.12 | VERIFICADO |
-| 364 | data/README: SO2 days with mean | 2,190 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[so2].dias | 2190 | VERIFICADO |
-| 365 | data/README: SO2 days with _dt | 2,108 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[so2].dias_com_dt | 2108 | VERIFICADO |
-| 366 | data/README: other pollutants cover 2,192 days | True | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[*].dias == 2192 except so2 | True | VERIFICADO |
-| 367 | data/README: pollutant export files used | 191 | `data/processed/cetesb_poluentes_daily.meta.json` | coleta.arquivos_usados | 191 | VERIFICADO |
-| 368 | data/README: pollutant export files ignored | 14 | `data/processed/cetesb_poluentes_daily.meta.json` | coleta.arquivos_ignorados | 14 | VERIFICADO |
-| 369 | data/README: stations outside municipality excluded | 21 | `data/processed/cetesb_poluentes_daily.meta.json` | len(coleta.estacoes_fora_do_municipio) | 21 | VERIFICADO |
-| 370 | data/README: hourly records before dedup | 3,954,672 | `data/processed/cetesb_poluentes_daily.meta.json` | coleta.registros_antes_dedup | 3954672 | VERIFICADO |
-| 371 | data/README: hourly records after dedup | 3,722,808 | `data/processed/cetesb_poluentes_daily.meta.json` | coleta.registros_apos_dedup | 3722808 | VERIFICADO |
-| 372 | data/README: daily rule 18 of 24 hours | >= 18 de 24 | `data/processed/cetesb_poluentes_daily.meta.json` | regra_diaria (substring) | >= 18 de 24 | VERIFICADO |
-| 373 | data/README: D_t rule needs 2 stations | >= 2 | `data/processed/cetesb_poluentes_daily.meta.json` | regra_dt (substring) | >= 2 | VERIFICADO |
-| 374 | data/README: meteo temp stations | 6 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[temp].estacoes | 6 | VERIFICADO |
-| 375 | data/README: meteo temp mean stations/day | 4.2 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[temp].n_est_medio | 4.17 | VERIFICADO |
-| 376 | data/README: meteo temp days | 2,192 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[temp].dias | 2192 | VERIFICADO |
-| 377 | data/README: meteo ur stations | 6 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[ur].estacoes | 6 | VERIFICADO |
-| 378 | data/README: meteo ur mean stations/day | 3.6 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[ur].n_est_medio | 3.6 | VERIFICADO |
-| 379 | data/README: meteo ur days | 2,192 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[ur].dias | 2192 | VERIFICADO |
-| 380 | data/README: meteo vv stations | 10 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[vv].estacoes | 10 | VERIFICADO |
-| 381 | data/README: meteo vv mean stations/day | 7.5 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[vv].n_est_medio | 7.47 | VERIFICADO |
-| 382 | data/README: meteo vv days | 2,192 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[vv].dias | 2192 | VERIFICADO |
-| 383 | data/README: meteo temp entries dropped by coverage | 524 | `data/processed/cetesb_meteo_daily.meta.json` | dias_descartados_por_cobertura.temp | 524 | VERIFICADO |
-| 384 | data/README: meteo ur entries dropped by coverage | 454 | `data/processed/cetesb_meteo_daily.meta.json` | dias_descartados_por_cobertura.ur | 454 | VERIFICADO |
-| 385 | data/README: meteo vv entries dropped by coverage | 483 | `data/processed/cetesb_meteo_daily.meta.json` | dias_descartados_por_cobertura.vv | 483 | VERIFICADO |
-| 386 | data/README: meteo export files used | 54 | `data/processed/cetesb_meteo_daily.meta.json` | coleta.arquivos_usados | 54 | VERIFICADO |
-| 387 | data/README: meteo export files ignored | 14 | `data/processed/cetesb_meteo_daily.meta.json` | coleta.arquivos_ignorados | 14 | VERIFICADO |
-| 388 | data/README: meteo metropolitan stations excluded | 5 | `data/processed/cetesb_meteo_daily.meta.json` | len(coleta.estacoes_fora_do_recorte) | 5 | VERIFICADO |
-| 389 | data/README: meteo NaN cells | 0 | `data/processed/cetesb_meteo_daily.csv` | sum of NaN | 0 | VERIFICADO |
-| 390 | data/README: meteo columns | data, temp_media, temp_n_estacoes, temp_min, temp_max, temp_amplitude, ur_media, ur_n_estacoes, vv_media, vv_n_estacoes | `data/processed/cetesb_meteo_daily.csv` | columns | data, temp_media, temp_n_estacoes, temp_min, temp_max, temp_amplitude, ur_media, ur_n_estacoes, vv_media, vv_n_estacoes | VERIFICADO |
-| 391 | data/README/LESSONS 2: CAMS rows | 2,192 | `data/processed/cams_daily_v2.csv` | len | 2192 | VERIFICADO |
-| 392 | data/README: CAMS NaN cells | 0 | `data/processed/cams_daily_v2.csv` | sum of NaN | 0 | VERIFICADO |
-| 393 | data/README/LESSONS 2: CAMS days with n_obs=8 | 2,191 | `data/processed/cams_daily_v2.csv` | n_obs value_counts[8] | 2191 | VERIFICADO |
-| 394 | data/README/LESSONS 2: CAMS days with n_obs=7 | 1 | `data/processed/cams_daily_v2.csv` | n_obs value_counts[7] | 1 | VERIFICADO |
-| 395 | data/README: CAMS columns | data, d2m, pm10, pm2p5, sp, t2m, u10, v10, t2m_c, d2m_c, rh, ws10, n_obs | `data/processed/cams_daily_v2.csv` | columns | data, d2m, pm10, pm2p5, sp, t2m, u10, v10, t2m_c, d2m_c, rh, ws10, n_obs | VERIFICADO |
-| 396 | data/README: CAMS not used as feature source in shown runs | cetesb/cetesb | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/manifest.json` | fonte_pm25/fonte_meteo | cetesb/cetesb | VERIFICADO |
-| 397 | data/README: stations in municipality | 23 | `data/cetesb/estacoes_municipio_sp.csv` | rows | 23 | VERIFICADO |
-| 398 | data/README: stations with PM2.5 in registry | 19 | `data/cetesb/estacoes_municipio_sp.csv` | mede_pm25 == True | 19 | VERIFICADO |
-| 399 | data/README: disponibilidade_qualar stations | 19 | `data/cetesb/disponibilidade_qualar.csv` | nunique(codigo_qualar) | 19 | VERIFICADO |
-| 400 | data/README: disponibilidade_qualar parameters | MP2.5, MP10, NO2, O3, CO, SO2 | `data/cetesb/disponibilidade_qualar.csv` | unique(parametro) | MP2.5, MP10, NO2, O3, CO, SO2 | VERIFICADO |
-| 401 | REPRODUCIBILITY: DM recomputed metrics max diff about 1e-14 | < 1e-13 | `results/testes_dm/TESTES_DM_h1_v02_cetesb_cetesb_classicos_full_20261022-211834/validacao_metricas.json` | max of all scientific-notation diffs | < 1e-13 | VERIFICADO |
-| 402 | ARCHITECTURE: SARIMAX range guard factor | 5 | `src/models/sarimax_model.py` | FATOR_FAIXA | 5.0 | VERIFICADO |
-| 403 | ARCHITECTURE: SARIMAX degenerate sigma2 fraction | 1e-3 | `src/models/sarimax_model.py` | FRACAO_SIGMA2_MIN | 1e-3 | VERIFICADO |
-| 404 | README: test count in the suite | 166 passed (uv run pytest -q, 2026-11-23) | `uv run pytest -q` | dots in -q output | 166 passed (uv run pytest -q, 2026-11-23) | VERIFICADO |
+| 287 | README reading: ablation contrasts in the 10 runs | 500 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | rows with base in (cetesb, urgencia) | 500 | VERIFICADO |
+| 288 | README reading: significant after Holm | 59 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | p_holm < 0.05 | 59 | VERIFICADO |
+| 289 | README reading: significant with covariate worse | 53 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | p_holm < 0.05 and DM > 0 | 53 | VERIFICADO |
+| 290 | README reading: significant with covariate better | 6 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | p_holm < 0.05 and DM < 0 | 6 | VERIFICADO |
+| 291 | README reading: total h=1 significant contrasts | 7 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=cetesb,h=1,p_holm<0.05 | 7 | VERIFICADO |
+| 292 | README reading: total h=1 contrasts with covariate better | 0 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=cetesb,h=1,p_holm<0.05 and DM<0 | 0 | VERIFICADO |
+| 293 | README reading: ablation contrasts per model | 10 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | nunique(contraste) | 10 | VERIFICADO |
+| 294 | README reading: p Holm urgencia h=1 ablacao_sarimax H2_media_sem_meteo | 0.005 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=1,familia=ablacao_sarimax,contraste=H2_media_sem_meteo,p_holm | 0.0049108177199466 | VERIFICADO |
+| 295 | README reading: p Holm urgencia h=1 ablacao_sarimax POLUENTES_sem_meteo | 0.014 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=1,familia=ablacao_sarimax,contraste=POLUENTES_sem_meteo,p_holm | 0.0141556291920838 | VERIFICADO |
+| 296 | README reading: p Holm urgencia h=15 ablacao_xgboost POLUENTES_com_meteo | 0.001 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=15,familia=ablacao_xgboost,contraste=POLUENTES_com_meteo,p_holm | 0.0009194373719768 | VERIFICADO |
+| 297 | README reading: p Holm cetesb h=7 ablacao_lstm H2_media_com_meteo | 0.001 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=cetesb,h=7,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm | 0.0012874477281496 | VERIFICADO |
+| 298 | README reading: p Holm urgencia h=5 ablacao_lstm H2_media_com_meteo | 0.007 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=5,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm | 0.0067240168712517 | VERIFICADO |
+| 299 | README reading: p Holm urgencia h=7 ablacao_lstm H2_media_com_meteo | 0.026 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=7,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm | 0.0259100754499556 | VERIFICADO |
+| 300 | README/LESSONS 1: XGBoost MAE Saturday (total) | 33.31 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=XGBoost,MAE_sab | 33.30770688843958 | VERIFICADO |
+| 301 | README/LESSONS 1: XGBoost MAE other days (total) | 16.09 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=XGBoost,MAE_demais | 16.09414465361708 | VERIFICADO |
+| 302 | README/LESSONS 1: XGBoost ratio (total) | 2.07 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=XGBoost,razao | 2.069554338257662 | VERIFICADO |
+| 303 | README/LESSONS 1: SARIMAX MAE Saturday (total) | 37.08 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=SARIMAX,MAE_sab | 37.08164383154383 | VERIFICADO |
+| 304 | README/LESSONS 1: SARIMAX MAE other days (total) | 15.89 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=SARIMAX,MAE_demais | 15.891406209173018 | VERIFICADO |
+| 305 | README/LESSONS 1: SARIMAX ratio (total) | 2.33 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=SARIMAX,razao | 2.333440058321531 | VERIFICADO |
+| 306 | README/LESSONS 1: LSTM MAE Saturday (total) | 33.79 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=LSTM,MAE_sab | 33.79374826672008 | VERIFICADO |
+| 307 | README/LESSONS 1: LSTM MAE other days (total) | 16.54 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=LSTM,MAE_demais | 16.54355473696123 | VERIFICADO |
+| 308 | README/LESSONS 1: LSTM ratio (total) | 2.04 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=LSTM,razao | 2.0427138425829887 | VERIFICADO |
+| 309 | README/LESSONS 1: INGARCH-NB MAE Saturday (total) | 35.86 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=INGARCH-NB,MAE_sab | 35.86477785821118 | VERIFICADO |
+| 310 | README/LESSONS 1: INGARCH-NB MAE other days (total) | 16.82 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=INGARCH-NB,MAE_demais | 16.821665410370766 | VERIFICADO |
+| 311 | README/LESSONS 1: INGARCH-NB ratio (total) | 2.13 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=INGARCH-NB,razao | 2.1320586864187714 | VERIFICADO |
+| 312 | README/LESSONS 1: GAM-NB MAE Saturday (total) | 43.72 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=GAM-NB,MAE_sab | 43.71834711455449 | VERIFICADO |
+| 313 | README/LESSONS 1: GAM-NB MAE other days (total) | 18.26 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=GAM-NB,MAE_demais | 18.263772353190795 | VERIFICADO |
+| 314 | README/LESSONS 1: GAM-NB ratio (total) | 2.39 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=GAM-NB,razao | 2.393719450128638 | VERIFICADO |
+| 315 | README/LESSONS 1: XGBoost MAE Saturday (urgent) | 13.64 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=urgencia,modelo=XGBoost,MAE_sab | 13.638909238056073 | VERIFICADO |
+| 316 | README/LESSONS 1: XGBoost MAE other days (urgent) | 15.08 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=urgencia,modelo=XGBoost,MAE_demais | 15.084299645818032 | VERIFICADO |
+| 317 | README/LESSONS 1: XGBoost ratio (urgent) | 0.90 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=urgencia,modelo=XGBoost,razao | 0.9041791503947828 | VERIFICADO |
+| 318 | LESSONS 1: every urgent ratio below 1 | True | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=urgencia, razao < 1 for all trained models | True | VERIFICADO |
+| 319 | LESSONS 1: Saturdays in the test set | 103 of 720 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/saida.txt` | section C 'sábados: N de M' | 103 of 720 | VERIFICADO |
+| 320 | LESSONS 1: CNES 2091550 elective Saturdays 2019 | 244 | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2019,eletivas_sabado | 244 | VERIFICADO |
+| 321 | LESSONS 1: CNES 2091550 elective Saturdays 2021 | 302 | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2021,eletivas_sabado | 302 | VERIFICADO |
+| 322 | LESSONS 1: CNES 2091550 elective Saturdays 2022 | 1,291 | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2022,eletivas_sabado | 1291 | VERIFICADO |
+| 323 | LESSONS 1: CNES 2091550 elective Saturdays 2023 | 1,562 | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2023,eletivas_sabado | 1562 | VERIFICADO |
+| 324 | LESSONS 1: CNES 2091550 elective Saturdays 2024 | 1,343 | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2024,eletivas_sabado | 1343 | VERIFICADO |
+| 325 | LESSONS 1: CNES 2091550 total == eletivas 2022 | True | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2022,total==eletivas | True | VERIFICADO |
+| 326 | LESSONS 1: CNES 2091550 total == eletivas 2023 | True | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2023,total==eletivas | True | VERIFICADO |
+| 327 | LESSONS 1: CNES 2091550 total == eletivas 2024 | True | `notebooks/dados_painel/estabelecimentos_ano.csv` | CNES=2091550,ano=2024,total==eletivas | True | VERIFICADO |
+| 328 | LESSONS 1: CEMA slice admissions | 6,870 | `notebooks/dados_painel/perfil.csv` | recorte='Eletiva, sábado, CNES 2091550',internacoes | 6870.0 | VERIFICADO |
+| 329 | LESSONS 1: CEMA slice median age | 9 | `notebooks/dados_painel/perfil.csv` | same row, idade_mediana | 9.0 | VERIFICADO |
+| 330 | LESSONS 1: CEMA slice % under 15 | 69.8 | `notebooks/dados_painel/perfil.csv` | same row, pct_menor_15 | 69.8 | VERIFICADO |
+| 331 | LESSONS 1: CEMA slice median stay | 0 | `notebooks/dados_painel/perfil.csv` | same row, permanencia_mediana | 0.0 | VERIFICADO |
+| 332 | LESSONS 1: CEMA slice % stay <= 1 day | 99.7 | `notebooks/dados_painel/perfil.csv` | same row, pct_permanencia_ate_1_dia | 99.7 | VERIFICADO |
+| 333 | LESSONS 1: CEMA slice % deaths | 0.0 | `notebooks/dados_painel/perfil.csv` | same row, pct_obito | 0.0 | VERIFICADO |
+| 334 | LESSONS 1: non-elective median stay | 5 | `notebooks/dados_painel/perfil.csv` | recorte='Não eletiva',permanencia_mediana | 5.0 | VERIFICADO |
+| 335 | LESSONS 1: non-elective % deaths | 10.2 | `notebooks/dados_painel/perfil.csv` | recorte='Não eletiva',pct_obito | 10.2 | VERIFICADO |
+| 336 | LESSONS 1: J30-J39 total | 39,243 | `notebooks/dados_painel/grupos_cid.csv` | grupo J30–J39,total | 39243 | VERIFICADO |
+| 337 | LESSONS 1: J30-J39 elective | 35,958 | `notebooks/dados_painel/grupos_cid.csv` | grupo J30–J39,eletivas | 35958 | VERIFICADO |
+| 338 | LESSONS 1: J30-J39 elective at CEMA | 11,206 | `notebooks/dados_painel/grupos_cid.csv` | grupo J30–J39,eletivas_cema | 11206 | VERIFICADO |
+| 339 | LESSONS 1: J12-J18 elective | 4,811 | `notebooks/dados_painel/grupos_cid.csv` | grupo J12–J18,eletivas | 4811 | VERIFICADO |
+| 340 | LESSONS 1: J12-J18 total | 153,309 | `notebooks/dados_painel/grupos_cid.csv` | grupo J12–J18,total | 153309 | VERIFICADO |
+| 341 | data/README: Saturday panel last date | 2026-02-28 | `notebooks/dados_painel/diario.csv` | max(data) | 2026-02-28 | VERIFICADO |
+| 342 | LESSONS 1: elective fraction 2019-2024 within 12% to 14% | True | `notebooks/dados_painel/diario.csv` | sum(eletivo)/sum(total) per year 2019..2024 | True | VERIFICADO |
+| 343 | data/README/LESSONS 3: distinct admissions (total) | 303,295 | `data/processed/sih_daily_lookahead.meta.json` | total_aih_distintas | 303295 | VERIFICADO |
+| 344 | data/README/LESSONS 3: duplicates across monthly files | 77 | `data/processed/sih_daily_lookahead.meta.json` | duplicatas_entre_competencias | 77 | VERIFICADO |
+| 345 | data/README/LESSONS 3: records outside period | 29,700 | `data/processed/sih_daily_lookahead.meta.json` | registros_fora_do_periodo | 29700 | VERIFICADO |
+| 346 | data/README: invalid dates | 0 | `data/processed/sih_daily_lookahead.meta.json` | dt_inter_invalidas | 0 | VERIFICADO |
+| 347 | data/README: days with zero | 0 | `data/processed/sih_daily_lookahead.meta.json` | dias_com_zero | 0 | VERIFICADO |
+| 348 | data/README: days | 2,192 | `data/processed/sih_daily_lookahead.meta.json` | dias | 2192 | VERIFICADO |
+| 349 | data/README/REPRODUCIBILITY: monthly files read | 78 | `data/processed/sih_daily_lookahead.meta.json` | len(competencias) | 78 | VERIFICADO |
+| 350 | data/README: administrative period | 2019-01 to 2025-06 | `data/processed/sih_daily_lookahead.meta.json` | periodo_administrativo | 2019-01 to 2025-06 | VERIFICADO |
+| 351 | data/README: look-ahead months | 6 | `data/processed/sih_daily_lookahead.meta.json` | look_ahead_competencias | 6 | VERIFICADO |
+| 352 | data/README: look-ahead justification 99.8% | 99,8% | `data/processed/sih_daily_lookahead.meta.json` | look_ahead_justificativa (substring) | 99,8% | VERIFICADO |
+| 353 | data/README: annual totals (total) | 52,335; 39,482; 43,941; 52,718; 56,640; 58,179 | `data/processed/sih_daily_lookahead.meta.json` | totais_anuais 2019..2024 | 52,335; 39,482; 43,941; 52,718; 56,640; 58,179 | VERIFICADO |
+| 354 | data/README/LESSONS 1: urgent admissions kept | 263,399 | `data/processed/sih_daily_lookahead_urgencia.meta.json` | total_aih_distintas | 263399 | VERIFICADO |
+| 355 | data/README/LESSONS 1: elective excluded | 39,896 | `data/processed/sih_daily_lookahead_urgencia.meta.json` | filtro_carater_internacao.aih_excluidas_carater | 39896 | VERIFICADO |
+| 356 | data/README: CAR_INT codes accepted | 02, 03, 04, 05, 06 | `data/processed/sih_daily_lookahead_urgencia.meta.json` | filtro_carater_internacao.codigos_aceitos | 02, 03, 04, 05, 06 | VERIFICADO |
+| 357 | data/README: only codes 01 and 02 occur | 01, 02 | `data/processed/sih_daily_lookahead_urgencia.meta.json` | filtro_carater_internacao.aih_por_car_int_primeira_ocorrencia (keys) | 01, 02 | VERIFICADO |
+| 358 | data/README: annual totals (urgent) | 45,197; 34,734; 38,445; 46,159; 48,893; 49,971 | `data/processed/sih_daily_lookahead_urgencia.meta.json` | totais_anuais 2019..2024 | 45,197; 34,734; 38,445; 46,159; 48,893; 49,971 | VERIFICADO |
+| 359 | data/README: urgent target built on | 2026-11-16 | `data/processed/sih_daily_lookahead_urgencia.meta.json` | extraido_em[:10] | 2026-11-16 | VERIFICADO |
+| 360 | data/README: sih_daily_lookahead.parquet rows | 2,192 | `data/processed/sih_daily_lookahead.parquet` | len | 2192 | VERIFICADO |
+| 361 | data/README: sih_daily_lookahead.parquet columns | internacoes, linhas_brutas | `data/processed/sih_daily_lookahead.parquet` | columns | internacoes, linhas_brutas | VERIFICADO |
+| 362 | data/README: sih_daily_lookahead.parquet period | 2019-01-01 to 2024-12-31 | `data/processed/sih_daily_lookahead.parquet` | index min..max | 2019-01-01 to 2024-12-31 | VERIFICADO |
+| 363 | data/README: sih_daily_lookahead_urgencia.parquet rows | 2,192 | `data/processed/sih_daily_lookahead_urgencia.parquet` | len | 2192 | VERIFICADO |
+| 364 | data/README: sih_daily_lookahead_urgencia.parquet columns | internacoes, linhas_brutas | `data/processed/sih_daily_lookahead_urgencia.parquet` | columns | internacoes, linhas_brutas | VERIFICADO |
+| 365 | data/README: sih_daily_lookahead_urgencia.parquet period | 2019-01-01 to 2024-12-31 | `data/processed/sih_daily_lookahead_urgencia.parquet` | index min..max | 2019-01-01 to 2024-12-31 | VERIFICADO |
+| 366 | data/README: pm25 stations | 18 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[pm25].estacoes | 18 | VERIFICADO |
+| 367 | data/README: pm25 mean stations/day | 10.6 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[pm25].n_est_medio | 10.6 | VERIFICADO |
+| 368 | data/README: pm10 stations | 14 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[pm10].estacoes | 14 | VERIFICADO |
+| 369 | data/README: pm10 mean stations/day | 9.5 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[pm10].n_est_medio | 9.47 | VERIFICADO |
+| 370 | data/README: no2 stations | 10 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[no2].estacoes | 10 | VERIFICADO |
+| 371 | data/README: no2 mean stations/day | 7.3 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[no2].n_est_medio | 7.3 | VERIFICADO |
+| 372 | data/README: o3 stations | 15 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[o3].estacoes | 15 | VERIFICADO |
+| 373 | data/README: o3 mean stations/day | 12.8 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[o3].n_est_medio | 12.83 | VERIFICADO |
+| 374 | data/README: co stations | 9 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[co].estacoes | 9 | VERIFICADO |
+| 375 | data/README: co mean stations/day | 7.4 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[co].n_est_medio | 7.38 | VERIFICADO |
+| 376 | data/README: so2 stations | 7 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[so2].estacoes | 7 | VERIFICADO |
+| 377 | data/README: so2 mean stations/day | 3.1 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[so2].n_est_medio | 3.12 | VERIFICADO |
+| 378 | data/README: SO2 days with mean | 2,190 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[so2].dias | 2190 | VERIFICADO |
+| 379 | data/README: SO2 days with _dt | 2,108 | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[so2].dias_com_dt | 2108 | VERIFICADO |
+| 380 | data/README: other pollutants cover 2,192 days | True | `data/processed/cetesb_poluentes_daily.meta.json` | por_poluente[*].dias == 2192 except so2 | True | VERIFICADO |
+| 381 | data/README: pollutant export files used | 191 | `data/processed/cetesb_poluentes_daily.meta.json` | coleta.arquivos_usados | 191 | VERIFICADO |
+| 382 | data/README: pollutant export files ignored | 14 | `data/processed/cetesb_poluentes_daily.meta.json` | coleta.arquivos_ignorados | 14 | VERIFICADO |
+| 383 | data/README: stations outside municipality excluded | 21 | `data/processed/cetesb_poluentes_daily.meta.json` | len(coleta.estacoes_fora_do_municipio) | 21 | VERIFICADO |
+| 384 | data/README: hourly records before dedup | 3,954,672 | `data/processed/cetesb_poluentes_daily.meta.json` | coleta.registros_antes_dedup | 3954672 | VERIFICADO |
+| 385 | data/README: hourly records after dedup | 3,722,808 | `data/processed/cetesb_poluentes_daily.meta.json` | coleta.registros_apos_dedup | 3722808 | VERIFICADO |
+| 386 | data/README: daily rule 18 of 24 hours | >= 18 de 24 | `data/processed/cetesb_poluentes_daily.meta.json` | regra_diaria (substring) | >= 18 de 24 | VERIFICADO |
+| 387 | data/README: D_t rule needs 2 stations | >= 2 | `data/processed/cetesb_poluentes_daily.meta.json` | regra_dt (substring) | >= 2 | VERIFICADO |
+| 388 | data/README: meteo temp stations | 6 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[temp].estacoes | 6 | VERIFICADO |
+| 389 | data/README: meteo temp mean stations/day | 4.2 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[temp].n_est_medio | 4.17 | VERIFICADO |
+| 390 | data/README: meteo temp days | 2,192 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[temp].dias | 2192 | VERIFICADO |
+| 391 | data/README: meteo ur stations | 6 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[ur].estacoes | 6 | VERIFICADO |
+| 392 | data/README: meteo ur mean stations/day | 3.6 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[ur].n_est_medio | 3.6 | VERIFICADO |
+| 393 | data/README: meteo ur days | 2,192 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[ur].dias | 2192 | VERIFICADO |
+| 394 | data/README: meteo vv stations | 10 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[vv].estacoes | 10 | VERIFICADO |
+| 395 | data/README: meteo vv mean stations/day | 7.5 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[vv].n_est_medio | 7.47 | VERIFICADO |
+| 396 | data/README: meteo vv days | 2,192 | `data/processed/cetesb_meteo_daily.meta.json` | por_variavel[vv].dias | 2192 | VERIFICADO |
+| 397 | data/README: meteo temp entries dropped by coverage | 524 | `data/processed/cetesb_meteo_daily.meta.json` | dias_descartados_por_cobertura.temp | 524 | VERIFICADO |
+| 398 | data/README: meteo ur entries dropped by coverage | 454 | `data/processed/cetesb_meteo_daily.meta.json` | dias_descartados_por_cobertura.ur | 454 | VERIFICADO |
+| 399 | data/README: meteo vv entries dropped by coverage | 483 | `data/processed/cetesb_meteo_daily.meta.json` | dias_descartados_por_cobertura.vv | 483 | VERIFICADO |
+| 400 | data/README: meteo export files used | 54 | `data/processed/cetesb_meteo_daily.meta.json` | coleta.arquivos_usados | 54 | VERIFICADO |
+| 401 | data/README: meteo export files ignored | 14 | `data/processed/cetesb_meteo_daily.meta.json` | coleta.arquivos_ignorados | 14 | VERIFICADO |
+| 402 | data/README: meteo metropolitan stations excluded | 5 | `data/processed/cetesb_meteo_daily.meta.json` | len(coleta.estacoes_fora_do_recorte) | 5 | VERIFICADO |
+| 403 | data/README: meteo NaN cells | 0 | `data/processed/cetesb_meteo_daily.csv` | sum of NaN | 0 | VERIFICADO |
+| 404 | data/README: meteo columns | data, temp_media, temp_n_estacoes, temp_min, temp_max, temp_amplitude, ur_media, ur_n_estacoes, vv_media, vv_n_estacoes | `data/processed/cetesb_meteo_daily.csv` | columns | data, temp_media, temp_n_estacoes, temp_min, temp_max, temp_amplitude, ur_media, ur_n_estacoes, vv_media, vv_n_estacoes | VERIFICADO |
+| 405 | data/README/LESSONS 2: CAMS rows | 2,192 | `data/processed/cams_daily_v2.csv` | len | 2192 | VERIFICADO |
+| 406 | data/README: CAMS NaN cells | 0 | `data/processed/cams_daily_v2.csv` | sum of NaN | 0 | VERIFICADO |
+| 407 | data/README/LESSONS 2: CAMS days with n_obs=8 | 2,191 | `data/processed/cams_daily_v2.csv` | n_obs value_counts[8] | 2191 | VERIFICADO |
+| 408 | data/README/LESSONS 2: CAMS days with n_obs=7 | 1 | `data/processed/cams_daily_v2.csv` | n_obs value_counts[7] | 1 | VERIFICADO |
+| 409 | data/README: CAMS columns | data, d2m, pm10, pm2p5, sp, t2m, u10, v10, t2m_c, d2m_c, rh, ws10, n_obs | `data/processed/cams_daily_v2.csv` | columns | data, d2m, pm10, pm2p5, sp, t2m, u10, v10, t2m_c, d2m_c, rh, ws10, n_obs | VERIFICADO |
+| 410 | data/README: CAMS not used as feature source in shown runs | cetesb/cetesb | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/manifest.json` | fonte_pm25/fonte_meteo | cetesb/cetesb | VERIFICADO |
+| 411 | data/README: stations in municipality | 23 | `data/cetesb/estacoes_municipio_sp.csv` | rows | 23 | VERIFICADO |
+| 412 | data/README: stations with PM2.5 in registry | 19 | `data/cetesb/estacoes_municipio_sp.csv` | mede_pm25 == True | 19 | VERIFICADO |
+| 413 | data/README: disponibilidade_qualar stations | 19 | `data/cetesb/disponibilidade_qualar.csv` | nunique(codigo_qualar) | 19 | VERIFICADO |
+| 414 | data/README: disponibilidade_qualar parameters | MP2.5, MP10, NO2, O3, CO, SO2 | `data/cetesb/disponibilidade_qualar.csv` | unique(parametro) | MP2.5, MP10, NO2, O3, CO, SO2 | VERIFICADO |
+| 415 | REPRODUCIBILITY: DM recomputed metrics max diff about 1e-14 | < 1e-13 | `results/testes_dm/TESTES_DM_h1_v02_cetesb_cetesb_classicos_full_20261022-211834/validacao_metricas.json` | max of all scientific-notation diffs | < 1e-13 | VERIFICADO |
+| 416 | ARCHITECTURE: SARIMAX range guard factor | 5 | `src/models/sarimax_model.py` | FATOR_FAIXA | 5.0 | VERIFICADO |
+| 417 | ARCHITECTURE: SARIMAX degenerate sigma2 fraction | 1e-3 | `src/models/sarimax_model.py` | FRACAO_SIGMA2_MIN | 1e-3 | VERIFICADO |
+| 418 | README: test count in the suite | 166 passed (uv run pytest -q, 2026-11-23) | `uv run pytest -q` | dots in -q output | 166 passed (uv run pytest -q, 2026-11-23) | VERIFICADO |
 
 ## Números narrativos sem arquivo em `results/` (não conferidos aqui, declarados no texto)
 

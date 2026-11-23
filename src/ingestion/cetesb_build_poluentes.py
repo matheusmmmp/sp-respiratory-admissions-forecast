@@ -13,7 +13,7 @@ está em disco sem ter sido integrado.
 Saída: data/processed/cetesb_poluentes_daily.csv
     data · <pol>_media · <pol>_n_estacoes · <pol>_dt   para cada poluente
 
-    python -m src.ingestion.cetesb_build_poluentes --dir C:/Users/mathe/Downloads
+    python -m src.ingestion.cetesb_build_poluentes --dir <pasta das exportacoes do QUALAR>
 """
 from __future__ import annotations
 

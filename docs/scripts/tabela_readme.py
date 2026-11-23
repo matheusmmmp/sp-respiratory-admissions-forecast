@@ -15,6 +15,7 @@ the script raises. Rounding: MAE to 2 decimals, MASE to 3 decimals, skill to 3 d
 MASE only compares models within the same horizon (it uses the Naive of that horizon); across horizons use
 MAE and skill = 1 - MAE / min(Naive, Seasonal Naive).
 """
+
 from __future__ import annotations
 
 import argparse
@@ -26,8 +27,13 @@ import pandas as pd
 RAIZ = Path(__file__).resolve().parents[2]
 RUNS = RAIZ / "results" / "runs"
 A_MODELOS = RAIZ / "results" / "analise_multihorizonte" / "ANALISE_MULTIHORIZONTE_V02_20261118" / "A_modelos_por_h.csv"
-ARCAL_DOIS = (RAIZ / "results" / "numeros_texto_urgencia" / "NUMEROS_TEXTO_URGENCIA_V02_20261118"
-              / "arcal_por_horizonte_dois_alvos.csv")
+ARCAL_DOIS = (
+    RAIZ
+    / "results"
+    / "numeros_texto_urgencia"
+    / "NUMEROS_TEXTO_URGENCIA_V02_20261118"
+    / "arcal_por_horizonte_dois_alvos.csv"
+)
 
 HS = [1, 5, 7, 15, 30]
 RUNS_POR_ALVO = {
@@ -46,10 +52,24 @@ RUNS_POR_ALVO = {
         30: "ur_h30_cetesb_cetesb_full_20261117-221426",
     },
 }
-MODELOS = [("xgboost", "XGBoost"), ("sarimax", "SARIMAX"), ("lstm", "LSTM"), ("ingarch_nb", "INGARCH-NB"),
-           ("gam_nb", "GAM-NB"), ("naive", "Naive"), ("seasonal_naive", "Seasonal Naive")]
-ROTULO_DOIS = {"XGBoost": "XGBoost", "SARIMAX": "SARIMAX", "LSTM": "LSTM", "INGARCH-NB": "INGARCH-NB",
-               "GAM-NB": "GAM-NB", "Naive": "Naïve", "Seasonal Naive": "Seasonal Naïve"}
+MODELOS = [
+    ("xgboost", "XGBoost"),
+    ("sarimax", "SARIMAX"),
+    ("lstm", "LSTM"),
+    ("ingarch_nb", "INGARCH-NB"),
+    ("gam_nb", "GAM-NB"),
+    ("naive", "Naive"),
+    ("seasonal_naive", "Seasonal Naive"),
+]
+ROTULO_DOIS = {
+    "XGBoost": "XGBoost",
+    "SARIMAX": "SARIMAX",
+    "LSTM": "LSTM",
+    "INGARCH-NB": "INGARCH-NB",
+    "GAM-NB": "GAM-NB",
+    "Naive": "Naïve",
+    "Seasonal Naive": "Seasonal Naïve",
+}
 TOL = 1e-9
 
 
@@ -100,9 +120,13 @@ def coletar() -> dict:
                         raise RuntimeError(f"A_modelos_por_h.csv points to {ref2['run']}, expected {run_id}")
                     if abs(float(ref2["MAE_ARCAL"]) - mae) > TOL or abs(float(ref2["MASE_ARCAL"]) - mase) > TOL:
                         raise RuntimeError(f"{run_id} {chave}: model_comparison.csv != A_modelos_por_h.csv")
-                linhas[rotulo] = {"MAE": mae, "MASE": mase, "skill_MAE": skill,
-                                  "n_folds": int(mc.loc[chave, "n_folds"]),
-                                  "n_sementes": int(mc.loc[chave, "n_sementes"])}
+                linhas[rotulo] = {
+                    "MAE": mae,
+                    "MASE": mase,
+                    "skill_MAE": skill,
+                    "n_folds": int(mc.loc[chave, "n_folds"]),
+                    "n_sementes": int(mc.loc[chave, "n_sementes"]),
+                }
             ref_naive = min(linhas["Naive"]["MAE"], linhas["Seasonal Naive"]["MAE"])
             for rotulo in linhas:
                 linhas[rotulo]["skill_vs_ref"] = 1.0 - linhas[rotulo]["MAE"] / ref_naive
@@ -152,9 +176,11 @@ def main() -> None:
     if args.json:
         print(json.dumps(dados, indent=2))
         return
-    print("Cells are MAE (admissions/day, 2 decimals) / MASE (3 decimals), feature set AR_CAL, mean over 4 folds "
-          "(and 5 seeds for XGBoost and LSTM). MASE uses the Naive of the same h: compare across rows, "
-          "not across columns.\n")
+    print(
+        "Cells are MAE (admissions/day, 2 decimals) / MASE (3 decimals), feature set AR_CAL, mean over 4 folds "
+        "(and 5 seeds for XGBoost and LSTM). MASE uses the Naive of the same h: compare across rows, "
+        "not across columns.\n"
+    )
     print("## Total target (all respiratory admissions)\n")
     print(tabela_md(dados, "total", [r for _, r in MODELOS]))
     print()
@@ -169,8 +195,11 @@ def main() -> None:
         print("| Model | " + " | ".join(f"h = {h}" for h in HS) + " |")
         print("|---|" + "|".join("---:" for _ in HS) + "|")
         for _, rotulo in MODELOS[:5]:
-            print(f"| {rotulo} | "
-                  + " | ".join(f"{dados[alvo][h]['modelos'][rotulo]['skill_vs_ref']:.3f}" for h in HS) + " |")
+            print(
+                f"| {rotulo} | "
+                + " | ".join(f"{dados[alvo][h]['modelos'][rotulo]['skill_vs_ref']:.3f}" for h in HS)
+                + " |"
+            )
         print()
 
 

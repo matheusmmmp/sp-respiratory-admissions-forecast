@@ -372,9 +372,14 @@ g.layout(
 fig.update_layout(legend=dict(orientation="v", x=1.01, y=1, yanchor="top"))
 fig.update_yaxes(rangemode="tozero")
 g.mostrar(fig, key="sab_estab_fig")
+nome_destaque = E.loc[E["CNES"] == MAN["cnes_destacado"], "nome"].iloc[0]
 ui.fonte(
     dados.rel_painel("estabelecimentos_ano.csv"),
-    nota="cells with fewer than 5 admissions are suppressed at the source (gaps in the lines); names: consult CNES/DATASUS",
+    nota=(
+        "cells with fewer than 5 admissions are suppressed at the source (gaps in the lines); the highlighted "
+        f"establishment is {nome_destaque}, name read from the column `nome` of this csv; the other establishments "
+        "appear by code only, as in the csv; name and code are public information of the CNES registry"
+    ),
 )
 
 # --- 6. Effect on the models ----------------------------------------------------------------
@@ -412,6 +417,12 @@ fig.update_layout(barmode="group", bargap=0.3, bargroupgap=0.1)
 g.mostrar(fig, key="sab_modelos")
 ui.fonte(
     dados.rel_painel("erros_modelos_ar_cal.csv"), run=run_x, nota="seed-mean predictions per target date, total target"
+)
+st.caption(
+    "Note on the MAE definition: in this section (chart and table below) MAE is computed on **seed-mean predictions** "
+    "(one prediction per date, from erros_modelos_ar_cal.csv), so it is at most the **seed-mean MAE** reported in the "
+    "README, in arcal_por_horizonte_dois_alvos.csv and in erro_sabado_h1.csv (mean of the MAE of each seed; "
+    "18.56 overall and 33.31 on Saturdays at h = 1 for XGBoost, against 18.45 and 33.21 here)."
 )
 
 part = (

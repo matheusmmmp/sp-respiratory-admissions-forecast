@@ -44,7 +44,7 @@ Por isso `--incluir-rmsp` existe: estações da Região Metropolitana
 Isso é defensável **para temperatura e umidade**, que são regionais, e é bem
 mais frágil para vento, que responde a rugosidade local. Se usar, declare.
 
-    python -m src.ingestion.cetesb_build_meteo --dir C:/Users/mathe/Downloads
+    python -m src.ingestion.cetesb_build_meteo --dir <pasta das exportacoes do QUALAR>
     python -m src.ingestion.cetesb_build_meteo --incluir-rmsp
 """
 from __future__ import annotations

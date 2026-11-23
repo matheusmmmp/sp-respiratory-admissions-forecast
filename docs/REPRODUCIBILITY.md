@@ -27,7 +27,7 @@ What this does: reads the data files named in the config from `data/processed/` 
 
 Before a `--full` run, the dissertation rule applies here as well: commit first and start from a clean tree (`git status --porcelain` empty). The runner records `git_commit_no_inicio` and `git_sujo_no_inicio` in `manifest.json` before any computation; a run with `git_sujo: true` is a record, not a result (`docs/LESSONS.md`, story 4).
 
-Expected wall time for a full seven-model run on a laptop CPU: several hours (the h = 1 run started 2026-10-22 21:18:34 and finished 23:43:02, `manifest.json`, key `proveniencia`). `--smoke` with `configs/smoke.yaml` takes about a minute and is never a result.
+Expected wall time for a full seven-model run on a laptop CPU: several hours (the h = 1 run started 2026-10-22 21:18:34 and finished 23:43:02, `manifest.json`, key `proveniencia`). `--smoke` with `configs/smoke.yaml` takes about ten seconds (10.5 s measured on the author's machine, 2026-11-23) and is never a result.
 
 Checking a rerun against the original: compare `model_comparison.csv` and `metrics_by_fold.csv`. Deterministic models (Naïve, Seasonal Naïve, SARIMAX, GAM-NB, INGARCH-NB) should match to floating-point precision on the same platform; XGBoost and LSTM should match per seed on the same platform and library versions, and in mean across seeds elsewhere within the seed dispersion reported in `model_comparison.csv` (`MAE_std_semente`).
 

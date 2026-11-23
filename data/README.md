@@ -67,4 +67,4 @@ Same rule, restricted to **non-elective** admissions: `CAR_INT` (admission chara
 - SIH/SUS microdata and any per-admission field (`N_AIH`, dates, establishment, age). The Saturday panel in `notebooks/dados_painel/` is aggregated (establishment × year with fewer than 5 admissions suppressed; `manifest.json` in that folder).
 - Hourly station records from QUALAR (`data/cetesb/hourly_*` are git-ignored).
 - Raw CAMS NetCDF files (`data/raw/` is git-ignored).
-- Any other municipality or period.
+- Any other municipality or period, except the Saturday panel in `notebooks/dados_painel/`, whose daily aggregates extend to 2026-02-28 (that extension is not checked against TabNet).

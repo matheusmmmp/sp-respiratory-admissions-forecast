@@ -23,6 +23,9 @@ TSV = RAIZ / "docs" / "INVENTARIO_FASE0.tsv"
 #: files deliberately changed after the copy (owner, reason)
 EDITADOS_DEPOIS = {
     "notebooks/gerar_notebook.py": "WP3: reads notebooks/dados_painel/ by default instead of Google Drive",
+    "src/ingestion/cetesb_build_poluentes.py": "manager: user-name path removed from the usage example in the docstring",
+    "src/ingestion/cetesb_build_meteo.py": "manager: user-name path removed from the usage example in the docstring",
+    "src/ingestion/cetesb_build_daily.py": "manager: user-name path removed from the usage example in the docstring",
 }
 
 

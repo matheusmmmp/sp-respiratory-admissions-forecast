@@ -17,7 +17,7 @@ dois arquivos é a MESMA medição, não duas. Aqui a chave
 (estação, parâmetro, data, hora) é deduplicada mantendo a primeira ocorrência, e
 o número de repetições descartadas entra no relatório — não é silencioso.
 
-    python -m src.ingestion.cetesb_build_daily --dir C:/Users/mathe/Downloads
+    python -m src.ingestion.cetesb_build_daily --dir <pasta das exportacoes do QUALAR>
 """
 from __future__ import annotations
 
