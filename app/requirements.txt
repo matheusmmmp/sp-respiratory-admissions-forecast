@@ -1,0 +1,11 @@
+# Dependências do app Streamlit para o Streamlit Community Cloud.
+# Fica em app/ de propósito: o Community Cloud usa o arquivo de dependências da
+# pasta do entrypoint (app/Home.py) antes de qualquer arquivo da raiz, e assim
+# não instala o uv.lock inteiro (TensorFlow, XGBoost, statsmodels), que o app
+# não usa. Versões iguais às do pyproject.toml / uv.lock (extra `app`).
+# Python 3.11 (escolher em "Advanced settings" no deploy).
+streamlit==1.67.0
+plotly==7.1.0
+pandas==3.0.0
+numpy==2.4.1
+pyarrow==23.0.0
