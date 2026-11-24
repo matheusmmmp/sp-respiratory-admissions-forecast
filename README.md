@@ -1,12 +1,14 @@
 # sp-respiratory-admissions-forecast
 
+🇧🇷 [Versão em português](README.pt-BR.md) · 🇬🇧 English (this file)
+
 **Seven forecasting models, one temporal protocol: daily respiratory hospital admissions in São Paulo city, 1 to 30 days ahead, with every number traceable to an identified run.**
 
 Portfolio repository derived from the master's dissertation of Matheus de Medeiros Pereira (PPGCC/UFSC; advisor Renato Fileto, co-advisor Simone S. Werner). It forecasts the daily count of hospital admissions with a respiratory principal diagnosis (ICD-10 J00 to J99) among residents of the municipality of São Paulo, 2019 to 2024, using Naïve, Seasonal Naïve (m = 7), XGBoost, LSTM, SARIMAX, GAM-NB and INGARCH-NB under the same rolling-origin validation, and asks whether air-quality covariates (PM2.5 first of all) add forecasting value.
 
 > **Every result here is provisional (pre-defence).** The dissertation has not been defended. Numbers are shown with the full id of the run that produced them and may change before the final text. The API and the Streamlit app are engineering demonstrations, not a clinical or operational tool.
 
-[Resumo em português](#resumo-em-português) · [Pipeline](#pipeline) · [Results](#results-provisional) · [How to run](#how-to-run) · [Docs](#documentation) · [What this repo is not](#what-this-repository-is-not)
+[Pipeline](#pipeline) · [Results](#results-provisional) · [How to run](#how-to-run) · [Docs](#documentation) · [What this repo is not](#what-this-repository-is-not)
 
 ## What is in the box
 
@@ -106,7 +108,7 @@ Docker (`docker-compose.yml`, one image, three services):
 docker compose up            # app (Streamlit) on :8501, api (FastAPI) on :8000, mlflow on :5000
 ```
 
-- Streamlit app, live: <https://sp-respiratory-admissions-forecast.streamlit.app> (Streamlit Community Cloud, deployed 2026-11-23); local: <http://localhost:8501> (see `app/`). Shows the target series, the results by horizon and the Saturday panel, every number read from `results/` or `notebooks/dados_painel/`.
+- Streamlit app, live: <https://sp-respiratory-admissions-forecast.streamlit.app> (Streamlit Community Cloud, deployed 2026-11-23; language selector PT/EN on every page, direct link in Portuguese: <https://sp-respiratory-admissions-forecast.streamlit.app/?lang=pt>); local: <http://localhost:8501> (see `app/`). Shows the target series, the results by horizon and the Saturday panel, every number read from `results/` or `notebooks/dados_painel/`.
 - FastAPI, local: <http://localhost:8000> (see `api/`; `GET /health`, `GET /forecast`). Serves demonstration XGBoost `AR_CAL` models from `models_demo/`, trained on the whole series with one seed, which is **not** the dissertation protocol; the model card (`models_demo/MODEL_CARD.md`) says so. Because the canonical feature builder only materialises observed target dates, the API answers only for origins whose target `origem + h` falls inside the 2019–2024 history (in-sample by construction).
 - MLflow, local: <http://localhost:5000>. `tracking/importar_runs.py` copies `config.json`, `manifest.json` and `metrics.json` of the runs in `results/runs/` into a file store; nothing is recomputed.
 
@@ -121,7 +123,7 @@ To reproduce a run exactly from its `config.json`, see `docs/REPRODUCIBILITY.md`
 - `docs/LESSONS.md`: four things that went wrong or surprised us, each with the file that proves it.
 - `data/README.md`: data card (sources, licences, construction rules, columns, exclusions).
 - `docs/DECISOES.md`: author decisions D1 to D7 for this repository (in Portuguese).
-- `docs/CONFERENCIA_NUMEROS_WP5.md`: every number in this README and in the docs, with the file and key it was checked against.
+- `docs/CONFERENCIA_NUMEROS_WP5.md`: every number in this README, in `README.pt-BR.md` and in the docs, with the file and key it was checked against.
 - `docs/INVENTARIO_FASE0.tsv`: provenance (origin path and sha256) of every file copied from the dissertation repository.
 
 ## What this repository is not
@@ -131,14 +133,6 @@ To reproduce a run exactly from its `config.json`, see `docs/REPRODUCIBILITY.md`
 - Nothing is published about the LSTM (or any model) beyond what is in `results/`: no trained weights, no per-seed artefacts, no hyper-parameter search beyond the configured values.
 - The API is an engineering demonstration. Its models are not the benchmark models and must not be used for planning or care.
 - TCN, TFT, SHAP and other extensions that appear in the dissertation plan were not executed and are not described here.
-
-## Resumo em português
-
-Repositório de portfólio derivado da dissertação de mestrado de Matheus de Medeiros Pereira (PPGCC/UFSC; orientador Renato Fileto, coorientadora Simone S. Werner). Prevê a contagem diária de internações hospitalares com diagnóstico principal respiratório (CID-10 J00 a J99) de residentes do município de São Paulo, 2019 a 2024, de 1 a 30 dias à frente (h ∈ {1, 5, 7, 15, 30}), com sete modelos (Naïve, Seasonal Naïve m = 7, XGBoost, LSTM, SARIMAX, GAM-NB e INGARCH-NB) sob um único protocolo: 4 folds rolling-origin com 180 dias de teste cada, 5 sementes para XGBoost e LSTM reportadas como média (nunca a melhor semente), e teste pareado de Diebold–Mariano com correção de Holm. A fonte ambiental principal é a CETESB/QUALAR; o CAMS (Copernicus) é fonte alternativa. Há dois alvos: o total de internações (previsão de demanda) e as internações de urgência (caráter não eletivo), que isolam a pergunta sobre o PM2,5 do ruído das cirurgias eletivas de sábado (ver `docs/LESSONS.md`).
-
-**Todo resultado é provisório (pré-defesa).** Cada número vem com o id completo da run que o gerou (`results/runs/<RUN_ID>/`); as tabelas acima são geradas por `docs/scripts/tabela_readme.py` a partir dos CSV, sem digitação, e a lista de conferência está em `docs/CONFERENCIA_NUMEROS_WP5.md`. Leitura provisória: dentro de cada horizonte, XGBoost, SARIMAX e LSTM não se separam pelo teste pareado; no alvo total em h = 1 nenhuma covariável ambiental melhora `AR_CAL` após Holm, e nas 10 runs (500 contrastes de ablação em `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv`) 59 contrastes são significativos, 53 com a covariável pior e 6 com ela melhor (SARIMAX urgência h = 1, XGBoost urgência h = 15, LSTM em três casos). A API e o app são demonstrações de engenharia, não ferramentas clínicas. O repositório não contém microdados e não é a dissertação.
-
-Para rodar: `uv sync`, `uv run pytest -q`, `uv run python -m src.experiments.run_preliminary --config configs/smoke.yaml --smoke`; ou `docker compose up` (app em :8501, API em :8000, MLflow em :5000). Reprodução exata de uma run: `docs/REPRODUCIBILITY.md`.
 
 ## Licence and citation
 

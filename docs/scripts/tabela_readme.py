@@ -2,6 +2,7 @@
 
     uv run python docs/scripts/tabela_readme.py            # prints Markdown tables
     uv run python docs/scripts/tabela_readme.py --json     # prints the numbers as JSON (for the audit list)
+    uv run python docs/scripts/tabela_readme.py --lang pt  # same tables with Portuguese headers (README.pt-BR.md)
 
 Sources (all inside this repository):
 - results/runs/<RUN_ID>/model_comparison.csv  (feature_set == AR_CAL; baselines under feature_set == baseline)
@@ -146,9 +147,32 @@ def coletar() -> dict:
     return saida
 
 
-def tabela_md(dados: dict, alvo: str, modelos: list[str]) -> str:
+ROTULOS = {
+    "en": {
+        "model": "Model",
+        "run": "Run id",
+        "commit": "Commit",
+        "clean": "Clean tree at start",
+        "pred": "Predictions",
+        "yes": "yes",
+        "no": "NO",
+    },
+    "pt": {
+        "model": "Modelo",
+        "run": "Id da run",
+        "commit": "Commit",
+        "clean": "Árvore limpa no início",
+        "pred": "Previsões",
+        "yes": "sim",
+        "no": "NÃO",
+    },
+}
+
+
+def tabela_md(dados: dict, alvo: str, modelos: list[str], lang: str = "en") -> str:
+    r = ROTULOS[lang]
     out = []
-    out.append("| Model | " + " | ".join(f"h = {h}" for h in HS) + " |")
+    out.append(f"| {r['model']} | " + " | ".join(f"h = {h}" for h in HS) + " |")
     out.append("|---|" + "|".join("---:" for _ in HS) + "|")
     for rotulo in modelos:
         celulas = []
@@ -159,22 +183,47 @@ def tabela_md(dados: dict, alvo: str, modelos: list[str]) -> str:
     return "\n".join(out)
 
 
-def tabela_runs_md(dados: dict, alvo: str) -> str:
-    out = ["| h | Run id | Commit | Clean tree at start | Predictions |", "|---:|---|---|---|---:|"]
+def tabela_runs_md(dados: dict, alvo: str, lang: str = "en") -> str:
+    r = ROTULOS[lang]
+    out = [f"| h | {r['run']} | {r['commit']} | {r['clean']} | {r['pred']} |", "|---:|---|---|---|---:|"]
     for h in HS:
         d = dados[alvo][h]
-        limpo = "yes" if not d["git_sujo"] else "NO"
-        out.append(f"| {h} | `{d['run_id']}` | `{d['git_commit'][:7]}` | {limpo} | {d['n_predicoes']:,} |")
+        limpo = r["yes"] if not d["git_sujo"] else r["no"]
+        n_pred = f"{d['n_predicoes']:,}" if lang == "en" else f"{d['n_predicoes']:,}".replace(",", ".")  # pt: 95.040
+        out.append(f"| {h} | `{d['run_id']}` | `{d['git_commit'][:7]}` | {limpo} | {n_pred} |")
     return "\n".join(out)
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", action="store_true")
+    ap.add_argument(
+        "--lang",
+        choices=("en", "pt"),
+        default="en",
+        help="language of the table headers (cells are identical: numbers keep the decimal point of the source files)",
+    )
     args = ap.parse_args()
     dados = coletar()
     if args.json:
         print(json.dumps(dados, indent=2))
+        return
+    if args.lang == "pt":
+        print(
+            "Células = MAE (internações/dia, 2 casas) / MASE (3 casas), conjunto de features AR_CAL, média dos 4 folds "
+            "(e das 5 sementes para XGBoost e LSTM). O MASE usa o Naïve do mesmo h: compare linhas, não colunas. "
+            "Ponto decimal mantido como nos arquivos de origem.",
+            end="\n\n",
+        )
+        print("## Alvo total (todas as internações respiratórias)", end="\n\n")
+        print(tabela_md(dados, "total", [r for _, r in MODELOS], "pt"))
+        print()
+        print(tabela_runs_md(dados, "total", "pt"))
+        print()
+        print("## Alvo de urgência (internações não eletivas)", end="\n\n")
+        print(tabela_md(dados, "urgencia", [r for _, r in MODELOS], "pt"))
+        print()
+        print(tabela_runs_md(dados, "urgencia", "pt"))
         return
     print(
         "Cells are MAE (admissions/day, 2 decimals) / MASE (3 decimals), feature set AR_CAL, mean over 4 folds "

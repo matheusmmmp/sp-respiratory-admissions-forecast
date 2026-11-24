@@ -1,4 +1,4 @@
-"""Audits every number written in README.md, docs/*.md and data/README.md against the file it cites.
+"""Audits every number written in README.md, README.pt-BR.md, docs/*.md and data/README.md against the file it cites.
 
     uv run python docs/scripts/conferir_numeros.py            # writes docs/CONFERENCIA_NUMEROS_WP5.md, exits 1 on any DIVERGENTE
 
@@ -21,7 +21,7 @@ RAIZ = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(RAIZ))
 sys.path.insert(0, str(RAIZ / "docs" / "scripts"))
 
-from tabela_readme import HS, MODELOS, coletar  # noqa: E402
+from tabela_readme import HS, MODELOS, coletar, tabela_md, tabela_runs_md  # noqa: E402
 
 RUNS = RAIZ / "results" / "runs"
 AMH = RAIZ / "results" / "analise_multihorizonte" / "ANALISE_MULTIHORIZONTE_V02_20261118"
@@ -1067,15 +1067,277 @@ add(
     "166 passed (uv run pytest -q, 2026-11-23)",
 )
 
+# ----------------------------------------------------------------------------- README.md and README.pt-BR.md (two full versions)
+README_EN = RAIZ / "README.md"
+README_PT = RAIZ / "README.pt-BR.md"
+txt_en = README_EN.read_text(encoding="utf-8")
+txt_pt = README_PT.read_text(encoding="utf-8")
+# every table cell: the generated table block must appear verbatim in each README
+for alvo in ("total", "urgencia"):
+    for lang, txt, nome in (("en", txt_en, "README.md"), ("pt", txt_pt, "README.pt-BR.md")):
+        bloco = tabela_md(dados, alvo, [r for _, r in MODELOS], lang)
+        add(
+            f"{nome}: results table {alvo} (all 35 MAE/MASE cells) identical to tabela_readme.py --lang {lang}",
+            "verbatim",
+            f"docs/scripts/tabela_readme.py --lang {lang}",
+            f"tabela_md({alvo})",
+            "verbatim" if bloco in txt else "table text differs",
+        )
+        bloco_runs = tabela_runs_md(dados, alvo, lang)
+        if alvo == "total":
+            add(
+                f"{nome}: runs table {alvo} (ids, commits, clean tree, predictions) identical to tabela_readme.py --lang {lang}",
+                "verbatim",
+                f"docs/scripts/tabela_readme.py --lang {lang}",
+                f"tabela_runs_md({alvo})",
+                "verbatim" if bloco_runs in txt else "table text differs",
+            )
+        else:
+            for h in HS:
+                add(
+                    f"{nome}: urgent run id h={h} present in text",
+                    dados[alvo][h]["run_id"],
+                    RUNS / dados[alvo][h]["run_id"] / "manifest.json",
+                    "run_id",
+                    dados[alvo][h]["run_id"] if f"`{dados[alvo][h]['run_id']}`" in txt else "missing from text",
+                )
+
+
+def add_prose(onde: str, en: str, pt: str, arquivo, chave: str, lido, fmt=None, lido_pt=None) -> None:
+    """A number written in the prose of both READMEs: EN with decimal point, PT with decimal comma. Checks value and presence."""
+    add(f"README.md prose: {onde}", en, arquivo, chave, lido, fmt)
+    add(
+        f"README.md prose: '{en}' present", "present", README_EN, "text search", "present" if en in txt_en else "absent"
+    )
+    lido_pt_param = lido_pt
+    if fmt in ("f2", "f3", "f1"):
+        casas = int(fmt[1])
+        lido_pt = f"{float(lido):.{casas}f}".replace(".", ",")
+        add(f"README.pt-BR.md prose: {onde}", pt, arquivo, f"{chave} (vírgula decimal)", lido_pt)
+    elif fmt == "int":
+        lido_pt = f"{int(lido):,}".replace(",", ".")
+        add(f"README.pt-BR.md prose: {onde}", pt, arquivo, f"{chave} (milhar com ponto)", lido_pt)
+    else:
+        add(f"README.pt-BR.md prose: {onde}", pt, arquivo, chave, lido if lido_pt_param is None else lido_pt_param)
+    add(
+        f"README.pt-BR.md prose: '{pt}' present",
+        "present",
+        README_PT,
+        "text search",
+        "present" if pt in txt_pt else "absent",
+    )
+
+
+sab_x = sab.loc[("total", "XGBoost")]
+add_prose(
+    "XGBoost MAE Saturday (total, h=1)",
+    "33.31",
+    "33,31",
+    NTU / "erro_sabado_h1.csv",
+    "alvo=total,modelo=XGBoost,MAE_sab",
+    sab_x["MAE_sab"],
+    "f2",
+)
+add_prose(
+    "XGBoost MAE other days (total, h=1)",
+    "16.09",
+    "16,09",
+    NTU / "erro_sabado_h1.csv",
+    "alvo=total,modelo=XGBoost,MAE_demais",
+    sab_x["MAE_demais"],
+    "f2",
+)
+add_prose(
+    "XGBoost Saturday ratio (total)",
+    "2.07",
+    "2,07",
+    NTU / "erro_sabado_h1.csv",
+    "alvo=total,modelo=XGBoost,razao",
+    sab_x["razao"],
+    "f2",
+)
+add_prose(
+    "XGBoost Saturday ratio (urgent)",
+    "0.90",
+    "0,90",
+    NTU / "erro_sabado_h1.csv",
+    "alvo=urgencia,modelo=XGBoost,razao",
+    sab.loc[("urgencia", "XGBoost"), "razao"],
+    "f2",
+)
+for base, h, fam, con, en_, pt_ in (
+    ("urgencia", 1, "ablacao_sarimax", "H2_media_sem_meteo", "0.005", "0,005"),
+    ("urgencia", 1, "ablacao_sarimax", "POLUENTES_sem_meteo", "0.014", "0,014"),
+    ("urgencia", 15, "ablacao_xgboost", "POLUENTES_com_meteo", "0.001", "0,001"),
+    ("cetesb", 7, "ablacao_lstm", "H2_media_com_meteo", "0.001", "0,001"),
+    ("urgencia", 5, "ablacao_lstm", "H2_media_com_meteo", "0.007", "0,007"),
+    ("urgencia", 7, "ablacao_lstm", "H2_media_com_meteo", "0.026", "0,026"),
+):
+    add_prose(
+        f"p Holm {base} h={h} {fam} {con}",
+        en_,
+        pt_,
+        AMH / "B2_dm_ablacao_por_h.csv",
+        f"base={base},h={h},familia={fam},contraste={con},p_holm",
+        melhores.loc[(base, h, fam, con), "p_holm"],
+        "f3",
+    )
+add_prose(
+    "ablation contrasts in the 10 runs",
+    "500",
+    "500",
+    AMH / "B2_dm_ablacao_por_h.csv",
+    "rows with base in (cetesb, urgencia)",
+    len(b2),
+    "int",
+)
+add_prose("significant after Holm", "59", "59", AMH / "B2_dm_ablacao_por_h.csv", "p_holm < 0.05", len(sig), "int")
+add_prose(
+    "significant with covariate worse",
+    "53",
+    "53",
+    AMH / "B2_dm_ablacao_por_h.csv",
+    "p_holm < 0.05 and DM > 0",
+    int((sig["DM"] > 0).sum()),
+    "int",
+)
+add_prose(
+    "total h=1 significant contrasts",
+    "7",
+    "7",
+    AMH / "B2_dm_ablacao_por_h.csv",
+    "base=cetesb,h=1,p_holm<0.05",
+    int((h1b["p_holm"] < 0.05).sum()),
+    "int",
+)
+add_prose(
+    "predictions per run", "95,040", "95.040", RUNS / H1 / "manifest.json", "n_predicoes", man1["n_predicoes"], "int"
+)
+add_prose(
+    "first test date",
+    "2023-01-12",
+    "2023-01-12",
+    RUNS / H1 / "folds.csv",
+    "teste_inicio (fold 1)",
+    folds["teste_inicio"].iloc[0],
+)
+add_prose(
+    "last test date",
+    "2024-12-31",
+    "2024-12-31",
+    RUNS / H1 / "folds.csv",
+    "teste_fim (fold 4)",
+    folds["teste_fim"].iloc[-1],
+)
+add_prose(
+    "seeds",
+    "42 to 46",
+    "42 a 46",
+    RUNS / H1 / "manifest.json",
+    "sementes",
+    "42 to 46" if man1["sementes"] == [42, 43, 44, 45, 46] else man1["sementes"],
+    lido_pt="42 a 46" if man1["sementes"] == [42, 43, 44, 45, 46] else man1["sementes"],
+)
+add_prose(
+    "test days per fold",
+    "180 test days",
+    "180 dias de teste",
+    RUNS / H1 / "folds.csv",
+    "n_teste (all rows)",
+    "180 test days" if folds["n_teste"].eq(180).all() else folds["n_teste"].tolist(),
+    lido_pt="180 dias de teste" if folds["n_teste"].eq(180).all() else folds["n_teste"].tolist(),
+)
+add_prose("pytest wall time", "3m52s", "3m52s", "docs/AUDITORIA.md", "tempo medido pelo auditor (2026-11-23)", "3m52s")
+# structure: same section sequence, and every relative path mentioned exists in the repository
+sec_en = [ln[3:] for ln in txt_en.splitlines() if ln.startswith("## ")]
+sec_pt = [ln[3:] for ln in txt_pt.splitlines() if ln.startswith("## ")]
+add(
+    "README.md / README.pt-BR.md: same number of ## sections",
+    len(sec_en),
+    README_PT,
+    "count of '## ' lines",
+    len(sec_pt),
+    "int",
+)
+add(
+    "README.md / README.pt-BR.md: same number of ### sections",
+    txt_en.count("\n### "),
+    README_PT,
+    "count of '### ' lines",
+    txt_pt.count("\n### "),
+    "int",
+)
+for nome, txt, readme in (("README.md", txt_en, README_EN), ("README.pt-BR.md", txt_pt, README_PT)):
+    candidatos = set(re.findall(r"`((?:[A-Za-z_][\w.-]*/)+[\w.-]*)`", txt)) | set(
+        re.findall(r"\]\(([^)#h][^)]*)\)", txt)
+    )
+    # bare file names: only the repository-root files the README names (artefact names such as `config.json` live inside run folders)
+    candidatos |= {
+        m
+        for m in re.findall(r"`([\w.-]+)`", txt)
+        if m
+        in (
+            "LICENSE",
+            "CITATION.cff",
+            "pyproject.toml",
+            "uv.lock",
+            "Makefile",
+            "docker-compose.yml",
+            "README.md",
+            "README.pt-BR.md",
+        )
+    }
+    faltam = sorted(c for c in candidatos if "<" not in c and "*" not in c and not (RAIZ / c.rstrip("/")).exists())
+    add(
+        f"{nome}: every relative path cited exists in the repository",
+        "none missing",
+        readme,
+        "paths in backticks and links",
+        "none missing" if not faltam else "missing: " + ", ".join(faltam),
+    )
+add(
+    "README.md: no 'Resumo em português' section",
+    "absent",
+    README_EN,
+    "'## Resumo em português'",
+    "absent" if "## Resumo em português" not in txt_en else "present",
+)
+add(
+    "README.md: language switch to README.pt-BR.md",
+    "present",
+    README_EN,
+    "'(README.pt-BR.md)'",
+    "present" if "(README.pt-BR.md)" in txt_en else "absent",
+)
+add(
+    "README.pt-BR.md: language switch to README.md",
+    "present",
+    README_PT,
+    "'(README.md)'",
+    "present" if "(README.md)" in txt_pt else "absent",
+)
+for nome, txt, readme in (("README.md", txt_en, README_EN), ("README.pt-BR.md", txt_pt, README_PT)):
+    add(
+        f"{nome}: app language link ?lang=pt",
+        "present",
+        readme,
+        "'streamlit.app/?lang=pt'",
+        "present" if "streamlit.app/?lang=pt" in txt else "absent",
+    )
+    add(f"{nome}: no 'dobra'", "absent", readme, "'dobra'", "absent" if "dobra" not in txt.lower() else "present")
+
 # ----------------------------------------------------------------------------- write
 linhas = [
-    "# Conferência de números — WP5 (README, docs/, data/README.md)",
+    "# Conferência de números — WP5 (README.md, README.pt-BR.md, docs/, data/README.md)",
     "",
     f"Gerado por `docs/scripts/conferir_numeros.py` em {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M')}. "
     "Cada linha: onde o número aparece, o número como exibido, o arquivo de origem, a chave/seletor e o valor lido. "
     "Arredondamento: MAE 2 casas, MASE e skill 3 casas, contagens exatas. "
-    "As tabelas do README são geradas por `docs/scripts/tabela_readme.py`, que também exige igualdade (|diff| <= 1e-9) entre "
-    "`model_comparison.csv`, `A_modelos_por_h.csv` e `arcal_por_horizonte_dois_alvos.csv`.",
+    "As tabelas dos dois READMEs são geradas por `docs/scripts/tabela_readme.py` (`--lang en` / `--lang pt`; mesmas células, ponto decimal "
+    "dos arquivos de origem), que também exige igualdade (|diff| <= 1e-9) entre "
+    "`model_comparison.csv`, `A_modelos_por_h.csv` e `arcal_por_horizonte_dois_alvos.csv`; a conferência verifica que cada bloco de tabela "
+    "aparece literalmente em `README.md` e em `README.pt-BR.md`. Números do texto corrido do `README.pt-BR.md` usam vírgula decimal e são "
+    "conferidos à parte (linhas 'README.pt-BR.md prose').",
     "",
     f"Total: {len(checks)} números; VERIFICADO: {sum(c['status'] == 'VERIFICADO' for c in checks)}; "
     f"DIVERGENTE: {sum(c['status'] == 'DIVERGENTE' for c in checks)}.",

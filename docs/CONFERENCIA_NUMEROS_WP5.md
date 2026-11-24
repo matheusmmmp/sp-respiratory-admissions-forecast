@@ -1,8 +1,8 @@
-# Conferência de números — WP5 (README, docs/, data/README.md)
+# Conferência de números — WP5 (README.md, README.pt-BR.md, docs/, data/README.md)
 
-Gerado por `docs/scripts/conferir_numeros.py` em 2026-11-23 16:49. Cada linha: onde o número aparece, o número como exibido, o arquivo de origem, a chave/seletor e o valor lido. Arredondamento: MAE 2 casas, MASE e skill 3 casas, contagens exatas. As tabelas do README são geradas por `docs/scripts/tabela_readme.py`, que também exige igualdade (|diff| <= 1e-9) entre `model_comparison.csv`, `A_modelos_por_h.csv` e `arcal_por_horizonte_dois_alvos.csv`.
+Gerado por `docs/scripts/conferir_numeros.py` em 2026-11-23 23:07. Cada linha: onde o número aparece, o número como exibido, o arquivo de origem, a chave/seletor e o valor lido. Arredondamento: MAE 2 casas, MASE e skill 3 casas, contagens exatas. As tabelas dos dois READMEs são geradas por `docs/scripts/tabela_readme.py` (`--lang en` / `--lang pt`; mesmas células, ponto decimal dos arquivos de origem), que também exige igualdade (|diff| <= 1e-9) entre `model_comparison.csv`, `A_modelos_por_h.csv` e `arcal_por_horizonte_dois_alvos.csv`; a conferência verifica que cada bloco de tabela aparece literalmente em `README.md` e em `README.pt-BR.md`. Números do texto corrido do `README.pt-BR.md` usam vírgula decimal e são conferidos à parte (linhas 'README.pt-BR.md prose').
 
-Total: 418 números; VERIFICADO: 418; DIVERGENTE: 0.
+Total: 525 números; VERIFICADO: 525; DIVERGENTE: 0.
 
 | # | Onde | Número exibido | Arquivo | Chave / seletor | Valor lido | Status |
 |---:|---|---|---|---|---|---|
@@ -424,6 +424,113 @@ Total: 418 números; VERIFICADO: 418; DIVERGENTE: 0.
 | 416 | ARCHITECTURE: SARIMAX range guard factor | 5 | `src/models/sarimax_model.py` | FATOR_FAIXA | 5.0 | VERIFICADO |
 | 417 | ARCHITECTURE: SARIMAX degenerate sigma2 fraction | 1e-3 | `src/models/sarimax_model.py` | FRACAO_SIGMA2_MIN | 1e-3 | VERIFICADO |
 | 418 | README: test count in the suite | 166 passed (uv run pytest -q, 2026-11-23) | `uv run pytest -q` | dots in -q output | 166 passed (uv run pytest -q, 2026-11-23) | VERIFICADO |
+| 419 | README.md: results table total (all 35 MAE/MASE cells) identical to tabela_readme.py --lang en | verbatim | `docs/scripts/tabela_readme.py --lang en` | tabela_md(total) | verbatim | VERIFICADO |
+| 420 | README.md: runs table total (ids, commits, clean tree, predictions) identical to tabela_readme.py --lang en | verbatim | `docs/scripts/tabela_readme.py --lang en` | tabela_runs_md(total) | verbatim | VERIFICADO |
+| 421 | README.pt-BR.md: results table total (all 35 MAE/MASE cells) identical to tabela_readme.py --lang pt | verbatim | `docs/scripts/tabela_readme.py --lang pt` | tabela_md(total) | verbatim | VERIFICADO |
+| 422 | README.pt-BR.md: runs table total (ids, commits, clean tree, predictions) identical to tabela_readme.py --lang pt | verbatim | `docs/scripts/tabela_readme.py --lang pt` | tabela_runs_md(total) | verbatim | VERIFICADO |
+| 423 | README.md: results table urgencia (all 35 MAE/MASE cells) identical to tabela_readme.py --lang en | verbatim | `docs/scripts/tabela_readme.py --lang en` | tabela_md(urgencia) | verbatim | VERIFICADO |
+| 424 | README.md: urgent run id h=1 present in text | ur_h1_cetesb_cetesb_full_20261116-191534 | `results/runs/ur_h1_cetesb_cetesb_full_20261116-191534/manifest.json` | run_id | ur_h1_cetesb_cetesb_full_20261116-191534 | VERIFICADO |
+| 425 | README.md: urgent run id h=5 present in text | ur_h5_cetesb_cetesb_full_20261116-222823 | `results/runs/ur_h5_cetesb_cetesb_full_20261116-222823/manifest.json` | run_id | ur_h5_cetesb_cetesb_full_20261116-222823 | VERIFICADO |
+| 426 | README.md: urgent run id h=7 present in text | ur_h7_cetesb_cetesb_full_20261117-073926 | `results/runs/ur_h7_cetesb_cetesb_full_20261117-073926/manifest.json` | run_id | ur_h7_cetesb_cetesb_full_20261117-073926 | VERIFICADO |
+| 427 | README.md: urgent run id h=15 present in text | ur_h15_cetesb_cetesb_full_20261117-190532 | `results/runs/ur_h15_cetesb_cetesb_full_20261117-190532/manifest.json` | run_id | ur_h15_cetesb_cetesb_full_20261117-190532 | VERIFICADO |
+| 428 | README.md: urgent run id h=30 present in text | ur_h30_cetesb_cetesb_full_20261117-221426 | `results/runs/ur_h30_cetesb_cetesb_full_20261117-221426/manifest.json` | run_id | ur_h30_cetesb_cetesb_full_20261117-221426 | VERIFICADO |
+| 429 | README.pt-BR.md: results table urgencia (all 35 MAE/MASE cells) identical to tabela_readme.py --lang pt | verbatim | `docs/scripts/tabela_readme.py --lang pt` | tabela_md(urgencia) | verbatim | VERIFICADO |
+| 430 | README.pt-BR.md: urgent run id h=1 present in text | ur_h1_cetesb_cetesb_full_20261116-191534 | `results/runs/ur_h1_cetesb_cetesb_full_20261116-191534/manifest.json` | run_id | ur_h1_cetesb_cetesb_full_20261116-191534 | VERIFICADO |
+| 431 | README.pt-BR.md: urgent run id h=5 present in text | ur_h5_cetesb_cetesb_full_20261116-222823 | `results/runs/ur_h5_cetesb_cetesb_full_20261116-222823/manifest.json` | run_id | ur_h5_cetesb_cetesb_full_20261116-222823 | VERIFICADO |
+| 432 | README.pt-BR.md: urgent run id h=7 present in text | ur_h7_cetesb_cetesb_full_20261117-073926 | `results/runs/ur_h7_cetesb_cetesb_full_20261117-073926/manifest.json` | run_id | ur_h7_cetesb_cetesb_full_20261117-073926 | VERIFICADO |
+| 433 | README.pt-BR.md: urgent run id h=15 present in text | ur_h15_cetesb_cetesb_full_20261117-190532 | `results/runs/ur_h15_cetesb_cetesb_full_20261117-190532/manifest.json` | run_id | ur_h15_cetesb_cetesb_full_20261117-190532 | VERIFICADO |
+| 434 | README.pt-BR.md: urgent run id h=30 present in text | ur_h30_cetesb_cetesb_full_20261117-221426 | `results/runs/ur_h30_cetesb_cetesb_full_20261117-221426/manifest.json` | run_id | ur_h30_cetesb_cetesb_full_20261117-221426 | VERIFICADO |
+| 435 | README.md prose: XGBoost MAE Saturday (total, h=1) | 33.31 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=XGBoost,MAE_sab | 33.30770688843958 | VERIFICADO |
+| 436 | README.md prose: '33.31' present | present | `README.md` | text search | present | VERIFICADO |
+| 437 | README.pt-BR.md prose: XGBoost MAE Saturday (total, h=1) | 33,31 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=XGBoost,MAE_sab (vírgula decimal) | 33,31 | VERIFICADO |
+| 438 | README.pt-BR.md prose: '33,31' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 439 | README.md prose: XGBoost MAE other days (total, h=1) | 16.09 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=XGBoost,MAE_demais | 16.09414465361708 | VERIFICADO |
+| 440 | README.md prose: '16.09' present | present | `README.md` | text search | present | VERIFICADO |
+| 441 | README.pt-BR.md prose: XGBoost MAE other days (total, h=1) | 16,09 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=XGBoost,MAE_demais (vírgula decimal) | 16,09 | VERIFICADO |
+| 442 | README.pt-BR.md prose: '16,09' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 443 | README.md prose: XGBoost Saturday ratio (total) | 2.07 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=XGBoost,razao | 2.069554338257662 | VERIFICADO |
+| 444 | README.md prose: '2.07' present | present | `README.md` | text search | present | VERIFICADO |
+| 445 | README.pt-BR.md prose: XGBoost Saturday ratio (total) | 2,07 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=XGBoost,razao (vírgula decimal) | 2,07 | VERIFICADO |
+| 446 | README.pt-BR.md prose: '2,07' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 447 | README.md prose: XGBoost Saturday ratio (urgent) | 0.90 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=urgencia,modelo=XGBoost,razao | 0.9041791503947828 | VERIFICADO |
+| 448 | README.md prose: '0.90' present | present | `README.md` | text search | present | VERIFICADO |
+| 449 | README.pt-BR.md prose: XGBoost Saturday ratio (urgent) | 0,90 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=urgencia,modelo=XGBoost,razao (vírgula decimal) | 0,90 | VERIFICADO |
+| 450 | README.pt-BR.md prose: '0,90' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 451 | README.md prose: p Holm urgencia h=1 ablacao_sarimax H2_media_sem_meteo | 0.005 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=1,familia=ablacao_sarimax,contraste=H2_media_sem_meteo,p_holm | 0.0049108177199466 | VERIFICADO |
+| 452 | README.md prose: '0.005' present | present | `README.md` | text search | present | VERIFICADO |
+| 453 | README.pt-BR.md prose: p Holm urgencia h=1 ablacao_sarimax H2_media_sem_meteo | 0,005 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=1,familia=ablacao_sarimax,contraste=H2_media_sem_meteo,p_holm (vírgula decimal) | 0,005 | VERIFICADO |
+| 454 | README.pt-BR.md prose: '0,005' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 455 | README.md prose: p Holm urgencia h=1 ablacao_sarimax POLUENTES_sem_meteo | 0.014 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=1,familia=ablacao_sarimax,contraste=POLUENTES_sem_meteo,p_holm | 0.0141556291920838 | VERIFICADO |
+| 456 | README.md prose: '0.014' present | present | `README.md` | text search | present | VERIFICADO |
+| 457 | README.pt-BR.md prose: p Holm urgencia h=1 ablacao_sarimax POLUENTES_sem_meteo | 0,014 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=1,familia=ablacao_sarimax,contraste=POLUENTES_sem_meteo,p_holm (vírgula decimal) | 0,014 | VERIFICADO |
+| 458 | README.pt-BR.md prose: '0,014' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 459 | README.md prose: p Holm urgencia h=15 ablacao_xgboost POLUENTES_com_meteo | 0.001 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=15,familia=ablacao_xgboost,contraste=POLUENTES_com_meteo,p_holm | 0.0009194373719768 | VERIFICADO |
+| 460 | README.md prose: '0.001' present | present | `README.md` | text search | present | VERIFICADO |
+| 461 | README.pt-BR.md prose: p Holm urgencia h=15 ablacao_xgboost POLUENTES_com_meteo | 0,001 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=15,familia=ablacao_xgboost,contraste=POLUENTES_com_meteo,p_holm (vírgula decimal) | 0,001 | VERIFICADO |
+| 462 | README.pt-BR.md prose: '0,001' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 463 | README.md prose: p Holm cetesb h=7 ablacao_lstm H2_media_com_meteo | 0.001 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=cetesb,h=7,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm | 0.0012874477281496 | VERIFICADO |
+| 464 | README.md prose: '0.001' present | present | `README.md` | text search | present | VERIFICADO |
+| 465 | README.pt-BR.md prose: p Holm cetesb h=7 ablacao_lstm H2_media_com_meteo | 0,001 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=cetesb,h=7,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm (vírgula decimal) | 0,001 | VERIFICADO |
+| 466 | README.pt-BR.md prose: '0,001' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 467 | README.md prose: p Holm urgencia h=5 ablacao_lstm H2_media_com_meteo | 0.007 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=5,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm | 0.0067240168712517 | VERIFICADO |
+| 468 | README.md prose: '0.007' present | present | `README.md` | text search | present | VERIFICADO |
+| 469 | README.pt-BR.md prose: p Holm urgencia h=5 ablacao_lstm H2_media_com_meteo | 0,007 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=5,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm (vírgula decimal) | 0,007 | VERIFICADO |
+| 470 | README.pt-BR.md prose: '0,007' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 471 | README.md prose: p Holm urgencia h=7 ablacao_lstm H2_media_com_meteo | 0.026 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=7,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm | 0.0259100754499556 | VERIFICADO |
+| 472 | README.md prose: '0.026' present | present | `README.md` | text search | present | VERIFICADO |
+| 473 | README.pt-BR.md prose: p Holm urgencia h=7 ablacao_lstm H2_media_com_meteo | 0,026 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=7,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm (vírgula decimal) | 0,026 | VERIFICADO |
+| 474 | README.pt-BR.md prose: '0,026' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 475 | README.md prose: ablation contrasts in the 10 runs | 500 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | rows with base in (cetesb, urgencia) | 500 | VERIFICADO |
+| 476 | README.md prose: '500' present | present | `README.md` | text search | present | VERIFICADO |
+| 477 | README.pt-BR.md prose: ablation contrasts in the 10 runs | 500 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | rows with base in (cetesb, urgencia) (milhar com ponto) | 500 | VERIFICADO |
+| 478 | README.pt-BR.md prose: '500' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 479 | README.md prose: significant after Holm | 59 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | p_holm < 0.05 | 59 | VERIFICADO |
+| 480 | README.md prose: '59' present | present | `README.md` | text search | present | VERIFICADO |
+| 481 | README.pt-BR.md prose: significant after Holm | 59 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | p_holm < 0.05 (milhar com ponto) | 59 | VERIFICADO |
+| 482 | README.pt-BR.md prose: '59' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 483 | README.md prose: significant with covariate worse | 53 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | p_holm < 0.05 and DM > 0 | 53 | VERIFICADO |
+| 484 | README.md prose: '53' present | present | `README.md` | text search | present | VERIFICADO |
+| 485 | README.pt-BR.md prose: significant with covariate worse | 53 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | p_holm < 0.05 and DM > 0 (milhar com ponto) | 53 | VERIFICADO |
+| 486 | README.pt-BR.md prose: '53' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 487 | README.md prose: total h=1 significant contrasts | 7 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=cetesb,h=1,p_holm<0.05 | 7 | VERIFICADO |
+| 488 | README.md prose: '7' present | present | `README.md` | text search | present | VERIFICADO |
+| 489 | README.pt-BR.md prose: total h=1 significant contrasts | 7 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=cetesb,h=1,p_holm<0.05 (milhar com ponto) | 7 | VERIFICADO |
+| 490 | README.pt-BR.md prose: '7' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 491 | README.md prose: predictions per run | 95,040 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/manifest.json` | n_predicoes | 95040 | VERIFICADO |
+| 492 | README.md prose: '95,040' present | present | `README.md` | text search | present | VERIFICADO |
+| 493 | README.pt-BR.md prose: predictions per run | 95.040 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/manifest.json` | n_predicoes (milhar com ponto) | 95.040 | VERIFICADO |
+| 494 | README.pt-BR.md prose: '95.040' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 495 | README.md prose: first test date | 2023-01-12 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | teste_inicio (fold 1) | 2023-01-12 | VERIFICADO |
+| 496 | README.md prose: '2023-01-12' present | present | `README.md` | text search | present | VERIFICADO |
+| 497 | README.pt-BR.md prose: first test date | 2023-01-12 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | teste_inicio (fold 1) | 2023-01-12 | VERIFICADO |
+| 498 | README.pt-BR.md prose: '2023-01-12' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 499 | README.md prose: last test date | 2024-12-31 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | teste_fim (fold 4) | 2024-12-31 | VERIFICADO |
+| 500 | README.md prose: '2024-12-31' present | present | `README.md` | text search | present | VERIFICADO |
+| 501 | README.pt-BR.md prose: last test date | 2024-12-31 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | teste_fim (fold 4) | 2024-12-31 | VERIFICADO |
+| 502 | README.pt-BR.md prose: '2024-12-31' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 503 | README.md prose: seeds | 42 to 46 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/manifest.json` | sementes | 42 to 46 | VERIFICADO |
+| 504 | README.md prose: '42 to 46' present | present | `README.md` | text search | present | VERIFICADO |
+| 505 | README.pt-BR.md prose: seeds | 42 a 46 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/manifest.json` | sementes | 42 a 46 | VERIFICADO |
+| 506 | README.pt-BR.md prose: '42 a 46' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 507 | README.md prose: test days per fold | 180 test days | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | n_teste (all rows) | 180 test days | VERIFICADO |
+| 508 | README.md prose: '180 test days' present | present | `README.md` | text search | present | VERIFICADO |
+| 509 | README.pt-BR.md prose: test days per fold | 180 dias de teste | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | n_teste (all rows) | 180 dias de teste | VERIFICADO |
+| 510 | README.pt-BR.md prose: '180 dias de teste' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 511 | README.md prose: pytest wall time | 3m52s | `docs/AUDITORIA.md` | tempo medido pelo auditor (2026-11-23) | 3m52s | VERIFICADO |
+| 512 | README.md prose: '3m52s' present | present | `README.md` | text search | present | VERIFICADO |
+| 513 | README.pt-BR.md prose: pytest wall time | 3m52s | `docs/AUDITORIA.md` | tempo medido pelo auditor (2026-11-23) | 3m52s | VERIFICADO |
+| 514 | README.pt-BR.md prose: '3m52s' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 515 | README.md / README.pt-BR.md: same number of ## sections | 7 | `README.pt-BR.md` | count of '## ' lines | 7 | VERIFICADO |
+| 516 | README.md / README.pt-BR.md: same number of ### sections | 3 | `README.pt-BR.md` | count of '### ' lines | 3 | VERIFICADO |
+| 517 | README.md: every relative path cited exists in the repository | none missing | `README.md` | paths in backticks and links | none missing | VERIFICADO |
+| 518 | README.pt-BR.md: every relative path cited exists in the repository | none missing | `README.pt-BR.md` | paths in backticks and links | none missing | VERIFICADO |
+| 519 | README.md: no 'Resumo em português' section | absent | `README.md` | '## Resumo em português' | absent | VERIFICADO |
+| 520 | README.md: language switch to README.pt-BR.md | present | `README.md` | '(README.pt-BR.md)' | present | VERIFICADO |
+| 521 | README.pt-BR.md: language switch to README.md | present | `README.pt-BR.md` | '(README.md)' | present | VERIFICADO |
+| 522 | README.md: app language link ?lang=pt | present | `README.md` | 'streamlit.app/?lang=pt' | present | VERIFICADO |
+| 523 | README.md: no 'dobra' | absent | `README.md` | 'dobra' | absent | VERIFICADO |
+| 524 | README.pt-BR.md: app language link ?lang=pt | present | `README.pt-BR.md` | 'streamlit.app/?lang=pt' | present | VERIFICADO |
+| 525 | README.pt-BR.md: no 'dobra' | absent | `README.pt-BR.md` | 'dobra' | absent | VERIFICADO |
 
 ## Números narrativos sem arquivo em `results/` (não conferidos aqui, declarados no texto)
 

@@ -7,7 +7,7 @@ Respondidas por Matheus de Medeiros Pereira no chat com o gerente (Claude Code).
 |---|---|---|
 | D1 | Quando publicar | **Publicar antes da defesa**, com rótulo "provisório" em todo resultado. A publicação em si (Fase 4) continua dependendo de autorização explícita, passo a passo. |
 | D2 | Redistribuir dados ambientais processados | **Incluir os CSV diários** (CETESB agregado + CAMS diário) com atribuição: CAMS sob a licença Copernicus; CETESB/QUALAR com termos a confirmar no data card (`data/README.md`). |
-| D3 | Nome e idioma | **`sp-respiratory-admissions-forecast`**; README em inglês com seção em português; código mantém nomes em português. |
+| D3 | Nome e idioma | **`sp-respiratory-admissions-forecast`**; README em inglês com seção em português; código mantém nomes em português. **Revisada em 2026-11-23 (pedido do autor):** duas versões integrais do README, `README.md` (inglês, padrão do GitHub) e `README.pt-BR.md` (português), com link de troca no topo; a seção-resumo deixa de existir. O app Streamlit tem seletor de idioma PT/EN (inglês padrão; `?lang=pt`). Os demais documentos (`docs/`, data card, model card) continuam em inglês. |
 | D4 | Licença | **MIT** para o código; dados com a licença da fonte. |
 | D5 | Commits locais | **Autorizados**, um por pacote aprovado (`feat(<wp>): ...`). Push continua bloqueado. |
 | D6 | Hospedagem do app | **Streamlit Community Cloud** (depois de D1). |
