@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import platform
 import subprocess
 import sys
@@ -323,7 +324,7 @@ def _colunas_para(ds, nome_modelo: str, blocos, mcfg: dict) -> list[str]:
 
 # ----------------------------------------------------------------------- runner
 def executar(caminho_config: Path, modo: str, data_mode: str = "cache",
-             downloads: Path | None = None) -> Path:
+             downloads: Path | None = None, mlflow_opcoes: dict | None = None) -> Path:
     cfg = yaml.safe_load(caminho_config.read_text(encoding="utf-8"))
     if modo not in ("smoke", "screening", "full"):
         raise ValueError(f"modo desconhecido: {modo!r}")
@@ -425,6 +426,16 @@ def executar(caminho_config: Path, modo: str, data_mode: str = "cache",
     saida = RAIZ / "reports" / "experiments" / run_id
     (saida / "figures").mkdir(parents=True, exist_ok=True)
     print(f"RUN_ID: {run_id}\nsaída : {saida}\n", flush=True)
+
+    # --mlflow: só registra (tracking/registro_mlflow.py); sem a opção, nada é importado
+    reg = None
+    if mlflow_opcoes:
+        from tracking import registro_mlflow
+        reg = registro_mlflow.iniciar(
+            mlflow_opcoes, run_id=run_id, modo=modo, cfg=cfg, caminho_config=caminho_config,
+            proveniencia=proveniencia, split=split_cfg, modelos=modelos_cfg, feature_sets=sets_cfg,
+            sementes=sementes, ativos=ativos,
+        )
 
     # ------------------------------------------------------------------ ingestão
     #
@@ -608,6 +619,8 @@ def executar(caminho_config: Path, modo: str, data_mode: str = "cache",
                         {"model": nome_modelo, "feature_set": rotulo, "seed": sd,
                          "fold": fold.id, "n_teste": len(fold.teste)}
                     )
+                    if reg is not None:
+                        reg.registrar_modelo(modelo, nome_modelo, rotulo, fold, sd, ds, cols, lookback)
                 print(
                     f"  ok {nome_modelo:15s} {rotulo:24s} fold{fold.id} "
                     f"({len(sementes_aqui)} semente(s))",
@@ -817,6 +830,9 @@ def executar(caminho_config: Path, modo: str, data_mode: str = "cache",
     _summary(saida, run_id, modo, status, cfg, ds, folds, agg, fold_df,
              laudo=laudo, ablacao=ablacao, diagnostico=diagnostico,
              sementes=sementes, maiores_erros=maiores_erros)
+    if reg is not None:
+        reg.finalizar(status=status, manifesto=manifesto, por_fold=por_fold,
+                      agregado=agg.to_dict(orient="records"), saida=saida)
 
     print("\n" + "=" * 78)
     print(f"STATUS: {status}")
@@ -1212,14 +1228,37 @@ def main() -> None:
         help="pasta dos CSV do QUALAR, usada só com --data-mode rebuild "
              "(padrão: ~/Downloads)",
     )
+    ap.add_argument("--mlflow", action="store_true",
+                    help="registra a execução no MLflow (run mãe, filhas por modelo/conjunto e um "
+                         "modelo salvo por fold e semente); só registra, não muda a saída")
+    ap.add_argument("--mlflow-uri", default=None,
+                    help="tracking URI do MLflow, p.ex. sqlite:///mlruns/mlflow.db "
+                         "(padrão: variável MLFLOW_TRACKING_URI)")
+    ap.add_argument("--mlflow-experimento", default=None,
+                    help="nome do experimento MLflow (padrão: run.nome do config)")
     args = ap.parse_args()
     modo = "smoke" if args.smoke else ("screening" if args.screening else "full")
-    executar(
-        args.config,
-        modo,
-        data_mode=args.data_mode,
-        downloads=args.downloads,
-    )
+    mlflow_opcoes = None
+    if args.mlflow:
+        uri = args.mlflow_uri or os.environ.get("MLFLOW_TRACKING_URI")
+        if not uri:
+            ap.error("--mlflow exige --mlflow-uri ou a variável de ambiente MLFLOW_TRACKING_URI")
+        mlflow_opcoes = {"uri": uri, "experimento": args.mlflow_experimento}
+    elif args.mlflow_uri or args.mlflow_experimento:
+        ap.error("--mlflow-uri e --mlflow-experimento só valem com --mlflow")
+    try:
+        executar(
+            args.config,
+            modo,
+            data_mode=args.data_mode,
+            downloads=args.downloads,
+            mlflow_opcoes=mlflow_opcoes,
+        )
+    except BaseException:
+        if mlflow_opcoes:
+            from tracking import registro_mlflow
+            registro_mlflow.abortar_ativo()
+        raise
 
 
 if __name__ == "__main__":

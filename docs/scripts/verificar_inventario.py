@@ -26,6 +26,7 @@ EDITADOS_DEPOIS = {
     "src/ingestion/cetesb_build_poluentes.py": "manager: user-name path removed from the usage example in the docstring",
     "src/ingestion/cetesb_build_meteo.py": "manager: user-name path removed from the usage example in the docstring",
     "src/ingestion/cetesb_build_daily.py": "manager: user-name path removed from the usage example in the docstring",
+    "src/experiments/run_preliminary.py": "phase B (D9): opt-in --mlflow flag; output byte-identical without it",
 }
 
 
