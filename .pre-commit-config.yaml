@@ -11,8 +11,7 @@
 # com bytes preservados (sha256 nos manifests e no models_demo/metadata.json), configs das runs
 # (config_sha256 no manifest), código e lock copiados da dissertação (docs/INVENTARIO_FASE0.tsv) e
 # arquivos gerados por script (notebook do painel, model card, lista de conferência).
-x-intocaveis: &intocaveis ^(data/|results/|notebooks/|configs/|src/|docs/requirements-executado-|docs/CONFERENCIA_NUMEROS_WP5\.md|models_demo/(MODEL_CARD\.md|metadata\.json))
-
+# O mesmo padrão está repetido nos três hooks abaixo.
 default_language_version:
   python: python3.11
 
@@ -22,12 +21,12 @@ repos:
     hooks:
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
-        exclude: *intocaveis
+        exclude: ^(data/|results/|notebooks/|configs/|src/|docs/requirements-executado-|docs/CONFERENCIA_NUMEROS_WP5\.md|models_demo/(MODEL_CARD\.md|metadata\.json))
       - id: end-of-file-fixer
-        exclude: *intocaveis
+        exclude: ^(data/|results/|notebooks/|configs/|src/|docs/requirements-executado-|docs/CONFERENCIA_NUMEROS_WP5\.md|models_demo/(MODEL_CARD\.md|metadata\.json))
       - id: mixed-line-ending
         args: [--fix=lf]
-        exclude: *intocaveis
+        exclude: ^(data/|results/|notebooks/|configs/|src/|docs/requirements-executado-|docs/CONFERENCIA_NUMEROS_WP5\.md|models_demo/(MODEL_CARD\.md|metadata\.json))
       - id: check-added-large-files
         args: [--maxkb=2500]       # maior arquivo versionado hoje: ~2,2 MB (notebooks/dados_painel)
       - id: check-yaml
