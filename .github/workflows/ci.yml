@@ -1,4 +1,5 @@
-# CI — ruff (pacotes novos), pytest e smoke, com cache do uv.
+# CI — ruff (pacotes novos), pytest, smoke e Docker (build real das imagens,
+# pytest + smoke no contêiner, compose e /health), com cache do uv e do Buildx.
 # Python 3.11 fixo (pyproject: requires-python ">=3.11,<3.12"; lock ==3.11.*).
 name: CI
 
@@ -42,7 +43,7 @@ jobs:
         # Diretórios ainda inexistentes são ignorados.
         run: |
           paths=""
-          for d in app api tracking models_demo; do
+          for d in app api tracking models_demo deploy; do
             if [ -d "$d" ]; then paths="$paths $d"; fi
           done
           if [ -z "$paths" ]; then
@@ -54,6 +55,26 @@ jobs:
       - name: ruff no código herdado (informativo)
         continue-on-error: true
         run: uv run ruff check src tests --statistics --output-format github
+      - name: devcontainer.json válido e coerente com o repositório
+        # Sintaxe JSON e referências: imagem Python 3.11, `uv sync --frozen --all-extras`
+        # (o mesmo comando que o job `test` executa), app/Home.py e os openFiles existem,
+        # portas 8501/8000/5000 rotuladas.
+        run: |
+          uv run python - <<'EOF'
+          import json, pathlib
+          d = json.load(open(".devcontainer/devcontainer.json", encoding="utf-8"))
+          assert d["image"].startswith("mcr.microsoft.com/devcontainers/python:1-3.11"), d["image"]
+          assert "uv sync --frozen --all-extras" in d["postCreateCommand"], d["postCreateCommand"]
+          cmd = d["postAttachCommand"]["app"]
+          assert cmd.startswith("uv run streamlit run app/Home.py"), cmd
+          assert pathlib.Path("app/Home.py").is_file()
+          for f in d["customizations"]["codespaces"]["openFiles"]:
+              assert pathlib.Path(f).is_file(), f
+          assert set(d["forwardPorts"]) == {8501, 8000, 5000}, d["forwardPorts"]
+          assert set(d["portsAttributes"]) == {"8501", "8000", "5000"}, list(d["portsAttributes"])
+          assert "charliermarsh.ruff" in d["customizations"]["vscode"]["extensions"]
+          print("devcontainer.json OK")
+          EOF
 
   test:
     name: pytest
@@ -94,3 +115,138 @@ jobs:
           path: reports/
           if-no-files-found: warn
           retention-days: 7
+
+  # Ambiente enxuto da API (api/requirements.txt), sem Docker: venv limpo só com
+  # esse arquivo + pytest/httpx; tests/test_api_forecast.py precisa passar e
+  # tensorflow não pode estar instalado. Versões conferidas contra o uv.lock.
+  api-slim:
+    name: api (requirements enxuto)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: api/requirements.txt
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: venv limpo com api/requirements.txt
+        run: |
+          uv venv .venv-api
+          uv pip install --python .venv-api/bin/python -r api/requirements.txt
+          uv pip install --python .venv-api/bin/python pytest==9.1.1 httpx==0.28.1
+      - name: versões iguais às do uv.lock
+        # Resolve api/requirements.txt para Linux x86_64 (o que a imagem instala) e
+        # exige que cada pacote tenha exatamente a versão do uv.lock
+        # (xgboost-cpu é comparado com xgboost: mesma versão, variante CPU).
+        run: |
+          uv pip compile api/requirements.txt --python-version 3.11 \
+            --python-platform x86_64-manylinux_2_28 --no-header --no-annotate -q -o /tmp/req_linux.txt
+          .venv-api/bin/python - <<'EOF'
+          import re, sys, tomllib
+          lock = {p["name"].lower(): p["version"] for p in tomllib.load(open("uv.lock", "rb"))["package"]}
+          ruins, n = [], 0
+          for linha in open("/tmp/req_linux.txt"):
+              m = re.match(r"([A-Za-z0-9_.\-]+)==(\S+)", linha.strip())
+              if not m:
+                  continue
+              n += 1
+              nome, ver = m.group(1).lower().replace("_", "-"), m.group(2)
+              esperado = lock.get("xgboost" if nome == "xgboost-cpu" else nome)
+              if esperado is None or esperado != ver:
+                  ruins.append(f"{nome}=={ver} (lock: {esperado})")
+          if ruins:
+              sys.exit("versões fora do uv.lock: " + ", ".join(ruins))
+          print(f"{n} pacotes do ambiente enxuto, todos na versão do uv.lock")
+          EOF
+      - name: tensorflow ausente
+        run: |
+          if .venv-api/bin/python -c "import tensorflow" 2>/dev/null; then
+            echo "::error::tensorflow instalado no ambiente enxuto"; exit 1
+          fi
+          echo "sem tensorflow"
+      - name: testes da API no venv enxuto
+        run: .venv-api/bin/python -m pytest tests/test_api_forecast.py -q
+
+  docker:
+    name: docker
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      IMG: sp-respiratory-admissions-forecast
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Build imagem principal (Dockerfile, alvo runtime)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          target: runtime
+          load: true
+          push: false
+          tags: ${{ env.IMG }}:local
+          cache-from: type=gha,scope=runtime
+          cache-to: type=gha,mode=max,scope=runtime
+      - name: Build imagem test (alvo test)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          target: test
+          load: true
+          push: false
+          tags: ${{ env.IMG }}:test
+          cache-from: |
+            type=gha,scope=runtime
+            type=gha,scope=test
+          cache-to: type=gha,mode=max,scope=test
+      - name: Build imagem enxuta da API (api/Dockerfile)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: api/Dockerfile
+          load: true
+          push: false
+          tags: ${{ env.IMG }}:api
+          cache-from: type=gha,scope=api
+          cache-to: type=gha,mode=max,scope=api
+      - name: Tamanho das imagens
+        run: docker image ls --format 'table {{.Repository}}\t{{.Tag}}\t{{.Size}}' ${{ env.IMG }}
+
+      - name: pytest + smoke dentro do contêiner (imagem test)
+        run: docker run --rm ${{ env.IMG }}:test
+
+      - name: docker compose config
+        run: docker compose config --quiet
+
+      - name: docker compose up api e esperar /health
+        run: |
+          docker compose up -d --no-build api
+          for i in $(seq 1 30); do
+            if curl -fsS http://localhost:8000/health; then echo; echo "api: /health 200"; exit 0; fi
+            sleep 2
+          done
+          echo "::error::api (compose) não respondeu 200 em /health em 60 s"; exit 1
+      - name: Logs do serviço api (só se falhou)
+        if: failure()
+        run: docker compose logs api
+      - name: docker compose down
+        if: always()
+        run: docker compose down --volumes --remove-orphans
+
+      - name: Imagem enxuta - /health na porta 7860
+        run: |
+          docker run -d --name api-slim -p 7860:7860 ${{ env.IMG }}:api
+          for i in $(seq 1 30); do
+            if curl -fsS http://localhost:7860/health; then echo; echo "api enxuta: /health 200"; exit 0; fi
+            sleep 2
+          done
+          echo "::error::imagem enxuta não respondeu 200 em /health em 60 s"
+          docker logs api-slim
+          exit 1
+      - name: Imagem enxuta - uid 1000 e sem tensorflow
+        run: |
+          docker run --rm ${{ env.IMG }}:api sh -c 'test "$(id -u)" = 1000 && ! python -c "import tensorflow" 2>/dev/null && echo "uid 1000, sem tensorflow"'
+      - name: Parar imagem enxuta
+        if: always()
+        run: docker rm -f api-slim 2>/dev/null || true

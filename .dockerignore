@@ -1,3 +1,6 @@
+# Vale para os dois builds com contexto na raiz: `Dockerfile` (imagem principal)
+# e `api/Dockerfile` (imagem enxuta; este só copia caminhos explícitos).
+
 # Nunca entram na imagem: credenciais e material local
 .env
 .env.*
@@ -14,6 +17,7 @@
 .gitattributes
 .github
 .pre-commit-config.yaml
+.devcontainer
 .venv
 **/__pycache__
 **/*.pyc
@@ -41,7 +45,10 @@ data/processed/*microdados*
 handoff*
 *.zip
 
-# Arquivos de empacotamento (não são usados dentro da imagem)
+# Arquivos de empacotamento e deploy (não são usados dentro das imagens;
+# api/requirements.txt FICA no contexto porque api/Dockerfile o copia)
 Dockerfile
+api/Dockerfile
 docker-compose.yml
 Makefile
+deploy

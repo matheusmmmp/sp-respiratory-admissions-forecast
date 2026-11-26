@@ -1,0 +1,48 @@
+# api/requirements.txt — ambiente ENXUTO da API de demonstração (api/Dockerfile,
+# Space Docker do Hugging Face). Contém só o que api/main.py, models_demo/comum.py,
+# src/features/forecasting_features.py e src/models/{base,xgboost_model}.py
+# importam de fato, mais as dependências transitivas, todas fixadas na versão do
+# uv.lock. O ambiente completo (TensorFlow, statsmodels, MLflow, Streamlit...)
+# continua no pyproject.toml/uv.lock e na imagem principal (Dockerfile da raiz).
+#
+# Conferência (2026-11-26): `uv pip compile api/requirements.txt --python-version 3.11
+# --python-platform x86_64-manylinux_2_28` e `... x86_64-pc-windows-msvc` resolvem
+# exatamente este conjunto, com 0 versões diferentes do uv.lock; tests/test_api_forecast.py
+# passa num venv limpo com só este arquivo + pytest/httpx (job `docker` do CI e localmente).
+# Ao atualizar o uv.lock, atualize aqui e rode de novo a conferência.
+
+# ---------------------------------------------------------------- diretas
+fastapi==0.165.0          # api/main.py: FastAPI, HTTPException, Query, Request
+uvicorn==0.54.0           # servidor ASGI (CMD do api/Dockerfile)
+pydantic==2.14.4          # api/main.py: BaseModel, Field
+pandas==3.0.0             # api/main.py, comum.py, forecasting_features.py (DataFrames, read_csv)
+numpy==2.4.1              # comum.py, forecasting_features.py, base.py, xgboost_model.py
+pyarrow==23.0.0           # motor do pd.read_parquet (data/processed/sih_daily_lookahead.parquet)
+pyyaml==6.0.3             # comum.py: yaml.safe_load dos configs dos três horizontes
+# xgboost (api/main.py, comum.py: XGBRegressor). No Linux, o wheel `xgboost` traz
+# CUDA e puxa nvidia-nccl-cu12 (~336 MB), inúteis na API: `xgboost-cpu` é a variante
+# CPU oficial do mesmo projeto, mesma versão e mesmo módulo `xgboost`. Fora do Linux
+# (venv de conferência no Windows) usa-se o `xgboost` normal, também 3.2.0.
+xgboost-cpu==3.2.0; sys_platform == "linux"
+xgboost==3.2.0; sys_platform != "linux"
+# Ninguém faz `import sklearn`, mas xgboost.XGBRegressor (wrapper scikit-learn usado em
+# api/main.py e comum.py) levanta ImportError no construtor sem ele — achado no venv limpo.
+scikit-learn==1.8.0
+
+# ---------------------------------------------------------------- transitivas
+scipy==1.17.0             # via xgboost, scikit-learn
+joblib==1.5.3             # via scikit-learn (versão do uv.lock; o resolvedor sozinho escolheria 1.6.0)
+threadpoolctl==3.8.0      # via scikit-learn
+starlette==1.10.0         # via fastapi
+annotated-doc==0.0.7      # via fastapi
+opentelemetry-api==1.45.2 # via fastapi
+pydantic-core==2.50.5     # via pydantic
+annotated-types==0.8.0    # via pydantic
+typing-inspection==0.4.5  # via pydantic, fastapi
+typing-extensions==4.16.0 # via pydantic, fastapi, starlette, anyio
+anyio==4.16.0             # via fastapi, starlette
+idna==3.20                # via anyio
+click==8.5.1              # via uvicorn
+h11==0.16.0               # via uvicorn
+python-dateutil==4.0.0    # via pandas
+tzdata==2026.6            # via pandas
