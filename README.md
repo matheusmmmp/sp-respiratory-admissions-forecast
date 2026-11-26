@@ -2,6 +2,8 @@
 
 🇧🇷 [Versão em português](README.pt-BR.md) · 🇬🇧 English (this file)
 
+[![CI](https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/actions/workflows/ci.yml) [![Streamlit app](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://sp-respiratory-admissions-forecast.streamlit.app) ![Python 3.11](https://img.shields.io/badge/python-3.11-blue) [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 **Seven forecasting models, one temporal protocol: daily respiratory hospital admissions in São Paulo city, 1 to 30 days ahead, with every number traceable to an identified run.**
 
 Portfolio repository derived from the master's dissertation of Matheus de Medeiros Pereira (PPGCC/UFSC; advisor Renato Fileto, co-advisor Simone S. Werner). It forecasts the daily count of hospital admissions with a respiratory principal diagnosis (ICD-10 J00 to J99) among residents of the municipality of São Paulo, 2019 to 2024, using Naïve, Seasonal Naïve (m = 7), XGBoost, LSTM, SARIMAX, GAM-NB and INGARCH-NB under the same rolling-origin validation, and asks whether air-quality covariates (PM2.5 first of all) add forecasting value.

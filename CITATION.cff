@@ -5,6 +5,8 @@ title: "sp-respiratory-admissions-forecast: daily forecasting of respiratory hos
 version: 0.1.0
 date-released: "2026-11-23"
 license: MIT
+repository-code: "https://github.com/matheusmmmp/sp-respiratory-admissions-forecast"
+url: "https://sp-respiratory-admissions-forecast.streamlit.app"
 authors:
   - family-names: "Pereira"
     given-names: "Matheus de Medeiros"

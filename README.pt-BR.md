@@ -2,6 +2,8 @@
 
 🇬🇧 [English version](README.md) · 🇧🇷 Português (este arquivo)
 
+[![CI](https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/actions/workflows/ci.yml) [![Streamlit app](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://sp-respiratory-admissions-forecast.streamlit.app) ![Python 3.11](https://img.shields.io/badge/python-3.11-blue) [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 **Sete modelos de previsão, um protocolo temporal: internações hospitalares respiratórias diárias no município de São Paulo, de 1 a 30 dias à frente, com todo número rastreável a uma run identificada.**
 
 Repositório de portfólio derivado da dissertação de mestrado de Matheus de Medeiros Pereira (PPGCC/UFSC; orientador Renato Fileto, coorientadora Simone S. Werner). Prevê a contagem diária de internações hospitalares com diagnóstico principal respiratório (CID-10 J00 a J99) de residentes do município de São Paulo, 2019 a 2024, com Naïve, Seasonal Naïve (m = 7), XGBoost, LSTM, SARIMAX, GAM-NB e INGARCH-NB sob a mesma validação rolling-origin, e pergunta se covariáveis de qualidade do ar (PM2,5 antes de tudo) acrescentam valor preditivo.
