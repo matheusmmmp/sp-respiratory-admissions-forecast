@@ -48,7 +48,8 @@ handoff*
 # Arquivos de empacotamento e deploy (não são usados dentro das imagens;
 # api/requirements.txt FICA no contexto porque api/Dockerfile o copia)
 Dockerfile
-api/Dockerfile
 docker-compose.yml
 Makefile
-deploy
+
+# api/Dockerfile e deploy/ ficam na imagem: tests/test_deploy_montar_space.py roda dentro
+# do contêiner (imagem test) e lê os dois.
