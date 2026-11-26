@@ -1,0 +1,31 @@
+{
+  "figura": "fig_mae_por_fold_h1_urgencia_pt",
+  "descricao": "MAE por fold em h = 1, AR_CAL, alvo de urgência (180 dias de teste por fold; média das 5 sementes para XGBoost e LSTM). O líder em MAE em h = 1, SARIMAX, vai de 12,37 (fold 2) a 15,38 (fold 4). Run ur_h1_cetesb_cetesb_full_20261116-191534.",
+  "artefatos_de_origem": [
+    {
+      "caminho": "results/runs/ur_h1_cetesb_cetesb_full_20261116-191534/metrics_by_fold.csv",
+      "sha256": "219a5c20463d2cb4073d1dce19029cfb20d444a428c80c1fafe3230c7373da9a"
+    },
+    {
+      "caminho": "results/runs/ur_h1_cetesb_cetesb_full_20261116-191534/folds.csv",
+      "sha256": "bf47447a0bff0db7cbd4cef64907e62aafe250f53717fd40767554904dc4ba49"
+    },
+    {
+      "caminho": "results/runs/ur_h1_cetesb_cetesb_full_20261116-191534/model_comparison.csv",
+      "sha256": "bf65ae9da1dcdcf4d677039996415635cd883659ad155e2b6cf599f635fe66c3"
+    }
+  ],
+  "runs": [
+    "ur_h1_cetesb_cetesb_full_20261116-191534"
+  ],
+  "conjunto_de_features": "AR_CAL",
+  "status": "Provisional (pre-defence)",
+  "script": "docs/scripts/build_site.py",
+  "gerado_em": "2026-11-26T13:07:54",
+  "ambiente": {
+    "python": "3.11.0",
+    "pandas": "3.0.0",
+    "numpy": "2.4.1",
+    "matplotlib": "3.10.8"
+  }
+}

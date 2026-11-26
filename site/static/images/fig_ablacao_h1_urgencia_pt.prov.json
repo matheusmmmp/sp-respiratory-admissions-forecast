@@ -1,0 +1,31 @@
+{
+  "figura": "fig_ablacao_h1_urgencia_pt",
+  "descricao": "Ablação em h = 1, alvo de urgência: MAE de cada modelo treinado em cada conjunto de features (blocos AR, CAL, METEO, PM25, POLUENTES; PM25MEDIA = só a média de PM2,5). Melhor conjunto por modelo: XGBoost AR_CAL_METEO_PM25 14,57; SARIMAX AR_CAL_METEO_PM25MEDIA 13,85; LSTM AR_CAL_PM25MEDIA 14,63; INGARCH-NB AR_CAL_POLUENTES 14,55; GAM-NB AR_CAL_POLUENTES 16,41. A significância de cada diferença é decidida pelos testes pareados em results/testes_dm/, não por esta figura. Run ur_h1_cetesb_cetesb_full_20261116-191534.",
+  "artefatos_de_origem": [
+    {
+      "caminho": "results/runs/ur_h1_cetesb_cetesb_full_20261116-191534/model_comparison.csv",
+      "sha256": "bf65ae9da1dcdcf4d677039996415635cd883659ad155e2b6cf599f635fe66c3"
+    },
+    {
+      "caminho": "results/runs/ur_h1_cetesb_cetesb_full_20261116-191534/config.json",
+      "sha256": "a30fe8f9cf1bf190c1dc6732d8b4878e22d5ac622265da717c76a9f4309c0003"
+    },
+    {
+      "caminho": "results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/A_modelos_por_h.csv",
+      "sha256": "1fd44be25bd1dd93229dfdd37349f5f6746d14cdfdc31c7bfde543486bfe44c7"
+    }
+  ],
+  "runs": [
+    "ur_h1_cetesb_cetesb_full_20261116-191534"
+  ],
+  "conjunto_de_features": "all (ablation)",
+  "status": "Provisional (pre-defence)",
+  "script": "docs/scripts/build_site.py",
+  "gerado_em": "2026-11-26T13:07:54",
+  "ambiente": {
+    "python": "3.11.0",
+    "pandas": "3.0.0",
+    "numpy": "2.4.1",
+    "matplotlib": "3.10.8"
+  }
+}

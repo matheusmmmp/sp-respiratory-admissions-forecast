@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1099 470" width="1099" height="470" role="img" aria-labelledby="pipeline-title">
+<title id="pipeline-title">Pipeline, drawn from the Mermaid block of the README (README.md, section Pipeline).</title>
+<defs><marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#52514e"/></marker></defs>
+<style>text{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12px;fill:#0b0b0b}.t{font-weight:600}.e{fill:none;stroke:#52514e;stroke-width:1.4}.src{fill:#f3f2ee;stroke:#898781}.alt{fill:#f3f2ee;stroke:#898781;stroke-dasharray:5 3}.data{fill:#e8f1fc;stroke:#2a78d6}.gate{fill:#fdecec;stroke:#e34948}.proc{fill:#fcfcfb;stroke:#52514e}.model{fill:#e8f1fc;stroke:#184f95;stroke-width:2}.out{fill:#e6f6ef;stroke:#1baf7a}.layer{fill:#fcfcfb;stroke:#898781}</style>
+<path class="e" d="M209.6,42.0 C236.6,42.0 236.6,75.0 263.6,75.0" marker-end="url(#seta)"/>
+<path class="e" d="M209.6,108.0 C236.6,108.0 236.6,157.0 263.6,157.0" marker-end="url(#seta)"/>
+<path class="e" d="M209.6,174.0 C236.6,174.0 236.6,157.0 263.6,157.0" marker-end="url(#seta)"/>
+<path class="e" d="M548.9,75.0 C575.9,75.0 575.9,108.0 602.9,108.0" marker-end="url(#seta)"/>
+<path class="e" d="M548.9,157.0 C575.9,157.0 575.9,108.0 602.9,108.0" marker-end="url(#seta)"/>
+<path class="e" d="M784.7,108.0 C811.7,108.0 811.7,108.0 838.7,108.0" marker-end="url(#seta)"/>
+<path class="e" d="M961.7,142.0 L961.7,235.0 L157.7,235.0 L157.7,326.0" marker-end="url(#seta)"/>
+<path class="e" d="M299.3,362.0 C326.3,362.0 326.3,362.0 353.3,362.0" marker-end="url(#seta)"/>
+<path class="e" d="M611.0,362.0 C638.0,362.0 638.0,362.0 665.0,362.0" marker-end="url(#seta)"/>
+<path class="e" d="M867.5,362.0 C894.5,362.0 894.5,296.0 921.5,296.0" marker-end="url(#seta)"/>
+<path class="e" d="M867.5,362.0 C894.5,362.0 894.5,362.0 921.5,362.0" marker-end="url(#seta)"/>
+<path class="e" d="M867.5,362.0 C894.5,362.0 894.5,428.0 921.5,428.0" marker-end="url(#seta)"/>
+<rect class="src" x="16.0" y="16.0" width="193.6" height="52.0" rx="6"/>
+<text x="112.8" y="38.0" text-anchor="middle" class="t">SIH/SUS AIH-RD microdata</text>
+<text x="112.8" y="54.0" text-anchor="middle">(DATASUS FTP)</text>
+<rect class="src" x="16.0" y="82.0" width="193.6" height="52.0" rx="6"/>
+<text x="112.8" y="104.0" text-anchor="middle" class="t">CETESB / QUALAR</text>
+<text x="112.8" y="120.0" text-anchor="middle">hourly station exports</text>
+<rect class="alt" x="16.0" y="148.0" width="193.6" height="52.0" rx="6"/>
+<text x="112.8" y="170.0" text-anchor="middle" class="t">CAMS EAC4</text>
+<text x="112.8" y="186.0" text-anchor="middle">(alternative source)</text>
+<rect class="data" x="265.6" y="33.0" width="283.3" height="84.0" rx="6"/>
+<text x="407.2" y="55.0" text-anchor="middle" class="t">Daily target</text>
+<text x="407.2" y="71.0" text-anchor="middle">distinct N_AIH, J00-J99,</text>
+<text x="407.2" y="87.0" text-anchor="middle">MUNIC_RES 355030, DT_INTER</text>
+<text x="407.2" y="103.0" text-anchor="middle">6-month look-ahead</text>
+<rect class="data" x="265.6" y="131.0" width="283.3" height="52.0" rx="6"/>
+<text x="407.2" y="153.0" text-anchor="middle" class="t">Daily environmental series</text>
+<text x="407.2" y="169.0" text-anchor="middle">PM2.5, PM10, NO2, O3, CO, meteorology</text>
+<rect class="gate" x="604.9" y="74.0" width="179.8" height="68.0" rx="6"/>
+<text x="694.8" y="96.0" text-anchor="middle" class="t">Quality gate</text>
+<text x="694.8" y="112.0" text-anchor="middle">src/data/validation.py</text>
+<text x="694.8" y="128.0" text-anchor="middle">FAIL aborts the run</text>
+<rect class="proc" x="840.7" y="74.0" width="241.9" height="68.0" rx="6"/>
+<text x="961.7" y="96.0" text-anchor="middle" class="t">Features by block</text>
+<text x="961.7" y="112.0" text-anchor="middle">AR, CAL, METEO, PM25, POLUENTES</text>
+<text x="961.7" y="128.0" text-anchor="middle">lag L &gt;= h enforced</text>
+<rect class="model" x="16.0" y="328.0" width="283.3" height="68.0" rx="6"/>
+<text x="157.7" y="350.0" text-anchor="middle" class="t">7 models</text>
+<text x="157.7" y="366.0" text-anchor="middle">Naive, Seasonal Naive, XGBoost, LSTM,</text>
+<text x="157.7" y="382.0" text-anchor="middle">SARIMAX, GAM-NB, INGARCH-NB</text>
+<rect class="proc" x="355.3" y="320.0" width="255.7" height="84.0" rx="6"/>
+<text x="483.2" y="342.0" text-anchor="middle" class="t">Evaluation</text>
+<text x="483.2" y="358.0" text-anchor="middle">4 rolling-origin folds x 180 days</text>
+<text x="483.2" y="374.0" text-anchor="middle">5 seeds, MAE / MASE / skill</text>
+<text x="483.2" y="390.0" text-anchor="middle">Diebold-Mariano + Holm</text>
+<rect class="out" x="667.0" y="336.0" width="200.5" height="52.0" rx="6"/>
+<text x="767.2" y="358.0" text-anchor="middle" class="t">results/runs/RUN_ID/</text>
+<text x="767.2" y="374.0" text-anchor="middle">config, manifest, metrics</text>
+<rect class="layer" x="923.5" y="270.0" width="117.7" height="52.0" rx="6"/>
+<text x="982.4" y="292.0" text-anchor="middle" class="t">MLflow</text>
+<text x="982.4" y="308.0" text-anchor="middle">tracking/</text>
+<rect class="layer" x="923.5" y="336.0" width="117.7" height="52.0" rx="6"/>
+<text x="982.4" y="358.0" text-anchor="middle" class="t">Streamlit app</text>
+<text x="982.4" y="374.0" text-anchor="middle">app/</text>
+<rect class="layer" x="923.5" y="402.0" width="117.7" height="52.0" rx="6"/>
+<text x="982.4" y="424.0" text-anchor="middle" class="t">FastAPI</text>
+<text x="982.4" y="440.0" text-anchor="middle">api/</text>
+</svg>

@@ -1,0 +1,31 @@
+{
+  "figura": "fig_mae_por_fold_h1_total_en",
+  "descricao": "MAE per fold at h = 1, AR_CAL, total target (180 test days per fold; mean over 5 seeds for XGBoost and LSTM). The MAE leader at h = 1, XGBoost, goes from 16.36 (fold 2) to 21.81 (fold 1). Run h1_v02_cetesb_cetesb_classicos_full_20261022-211834.",
+  "artefatos_de_origem": [
+    {
+      "caminho": "results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/metrics_by_fold.csv",
+      "sha256": "e4202e5d80cf25b388181744102738da9ec77a09f64c714cdcdc10e435f090ce"
+    },
+    {
+      "caminho": "results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv",
+      "sha256": "bf47447a0bff0db7cbd4cef64907e62aafe250f53717fd40767554904dc4ba49"
+    },
+    {
+      "caminho": "results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/model_comparison.csv",
+      "sha256": "ad3eaf8cdcae7d8660b754d45e488c14932a291147ddca1a4f9584e1235e00a7"
+    }
+  ],
+  "runs": [
+    "h1_v02_cetesb_cetesb_classicos_full_20261022-211834"
+  ],
+  "conjunto_de_features": "AR_CAL",
+  "status": "Provisional (pre-defence)",
+  "script": "docs/scripts/build_site.py",
+  "gerado_em": "2026-11-26T13:07:54",
+  "ambiente": {
+    "python": "3.11.0",
+    "pandas": "3.0.0",
+    "numpy": "2.4.1",
+    "matplotlib": "3.10.8"
+  }
+}

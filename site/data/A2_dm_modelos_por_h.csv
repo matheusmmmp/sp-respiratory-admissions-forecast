@@ -1,0 +1,11 @@
+base,h,run,lider,n_pares,n_sig_holm,n_sig_entre_modelos,sig_entre_modelos,vs_sarimax,vs_lstm,vs_ingarch_nb,vs_gam_nb,vs_xgboost
+cetesb,1,h1_v02_cetesb_cetesb_classicos_full_20261022-211834,xgboost,21,14,4,xgboost − gam_nb; sarimax − gam_nb; lstm − gam_nb; ingarch_nb − gam_nb,-0.37 f2/4 pHolm=1.000,-0.45 f2/4 pHolm=0.795,-0.99 f2/4 pHolm=0.107,-3.35 f4/4 pHolm=0.000,
+cetesb,5,mh_h5_cetesb_cetesb_full_20261110-211453,xgboost,21,15,4,xgboost − gam_nb; sarimax − gam_nb; lstm − gam_nb; ingarch_nb − gam_nb,-0.54 f3/4 pHolm=1.000,-0.06 f1/4 pHolm=1.000,-1.09 f3/4 pHolm=0.365,-2.85 f4/4 pHolm=0.000,
+cetesb,7,mh_h7_cetesb_cetesb_full_20261111-030322,xgboost,21,14,4,xgboost − gam_nb; sarimax − gam_nb; lstm − gam_nb; ingarch_nb − gam_nb,-0.97 f3/4 pHolm=0.640,-0.24 f2/4 pHolm=0.778,-1.31 f3/4 pHolm=0.367,-2.88 f4/4 pHolm=0.000,
+cetesb,15,mh_h15_cetesb_cetesb_full_20261111-070926,xgboost,21,11,1,xgboost − gam_nb,-1.50 f3/4 pHolm=0.546,-0.98 f2/4 pHolm=0.546,-2.05 f3/4 pHolm=0.207,-2.90 f3/4 pHolm=0.026,
+cetesb,30,mh_h30_cetesb_cetesb_full_20261113-104814,sarimax,21,10,0,,,-1.44 f2/4 pHolm=1.000,-0.15 f2/4 pHolm=1.000,-2.21 f3/4 pHolm=0.566,-1.05 f1/4 pHolm=1.000
+urgencia,1,ur_h1_cetesb_cetesb_full_20261116-191534,sarimax,21,15,5,xgboost − gam_nb; sarimax − ingarch_nb; sarimax − gam_nb; lstm − gam_nb; ingarch_nb − gam_nb,,-0.50 f2/4 pHolm=0.320,-0.68 f4/4 pHolm=0.030,-2.39 f4/4 pHolm=0.000,-0.62 f4/4 pHolm=0.195
+urgencia,5,ur_h5_cetesb_cetesb_full_20261116-222823,xgboost,21,14,4,xgboost − gam_nb; sarimax − gam_nb; lstm − gam_nb; ingarch_nb − gam_nb,-0.04 f3/4 pHolm=1.000,-0.38 f3/4 pHolm=1.000,-0.79 f3/4 pHolm=0.424,-2.33 f4/4 pHolm=0.002,
+urgencia,7,ur_h7_cetesb_cetesb_full_20261117-073926,xgboost,21,11,1,sarimax − gam_nb,-0.21 f3/4 pHolm=1.000,-0.27 f3/4 pHolm=1.000,-0.67 f3/4 pHolm=1.000,-1.57 f4/4 pHolm=0.103,
+urgencia,15,ur_h15_cetesb_cetesb_full_20261117-190532,xgboost,21,10,0,,-0.18 f3/4 pHolm=1.000,-0.70 f1/4 pHolm=1.000,-0.53 f3/4 pHolm=1.000,-1.47 f3/4 pHolm=1.000,
+urgencia,30,ur_h30_cetesb_cetesb_full_20261117-221426,sarimax,21,10,0,,,-1.24 f2/4 pHolm=1.000,-0.26 f2/4 pHolm=1.000,-2.12 f3/4 pHolm=0.656,-0.99 f1/4 pHolm=1.000

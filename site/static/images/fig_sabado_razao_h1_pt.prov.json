@@ -1,0 +1,24 @@
+{
+  "figura": "fig_sabado_razao_h1_pt",
+  "descricao": "Razão entre o MAE aos sábados e o MAE nos demais dias, h = 1, AR_CAL, todas as sementes (cheio: alvo total; vazado: alvo de urgência). XGBoost: 33,31 contra 16,09 no alvo total (razão 2,07), razão 0,90 no alvo de urgência. O excesso do sábado vem de lotes de cirurgias eletivas de curta permanência (docs/LESSONS.md, história 1).",
+  "artefatos_de_origem": [
+    {
+      "caminho": "results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv",
+      "sha256": "8769a582a0f750ff788b0e39edb5bbb5c9773cb46f06e4dcaeef5453e8fc88c8"
+    }
+  ],
+  "runs": [
+    "h1_v02_cetesb_cetesb_classicos_full_20261022-211834",
+    "ur_h1_cetesb_cetesb_full_20261116-191534"
+  ],
+  "conjunto_de_features": "AR_CAL",
+  "status": "Provisional (pre-defence)",
+  "script": "docs/scripts/build_site.py",
+  "gerado_em": "2026-11-26T13:07:54",
+  "ambiente": {
+    "python": "3.11.0",
+    "pandas": "3.0.0",
+    "numpy": "2.4.1",
+    "matplotlib": "3.10.8"
+  }
+}

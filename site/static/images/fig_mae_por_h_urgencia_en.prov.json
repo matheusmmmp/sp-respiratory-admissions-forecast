@@ -1,0 +1,71 @@
+{
+  "figura": "fig_mae_por_h_urgencia_en",
+  "descricao": "MAE (admissions per day) by horizon, feature set AR_CAL, urgent target; mean over 4 folds (and 5 seeds for XGBoost and LSTM). Lowest MAE per horizon: h = 1: SARIMAX 14.26; h = 5: XGBoost 17.61; h = 7: XGBoost 18.51; h = 15: XGBoost 20.99; h = 30: SARIMAX 21.46. Dashed lines: the two naive baselines.",
+  "artefatos_de_origem": [
+    {
+      "caminho": "results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/arcal_por_horizonte_dois_alvos.csv",
+      "sha256": "095d0c4961cabac5e104a6f3301120a8ea248c68f83d41cf1fc4211c62029ac1"
+    },
+    {
+      "caminho": "results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/A_modelos_por_h.csv",
+      "sha256": "1fd44be25bd1dd93229dfdd37349f5f6746d14cdfdc31c7bfde543486bfe44c7"
+    },
+    {
+      "caminho": "results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/model_comparison.csv",
+      "sha256": "ad3eaf8cdcae7d8660b754d45e488c14932a291147ddca1a4f9584e1235e00a7"
+    },
+    {
+      "caminho": "results/runs/mh_h5_cetesb_cetesb_full_20261110-211453/model_comparison.csv",
+      "sha256": "995e2c03ddd7bc0fd53869780525aa3be678cd8b2bf5b310066407b2739aed7f"
+    },
+    {
+      "caminho": "results/runs/mh_h7_cetesb_cetesb_full_20261111-030322/model_comparison.csv",
+      "sha256": "080a14f22aba980b8a11764199223983b792a91092710ff1012e4446b543a467"
+    },
+    {
+      "caminho": "results/runs/mh_h15_cetesb_cetesb_full_20261111-070926/model_comparison.csv",
+      "sha256": "e5812a18fb92b086485b91ace725271a9f8f734d482c66d553f74e7fac7418ad"
+    },
+    {
+      "caminho": "results/runs/mh_h30_cetesb_cetesb_full_20261113-104814/model_comparison.csv",
+      "sha256": "8aea148ab261359bd20345bcf43cdb83fa24d83ce898129ec82f7b1be504a5e3"
+    },
+    {
+      "caminho": "results/runs/ur_h1_cetesb_cetesb_full_20261116-191534/model_comparison.csv",
+      "sha256": "bf65ae9da1dcdcf4d677039996415635cd883659ad155e2b6cf599f635fe66c3"
+    },
+    {
+      "caminho": "results/runs/ur_h5_cetesb_cetesb_full_20261116-222823/model_comparison.csv",
+      "sha256": "ca096e45b8d87022b3533c3d6ce9ea8efb4676c228823f80d08a20dd04e41931"
+    },
+    {
+      "caminho": "results/runs/ur_h7_cetesb_cetesb_full_20261117-073926/model_comparison.csv",
+      "sha256": "117a8752d7455566db75ea74d074662ab2138dd4772c687a7a7e9bb5723b20e3"
+    },
+    {
+      "caminho": "results/runs/ur_h15_cetesb_cetesb_full_20261117-190532/model_comparison.csv",
+      "sha256": "1c2c71ba842a6f3ba4bb2c93aa2bac75cd40bcbe5ca9ad2f1a95b19ac4570bc9"
+    },
+    {
+      "caminho": "results/runs/ur_h30_cetesb_cetesb_full_20261117-221426/model_comparison.csv",
+      "sha256": "950d594e1f347fd5a4e8bae7c294bd2af3870b16f1434c673c098e7799044b03"
+    }
+  ],
+  "runs": [
+    "ur_h1_cetesb_cetesb_full_20261116-191534",
+    "ur_h5_cetesb_cetesb_full_20261116-222823",
+    "ur_h7_cetesb_cetesb_full_20261117-073926",
+    "ur_h15_cetesb_cetesb_full_20261117-190532",
+    "ur_h30_cetesb_cetesb_full_20261117-221426"
+  ],
+  "conjunto_de_features": "AR_CAL",
+  "status": "Provisional (pre-defence)",
+  "script": "docs/scripts/build_site.py",
+  "gerado_em": "2026-11-26T13:07:54",
+  "ambiente": {
+    "python": "3.11.0",
+    "pandas": "3.0.0",
+    "numpy": "2.4.1",
+    "matplotlib": "3.10.8"
+  }
+}
