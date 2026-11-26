@@ -2,7 +2,7 @@
 
 🇬🇧 [English version](README.md) · 🇧🇷 Português (este arquivo)
 
-[![CI](https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/actions/workflows/ci.yml) [![Streamlit app](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://sp-respiratory-admissions-forecast.streamlit.app) ![Python 3.11](https://img.shields.io/badge/python-3.11-blue) [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Página do projeto](https://img.shields.io/badge/p%C3%A1gina%20do%20projeto-GitHub%20Pages-blue)](https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/index.pt-BR.html) [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/matheusmmmp/sp-respiratory-admissions-forecast) [![CI](https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/actions/workflows/ci.yml) [![Streamlit app](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://sp-respiratory-admissions-forecast.streamlit.app) ![Python 3.11](https://img.shields.io/badge/python-3.11-blue) [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 **Sete modelos de previsão, um protocolo temporal: internações hospitalares respiratórias diárias no município de São Paulo, de 1 a 30 dias à frente, com todo número rastreável a uma run identificada.**
 
@@ -11,6 +11,8 @@ Repositório de portfólio derivado da dissertação de mestrado de Matheus de M
 > **Todo resultado aqui é provisório (pré-defesa).** A dissertação ainda não foi defendida. Os números aparecem com o id completo da run que os gerou e podem mudar antes do texto final. A API e o app Streamlit são demonstrações de engenharia, não uma ferramenta clínica ou operacional.
 
 [Pipeline](#pipeline) · [Resultados](#resultados-provisórios) · [Como rodar](#como-rodar) · [Documentação](#documentação) · [O que este repositório não é](#o-que-este-repositório-não-é)
+
+Página do projeto: <https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/index.pt-BR.html> (inglês: <https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/>). É gerada por `docs/scripts/build_site.py` a partir dos arquivos de `results/` em `site/` (versionado; `tests/test_build_site.py` falha se estiver desatualizado) e publicada pelo workflow manual `.github/workflows/pages.yml`.
 
 ## O que há aqui
 
@@ -100,9 +102,10 @@ Python 3.11 com [uv](https://docs.astral.sh/uv/); as versões das dependências 
 uv sync                      # cria o .venv com as versões travadas
 uv run pytest -q             # suíte de testes: alguns minutos (3m52s na máquina do autor, 2026-11-23); inclui testes de LSTM, SARIMAX, GAM-NB e INGARCH-NB
 uv run python -m src.experiments.run_preliminary --config configs/smoke.yaml --smoke   # teste de fumaça do pipeline (nunca é resultado)
+uv run pre-commit install    # hooks de commit: ruff nos pacotes novos, gitleaks, chaves privadas, arquivos grandes (.pre-commit-config.yaml)
 ```
 
-Alvos do `Makefile`: `make test`, `make smoke`, `make app`, `make api`, `make mlflow`.
+Alvos do `Makefile`: `make test`, `make smoke`, `make app`, `make api`, `make mlflow`, `make docker-build`, `make docker-test`, `make docker-api`, `make precommit`.
 
 Docker (`docker-compose.yml`, uma imagem, três serviços):
 
@@ -110,9 +113,13 @@ Docker (`docker-compose.yml`, uma imagem, três serviços):
 docker compose up            # app (Streamlit) em :8501, api (FastAPI) em :8000, mlflow em :5000
 ```
 
+O CI (`.github/workflows/ci.yml`, job `docker`) constrói as imagens a cada push, roda o pytest e o teste de fumaça dentro da imagem `test`, sobe o serviço `api` com o compose e espera o `GET /health`, e constrói e testa a imagem enxuta da API. A imagem enxuta (`api/Dockerfile` + `api/requirements.txt`: FastAPI + XGBoost CPU, sem TensorFlow, usuário não-root, porta 7860) é a destinada a um Space do Hugging Face; `deploy/hf_space/` (`montar_space.py`, `LEIA-ME.md`) monta a pasta do Space e confere cada arquivo por sha256. **A API ainda não está publicada**: rode localmente com `make docker-api` e abra <http://localhost:7860/health>.
+
+GitHub Codespaces: `.devcontainer/devcontainer.json` instala o uv, roda `uv sync --frozen --all-extras` e abre o app Streamlit na porta 8501 (as portas 8000 e 5000 também são encaminhadas). Selo no topo ou <https://codespaces.new/matheusmmmp/sp-respiratory-admissions-forecast>.
+
 - App Streamlit, no ar: <https://sp-respiratory-admissions-forecast.streamlit.app> (Streamlit Community Cloud, publicado em 2026-11-23; seletor de idioma PT/EN em todas as páginas, link direto em português: <https://sp-respiratory-admissions-forecast.streamlit.app/?lang=pt>); local: <http://localhost:8501> (ver `app/`). Mostra a série-alvo, os resultados por horizonte e o painel do sábado, com todo número lido de `results/` ou de `notebooks/dados_painel/`.
 - FastAPI, local: <http://localhost:8000> (ver `api/`; `GET /health`, `GET /forecast`). Serve modelos XGBoost `AR_CAL` de demonstração de `models_demo/`, treinados na série inteira com uma semente, o que **não** é o protocolo da dissertação; o model card (`models_demo/MODEL_CARD.md`) diz isso. Como o construtor de features canônico só materializa datas-alvo observadas, a API responde só para origens cuja data-alvo `origem + h` cai dentro do histórico 2019–2024 (in-sample por construção).
-- MLflow, local: <http://localhost:5000>. `tracking/importar_runs.py` copia `config.json`, `manifest.json` e `metrics.json` das runs em `results/runs/` para um file store; nada é recalculado.
+- MLflow, local: <http://localhost:5000>. Três pontos de entrada, todos locais. (a) `tracking/importar_runs.py` copia `config.json`, `manifest.json` e `metrics.json` das dez runs em `results/runs/` para um file store; nada é recalculado. (b) A opção `--mlflow` do runner (`tracking/registro_mlflow.py`): `uv run python -m src.experiments.run_preliminary --config configs/smoke_mlflow.yaml --smoke --mlflow --mlflow-uri sqlite:///mlruns/mlflow.db` registra uma run mãe, uma run filha por modelo × conjunto de features e salva um modelo por modelo × conjunto × fold × semente; sem a opção a saída da run é idêntica byte a byte (`tests/test_runner_mlflow.py`). A opção existe só nesta cópia do runner para o portfólio; o runner da dissertação não foi alterado (decisão D9 em `docs/DECISOES.md`). (c) `tracking/importar_pesquisa.py` importa o histórico completo da pesquisa da dissertação (cada entrada do diretório de resultados dela) para um MLflow **local**, guiado por um catálogo de status mantido fora do repositório; esse MLflow é local e não faz parte deste repositório público.
 
 O Streamlit Community Cloud publica o app a partir de `app/Home.py` com `app/requirements.txt` (só os cinco pacotes de que o app precisa; o arquivo fica ao lado do ponto de entrada para que o Community Cloud o use em vez do `uv.lock`). Python 3.11.
 
@@ -126,7 +133,7 @@ A documentação em `docs/` e o data card estão em inglês (decisão do autor: 
 - `docs/REPRODUCIBILITY.md`: como reexecutar uma run a partir de `results/runs/<RUN_ID>/config.json`, o que está travado e o que não é reproduzível (arquivo canônico do CAMS, microdados).
 - `docs/LESSONS.md`: quatro coisas que deram errado ou nos surpreenderam, cada uma com o arquivo que a comprova.
 - `data/README.md`: data card (fontes, licenças, regras de construção, colunas, exclusões).
-- `docs/DECISOES.md`: decisões do autor D1 a D7 para este repositório (em português).
+- `docs/DECISOES.md`: decisões do autor D1 a D13 para este repositório (em português).
 - `docs/CONFERENCIA_NUMEROS_WP5.md`: todo número deste README, do `README.md` e dos docs, com o arquivo e a chave contra os quais foi conferido.
 - `docs/INVENTARIO_FASE0.tsv`: proveniência (caminho de origem e sha256) de cada arquivo copiado do repositório da dissertação.
 
@@ -140,4 +147,4 @@ A documentação em `docs/` e o data card estão em inglês (decisão do autor: 
 
 ## Licença e citação
 
-Código: MIT (`LICENSE`). Dados: licença de cada fonte, declarada em `data/README.md`. Para citar o software, use `CITATION.cff`.
+Código: MIT (`LICENSE`). Dados: licença de cada fonte, declarada em `data/README.md`. Para citar o software, use `CITATION.cff` (URL do repositório e versão; a entrada BibTeX aparece na página do projeto). Release: `v0.1.0` (provisória, pré-defesa), <https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/releases/tag/v0.1.0>. **Ainda sem DOI**: a integração com o Zenodo está pendente (`docs/DECISOES.md`, D10); não cite um DOI para este software.

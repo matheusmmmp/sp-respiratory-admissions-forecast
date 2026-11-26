@@ -1326,6 +1326,73 @@ for nome, txt, readme in (("README.md", txt_en, README_EN), ("README.pt-BR.md", 
     )
     add(f"{nome}: no 'dobra'", "absent", readme, "'dobra'", "absent" if "dobra" not in txt.lower() else "present")
 
+# ----------------------------------------------------------------------------- 2026-11-26: badges, project page, MLflow, Docker/API, Codespaces, release
+import subprocess  # noqa: E402
+
+PAGE_EN = "https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/"
+PAGE_PT = "https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/index.pt-BR.html"
+CODESPACES_URL = "https://codespaces.new/matheusmmmp/sp-respiratory-admissions-forecast"
+RELEASE_URL = "https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/releases/tag/v0.1.0"
+for nome, txt, readme, page in (("README.md", txt_en, README_EN, PAGE_EN), ("README.pt-BR.md", txt_pt, README_PT, PAGE_PT)):
+    add(f"{nome}: project page badge present", "present", readme, f"'GitHub%20Pages-blue)]({page})'",
+        "present" if f"GitHub%20Pages-blue)]({page})" in txt else "absent")
+    add(f"{nome}: Codespaces badge present", "present", readme, f"'codespaces/badge.svg)]({CODESPACES_URL})'",
+        "present" if f"codespaces/badge.svg)]({CODESPACES_URL})" in txt else "absent")
+    for selo in ("actions/workflows/ci.yml/badge.svg", "streamlit_badge_black_white.svg", "python-3.11-blue", "license-MIT-green"):
+        add(f"{nome}: badge kept ({selo})", "present", readme, f"'{selo}'", "present" if selo in txt else "absent")
+    add(f"{nome}: both project page URLs present", "present", readme, "PAGE_EN and PAGE_PT", "present" if PAGE_EN in txt and PAGE_PT in txt else "absent")
+    add(f"{nome}: release link present", "present", readme, f"'{RELEASE_URL}'", "present" if RELEASE_URL in txt else "absent")
+    add(f"{nome}: no DOI cited", "absent", readme, "'doi.org' / '10.5281'", "absent" if "doi.org" not in txt.lower() and "10.5281" not in txt else "present")
+    add(f"{nome}: no Hugging Face Space URL (API not yet deployed)", "absent", readme, "'huggingface.co/spaces' / 'hf.space'",
+        "absent" if "huggingface.co/spaces" not in txt and "hf.space" not in txt else "present")
+    add(f"{nome}: states the API is not yet deployed", "present", readme, "'not yet deployed' / 'ainda não está publicada'",
+        "present" if ("not yet deployed" in txt or "ainda não está publicada" in txt) else "absent")
+    add(f"{nome}: --mlflow example command present", "present", readme, "'--smoke --mlflow --mlflow-uri sqlite:///mlruns/mlflow.db'",
+        "present" if "--smoke --mlflow --mlflow-uri sqlite:///mlruns/mlflow.db" in txt else "absent")
+    add(f"{nome}: pre-commit install line present", "present", readme, "'uv run pre-commit install'", "present" if "uv run pre-commit install" in txt else "absent")
+# facts behind the new sentences
+tag = subprocess.run(["git", "tag", "--list", "v0.1.0"], cwd=RAIZ, capture_output=True, text=True).stdout.strip()
+add("README: release tag v0.1.0 exists in the repository", "v0.1.0", "git tag --list v0.1.0", "stdout", tag or "missing")
+cff = (RAIZ / "CITATION.cff").read_text(encoding="utf-8")
+add("README: CITATION.cff has no DOI", "absent", RAIZ / "CITATION.cff", "'doi:' field", "absent" if "\ndoi:" not in cff and "10.5281" not in cff else "present")
+dockerfile_api = (RAIZ / "api" / "Dockerfile").read_text(encoding="utf-8")
+add("README: slim API image port", "7860", RAIZ / "api" / "Dockerfile", "'7860' in file", "7860" if "7860" in dockerfile_api else "absent")
+add("README: slim API image non-root user", "uid 1000", RAIZ / "api" / "Dockerfile", "'--uid 1000'", "uid 1000" if "--uid 1000" in dockerfile_api else "absent")
+req_api = (RAIZ / "api" / "requirements.txt").read_text(encoding="utf-8")
+add("README: slim API requirements have no TensorFlow", "absent", RAIZ / "api" / "requirements.txt", "lines starting with 'tensorflow'",
+    "absent" if not re.search(r"^tensorflow", req_api, re.M) else "present")
+runner_src = (RAIZ / "src" / "experiments" / "run_preliminary.py").read_text(encoding="utf-8")
+add("README: runner has --mlflow option", "present", RAIZ / "src" / "experiments" / "run_preliminary.py", "add_argument('--mlflow'",
+    "present" if 'add_argument("--mlflow"' in runner_src else "absent")
+add("README: runner has --mlflow-uri option", "present", RAIZ / "src" / "experiments" / "run_preliminary.py", "add_argument('--mlflow-uri'",
+    "present" if 'add_argument("--mlflow-uri"' in runner_src else "absent")
+devc = json.loads((RAIZ / ".devcontainer" / "devcontainer.json").read_text(encoding="utf-8"))
+add("README: Codespaces postCreateCommand runs uv sync --frozen --all-extras", "present", RAIZ / ".devcontainer" / "devcontainer.json", "postCreateCommand",
+    "present" if "uv sync --frozen --all-extras" in devc["postCreateCommand"] else devc["postCreateCommand"])
+add("README: Codespaces forwards ports 8501, 8000, 5000", "8501, 8000, 5000", RAIZ / ".devcontainer" / "devcontainer.json", "forwardPorts",
+    ", ".join(str(x) for x in devc["forwardPorts"]))
+add("README: Codespaces opens the Streamlit app", "present", RAIZ / ".devcontainer" / "devcontainer.json", "postAttachCommand.app",
+    "present" if "streamlit run app/Home.py" in devc["postAttachCommand"]["app"] else devc["postAttachCommand"])
+ci = (RAIZ / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
+add("README: CI job 'docker' exists", "present", RAIZ / ".github" / "workflows" / "ci.yml", "'name: docker'", "present" if "name: docker" in ci else "absent")
+add("README: CI docker job builds api/Dockerfile", "present", RAIZ / ".github" / "workflows" / "ci.yml", "'file: api/Dockerfile'", "present" if "file: api/Dockerfile" in ci else "absent")
+add("README: CI docker job waits for /health via compose", "present", RAIZ / ".github" / "workflows" / "ci.yml", "'docker compose up -d --no-build api' and '/health'",
+    "present" if "docker compose up -d --no-build api" in ci and "localhost:8000/health" in ci else "absent")
+add("README: CI docker job runs pytest + smoke in the test image", "present", RAIZ / ".github" / "workflows" / "ci.yml", "'pytest + smoke dentro do contêiner'",
+    "present" if "pytest + smoke dentro do contêiner" in ci else "absent")
+pages = (RAIZ / ".github" / "workflows" / "pages.yml").read_text(encoding="utf-8")
+add("README: pages workflow is manual (workflow_dispatch)", "present", RAIZ / ".github" / "workflows" / "pages.yml", "'workflow_dispatch'", "present" if "workflow_dispatch:" in pages else "absent")
+mk = (RAIZ / "Makefile").read_text(encoding="utf-8")
+for alvo in ("docker-build", "docker-test", "docker-api", "precommit", "mlflow", "app", "api", "test", "smoke"):
+    add(f"README: make target '{alvo}' exists", "present", RAIZ / "Makefile", f"'{alvo}:' line", "present" if re.search(rf"^{alvo}:", mk, re.M) else "absent")
+dec = (RAIZ / "docs" / "DECISOES.md").read_text(encoding="utf-8")
+add("README: number of author decisions (D1 to D13)", 13, RAIZ / "docs" / "DECISOES.md", "rows starting with '| D'", len(re.findall(r"^\| D\d+ \|", dec, re.M)), "int")
+add("README: D9 says the dissertation runner is unchanged", "present", RAIZ / "docs" / "DECISOES.md", "D9 text", "present" if "O runner da dissertação **não** foi alterado" in dec else "absent")
+add("README: D10 says no DOI yet", "present", RAIZ / "docs" / "DECISOES.md", "D10 text '**sem DOI**'", "present" if "**sem DOI**" in dec else "absent")
+for f in ("tracking/registro_mlflow.py", "tracking/importar_pesquisa.py", "configs/smoke_mlflow.yaml", "tests/test_runner_mlflow.py", "docs/scripts/build_site.py",
+          "site/index.html", "site/index.pt-BR.html", "deploy/hf_space/montar_space.py", "deploy/hf_space/LEIA-ME.md", ".pre-commit-config.yaml"):
+    add(f"README: cited file exists ({f})", "exists", f, "path", "exists" if (RAIZ / f).exists() else "missing")
+
 # ----------------------------------------------------------------------------- write
 linhas = [
     "# Conferência de números — WP5 (README.md, README.pt-BR.md, docs/, data/README.md)",

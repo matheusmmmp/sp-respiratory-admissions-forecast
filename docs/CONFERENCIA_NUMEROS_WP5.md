@@ -1,8 +1,8 @@
 # Conferência de números — WP5 (README.md, README.pt-BR.md, docs/, data/README.md)
 
-Gerado por `docs/scripts/conferir_numeros.py` em 2026-11-26 12:55. Cada linha: onde o número aparece, o número como exibido, o arquivo de origem, a chave/seletor e o valor lido. Arredondamento: MAE 2 casas, MASE e skill 3 casas, contagens exatas. As tabelas dos dois READMEs são geradas por `docs/scripts/tabela_readme.py` (`--lang en` / `--lang pt`; mesmas células, ponto decimal dos arquivos de origem), que também exige igualdade (|diff| <= 1e-9) entre `model_comparison.csv`, `A_modelos_por_h.csv` e `arcal_por_horizonte_dois_alvos.csv`; a conferência verifica que cada bloco de tabela aparece literalmente em `README.md` e em `README.pt-BR.md`. Números do texto corrido do `README.pt-BR.md` usam vírgula decimal e são conferidos à parte (linhas 'README.pt-BR.md prose').
+Gerado por `docs/scripts/conferir_numeros.py` em 2026-11-26 14:33. Cada linha: onde o número aparece, o número como exibido, o arquivo de origem, a chave/seletor e o valor lido. Arredondamento: MAE 2 casas, MASE e skill 3 casas, contagens exatas. As tabelas dos dois READMEs são geradas por `docs/scripts/tabela_readme.py` (`--lang en` / `--lang pt`; mesmas células, ponto decimal dos arquivos de origem), que também exige igualdade (|diff| <= 1e-9) entre `model_comparison.csv`, `A_modelos_por_h.csv` e `arcal_por_horizonte_dois_alvos.csv`; a conferência verifica que cada bloco de tabela aparece literalmente em `README.md` e em `README.pt-BR.md`. Números do texto corrido do `README.pt-BR.md` usam vírgula decimal e são conferidos à parte (linhas 'README.pt-BR.md prose').
 
-Total: 525 números; VERIFICADO: 525; DIVERGENTE: 0.
+Total: 588 números; VERIFICADO: 588; DIVERGENTE: 0.
 
 | # | Onde | Número exibido | Arquivo | Chave / seletor | Valor lido | Status |
 |---:|---|---|---|---|---|---|
@@ -531,6 +531,69 @@ Total: 525 números; VERIFICADO: 525; DIVERGENTE: 0.
 | 523 | README.md: no 'dobra' | absent | `README.md` | 'dobra' | absent | VERIFICADO |
 | 524 | README.pt-BR.md: app language link ?lang=pt | present | `README.pt-BR.md` | 'streamlit.app/?lang=pt' | present | VERIFICADO |
 | 525 | README.pt-BR.md: no 'dobra' | absent | `README.pt-BR.md` | 'dobra' | absent | VERIFICADO |
+| 526 | README.md: project page badge present | present | `README.md` | 'GitHub%20Pages-blue)](https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/)' | present | VERIFICADO |
+| 527 | README.md: Codespaces badge present | present | `README.md` | 'codespaces/badge.svg)](https://codespaces.new/matheusmmmp/sp-respiratory-admissions-forecast)' | present | VERIFICADO |
+| 528 | README.md: badge kept (actions/workflows/ci.yml/badge.svg) | present | `README.md` | 'actions/workflows/ci.yml/badge.svg' | present | VERIFICADO |
+| 529 | README.md: badge kept (streamlit_badge_black_white.svg) | present | `README.md` | 'streamlit_badge_black_white.svg' | present | VERIFICADO |
+| 530 | README.md: badge kept (python-3.11-blue) | present | `README.md` | 'python-3.11-blue' | present | VERIFICADO |
+| 531 | README.md: badge kept (license-MIT-green) | present | `README.md` | 'license-MIT-green' | present | VERIFICADO |
+| 532 | README.md: both project page URLs present | present | `README.md` | PAGE_EN and PAGE_PT | present | VERIFICADO |
+| 533 | README.md: release link present | present | `README.md` | 'https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/releases/tag/v0.1.0' | present | VERIFICADO |
+| 534 | README.md: no DOI cited | absent | `README.md` | 'doi.org' / '10.5281' | absent | VERIFICADO |
+| 535 | README.md: no Hugging Face Space URL (API not yet deployed) | absent | `README.md` | 'huggingface.co/spaces' / 'hf.space' | absent | VERIFICADO |
+| 536 | README.md: states the API is not yet deployed | present | `README.md` | 'not yet deployed' / 'ainda não está publicada' | present | VERIFICADO |
+| 537 | README.md: --mlflow example command present | present | `README.md` | '--smoke --mlflow --mlflow-uri sqlite:///mlruns/mlflow.db' | present | VERIFICADO |
+| 538 | README.md: pre-commit install line present | present | `README.md` | 'uv run pre-commit install' | present | VERIFICADO |
+| 539 | README.pt-BR.md: project page badge present | present | `README.pt-BR.md` | 'GitHub%20Pages-blue)](https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/index.pt-BR.html)' | present | VERIFICADO |
+| 540 | README.pt-BR.md: Codespaces badge present | present | `README.pt-BR.md` | 'codespaces/badge.svg)](https://codespaces.new/matheusmmmp/sp-respiratory-admissions-forecast)' | present | VERIFICADO |
+| 541 | README.pt-BR.md: badge kept (actions/workflows/ci.yml/badge.svg) | present | `README.pt-BR.md` | 'actions/workflows/ci.yml/badge.svg' | present | VERIFICADO |
+| 542 | README.pt-BR.md: badge kept (streamlit_badge_black_white.svg) | present | `README.pt-BR.md` | 'streamlit_badge_black_white.svg' | present | VERIFICADO |
+| 543 | README.pt-BR.md: badge kept (python-3.11-blue) | present | `README.pt-BR.md` | 'python-3.11-blue' | present | VERIFICADO |
+| 544 | README.pt-BR.md: badge kept (license-MIT-green) | present | `README.pt-BR.md` | 'license-MIT-green' | present | VERIFICADO |
+| 545 | README.pt-BR.md: both project page URLs present | present | `README.pt-BR.md` | PAGE_EN and PAGE_PT | present | VERIFICADO |
+| 546 | README.pt-BR.md: release link present | present | `README.pt-BR.md` | 'https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/releases/tag/v0.1.0' | present | VERIFICADO |
+| 547 | README.pt-BR.md: no DOI cited | absent | `README.pt-BR.md` | 'doi.org' / '10.5281' | absent | VERIFICADO |
+| 548 | README.pt-BR.md: no Hugging Face Space URL (API not yet deployed) | absent | `README.pt-BR.md` | 'huggingface.co/spaces' / 'hf.space' | absent | VERIFICADO |
+| 549 | README.pt-BR.md: states the API is not yet deployed | present | `README.pt-BR.md` | 'not yet deployed' / 'ainda não está publicada' | present | VERIFICADO |
+| 550 | README.pt-BR.md: --mlflow example command present | present | `README.pt-BR.md` | '--smoke --mlflow --mlflow-uri sqlite:///mlruns/mlflow.db' | present | VERIFICADO |
+| 551 | README.pt-BR.md: pre-commit install line present | present | `README.pt-BR.md` | 'uv run pre-commit install' | present | VERIFICADO |
+| 552 | README: release tag v0.1.0 exists in the repository | v0.1.0 | `git tag --list v0.1.0` | stdout | v0.1.0 | VERIFICADO |
+| 553 | README: CITATION.cff has no DOI | absent | `CITATION.cff` | 'doi:' field | absent | VERIFICADO |
+| 554 | README: slim API image port | 7860 | `api/Dockerfile` | '7860' in file | 7860 | VERIFICADO |
+| 555 | README: slim API image non-root user | uid 1000 | `api/Dockerfile` | '--uid 1000' | uid 1000 | VERIFICADO |
+| 556 | README: slim API requirements have no TensorFlow | absent | `api/requirements.txt` | lines starting with 'tensorflow' | absent | VERIFICADO |
+| 557 | README: runner has --mlflow option | present | `src/experiments/run_preliminary.py` | add_argument('--mlflow' | present | VERIFICADO |
+| 558 | README: runner has --mlflow-uri option | present | `src/experiments/run_preliminary.py` | add_argument('--mlflow-uri' | present | VERIFICADO |
+| 559 | README: Codespaces postCreateCommand runs uv sync --frozen --all-extras | present | `.devcontainer/devcontainer.json` | postCreateCommand | present | VERIFICADO |
+| 560 | README: Codespaces forwards ports 8501, 8000, 5000 | 8501, 8000, 5000 | `.devcontainer/devcontainer.json` | forwardPorts | 8501, 8000, 5000 | VERIFICADO |
+| 561 | README: Codespaces opens the Streamlit app | present | `.devcontainer/devcontainer.json` | postAttachCommand.app | present | VERIFICADO |
+| 562 | README: CI job 'docker' exists | present | `.github/workflows/ci.yml` | 'name: docker' | present | VERIFICADO |
+| 563 | README: CI docker job builds api/Dockerfile | present | `.github/workflows/ci.yml` | 'file: api/Dockerfile' | present | VERIFICADO |
+| 564 | README: CI docker job waits for /health via compose | present | `.github/workflows/ci.yml` | 'docker compose up -d --no-build api' and '/health' | present | VERIFICADO |
+| 565 | README: CI docker job runs pytest + smoke in the test image | present | `.github/workflows/ci.yml` | 'pytest + smoke dentro do contêiner' | present | VERIFICADO |
+| 566 | README: pages workflow is manual (workflow_dispatch) | present | `.github/workflows/pages.yml` | 'workflow_dispatch' | present | VERIFICADO |
+| 567 | README: make target 'docker-build' exists | present | `Makefile` | 'docker-build:' line | present | VERIFICADO |
+| 568 | README: make target 'docker-test' exists | present | `Makefile` | 'docker-test:' line | present | VERIFICADO |
+| 569 | README: make target 'docker-api' exists | present | `Makefile` | 'docker-api:' line | present | VERIFICADO |
+| 570 | README: make target 'precommit' exists | present | `Makefile` | 'precommit:' line | present | VERIFICADO |
+| 571 | README: make target 'mlflow' exists | present | `Makefile` | 'mlflow:' line | present | VERIFICADO |
+| 572 | README: make target 'app' exists | present | `Makefile` | 'app:' line | present | VERIFICADO |
+| 573 | README: make target 'api' exists | present | `Makefile` | 'api:' line | present | VERIFICADO |
+| 574 | README: make target 'test' exists | present | `Makefile` | 'test:' line | present | VERIFICADO |
+| 575 | README: make target 'smoke' exists | present | `Makefile` | 'smoke:' line | present | VERIFICADO |
+| 576 | README: number of author decisions (D1 to D13) | 13 | `docs/DECISOES.md` | rows starting with '| D' | 13 | VERIFICADO |
+| 577 | README: D9 says the dissertation runner is unchanged | present | `docs/DECISOES.md` | D9 text | present | VERIFICADO |
+| 578 | README: D10 says no DOI yet | present | `docs/DECISOES.md` | D10 text '**sem DOI**' | present | VERIFICADO |
+| 579 | README: cited file exists (tracking/registro_mlflow.py) | exists | `tracking/registro_mlflow.py` | path | exists | VERIFICADO |
+| 580 | README: cited file exists (tracking/importar_pesquisa.py) | exists | `tracking/importar_pesquisa.py` | path | exists | VERIFICADO |
+| 581 | README: cited file exists (configs/smoke_mlflow.yaml) | exists | `configs/smoke_mlflow.yaml` | path | exists | VERIFICADO |
+| 582 | README: cited file exists (tests/test_runner_mlflow.py) | exists | `tests/test_runner_mlflow.py` | path | exists | VERIFICADO |
+| 583 | README: cited file exists (docs/scripts/build_site.py) | exists | `docs/scripts/build_site.py` | path | exists | VERIFICADO |
+| 584 | README: cited file exists (site/index.html) | exists | `site/index.html` | path | exists | VERIFICADO |
+| 585 | README: cited file exists (site/index.pt-BR.html) | exists | `site/index.pt-BR.html` | path | exists | VERIFICADO |
+| 586 | README: cited file exists (deploy/hf_space/montar_space.py) | exists | `deploy/hf_space/montar_space.py` | path | exists | VERIFICADO |
+| 587 | README: cited file exists (deploy/hf_space/LEIA-ME.md) | exists | `deploy/hf_space/LEIA-ME.md` | path | exists | VERIFICADO |
+| 588 | README: cited file exists (.pre-commit-config.yaml) | exists | `.pre-commit-config.yaml` | path | exists | VERIFICADO |
 
 ## Números narrativos sem arquivo em `results/` (não conferidos aqui, declarados no texto)
 
