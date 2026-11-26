@@ -198,6 +198,10 @@ def test_bibtex_consistente_com_citation_cff(build):
     assert campos["url"] == cff["repository-code"]
     assert campos["license"] == cff["license"]
     assert campos["note"] in cff["message"]
+    if "doi" in cff:
+        assert campos["doi"] == str(cff["doi"]).strip()
+    else:
+        assert "doi" not in campos
     # the page shows exactly this entry, in both languages; no dissertation entry before the defence
     for p in HTMLS.values():
         txt = html.unescape(p.read_text(encoding="utf-8"))
@@ -215,3 +219,18 @@ def test_svg_do_pipeline_fiel_ao_mermaid(build):
             for t in linhas:
                 assert f">{t}</text>" in svg, f"{lang}: label {t!r} missing in the SVG"
         assert svg.count('class="e"') == len(arestas)
+
+
+def test_bibtex_doi_so_quando_o_cff_tem_e_falha_alto_se_malformado(build):
+    """The doi field appears only when CITATION.cff has one, as a bare DOI, between version and url."""
+    cff = yaml.safe_load((RAIZ / "CITATION.cff").read_text(encoding="utf-8"))
+    sem = {k: v for k, v in cff.items() if k != "doi"}
+    assert "  doi = {" not in build.bibtex(sem)
+    com = dict(sem, doi="10.5281/zenodo.24567670")
+    bib = build.bibtex(com)
+    campos = re.findall(r"^  (\w+) = \{", bib, re.M)
+    assert dict(re.findall(r"^  (\w+) = \{(.*)\},?$", bib, re.M))["doi"] == "10.5281/zenodo.24567670"
+    assert campos.index("version") < campos.index("doi") < campos.index("url")
+    for ruim in ("https://doi.org/10.5281/zenodo.24567670", "zenodo.24567670", ""):
+        with pytest.raises(ValueError):
+            build.bibtex(dict(sem, doi=ruim))

@@ -1388,7 +1388,9 @@ import subprocess  # noqa: E402
 PAGE_EN = "https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/"
 PAGE_PT = "https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/index.pt-BR.html"
 CODESPACES_URL = "https://codespaces.new/matheusmmmp/sp-respiratory-admissions-forecast"
-RELEASE_URL = "https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/releases/tag/v0.1.0"
+RELEASE_URL = "https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/releases/tag/v0.1.1"
+DOI_VERSAO = "10.5281/zenodo.24567671"  # Zenodo, v0.1.1
+DOI_CONCEITO = "10.5281/zenodo.24567670"  # Zenodo, sempre a versão mais recente
 for nome, txt, readme, page in (
     ("README.md", txt_en, README_EN, PAGE_EN),
     ("README.pt-BR.md", txt_pt, README_PT, PAGE_PT),
@@ -1429,11 +1431,20 @@ for nome, txt, readme, page in (
         "present" if RELEASE_URL in txt else "absent",
     )
     add(
-        f"{nome}: no DOI cited",
-        "absent",
+        f"{nome}: version and concept DOIs cited with doi.org links",
+        "present",
         readme,
-        "'doi.org' / '10.5281'",
-        "absent" if "doi.org" not in txt.lower() and "10.5281" not in txt else "present",
+        "'https://doi.org/<DOI_VERSAO>' and 'https://doi.org/<DOI_CONCEITO>'",
+        "present" if f"https://doi.org/{DOI_VERSAO}" in txt and f"https://doi.org/{DOI_CONCEITO}" in txt else "absent",
+    )
+    add(
+        f"{nome}: only the two Zenodo DOIs of this software appear",
+        "only known DOIs",
+        readme,
+        "every '10.5281/zenodo.N' in the text",
+        "only known DOIs"
+        if set(re.findall(r"10\.5281/zenodo\.\d+", txt)) <= {DOI_VERSAO, DOI_CONCEITO}
+        else "unknown DOI present",
     )
     add(
         f"{nome}: no Hugging Face Space URL (API not yet deployed)",
@@ -1464,17 +1475,26 @@ for nome, txt, readme, page in (
         "present" if "uv run pre-commit install" in txt else "absent",
     )
 # facts behind the new sentences
-tag = subprocess.run(["git", "tag", "--list", "v0.1.0"], cwd=RAIZ, capture_output=True, text=True).stdout.strip()
+tag = subprocess.run(["git", "tag", "--list", "v0.1.1"], cwd=RAIZ, capture_output=True, text=True).stdout.strip()
 add(
-    "README: release tag v0.1.0 exists in the repository", "v0.1.0", "git tag --list v0.1.0", "stdout", tag or "missing"
+    "README: release tag v0.1.1 exists in the repository", "v0.1.1", "git tag --list v0.1.1", "stdout", tag or "missing"
 )
 cff = (RAIZ / "CITATION.cff").read_text(encoding="utf-8")
+m_doi = re.search(r"^doi:\s*(\S+)", cff, re.M)
 add(
-    "README: CITATION.cff has no DOI",
-    "absent",
+    "README: CITATION.cff doi field is the concept DOI",
+    DOI_CONCEITO,
     RAIZ / "CITATION.cff",
     "'doi:' field",
-    "absent" if "\ndoi:" not in cff and "10.5281" not in cff else "present",
+    m_doi.group(1) if m_doi else "missing",
+)
+m_ver = re.search(r"^version:\s*(\S+)", cff, re.M)
+add(
+    "README: CITATION.cff version is 0.1.1 (same as the cited release)",
+    "0.1.1",
+    RAIZ / "CITATION.cff",
+    "'version:' field",
+    m_ver.group(1) if m_ver else "missing",
 )
 dockerfile_api = (RAIZ / "api" / "Dockerfile").read_text(encoding="utf-8")
 add(
@@ -1599,11 +1619,11 @@ add(
     "present" if "O runner da dissertação **não** foi alterado" in dec else "absent",
 )
 add(
-    "README: D10 says no DOI yet",
+    "README: D10 records v0.1.0 without DOI and both DOIs of v0.1.1",
     "present",
     RAIZ / "docs" / "DECISOES.md",
-    "D10 text '**sem DOI**'",
-    "present" if "**sem DOI**" in dec else "absent",
+    "D10 text '**sem DOI**' + DOI_VERSAO + DOI_CONCEITO",
+    "present" if "**sem DOI**" in dec and DOI_VERSAO in dec and DOI_CONCEITO in dec else "absent",
 )
 for f in (
     "tracking/registro_mlflow.py",

@@ -299,6 +299,14 @@ def bibtex(cff: dict) -> str:
         ("year", str(data.year)),
         ("month", str(data.month)),
         ("version", str(cff["version"])),
+    ]
+    # DOI only when CITATION.cff has one (concept DOI from Zenodo); a malformed value fails loud
+    if "doi" in cff:
+        doi = str(cff["doi"]).strip()
+        if not re.fullmatch(r"10\.\d{4,9}/\S+", doi):
+            raise ValueError(f"CITATION.cff: doi {doi!r} is not a bare DOI (expected 10.xxxx/...)")
+        campos.append(("doi", doi))
+    campos += [
         ("url", cff["repository-code"]),
         ("license", cff["license"]),
         ("note", nota),
