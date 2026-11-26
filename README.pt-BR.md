@@ -113,7 +113,7 @@ Docker (`docker-compose.yml`, uma imagem, três serviços):
 docker compose up            # app (Streamlit) em :8501, api (FastAPI) em :8000, mlflow em :5000
 ```
 
-O CI (`.github/workflows/ci.yml`, job `docker`) constrói as imagens a cada push, roda o pytest e o teste de fumaça dentro da imagem `test`, sobe o serviço `api` com o compose e espera o `GET /health`, e constrói e testa a imagem enxuta da API. A imagem enxuta (`api/Dockerfile` + `api/requirements.txt`: FastAPI + XGBoost CPU, sem TensorFlow, usuário não-root, porta 7860) é a destinada a um Space do Hugging Face; `deploy/hf_space/` (`montar_space.py`, `LEIA-ME.md`) monta a pasta do Space e confere cada arquivo por sha256. **A API ainda não está publicada**: rode localmente com `make docker-api` e abra <http://localhost:7860/health>.
+O CI (`.github/workflows/ci.yml`, job `docker`) constrói as imagens a cada push, roda o pytest e o teste de fumaça dentro da imagem `test`, sobe o serviço `api` com o compose e espera o `GET /health`, e constrói e testa a imagem enxuta da API. A imagem enxuta (`api/Dockerfile` + `api/requirements.txt`: FastAPI + XGBoost CPU, sem TensorFlow, usuário não-root, porta 7860) é a que está publicada. **API no ar (demonstração):** <https://sp-respiratory-admissions-forecast-api.onrender.com> (`/health`, `/forecast?h=7&origem=2024-06-01`, `/docs`), no plano gratuito do Render a partir do `api/Dockerfile`; a instância gratuita dorme depois de 15 minutos sem acesso e leva cerca de um minuto para acordar. Configuração e passos de redeploy: `deploy/render/LEIA-ME.md` (decisão D14). Os Spaces Docker do Hugging Face agora exigem assinatura PRO, então `deploy/hf_space/` (`montar_space.py`, `LEIA-ME.md`) fica como alternativa. Localmente: `make docker-api` e <http://localhost:7860/health>.
 
 GitHub Codespaces: `.devcontainer/devcontainer.json` instala o uv, roda `uv sync --frozen --all-extras` e abre o app Streamlit na porta 8501 (as portas 8000 e 5000 também são encaminhadas). Selo no topo ou <https://codespaces.new/matheusmmmp/sp-respiratory-admissions-forecast>.
 
@@ -133,7 +133,7 @@ Estão em inglês `docs/ARCHITECTURE.md`, `docs/REPRODUCIBILITY.md`, `docs/LESSO
 - `docs/REPRODUCIBILITY.md`: como reexecutar uma run a partir de `results/runs/<RUN_ID>/config.json`, o que está travado e o que não é reproduzível (arquivo canônico do CAMS, microdados).
 - `docs/LESSONS.md`: quatro coisas que deram errado ou nos surpreenderam, cada uma com o arquivo que a comprova.
 - `data/README.md`: data card (fontes, licenças, regras de construção, colunas, exclusões).
-- `docs/DECISOES.md`: decisões do autor D1 a D13 para este repositório (em português).
+- `docs/DECISOES.md`: decisões do autor D1 a D14 para este repositório (em português).
 - `docs/CONFERENCIA_NUMEROS_WP5.md`: todo número deste README, do `README.md` e dos docs, com o arquivo e a chave contra os quais foi conferido.
 - `docs/INVENTARIO_FASE0.tsv`: proveniência (caminho de origem e sha256) de cada arquivo copiado do repositório da dissertação.
 
@@ -142,7 +142,7 @@ Estão em inglês `docs/ARCHITECTURE.md`, `docs/REPRODUCIBILITY.md`, `docs/LESSO
 - **Não é a dissertação.** O texto, a revisão de literatura e as conclusões finais vivem em outro lugar e ainda estão sendo escritos; os números daqui podem mudar antes da defesa.
 - **Não contém microdados**: só agregados diários do SIH/SUS e agregados diários por estação da CETESB e do CAMS. Nenhum `N_AIH`, nenhum paciente, nenhum registro por estabelecimento além do painel agregado do sábado (estabelecimento × ano com menos de 5 internações suprimido) e da série diária de internações do CNES 2091550 usada no gráfico dos sábados (aceita como está, decisão D8 em `docs/DECISOES.md`).
 - Nada é publicado sobre a LSTM (ou qualquer modelo do benchmark) além do que está em `results/`: nenhum peso treinado dos modelos do benchmark (os únicos pesos versionados são os três modelos XGBoost de demonstração em `models_demo/`, ver `models_demo/MODEL_CARD.md`), nenhum artefato por semente, nenhuma busca de hiperparâmetros além dos valores configurados.
-- A API é uma demonstração de engenharia, in-sample por construção (responde só para datas-alvo dentro do histórico 2019–2024) e ainda não está publicada (rode-a localmente, ver `api/README.md`). Seus modelos não são os modelos do benchmark e não devem ser usados para planejamento ou assistência.
+- A API é uma demonstração de engenharia, in-sample por construção (responde só para datas-alvo dentro do histórico 2019–2024) e publicada só como demonstração, no plano gratuito do Render (<https://sp-respiratory-admissions-forecast-api.onrender.com>; ver `api/README.md`). Seus modelos não são os modelos do benchmark e não devem ser usados para planejamento ou assistência.
 - TCN, TFT, SHAP e outras extensões que aparecem no plano da dissertação não foram executadas e não são descritas aqui.
 
 ## Licença e citação

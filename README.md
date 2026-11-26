@@ -113,7 +113,7 @@ Docker (`docker-compose.yml`, one image, three services):
 docker compose up            # app (Streamlit) on :8501, api (FastAPI) on :8000, mlflow on :5000
 ```
 
-The CI (`.github/workflows/ci.yml`, job `docker`) builds the images on every push, runs pytest and the smoke test inside the `test` image, starts the `api` service with compose and waits for `GET /health`, and builds and probes the slim API image. The slim image (`api/Dockerfile` + `api/requirements.txt`: FastAPI + XGBoost CPU, no TensorFlow, non-root user, port 7860) is the one meant for a Hugging Face Space; `deploy/hf_space/` (`montar_space.py`, `LEIA-ME.md`) assembles the Space folder and checks every file by sha256. **The API is not yet deployed**: run it locally with `make docker-api` and open <http://localhost:7860/health>.
+The CI (`.github/workflows/ci.yml`, job `docker`) builds the images on every push, runs pytest and the smoke test inside the `test` image, starts the `api` service with compose and waits for `GET /health`, and builds and probes the slim API image. The slim image (`api/Dockerfile` + `api/requirements.txt`: FastAPI + XGBoost CPU, no TensorFlow, non-root user, port 7860) is the one deployed. **Live API (demonstration):** <https://sp-respiratory-admissions-forecast-api.onrender.com> (`/health`, `/forecast?h=7&origem=2024-06-01`, `/docs`), on Render's free plan from `api/Dockerfile`; the free instance sleeps after 15 minutes without traffic and takes about a minute to wake up. Settings and redeploy steps: `deploy/render/LEIA-ME.md` (decision D14). Hugging Face Docker Spaces now require a PRO subscription, so `deploy/hf_space/` (`montar_space.py`, `LEIA-ME.md`) stays as an alternative. Locally: `make docker-api` and <http://localhost:7860/health>.
 
 GitHub Codespaces: `.devcontainer/devcontainer.json` installs uv, runs `uv sync --frozen --all-extras` and opens the Streamlit app on port 8501 (ports 8000 and 5000 are forwarded too). Badge at the top or <https://codespaces.new/matheusmmmp/sp-respiratory-admissions-forecast>.
 
@@ -131,7 +131,7 @@ To reproduce a run exactly from its `config.json`, see `docs/REPRODUCIBILITY.md`
 - `docs/REPRODUCIBILITY.md`: how to rerun a run from `results/runs/<RUN_ID>/config.json`, what is pinned, and what is not reproducible (CAMS canonical file, microdata).
 - `docs/LESSONS.md`: four things that went wrong or surprised us, each with the file that proves it.
 - `data/README.md`: data card (sources, licences, construction rules, columns, exclusions).
-- `docs/DECISOES.md`: author decisions D1 to D13 for this repository (in Portuguese).
+- `docs/DECISOES.md`: author decisions D1 to D14 for this repository (in Portuguese).
 - `docs/CONFERENCIA_NUMEROS_WP5.md`: every number in this README, in `README.pt-BR.md` and in the docs, with the file and key it was checked against.
 - `docs/INVENTARIO_FASE0.tsv`: provenance (origin path and sha256) of every file copied from the dissertation repository.
 
@@ -140,7 +140,7 @@ To reproduce a run exactly from its `config.json`, see `docs/REPRODUCIBILITY.md`
 - It is **not the dissertation**. The text, the literature review and the final conclusions live elsewhere and are still being written; the numbers here can change before the defence.
 - It contains **no microdata**: only daily aggregates of SIH/SUS and daily station aggregates of CETESB and CAMS. No `N_AIH`, no patient, no establishment-level record beyond the aggregated Saturday panel (establishment × year with fewer than 5 admissions suppressed) and the daily admission series of CNES 2091550 used in the Saturday chart (accepted as is, decision D8 in `docs/DECISOES.md`).
 - Nothing is published about the LSTM (or any benchmark model) beyond what is in `results/`: no trained weights of the benchmark models (the only versioned weights are the three demonstration XGBoost models in `models_demo/`, see `models_demo/MODEL_CARD.md`), no per-seed artefacts, no hyper-parameter search beyond the configured values.
-- The API is an engineering demonstration, in-sample by construction (it answers only for targets inside the 2019–2024 history) and not yet deployed (run it locally, see `api/README.md`). Its models are not the benchmark models and must not be used for planning or care.
+- The API is an engineering demonstration, in-sample by construction (it answers only for targets inside the 2019–2024 history) and deployed only as a demonstration on Render's free plan (<https://sp-respiratory-admissions-forecast-api.onrender.com>; see `api/README.md`). Its models are not the benchmark models and must not be used for planning or care.
 - TCN, TFT, SHAP and other extensions that appear in the dissertation plan were not executed and are not described here.
 
 ## Licence and citation

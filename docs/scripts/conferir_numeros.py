@@ -1389,6 +1389,7 @@ PAGE_EN = "https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/"
 PAGE_PT = "https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/index.pt-BR.html"
 CODESPACES_URL = "https://codespaces.new/matheusmmmp/sp-respiratory-admissions-forecast"
 RELEASE_URL = "https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/releases/tag/v0.1.1"
+API_URL = "https://sp-respiratory-admissions-forecast-api.onrender.com"  # Render, D14
 DOI_VERSAO = "10.5281/zenodo.24567671"  # Zenodo, v0.1.1
 DOI_CONCEITO = "10.5281/zenodo.24567670"  # Zenodo, sempre a versão mais recente
 for nome, txt, readme, page in (
@@ -1447,18 +1448,18 @@ for nome, txt, readme, page in (
         else "unknown DOI present",
     )
     add(
-        f"{nome}: no Hugging Face Space URL (API not yet deployed)",
+        f"{nome}: no Hugging Face Space URL (Space not created; Docker Spaces need PRO, D14)",
         "absent",
         readme,
         "'huggingface.co/spaces' / 'hf.space'",
         "absent" if "huggingface.co/spaces" not in txt and "hf.space" not in txt else "present",
     )
     add(
-        f"{nome}: states the API is not yet deployed",
+        f"{nome}: live API URL on Render, with the free-plan sleep caveat and D14",
         "present",
         readme,
-        "'not yet deployed' / 'ainda não está publicada'",
-        "present" if ("not yet deployed" in txt or "ainda não está publicada" in txt) else "absent",
+        "API_URL + '15 minutes'/'15 minutos' + 'D14'",
+        "present" if API_URL in txt and ("15 minutes" in txt or "15 minutos" in txt) and "D14" in txt else "absent",
     )
     add(
         f"{nome}: --mlflow example command present",
@@ -1604,8 +1605,8 @@ for alvo in ("docker-build", "docker-test", "docker-api", "precommit", "mlflow",
     )
 dec = (RAIZ / "docs" / "DECISOES.md").read_text(encoding="utf-8")
 add(
-    "README: number of author decisions (D1 to D13)",
-    13,
+    "README: number of author decisions (D1 to D14)",
+    14,
     RAIZ / "docs" / "DECISOES.md",
     "rows starting with '| D'",
     len(re.findall(r"^\| D\d+ \|", dec, re.M)),
@@ -1667,13 +1668,14 @@ for nome, txt, readme in (("README.md", txt_en, README_EN), ("README.pt-BR.md", 
     ]
     nao = nao.split("\n## ", 1)[0]
     add(
-        f"{nome}: 'is not' section says the API is in-sample and not deployed",
+        f"{nome}: 'is not' section says the API is in-sample and only a demonstration on Render",
         "present",
         readme,
-        "'in-sample' and 'not yet deployed' / 'ainda não está publicada' in the 'is not' section",
+        "'in-sample' + 'Render' + API_URL in the 'is not' section",
         "present"
-        if ("in-sample by construction" in nao and "not yet deployed" in nao)
-        or ("in-sample por construção" in nao and "ainda não está publicada" in nao)
+        if ("in-sample by construction" in nao or "in-sample por construção" in nao)
+        and "Render" in nao
+        and API_URL in nao
         else "absent",
     )
     add(

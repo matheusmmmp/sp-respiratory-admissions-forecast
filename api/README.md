@@ -5,6 +5,17 @@ FastAPI service that serves the demonstration XGBoost `AR_CAL` models in
 dissertation result** — read `models_demo/MODEL_CARD.md` before quoting any
 number.
 
+## Live demo
+
+<https://sp-respiratory-admissions-forecast-api.onrender.com> serves this API on Render's free plan (built from `api/Dockerfile`; settings in
+`deploy/render/LEIA-ME.md`). The free instance sleeps after 15 minutes without traffic, so the first
+request can take about a minute.
+
+```
+curl https://sp-respiratory-admissions-forecast-api.onrender.com/health
+curl "https://sp-respiratory-admissions-forecast-api.onrender.com/forecast?h=7&origem=2024-06-01"
+```
+
 ## Run
 
 Train the demo models once (a few seconds on CPU; they are versioned, so this

@@ -1,5 +1,10 @@
 # Publicar a API de demonstração num Hugging Face Space (Docker)
 
+> **Situação em 2026-11-26:** ao criar o Space, o Hugging Face respondeu que Spaces Docker e Gradio
+> em CPU gratuita exigem assinatura PRO (Spaces estáticos seguem gratuitos). Por isso a API foi
+> publicada no Render (`deploy/render/LEIA-ME.md`, decisão D14): <https://sp-respiratory-admissions-forecast-api.onrender.com>. Este passo a passo
+> continua válido para quem tiver PRO.
+
 Passo a passo para o autor. Nada aqui é automático: conta, Space, token e
 `push` são feitos por você, no seu terminal. O que o repositório fornece é
 `api/Dockerfile` (imagem enxuta: FastAPI + XGBoost CPU; cerca de 6× menor que a

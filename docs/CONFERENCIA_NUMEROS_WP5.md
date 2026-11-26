@@ -1,6 +1,6 @@
 # Conferência de números — WP5 (README.md, README.pt-BR.md, docs/, data/README.md)
 
-Gerado por `docs/scripts/conferir_numeros.py` em 2026-11-26 15:34. Cada linha: onde o número aparece, o número como exibido, o arquivo de origem, a chave/seletor e o valor lido. Arredondamento: MAE 2 casas, MASE e skill 3 casas, contagens exatas. As tabelas dos dois READMEs são geradas por `docs/scripts/tabela_readme.py` (`--lang en` / `--lang pt`; mesmas células, ponto decimal dos arquivos de origem), que também exige igualdade (|diff| <= 1e-9) entre `model_comparison.csv`, `A_modelos_por_h.csv` e `arcal_por_horizonte_dois_alvos.csv`; a conferência verifica que cada bloco de tabela aparece literalmente em `README.md` e em `README.pt-BR.md`. Números do texto corrido do `README.pt-BR.md` usam vírgula decimal e são conferidos à parte (linhas 'README.pt-BR.md prose').
+Gerado por `docs/scripts/conferir_numeros.py` em 2026-11-26 17:02. Cada linha: onde o número aparece, o número como exibido, o arquivo de origem, a chave/seletor e o valor lido. Arredondamento: MAE 2 casas, MASE e skill 3 casas, contagens exatas. As tabelas dos dois READMEs são geradas por `docs/scripts/tabela_readme.py` (`--lang en` / `--lang pt`; mesmas células, ponto decimal dos arquivos de origem), que também exige igualdade (|diff| <= 1e-9) entre `model_comparison.csv`, `A_modelos_por_h.csv` e `arcal_por_horizonte_dois_alvos.csv`; a conferência verifica que cada bloco de tabela aparece literalmente em `README.md` e em `README.pt-BR.md`. Números do texto corrido do `README.pt-BR.md` usam vírgula decimal e são conferidos à parte (linhas 'README.pt-BR.md prose').
 
 Total: 627 números; VERIFICADO: 627; DIVERGENTE: 0.
 
@@ -555,8 +555,8 @@ Total: 627 números; VERIFICADO: 627; DIVERGENTE: 0.
 | 547 | README.md: release link present | present | `README.md` | 'https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/releases/tag/v0.1.1' | present | VERIFICADO |
 | 548 | README.md: version and concept DOIs cited with doi.org links | present | `README.md` | 'https://doi.org/<DOI_VERSAO>' and 'https://doi.org/<DOI_CONCEITO>' | present | VERIFICADO |
 | 549 | README.md: only the two Zenodo DOIs of this software appear | only known DOIs | `README.md` | every '10.5281/zenodo.N' in the text | only known DOIs | VERIFICADO |
-| 550 | README.md: no Hugging Face Space URL (API not yet deployed) | absent | `README.md` | 'huggingface.co/spaces' / 'hf.space' | absent | VERIFICADO |
-| 551 | README.md: states the API is not yet deployed | present | `README.md` | 'not yet deployed' / 'ainda não está publicada' | present | VERIFICADO |
+| 550 | README.md: no Hugging Face Space URL (Space not created; Docker Spaces need PRO, D14) | absent | `README.md` | 'huggingface.co/spaces' / 'hf.space' | absent | VERIFICADO |
+| 551 | README.md: live API URL on Render, with the free-plan sleep caveat and D14 | present | `README.md` | API_URL + '15 minutes'/'15 minutos' + 'D14' | present | VERIFICADO |
 | 552 | README.md: --mlflow example command present | present | `README.md` | '--smoke --mlflow --mlflow-uri sqlite:///mlruns/mlflow.db' | present | VERIFICADO |
 | 553 | README.md: pre-commit install line present | present | `README.md` | 'uv run pre-commit install' | present | VERIFICADO |
 | 554 | README.pt-BR.md: project page badge present | present | `README.pt-BR.md` | 'GitHub%20Pages-blue)](https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/index.pt-BR.html)' | present | VERIFICADO |
@@ -569,8 +569,8 @@ Total: 627 números; VERIFICADO: 627; DIVERGENTE: 0.
 | 561 | README.pt-BR.md: release link present | present | `README.pt-BR.md` | 'https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/releases/tag/v0.1.1' | present | VERIFICADO |
 | 562 | README.pt-BR.md: version and concept DOIs cited with doi.org links | present | `README.pt-BR.md` | 'https://doi.org/<DOI_VERSAO>' and 'https://doi.org/<DOI_CONCEITO>' | present | VERIFICADO |
 | 563 | README.pt-BR.md: only the two Zenodo DOIs of this software appear | only known DOIs | `README.pt-BR.md` | every '10.5281/zenodo.N' in the text | only known DOIs | VERIFICADO |
-| 564 | README.pt-BR.md: no Hugging Face Space URL (API not yet deployed) | absent | `README.pt-BR.md` | 'huggingface.co/spaces' / 'hf.space' | absent | VERIFICADO |
-| 565 | README.pt-BR.md: states the API is not yet deployed | present | `README.pt-BR.md` | 'not yet deployed' / 'ainda não está publicada' | present | VERIFICADO |
+| 564 | README.pt-BR.md: no Hugging Face Space URL (Space not created; Docker Spaces need PRO, D14) | absent | `README.pt-BR.md` | 'huggingface.co/spaces' / 'hf.space' | absent | VERIFICADO |
+| 565 | README.pt-BR.md: live API URL on Render, with the free-plan sleep caveat and D14 | present | `README.pt-BR.md` | API_URL + '15 minutes'/'15 minutos' + 'D14' | present | VERIFICADO |
 | 566 | README.pt-BR.md: --mlflow example command present | present | `README.pt-BR.md` | '--smoke --mlflow --mlflow-uri sqlite:///mlruns/mlflow.db' | present | VERIFICADO |
 | 567 | README.pt-BR.md: pre-commit install line present | present | `README.pt-BR.md` | 'uv run pre-commit install' | present | VERIFICADO |
 | 568 | README: release tag v0.1.1 exists in the repository | v0.1.1 | `git tag --list v0.1.1` | stdout | v0.1.1 | VERIFICADO |
@@ -598,7 +598,7 @@ Total: 627 números; VERIFICADO: 627; DIVERGENTE: 0.
 | 590 | README: make target 'api' exists | present | `Makefile` | 'api:' line | present | VERIFICADO |
 | 591 | README: make target 'test' exists | present | `Makefile` | 'test:' line | present | VERIFICADO |
 | 592 | README: make target 'smoke' exists | present | `Makefile` | 'smoke:' line | present | VERIFICADO |
-| 593 | README: number of author decisions (D1 to D13) | 13 | `docs/DECISOES.md` | rows starting with '| D' | 13 | VERIFICADO |
+| 593 | README: number of author decisions (D1 to D14) | 14 | `docs/DECISOES.md` | rows starting with '| D' | 14 | VERIFICADO |
 | 594 | README: D9 says the dissertation runner is unchanged | present | `docs/DECISOES.md` | D9 text | present | VERIFICADO |
 | 595 | README: D10 records v0.1.0 without DOI and both DOIs of v0.1.1 | present | `docs/DECISOES.md` | D10 text '**sem DOI**' + DOI_VERSAO + DOI_CONCEITO | present | VERIFICADO |
 | 596 | README: cited file exists (tracking/registro_mlflow.py) | exists | `tracking/registro_mlflow.py` | path | exists | VERIFICADO |
@@ -613,11 +613,11 @@ Total: 627 números; VERIFICADO: 627; DIVERGENTE: 0.
 | 605 | README: cited file exists (.pre-commit-config.yaml) | exists | `.pre-commit-config.yaml` | path | exists | VERIFICADO |
 | 606 | README: versioned demonstration weights in models_demo/ (three XGBoost) | 3 | `models_demo/*.ubj` | count of .ubj files | 3 | VERIFICADO |
 | 607 | README: no other versioned weight files outside models_demo/ | none | `git ls-files` | files ending in .ubj, .keras, .h5, .pkl, .joblib, .onnx, .pt, .safetensors | none | VERIFICADO |
-| 608 | README.md: 'is not' section says the API is in-sample and not deployed | present | `README.md` | 'in-sample' and 'not yet deployed' / 'ainda não está publicada' in the 'is not' section | present | VERIFICADO |
+| 608 | README.md: 'is not' section says the API is in-sample and only a demonstration on Render | present | `README.md` | 'in-sample' + 'Render' + API_URL in the 'is not' section | present | VERIFICADO |
 | 609 | README.md: 'is not' section names the demonstration weights in models_demo/ | present | `README.md` | 'models_demo/MODEL_CARD.md' in the 'is not' section | present | VERIFICADO |
 | 610 | README.md: 'is not' section cites decision D8 for the CNES 2091550 daily series | present | `README.md` | 'CNES 2091550' and 'D8' in the 'is not' section | present | VERIFICADO |
 | 611 | README.md: old Saturday sentence ('worst day for every model') gone | absent | `README.md` | 'worst day for every model' / 'pior dia para todos' | absent | VERIFICADO |
-| 612 | README.pt-BR.md: 'is not' section says the API is in-sample and not deployed | present | `README.pt-BR.md` | 'in-sample' and 'not yet deployed' / 'ainda não está publicada' in the 'is not' section | present | VERIFICADO |
+| 612 | README.pt-BR.md: 'is not' section says the API is in-sample and only a demonstration on Render | present | `README.pt-BR.md` | 'in-sample' + 'Render' + API_URL in the 'is not' section | present | VERIFICADO |
 | 613 | README.pt-BR.md: 'is not' section names the demonstration weights in models_demo/ | present | `README.pt-BR.md` | 'models_demo/MODEL_CARD.md' in the 'is not' section | present | VERIFICADO |
 | 614 | README.pt-BR.md: 'is not' section cites decision D8 for the CNES 2091550 daily series | present | `README.pt-BR.md` | 'CNES 2091550' and 'D8' in the 'is not' section | present | VERIFICADO |
 | 615 | README.pt-BR.md: old Saturday sentence ('worst day for every model') gone | absent | `README.pt-BR.md` | 'worst day for every model' / 'pior dia para todos' | absent | VERIFICADO |
