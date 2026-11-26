@@ -1,6 +1,6 @@
 {
   "figura": "fig_dispersao_sementes_pt",
-  "descricao": "Desvio-padrão do MAE entre as 5 sementes (42 a 46), AR_CAL; contínua: alvo total, tracejada: alvo de urgência. Maior: LSTM, alvo total, h = 30 (1,37). Para comparação, o desvio-padrão do MAE do XGBoost entre os 4 folds em h = 1 (total) é 2,34: os resultados são a média das sementes, nunca a melhor semente.",
+  "descricao": "Média, sobre os 4 folds, do desvio-padrão do MAE entre as 5 sementes, 42 a 46 (MAE_std_semente), AR_CAL; contínua: alvo total, tracejada: alvo de urgência. Maior: LSTM, alvo total, h = 30 (1,37). Para comparação, o desvio-padrão do MAE do XGBoost entre os 4 folds em h = 1 (total) é 2,34: os resultados são a média das sementes, nunca a melhor semente.",
   "artefatos_de_origem": [
     {
       "caminho": "results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/arcal_por_horizonte_dois_alvos.csv",
@@ -66,7 +66,7 @@
   "conjunto_de_features": "AR_CAL",
   "status": "Provisional (pre-defence)",
   "script": "docs/scripts/build_site.py",
-  "gerado_em": "2026-11-26T13:07:54",
+  "gerado_em": "2026-11-26T15:18:18",
   "ambiente": {
     "python": "3.11.0",
     "pandas": "3.0.0",

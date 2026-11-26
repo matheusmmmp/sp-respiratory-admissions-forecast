@@ -886,14 +886,16 @@ def figuras(d: dict, cores: dict[str, str], ent: Entradas, saida: Path) -> dict[
         mx = max(todos)
         if lang == "en":
             leg = (
-                f"Standard deviation of the MAE across the {ns} seeds ({s0} to {s1}), AR_CAL, solid: total target, dashed: urgent "
+                f"Mean, over the {nf} folds, of the standard deviation of the MAE across the {ns} seeds, {s0} to {s1} (MAE_std_semente), "
+                f"AR_CAL; solid: total target, dashed: urgent "
                 f"target. Largest: {rotulo(mx[1])}, {T['alvo'][mx[2]]}, h = {mx[3]} ({fmt(mx[0], 2, lang)}). For scale, the "
                 f"standard deviation of the XGBoost MAE across the {nf} folds at h = 1 (total) is {fmt(d['dp_fold_xgb_h1'], 2, lang)}: "
                 "results are reported as the mean over seeds, never the best seed."
             )
         else:
             leg = (
-                f"Desvio-padrão do MAE entre as {ns} sementes ({s0} a {s1}), AR_CAL; contínua: alvo total, tracejada: alvo de urgência. "
+                f"Média, sobre os {nf} folds, do desvio-padrão do MAE entre as {ns} sementes, {s0} a {s1} (MAE_std_semente), "
+                f"AR_CAL; contínua: alvo total, tracejada: alvo de urgência. "
                 f"Maior: {rotulo(mx[1])}, {T['alvo'][mx[2]]}, h = {mx[3]} ({fmt(mx[0], 2, lang)}). Para comparação, o "
                 f"desvio-padrão do MAE do XGBoost entre os {nf} folds em h = 1 (total) é {fmt(d['dp_fold_xgb_h1'], 2, lang)}: "
                 "os resultados são a média das sementes, nunca a melhor semente."

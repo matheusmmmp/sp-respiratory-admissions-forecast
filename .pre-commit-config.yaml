@@ -3,8 +3,11 @@
 #
 # ruff fica restrito aos pacotes novos do portfólio — src/ e tests/ são cópia
 # curada da dissertação com avisos de estilo herdados (decisão do gerente).
-# gitleaks (segredos), detect-private-key e check-added-large-files cobrem o
-# repositório inteiro, inclusive data/ e results/ (sem `exclude` global).
+# detect-private-key e check-added-large-files valem para todos os caminhos,
+# inclusive data/ e results/ (sem `exclude` global). O hook gitleaks (`gitleaks git
+# --pre-commit --redact --staged`) só varre o que está staged — mesmo com `--all-files` ele
+# não varre o repositório nem o histórico; essa varredura é o job `secrets` do CI
+# (`gitleaks git --log-opts=--all --redact`).
 # Os hooks que reescrevem arquivos (whitespace, fim de arquivo, EOL) não
 # tocam em dados agregados nem em artefatos de runs.
 # Arquivos que os hooks de espaço/fim de arquivo/fim de linha NÃO podem tocar: dados e artefatos
@@ -40,12 +43,12 @@ repos:
     rev: v0.17.6                   # mesma versão do uv.lock
     hooks:
       - id: ruff-check
-        files: ^(app|api|tracking|models_demo)/
+        files: ^(app|api|tracking|models_demo|deploy)/
         args: [--fix]
       - id: ruff-format
-        files: ^(app|api|tracking|models_demo)/
+        files: ^(app|api|tracking|models_demo|deploy)/
 
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.24.3
     hooks:
-      - id: gitleaks                 # varre o diff staged a cada commit
+      - id: gitleaks                 # só o diff staged (o histórico: job `secrets` do CI)

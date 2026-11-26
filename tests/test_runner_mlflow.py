@@ -11,8 +11,10 @@ e, no MLflow: hierarquia mãe/filhas, métricas das filhas == ``metrics.json``, 
 As três execuções do runner (referência, sem e com ``--mlflow``) rodam em subprocessos, uma vez
 por módulo, com uma config ainda menor que ``configs/smoke_mlflow.yaml`` (um conjunto, 2 folds de
 14 dias, 2 sementes, os sete modelos, treino a partir de 2022) — 20 a 30 s cada na CPU; o módulo
-inteiro leva cerca de 1,5 min. A prova (a) é pulada quando o commit de referência não está no clone
-(CI com ``fetch-depth: 1``).
+inteiro leva cerca de 1,5 min. Quando o commit de referência não está no clone, a prova (a)
+**falha** se a variável ``CI`` for ``true`` (o job ``pytest`` do CI faz checkout com ``fetch-depth: 0``,
+então a ausência é erro de configuração) e é pulada fora do CI (clone raso local; contêiner Docker, onde o
+``.git`` é excluído pelo ``.dockerignore`` e ``CI`` não é repassado ao ``docker run``).
 """
 
 from __future__ import annotations
@@ -143,7 +145,10 @@ def run_referencia(config_teste, tmp_path_factory):
     except (OSError, subprocess.SubprocessError):
         ok = False
     if not ok:
-        pytest.skip(f"commit de referência {COMMIT_REFERENCIA[:7]} indisponível neste clone (raso?)")
+        motivo = f"commit de referência {COMMIT_REFERENCIA[:7]} indisponível neste clone (raso? sem .git?)"
+        if os.environ.get("CI", "").strip().lower() == "true":
+            pytest.fail(f"{motivo}; no CI o checkout precisa de fetch-depth: 0", pytrace=False)
+        pytest.skip(f"{motivo}; fora do CI a prova (a) é pulada")
     destino = tmp_path_factory.mktemp("referencia")
     tar = subprocess.run(
         ["git", "archive", "--format=tar", COMMIT_REFERENCIA, "src", "data/processed"],

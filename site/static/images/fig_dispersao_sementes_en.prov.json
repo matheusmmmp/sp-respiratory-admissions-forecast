@@ -1,6 +1,6 @@
 {
   "figura": "fig_dispersao_sementes_en",
-  "descricao": "Standard deviation of the MAE across the 5 seeds (42 to 46), AR_CAL, solid: total target, dashed: urgent target. Largest: LSTM, total target, h = 30 (1.37). For scale, the standard deviation of the XGBoost MAE across the 4 folds at h = 1 (total) is 2.34: results are reported as the mean over seeds, never the best seed.",
+  "descricao": "Mean, over the 4 folds, of the standard deviation of the MAE across the 5 seeds, 42 to 46 (MAE_std_semente), AR_CAL; solid: total target, dashed: urgent target. Largest: LSTM, total target, h = 30 (1.37). For scale, the standard deviation of the XGBoost MAE across the 4 folds at h = 1 (total) is 2.34: results are reported as the mean over seeds, never the best seed.",
   "artefatos_de_origem": [
     {
       "caminho": "results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/arcal_por_horizonte_dois_alvos.csv",
@@ -66,7 +66,7 @@
   "conjunto_de_features": "AR_CAL",
   "status": "Provisional (pre-defence)",
   "script": "docs/scripts/build_site.py",
-  "gerado_em": "2026-11-26T13:07:54",
+  "gerado_em": "2026-11-26T15:18:18",
   "ambiente": {
     "python": "3.11.0",
     "pandas": "3.0.0",

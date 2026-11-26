@@ -270,14 +270,16 @@ TEXTOS: dict[str, dict[str, object]] = {
     "sab.titulo": {"en": "The Saturday case", "pt": "O caso do sábado"},
     "sab.intro": {
         "en": "Since 2022 the daily count of respiratory admissions shows **Saturday spikes** that no environmental or "
-        "epidemiological signal explains. They are **elective surgery campaigns** (mostly tonsils/adenoids, J35, and "
-        "nasal septum, J34) concentrated in one establishment, **CNES 2091550 (Instituto CEMA)**. The admission "
+        "epidemiological signal explains. They are **elective surgery campaigns** (almost all in ICD-10 group "
+        "J30–J39, other diseases of the upper respiratory tract) concentrated in one establishment, "
+        "**CNES 2091550 (Instituto CEMA)**. The admission "
         "character recorded in the AIH (`CAR_INT`) separates them cleanly, which is why a second target — "
         "**urgent = non-elective** — exists. Descriptive reading, no formal test. For 2025–2026 the target has not "
         "yet been checked against TabNet.",
         "pt": "Desde 2022 a contagem diária de internações respiratórias mostra **picos aos sábados** que nenhum sinal "
-        "ambiental ou epidemiológico explica. São **mutirões de cirurgia eletiva** (sobretudo amígdalas/adenoides, "
-        "J35, e septo nasal, J34) concentrados em um estabelecimento, o **CNES 2091550 (Instituto CEMA)**. O caráter "
+        "ambiental ou epidemiológico explica. São **mutirões de cirurgia eletiva** (quase todos no grupo J30–J39 da "
+        "CID-10, outras doenças das vias aéreas superiores) concentrados em um estabelecimento, o "
+        "**CNES 2091550 (Instituto CEMA)**. O caráter "
         "da internação registrado na AIH (`CAR_INT`) os separa com clareza, e por isso existe um segundo alvo — o "
         "**alvo de urgência = não eletivo**. Leitura descritiva, sem teste formal. Em 2025–2026 o alvo ainda não foi "
         "conferido contra o TabNet.",

@@ -1,8 +1,8 @@
 # Conferência de números — WP5 (README.md, README.pt-BR.md, docs/, data/README.md)
 
-Gerado por `docs/scripts/conferir_numeros.py` em 2026-11-26 14:33. Cada linha: onde o número aparece, o número como exibido, o arquivo de origem, a chave/seletor e o valor lido. Arredondamento: MAE 2 casas, MASE e skill 3 casas, contagens exatas. As tabelas dos dois READMEs são geradas por `docs/scripts/tabela_readme.py` (`--lang en` / `--lang pt`; mesmas células, ponto decimal dos arquivos de origem), que também exige igualdade (|diff| <= 1e-9) entre `model_comparison.csv`, `A_modelos_por_h.csv` e `arcal_por_horizonte_dois_alvos.csv`; a conferência verifica que cada bloco de tabela aparece literalmente em `README.md` e em `README.pt-BR.md`. Números do texto corrido do `README.pt-BR.md` usam vírgula decimal e são conferidos à parte (linhas 'README.pt-BR.md prose').
+Gerado por `docs/scripts/conferir_numeros.py` em 2026-11-26 15:18. Cada linha: onde o número aparece, o número como exibido, o arquivo de origem, a chave/seletor e o valor lido. Arredondamento: MAE 2 casas, MASE e skill 3 casas, contagens exatas. As tabelas dos dois READMEs são geradas por `docs/scripts/tabela_readme.py` (`--lang en` / `--lang pt`; mesmas células, ponto decimal dos arquivos de origem), que também exige igualdade (|diff| <= 1e-9) entre `model_comparison.csv`, `A_modelos_por_h.csv` e `arcal_por_horizonte_dois_alvos.csv`; a conferência verifica que cada bloco de tabela aparece literalmente em `README.md` e em `README.pt-BR.md`. Números do texto corrido do `README.pt-BR.md` usam vírgula decimal e são conferidos à parte (linhas 'README.pt-BR.md prose').
 
-Total: 588 números; VERIFICADO: 588; DIVERGENTE: 0.
+Total: 624 números; VERIFICADO: 624; DIVERGENTE: 0.
 
 | # | Onde | Número exibido | Arquivo | Chave / seletor | Valor lido | Status |
 |---:|---|---|---|---|---|---|
@@ -456,144 +456,180 @@ Total: 588 números; VERIFICADO: 588; DIVERGENTE: 0.
 | 448 | README.md prose: '0.90' present | present | `README.md` | text search | present | VERIFICADO |
 | 449 | README.pt-BR.md prose: XGBoost Saturday ratio (urgent) | 0,90 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=urgencia,modelo=XGBoost,razao (vírgula decimal) | 0,90 | VERIFICADO |
 | 450 | README.pt-BR.md prose: '0,90' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 451 | README.md prose: p Holm urgencia h=1 ablacao_sarimax H2_media_sem_meteo | 0.005 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=1,familia=ablacao_sarimax,contraste=H2_media_sem_meteo,p_holm | 0.0049108177199466 | VERIFICADO |
-| 452 | README.md prose: '0.005' present | present | `README.md` | text search | present | VERIFICADO |
-| 453 | README.pt-BR.md prose: p Holm urgencia h=1 ablacao_sarimax H2_media_sem_meteo | 0,005 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=1,familia=ablacao_sarimax,contraste=H2_media_sem_meteo,p_holm (vírgula decimal) | 0,005 | VERIFICADO |
-| 454 | README.pt-BR.md prose: '0,005' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 455 | README.md prose: p Holm urgencia h=1 ablacao_sarimax POLUENTES_sem_meteo | 0.014 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=1,familia=ablacao_sarimax,contraste=POLUENTES_sem_meteo,p_holm | 0.0141556291920838 | VERIFICADO |
-| 456 | README.md prose: '0.014' present | present | `README.md` | text search | present | VERIFICADO |
-| 457 | README.pt-BR.md prose: p Holm urgencia h=1 ablacao_sarimax POLUENTES_sem_meteo | 0,014 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=1,familia=ablacao_sarimax,contraste=POLUENTES_sem_meteo,p_holm (vírgula decimal) | 0,014 | VERIFICADO |
-| 458 | README.pt-BR.md prose: '0,014' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 459 | README.md prose: p Holm urgencia h=15 ablacao_xgboost POLUENTES_com_meteo | 0.001 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=15,familia=ablacao_xgboost,contraste=POLUENTES_com_meteo,p_holm | 0.0009194373719768 | VERIFICADO |
-| 460 | README.md prose: '0.001' present | present | `README.md` | text search | present | VERIFICADO |
-| 461 | README.pt-BR.md prose: p Holm urgencia h=15 ablacao_xgboost POLUENTES_com_meteo | 0,001 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=15,familia=ablacao_xgboost,contraste=POLUENTES_com_meteo,p_holm (vírgula decimal) | 0,001 | VERIFICADO |
-| 462 | README.pt-BR.md prose: '0,001' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 463 | README.md prose: p Holm cetesb h=7 ablacao_lstm H2_media_com_meteo | 0.001 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=cetesb,h=7,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm | 0.0012874477281496 | VERIFICADO |
-| 464 | README.md prose: '0.001' present | present | `README.md` | text search | present | VERIFICADO |
-| 465 | README.pt-BR.md prose: p Holm cetesb h=7 ablacao_lstm H2_media_com_meteo | 0,001 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=cetesb,h=7,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm (vírgula decimal) | 0,001 | VERIFICADO |
-| 466 | README.pt-BR.md prose: '0,001' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 467 | README.md prose: p Holm urgencia h=5 ablacao_lstm H2_media_com_meteo | 0.007 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=5,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm | 0.0067240168712517 | VERIFICADO |
-| 468 | README.md prose: '0.007' present | present | `README.md` | text search | present | VERIFICADO |
-| 469 | README.pt-BR.md prose: p Holm urgencia h=5 ablacao_lstm H2_media_com_meteo | 0,007 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=5,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm (vírgula decimal) | 0,007 | VERIFICADO |
-| 470 | README.pt-BR.md prose: '0,007' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 471 | README.md prose: p Holm urgencia h=7 ablacao_lstm H2_media_com_meteo | 0.026 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=7,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm | 0.0259100754499556 | VERIFICADO |
-| 472 | README.md prose: '0.026' present | present | `README.md` | text search | present | VERIFICADO |
-| 473 | README.pt-BR.md prose: p Holm urgencia h=7 ablacao_lstm H2_media_com_meteo | 0,026 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=7,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm (vírgula decimal) | 0,026 | VERIFICADO |
-| 474 | README.pt-BR.md prose: '0,026' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 475 | README.md prose: ablation contrasts in the 10 runs | 500 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | rows with base in (cetesb, urgencia) | 500 | VERIFICADO |
-| 476 | README.md prose: '500' present | present | `README.md` | text search | present | VERIFICADO |
-| 477 | README.pt-BR.md prose: ablation contrasts in the 10 runs | 500 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | rows with base in (cetesb, urgencia) (milhar com ponto) | 500 | VERIFICADO |
-| 478 | README.pt-BR.md prose: '500' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 479 | README.md prose: significant after Holm | 59 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | p_holm < 0.05 | 59 | VERIFICADO |
-| 480 | README.md prose: '59' present | present | `README.md` | text search | present | VERIFICADO |
-| 481 | README.pt-BR.md prose: significant after Holm | 59 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | p_holm < 0.05 (milhar com ponto) | 59 | VERIFICADO |
-| 482 | README.pt-BR.md prose: '59' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 483 | README.md prose: significant with covariate worse | 53 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | p_holm < 0.05 and DM > 0 | 53 | VERIFICADO |
-| 484 | README.md prose: '53' present | present | `README.md` | text search | present | VERIFICADO |
-| 485 | README.pt-BR.md prose: significant with covariate worse | 53 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | p_holm < 0.05 and DM > 0 (milhar com ponto) | 53 | VERIFICADO |
-| 486 | README.pt-BR.md prose: '53' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 487 | README.md prose: total h=1 significant contrasts | 7 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=cetesb,h=1,p_holm<0.05 | 7 | VERIFICADO |
-| 488 | README.md prose: '7' present | present | `README.md` | text search | present | VERIFICADO |
-| 489 | README.pt-BR.md prose: total h=1 significant contrasts | 7 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=cetesb,h=1,p_holm<0.05 (milhar com ponto) | 7 | VERIFICADO |
-| 490 | README.pt-BR.md prose: '7' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 491 | README.md prose: predictions per run | 95,040 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/manifest.json` | n_predicoes | 95040 | VERIFICADO |
-| 492 | README.md prose: '95,040' present | present | `README.md` | text search | present | VERIFICADO |
-| 493 | README.pt-BR.md prose: predictions per run | 95.040 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/manifest.json` | n_predicoes (milhar com ponto) | 95.040 | VERIFICADO |
-| 494 | README.pt-BR.md prose: '95.040' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 495 | README.md prose: first test date | 2023-01-12 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | teste_inicio (fold 1) | 2023-01-12 | VERIFICADO |
-| 496 | README.md prose: '2023-01-12' present | present | `README.md` | text search | present | VERIFICADO |
-| 497 | README.pt-BR.md prose: first test date | 2023-01-12 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | teste_inicio (fold 1) | 2023-01-12 | VERIFICADO |
-| 498 | README.pt-BR.md prose: '2023-01-12' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 499 | README.md prose: last test date | 2024-12-31 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | teste_fim (fold 4) | 2024-12-31 | VERIFICADO |
-| 500 | README.md prose: '2024-12-31' present | present | `README.md` | text search | present | VERIFICADO |
-| 501 | README.pt-BR.md prose: last test date | 2024-12-31 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | teste_fim (fold 4) | 2024-12-31 | VERIFICADO |
-| 502 | README.pt-BR.md prose: '2024-12-31' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 503 | README.md prose: seeds | 42 to 46 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/manifest.json` | sementes | 42 to 46 | VERIFICADO |
-| 504 | README.md prose: '42 to 46' present | present | `README.md` | text search | present | VERIFICADO |
-| 505 | README.pt-BR.md prose: seeds | 42 a 46 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/manifest.json` | sementes | 42 a 46 | VERIFICADO |
-| 506 | README.pt-BR.md prose: '42 a 46' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 507 | README.md prose: test days per fold | 180 test days | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | n_teste (all rows) | 180 test days | VERIFICADO |
-| 508 | README.md prose: '180 test days' present | present | `README.md` | text search | present | VERIFICADO |
-| 509 | README.pt-BR.md prose: test days per fold | 180 dias de teste | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | n_teste (all rows) | 180 dias de teste | VERIFICADO |
-| 510 | README.pt-BR.md prose: '180 dias de teste' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 511 | README.md prose: pytest wall time | 3m52s | `docs/AUDITORIA.md` | tempo medido pelo auditor (2026-11-23) | 3m52s | VERIFICADO |
-| 512 | README.md prose: '3m52s' present | present | `README.md` | text search | present | VERIFICADO |
-| 513 | README.pt-BR.md prose: pytest wall time | 3m52s | `docs/AUDITORIA.md` | tempo medido pelo auditor (2026-11-23) | 3m52s | VERIFICADO |
-| 514 | README.pt-BR.md prose: '3m52s' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
-| 515 | README.md / README.pt-BR.md: same number of ## sections | 7 | `README.pt-BR.md` | count of '## ' lines | 7 | VERIFICADO |
-| 516 | README.md / README.pt-BR.md: same number of ### sections | 3 | `README.pt-BR.md` | count of '### ' lines | 3 | VERIFICADO |
-| 517 | README.md: every relative path cited exists in the repository | none missing | `README.md` | paths in backticks and links | none missing | VERIFICADO |
-| 518 | README.pt-BR.md: every relative path cited exists in the repository | none missing | `README.pt-BR.md` | paths in backticks and links | none missing | VERIFICADO |
-| 519 | README.md: no 'Resumo em português' section | absent | `README.md` | '## Resumo em português' | absent | VERIFICADO |
-| 520 | README.md: language switch to README.pt-BR.md | present | `README.md` | '(README.pt-BR.md)' | present | VERIFICADO |
-| 521 | README.pt-BR.md: language switch to README.md | present | `README.pt-BR.md` | '(README.md)' | present | VERIFICADO |
-| 522 | README.md: app language link ?lang=pt | present | `README.md` | 'streamlit.app/?lang=pt' | present | VERIFICADO |
-| 523 | README.md: no 'dobra' | absent | `README.md` | 'dobra' | absent | VERIFICADO |
-| 524 | README.pt-BR.md: app language link ?lang=pt | present | `README.pt-BR.md` | 'streamlit.app/?lang=pt' | present | VERIFICADO |
-| 525 | README.pt-BR.md: no 'dobra' | absent | `README.pt-BR.md` | 'dobra' | absent | VERIFICADO |
-| 526 | README.md: project page badge present | present | `README.md` | 'GitHub%20Pages-blue)](https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/)' | present | VERIFICADO |
-| 527 | README.md: Codespaces badge present | present | `README.md` | 'codespaces/badge.svg)](https://codespaces.new/matheusmmmp/sp-respiratory-admissions-forecast)' | present | VERIFICADO |
-| 528 | README.md: badge kept (actions/workflows/ci.yml/badge.svg) | present | `README.md` | 'actions/workflows/ci.yml/badge.svg' | present | VERIFICADO |
-| 529 | README.md: badge kept (streamlit_badge_black_white.svg) | present | `README.md` | 'streamlit_badge_black_white.svg' | present | VERIFICADO |
-| 530 | README.md: badge kept (python-3.11-blue) | present | `README.md` | 'python-3.11-blue' | present | VERIFICADO |
-| 531 | README.md: badge kept (license-MIT-green) | present | `README.md` | 'license-MIT-green' | present | VERIFICADO |
-| 532 | README.md: both project page URLs present | present | `README.md` | PAGE_EN and PAGE_PT | present | VERIFICADO |
-| 533 | README.md: release link present | present | `README.md` | 'https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/releases/tag/v0.1.0' | present | VERIFICADO |
-| 534 | README.md: no DOI cited | absent | `README.md` | 'doi.org' / '10.5281' | absent | VERIFICADO |
-| 535 | README.md: no Hugging Face Space URL (API not yet deployed) | absent | `README.md` | 'huggingface.co/spaces' / 'hf.space' | absent | VERIFICADO |
-| 536 | README.md: states the API is not yet deployed | present | `README.md` | 'not yet deployed' / 'ainda não está publicada' | present | VERIFICADO |
-| 537 | README.md: --mlflow example command present | present | `README.md` | '--smoke --mlflow --mlflow-uri sqlite:///mlruns/mlflow.db' | present | VERIFICADO |
-| 538 | README.md: pre-commit install line present | present | `README.md` | 'uv run pre-commit install' | present | VERIFICADO |
-| 539 | README.pt-BR.md: project page badge present | present | `README.pt-BR.md` | 'GitHub%20Pages-blue)](https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/index.pt-BR.html)' | present | VERIFICADO |
-| 540 | README.pt-BR.md: Codespaces badge present | present | `README.pt-BR.md` | 'codespaces/badge.svg)](https://codespaces.new/matheusmmmp/sp-respiratory-admissions-forecast)' | present | VERIFICADO |
-| 541 | README.pt-BR.md: badge kept (actions/workflows/ci.yml/badge.svg) | present | `README.pt-BR.md` | 'actions/workflows/ci.yml/badge.svg' | present | VERIFICADO |
-| 542 | README.pt-BR.md: badge kept (streamlit_badge_black_white.svg) | present | `README.pt-BR.md` | 'streamlit_badge_black_white.svg' | present | VERIFICADO |
-| 543 | README.pt-BR.md: badge kept (python-3.11-blue) | present | `README.pt-BR.md` | 'python-3.11-blue' | present | VERIFICADO |
-| 544 | README.pt-BR.md: badge kept (license-MIT-green) | present | `README.pt-BR.md` | 'license-MIT-green' | present | VERIFICADO |
-| 545 | README.pt-BR.md: both project page URLs present | present | `README.pt-BR.md` | PAGE_EN and PAGE_PT | present | VERIFICADO |
-| 546 | README.pt-BR.md: release link present | present | `README.pt-BR.md` | 'https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/releases/tag/v0.1.0' | present | VERIFICADO |
-| 547 | README.pt-BR.md: no DOI cited | absent | `README.pt-BR.md` | 'doi.org' / '10.5281' | absent | VERIFICADO |
-| 548 | README.pt-BR.md: no Hugging Face Space URL (API not yet deployed) | absent | `README.pt-BR.md` | 'huggingface.co/spaces' / 'hf.space' | absent | VERIFICADO |
-| 549 | README.pt-BR.md: states the API is not yet deployed | present | `README.pt-BR.md` | 'not yet deployed' / 'ainda não está publicada' | present | VERIFICADO |
-| 550 | README.pt-BR.md: --mlflow example command present | present | `README.pt-BR.md` | '--smoke --mlflow --mlflow-uri sqlite:///mlruns/mlflow.db' | present | VERIFICADO |
-| 551 | README.pt-BR.md: pre-commit install line present | present | `README.pt-BR.md` | 'uv run pre-commit install' | present | VERIFICADO |
-| 552 | README: release tag v0.1.0 exists in the repository | v0.1.0 | `git tag --list v0.1.0` | stdout | v0.1.0 | VERIFICADO |
-| 553 | README: CITATION.cff has no DOI | absent | `CITATION.cff` | 'doi:' field | absent | VERIFICADO |
-| 554 | README: slim API image port | 7860 | `api/Dockerfile` | '7860' in file | 7860 | VERIFICADO |
-| 555 | README: slim API image non-root user | uid 1000 | `api/Dockerfile` | '--uid 1000' | uid 1000 | VERIFICADO |
-| 556 | README: slim API requirements have no TensorFlow | absent | `api/requirements.txt` | lines starting with 'tensorflow' | absent | VERIFICADO |
-| 557 | README: runner has --mlflow option | present | `src/experiments/run_preliminary.py` | add_argument('--mlflow' | present | VERIFICADO |
-| 558 | README: runner has --mlflow-uri option | present | `src/experiments/run_preliminary.py` | add_argument('--mlflow-uri' | present | VERIFICADO |
-| 559 | README: Codespaces postCreateCommand runs uv sync --frozen --all-extras | present | `.devcontainer/devcontainer.json` | postCreateCommand | present | VERIFICADO |
-| 560 | README: Codespaces forwards ports 8501, 8000, 5000 | 8501, 8000, 5000 | `.devcontainer/devcontainer.json` | forwardPorts | 8501, 8000, 5000 | VERIFICADO |
-| 561 | README: Codespaces opens the Streamlit app | present | `.devcontainer/devcontainer.json` | postAttachCommand.app | present | VERIFICADO |
-| 562 | README: CI job 'docker' exists | present | `.github/workflows/ci.yml` | 'name: docker' | present | VERIFICADO |
-| 563 | README: CI docker job builds api/Dockerfile | present | `.github/workflows/ci.yml` | 'file: api/Dockerfile' | present | VERIFICADO |
-| 564 | README: CI docker job waits for /health via compose | present | `.github/workflows/ci.yml` | 'docker compose up -d --no-build api' and '/health' | present | VERIFICADO |
-| 565 | README: CI docker job runs pytest + smoke in the test image | present | `.github/workflows/ci.yml` | 'pytest + smoke dentro do contêiner' | present | VERIFICADO |
-| 566 | README: pages workflow is manual (workflow_dispatch) | present | `.github/workflows/pages.yml` | 'workflow_dispatch' | present | VERIFICADO |
-| 567 | README: make target 'docker-build' exists | present | `Makefile` | 'docker-build:' line | present | VERIFICADO |
-| 568 | README: make target 'docker-test' exists | present | `Makefile` | 'docker-test:' line | present | VERIFICADO |
-| 569 | README: make target 'docker-api' exists | present | `Makefile` | 'docker-api:' line | present | VERIFICADO |
-| 570 | README: make target 'precommit' exists | present | `Makefile` | 'precommit:' line | present | VERIFICADO |
-| 571 | README: make target 'mlflow' exists | present | `Makefile` | 'mlflow:' line | present | VERIFICADO |
-| 572 | README: make target 'app' exists | present | `Makefile` | 'app:' line | present | VERIFICADO |
-| 573 | README: make target 'api' exists | present | `Makefile` | 'api:' line | present | VERIFICADO |
-| 574 | README: make target 'test' exists | present | `Makefile` | 'test:' line | present | VERIFICADO |
-| 575 | README: make target 'smoke' exists | present | `Makefile` | 'smoke:' line | present | VERIFICADO |
-| 576 | README: number of author decisions (D1 to D13) | 13 | `docs/DECISOES.md` | rows starting with '| D' | 13 | VERIFICADO |
-| 577 | README: D9 says the dissertation runner is unchanged | present | `docs/DECISOES.md` | D9 text | present | VERIFICADO |
-| 578 | README: D10 says no DOI yet | present | `docs/DECISOES.md` | D10 text '**sem DOI**' | present | VERIFICADO |
-| 579 | README: cited file exists (tracking/registro_mlflow.py) | exists | `tracking/registro_mlflow.py` | path | exists | VERIFICADO |
-| 580 | README: cited file exists (tracking/importar_pesquisa.py) | exists | `tracking/importar_pesquisa.py` | path | exists | VERIFICADO |
-| 581 | README: cited file exists (configs/smoke_mlflow.yaml) | exists | `configs/smoke_mlflow.yaml` | path | exists | VERIFICADO |
-| 582 | README: cited file exists (tests/test_runner_mlflow.py) | exists | `tests/test_runner_mlflow.py` | path | exists | VERIFICADO |
-| 583 | README: cited file exists (docs/scripts/build_site.py) | exists | `docs/scripts/build_site.py` | path | exists | VERIFICADO |
-| 584 | README: cited file exists (site/index.html) | exists | `site/index.html` | path | exists | VERIFICADO |
-| 585 | README: cited file exists (site/index.pt-BR.html) | exists | `site/index.pt-BR.html` | path | exists | VERIFICADO |
-| 586 | README: cited file exists (deploy/hf_space/montar_space.py) | exists | `deploy/hf_space/montar_space.py` | path | exists | VERIFICADO |
-| 587 | README: cited file exists (deploy/hf_space/LEIA-ME.md) | exists | `deploy/hf_space/LEIA-ME.md` | path | exists | VERIFICADO |
-| 588 | README: cited file exists (.pre-commit-config.yaml) | exists | `.pre-commit-config.yaml` | path | exists | VERIFICADO |
+| 451 | README.md prose: smallest Saturday ratio among trained models (total, LSTM) | 2.04 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total, min razao without Naïve (LSTM) | 2.0427138425829887 | VERIFICADO |
+| 452 | README.md prose: '2.04' present | present | `README.md` | text search | present | VERIFICADO |
+| 453 | README.pt-BR.md prose: smallest Saturday ratio among trained models (total, LSTM) | 2,04 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total, min razao without Naïve (LSTM) (vírgula decimal) | 2,04 | VERIFICADO |
+| 454 | README.pt-BR.md prose: '2,04' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 455 | README.md prose: largest Saturday ratio among trained models (total, GAM-NB) | 2.39 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total, max razao without Naïve (GAM-NB) | 2.393719450128638 | VERIFICADO |
+| 456 | README.md prose: '2.39' present | present | `README.md` | text search | present | VERIFICADO |
+| 457 | README.pt-BR.md prose: largest Saturday ratio among trained models (total, GAM-NB) | 2,39 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total, max razao without Naïve (GAM-NB) (vírgula decimal) | 2,39 | VERIFICADO |
+| 458 | README.pt-BR.md prose: '2,39' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 459 | README.md prose: Naïve Saturday ratio (total) | 1.30 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=Naïve,razao | 1.300335818869305 | VERIFICADO |
+| 460 | README.md prose: '1.30' present | present | `README.md` | text search | present | VERIFICADO |
+| 461 | README.pt-BR.md prose: Naïve Saturday ratio (total) | 1,30 | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total,modelo=Naïve,razao (vírgula decimal) | 1,30 | VERIFICADO |
+| 462 | README.pt-BR.md prose: '1,30' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 463 | README prose: Saturday MAE above other days for every model in the file (total) | all | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total, MAE_sab > MAE_demais | all | VERIFICADO |
+| 464 | README prose: models in erro_sabado_h1.csv (five trained + Naïve, no Seasonal Naïve) | GAM-NB, INGARCH-NB, LSTM, Naïve, SARIMAX, XGBoost | `results/numeros_texto_urgencia/NUMEROS_TEXTO_URGENCIA_V02_20261118/erro_sabado_h1.csv` | alvo=total, modelo (sorted) | GAM-NB, INGARCH-NB, LSTM, Naïve, SARIMAX, XGBoost | VERIFICADO |
+| 465 | README.md prose: p Holm urgencia h=1 ablacao_sarimax H2_media_sem_meteo | 0.005 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=1,familia=ablacao_sarimax,contraste=H2_media_sem_meteo,p_holm | 0.0049108177199466 | VERIFICADO |
+| 466 | README.md prose: '0.005' present | present | `README.md` | text search | present | VERIFICADO |
+| 467 | README.pt-BR.md prose: p Holm urgencia h=1 ablacao_sarimax H2_media_sem_meteo | 0,005 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=1,familia=ablacao_sarimax,contraste=H2_media_sem_meteo,p_holm (vírgula decimal) | 0,005 | VERIFICADO |
+| 468 | README.pt-BR.md prose: '0,005' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 469 | README.md prose: p Holm urgencia h=1 ablacao_sarimax POLUENTES_sem_meteo | 0.014 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=1,familia=ablacao_sarimax,contraste=POLUENTES_sem_meteo,p_holm | 0.0141556291920838 | VERIFICADO |
+| 470 | README.md prose: '0.014' present | present | `README.md` | text search | present | VERIFICADO |
+| 471 | README.pt-BR.md prose: p Holm urgencia h=1 ablacao_sarimax POLUENTES_sem_meteo | 0,014 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=1,familia=ablacao_sarimax,contraste=POLUENTES_sem_meteo,p_holm (vírgula decimal) | 0,014 | VERIFICADO |
+| 472 | README.pt-BR.md prose: '0,014' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 473 | README.md prose: p Holm urgencia h=15 ablacao_xgboost POLUENTES_com_meteo | 0.001 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=15,familia=ablacao_xgboost,contraste=POLUENTES_com_meteo,p_holm | 0.0009194373719768 | VERIFICADO |
+| 474 | README.md prose: '0.001' present | present | `README.md` | text search | present | VERIFICADO |
+| 475 | README.pt-BR.md prose: p Holm urgencia h=15 ablacao_xgboost POLUENTES_com_meteo | 0,001 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=15,familia=ablacao_xgboost,contraste=POLUENTES_com_meteo,p_holm (vírgula decimal) | 0,001 | VERIFICADO |
+| 476 | README.pt-BR.md prose: '0,001' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 477 | README.md prose: p Holm cetesb h=7 ablacao_lstm H2_media_com_meteo | 0.001 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=cetesb,h=7,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm | 0.0012874477281496 | VERIFICADO |
+| 478 | README.md prose: '0.001' present | present | `README.md` | text search | present | VERIFICADO |
+| 479 | README.pt-BR.md prose: p Holm cetesb h=7 ablacao_lstm H2_media_com_meteo | 0,001 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=cetesb,h=7,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm (vírgula decimal) | 0,001 | VERIFICADO |
+| 480 | README.pt-BR.md prose: '0,001' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 481 | README.md prose: p Holm urgencia h=5 ablacao_lstm H2_media_com_meteo | 0.007 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=5,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm | 0.0067240168712517 | VERIFICADO |
+| 482 | README.md prose: '0.007' present | present | `README.md` | text search | present | VERIFICADO |
+| 483 | README.pt-BR.md prose: p Holm urgencia h=5 ablacao_lstm H2_media_com_meteo | 0,007 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=5,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm (vírgula decimal) | 0,007 | VERIFICADO |
+| 484 | README.pt-BR.md prose: '0,007' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 485 | README.md prose: p Holm urgencia h=7 ablacao_lstm H2_media_com_meteo | 0.026 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=7,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm | 0.0259100754499556 | VERIFICADO |
+| 486 | README.md prose: '0.026' present | present | `README.md` | text search | present | VERIFICADO |
+| 487 | README.pt-BR.md prose: p Holm urgencia h=7 ablacao_lstm H2_media_com_meteo | 0,026 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=urgencia,h=7,familia=ablacao_lstm,contraste=H2_media_com_meteo,p_holm (vírgula decimal) | 0,026 | VERIFICADO |
+| 488 | README.pt-BR.md prose: '0,026' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 489 | README.md prose: ablation contrasts in the 10 runs | 500 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | rows with base in (cetesb, urgencia) | 500 | VERIFICADO |
+| 490 | README.md prose: '500' present | present | `README.md` | text search | present | VERIFICADO |
+| 491 | README.pt-BR.md prose: ablation contrasts in the 10 runs | 500 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | rows with base in (cetesb, urgencia) (milhar com ponto) | 500 | VERIFICADO |
+| 492 | README.pt-BR.md prose: '500' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 493 | README.md prose: significant after Holm | 59 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | p_holm < 0.05 | 59 | VERIFICADO |
+| 494 | README.md prose: '59' present | present | `README.md` | text search | present | VERIFICADO |
+| 495 | README.pt-BR.md prose: significant after Holm | 59 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | p_holm < 0.05 (milhar com ponto) | 59 | VERIFICADO |
+| 496 | README.pt-BR.md prose: '59' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 497 | README.md prose: significant with covariate worse | 53 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | p_holm < 0.05 and DM > 0 | 53 | VERIFICADO |
+| 498 | README.md prose: '53' present | present | `README.md` | text search | present | VERIFICADO |
+| 499 | README.pt-BR.md prose: significant with covariate worse | 53 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | p_holm < 0.05 and DM > 0 (milhar com ponto) | 53 | VERIFICADO |
+| 500 | README.pt-BR.md prose: '53' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 501 | README.md prose: total h=1 significant contrasts | 7 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=cetesb,h=1,p_holm<0.05 | 7 | VERIFICADO |
+| 502 | README.md prose: '7' present | present | `README.md` | text search | present | VERIFICADO |
+| 503 | README.pt-BR.md prose: total h=1 significant contrasts | 7 | `results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/B2_dm_ablacao_por_h.csv` | base=cetesb,h=1,p_holm<0.05 (milhar com ponto) | 7 | VERIFICADO |
+| 504 | README.pt-BR.md prose: '7' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 505 | README.md prose: predictions per run | 95,040 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/manifest.json` | n_predicoes | 95040 | VERIFICADO |
+| 506 | README.md prose: '95,040' present | present | `README.md` | text search | present | VERIFICADO |
+| 507 | README.pt-BR.md prose: predictions per run | 95.040 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/manifest.json` | n_predicoes (milhar com ponto) | 95.040 | VERIFICADO |
+| 508 | README.pt-BR.md prose: '95.040' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 509 | README.md prose: first test date | 2023-01-12 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | teste_inicio (fold 1) | 2023-01-12 | VERIFICADO |
+| 510 | README.md prose: '2023-01-12' present | present | `README.md` | text search | present | VERIFICADO |
+| 511 | README.pt-BR.md prose: first test date | 2023-01-12 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | teste_inicio (fold 1) | 2023-01-12 | VERIFICADO |
+| 512 | README.pt-BR.md prose: '2023-01-12' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 513 | README.md prose: last test date | 2024-12-31 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | teste_fim (fold 4) | 2024-12-31 | VERIFICADO |
+| 514 | README.md prose: '2024-12-31' present | present | `README.md` | text search | present | VERIFICADO |
+| 515 | README.pt-BR.md prose: last test date | 2024-12-31 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | teste_fim (fold 4) | 2024-12-31 | VERIFICADO |
+| 516 | README.pt-BR.md prose: '2024-12-31' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 517 | README.md prose: seeds | 42 to 46 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/manifest.json` | sementes | 42 to 46 | VERIFICADO |
+| 518 | README.md prose: '42 to 46' present | present | `README.md` | text search | present | VERIFICADO |
+| 519 | README.pt-BR.md prose: seeds | 42 a 46 | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/manifest.json` | sementes | 42 a 46 | VERIFICADO |
+| 520 | README.pt-BR.md prose: '42 a 46' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 521 | README.md prose: test days per fold | 180 test days | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | n_teste (all rows) | 180 test days | VERIFICADO |
+| 522 | README.md prose: '180 test days' present | present | `README.md` | text search | present | VERIFICADO |
+| 523 | README.pt-BR.md prose: test days per fold | 180 dias de teste | `results/runs/h1_v02_cetesb_cetesb_classicos_full_20261022-211834/folds.csv` | n_teste (all rows) | 180 dias de teste | VERIFICADO |
+| 524 | README.pt-BR.md prose: '180 dias de teste' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 525 | README.md prose: pytest wall time | 3m52s | `docs/AUDITORIA.md` | tempo medido pelo auditor (2026-11-23) | 3m52s | VERIFICADO |
+| 526 | README.md prose: '3m52s' present | present | `README.md` | text search | present | VERIFICADO |
+| 527 | README.pt-BR.md prose: pytest wall time | 3m52s | `docs/AUDITORIA.md` | tempo medido pelo auditor (2026-11-23) | 3m52s | VERIFICADO |
+| 528 | README.pt-BR.md prose: '3m52s' present | present | `README.pt-BR.md` | text search | present | VERIFICADO |
+| 529 | README.md / README.pt-BR.md: same number of ## sections | 7 | `README.pt-BR.md` | count of '## ' lines | 7 | VERIFICADO |
+| 530 | README.md / README.pt-BR.md: same number of ### sections | 3 | `README.pt-BR.md` | count of '### ' lines | 3 | VERIFICADO |
+| 531 | README.md: every relative path cited exists in the repository | none missing | `README.md` | paths in backticks and links | none missing | VERIFICADO |
+| 532 | README.pt-BR.md: every relative path cited exists in the repository | none missing | `README.pt-BR.md` | paths in backticks and links | none missing | VERIFICADO |
+| 533 | README.md: no 'Resumo em português' section | absent | `README.md` | '## Resumo em português' | absent | VERIFICADO |
+| 534 | README.md: language switch to README.pt-BR.md | present | `README.md` | '(README.pt-BR.md)' | present | VERIFICADO |
+| 535 | README.pt-BR.md: language switch to README.md | present | `README.pt-BR.md` | '(README.md)' | present | VERIFICADO |
+| 536 | README.md: app language link ?lang=pt | present | `README.md` | 'streamlit.app/?lang=pt' | present | VERIFICADO |
+| 537 | README.md: no 'dobra' | absent | `README.md` | 'dobra' | absent | VERIFICADO |
+| 538 | README.pt-BR.md: app language link ?lang=pt | present | `README.pt-BR.md` | 'streamlit.app/?lang=pt' | present | VERIFICADO |
+| 539 | README.pt-BR.md: no 'dobra' | absent | `README.pt-BR.md` | 'dobra' | absent | VERIFICADO |
+| 540 | README.md: project page badge present | present | `README.md` | 'GitHub%20Pages-blue)](https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/)' | present | VERIFICADO |
+| 541 | README.md: Codespaces badge present | present | `README.md` | 'codespaces/badge.svg)](https://codespaces.new/matheusmmmp/sp-respiratory-admissions-forecast)' | present | VERIFICADO |
+| 542 | README.md: badge kept (actions/workflows/ci.yml/badge.svg) | present | `README.md` | 'actions/workflows/ci.yml/badge.svg' | present | VERIFICADO |
+| 543 | README.md: badge kept (streamlit_badge_black_white.svg) | present | `README.md` | 'streamlit_badge_black_white.svg' | present | VERIFICADO |
+| 544 | README.md: badge kept (python-3.11-blue) | present | `README.md` | 'python-3.11-blue' | present | VERIFICADO |
+| 545 | README.md: badge kept (license-MIT-green) | present | `README.md` | 'license-MIT-green' | present | VERIFICADO |
+| 546 | README.md: both project page URLs present | present | `README.md` | PAGE_EN and PAGE_PT | present | VERIFICADO |
+| 547 | README.md: release link present | present | `README.md` | 'https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/releases/tag/v0.1.0' | present | VERIFICADO |
+| 548 | README.md: no DOI cited | absent | `README.md` | 'doi.org' / '10.5281' | absent | VERIFICADO |
+| 549 | README.md: no Hugging Face Space URL (API not yet deployed) | absent | `README.md` | 'huggingface.co/spaces' / 'hf.space' | absent | VERIFICADO |
+| 550 | README.md: states the API is not yet deployed | present | `README.md` | 'not yet deployed' / 'ainda não está publicada' | present | VERIFICADO |
+| 551 | README.md: --mlflow example command present | present | `README.md` | '--smoke --mlflow --mlflow-uri sqlite:///mlruns/mlflow.db' | present | VERIFICADO |
+| 552 | README.md: pre-commit install line present | present | `README.md` | 'uv run pre-commit install' | present | VERIFICADO |
+| 553 | README.pt-BR.md: project page badge present | present | `README.pt-BR.md` | 'GitHub%20Pages-blue)](https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/index.pt-BR.html)' | present | VERIFICADO |
+| 554 | README.pt-BR.md: Codespaces badge present | present | `README.pt-BR.md` | 'codespaces/badge.svg)](https://codespaces.new/matheusmmmp/sp-respiratory-admissions-forecast)' | present | VERIFICADO |
+| 555 | README.pt-BR.md: badge kept (actions/workflows/ci.yml/badge.svg) | present | `README.pt-BR.md` | 'actions/workflows/ci.yml/badge.svg' | present | VERIFICADO |
+| 556 | README.pt-BR.md: badge kept (streamlit_badge_black_white.svg) | present | `README.pt-BR.md` | 'streamlit_badge_black_white.svg' | present | VERIFICADO |
+| 557 | README.pt-BR.md: badge kept (python-3.11-blue) | present | `README.pt-BR.md` | 'python-3.11-blue' | present | VERIFICADO |
+| 558 | README.pt-BR.md: badge kept (license-MIT-green) | present | `README.pt-BR.md` | 'license-MIT-green' | present | VERIFICADO |
+| 559 | README.pt-BR.md: both project page URLs present | present | `README.pt-BR.md` | PAGE_EN and PAGE_PT | present | VERIFICADO |
+| 560 | README.pt-BR.md: release link present | present | `README.pt-BR.md` | 'https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/releases/tag/v0.1.0' | present | VERIFICADO |
+| 561 | README.pt-BR.md: no DOI cited | absent | `README.pt-BR.md` | 'doi.org' / '10.5281' | absent | VERIFICADO |
+| 562 | README.pt-BR.md: no Hugging Face Space URL (API not yet deployed) | absent | `README.pt-BR.md` | 'huggingface.co/spaces' / 'hf.space' | absent | VERIFICADO |
+| 563 | README.pt-BR.md: states the API is not yet deployed | present | `README.pt-BR.md` | 'not yet deployed' / 'ainda não está publicada' | present | VERIFICADO |
+| 564 | README.pt-BR.md: --mlflow example command present | present | `README.pt-BR.md` | '--smoke --mlflow --mlflow-uri sqlite:///mlruns/mlflow.db' | present | VERIFICADO |
+| 565 | README.pt-BR.md: pre-commit install line present | present | `README.pt-BR.md` | 'uv run pre-commit install' | present | VERIFICADO |
+| 566 | README: release tag v0.1.0 exists in the repository | v0.1.0 | `git tag --list v0.1.0` | stdout | v0.1.0 | VERIFICADO |
+| 567 | README: CITATION.cff has no DOI | absent | `CITATION.cff` | 'doi:' field | absent | VERIFICADO |
+| 568 | README: slim API image port | 7860 | `api/Dockerfile` | '7860' in file | 7860 | VERIFICADO |
+| 569 | README: slim API image non-root user | uid 1000 | `api/Dockerfile` | '--uid 1000' | uid 1000 | VERIFICADO |
+| 570 | README: slim API requirements have no TensorFlow | absent | `api/requirements.txt` | lines starting with 'tensorflow' | absent | VERIFICADO |
+| 571 | README: runner has --mlflow option | present | `src/experiments/run_preliminary.py` | add_argument('--mlflow' | present | VERIFICADO |
+| 572 | README: runner has --mlflow-uri option | present | `src/experiments/run_preliminary.py` | add_argument('--mlflow-uri' | present | VERIFICADO |
+| 573 | README: Codespaces postCreateCommand runs uv sync --frozen --all-extras | present | `.devcontainer/devcontainer.json` | postCreateCommand | present | VERIFICADO |
+| 574 | README: Codespaces forwards ports 8501, 8000, 5000 | 8501, 8000, 5000 | `.devcontainer/devcontainer.json` | forwardPorts | 8501, 8000, 5000 | VERIFICADO |
+| 575 | README: Codespaces opens the Streamlit app | present | `.devcontainer/devcontainer.json` | postAttachCommand.app | present | VERIFICADO |
+| 576 | README: CI job 'docker' exists | present | `.github/workflows/ci.yml` | 'name: docker' | present | VERIFICADO |
+| 577 | README: CI docker job builds api/Dockerfile | present | `.github/workflows/ci.yml` | 'file: api/Dockerfile' | present | VERIFICADO |
+| 578 | README: CI docker job waits for /health via compose | present | `.github/workflows/ci.yml` | 'docker compose up -d --no-build api' and '/health' | present | VERIFICADO |
+| 579 | README: CI docker job runs pytest + smoke in the test image | present | `.github/workflows/ci.yml` | 'pytest + smoke dentro do contêiner' | present | VERIFICADO |
+| 580 | README: pages workflow is manual (workflow_dispatch) | present | `.github/workflows/pages.yml` | 'workflow_dispatch' | present | VERIFICADO |
+| 581 | README: make target 'docker-build' exists | present | `Makefile` | 'docker-build:' line | present | VERIFICADO |
+| 582 | README: make target 'docker-test' exists | present | `Makefile` | 'docker-test:' line | present | VERIFICADO |
+| 583 | README: make target 'docker-api' exists | present | `Makefile` | 'docker-api:' line | present | VERIFICADO |
+| 584 | README: make target 'precommit' exists | present | `Makefile` | 'precommit:' line | present | VERIFICADO |
+| 585 | README: make target 'mlflow' exists | present | `Makefile` | 'mlflow:' line | present | VERIFICADO |
+| 586 | README: make target 'app' exists | present | `Makefile` | 'app:' line | present | VERIFICADO |
+| 587 | README: make target 'api' exists | present | `Makefile` | 'api:' line | present | VERIFICADO |
+| 588 | README: make target 'test' exists | present | `Makefile` | 'test:' line | present | VERIFICADO |
+| 589 | README: make target 'smoke' exists | present | `Makefile` | 'smoke:' line | present | VERIFICADO |
+| 590 | README: number of author decisions (D1 to D13) | 13 | `docs/DECISOES.md` | rows starting with '| D' | 13 | VERIFICADO |
+| 591 | README: D9 says the dissertation runner is unchanged | present | `docs/DECISOES.md` | D9 text | present | VERIFICADO |
+| 592 | README: D10 says no DOI yet | present | `docs/DECISOES.md` | D10 text '**sem DOI**' | present | VERIFICADO |
+| 593 | README: cited file exists (tracking/registro_mlflow.py) | exists | `tracking/registro_mlflow.py` | path | exists | VERIFICADO |
+| 594 | README: cited file exists (tracking/importar_pesquisa.py) | exists | `tracking/importar_pesquisa.py` | path | exists | VERIFICADO |
+| 595 | README: cited file exists (configs/smoke_mlflow.yaml) | exists | `configs/smoke_mlflow.yaml` | path | exists | VERIFICADO |
+| 596 | README: cited file exists (tests/test_runner_mlflow.py) | exists | `tests/test_runner_mlflow.py` | path | exists | VERIFICADO |
+| 597 | README: cited file exists (docs/scripts/build_site.py) | exists | `docs/scripts/build_site.py` | path | exists | VERIFICADO |
+| 598 | README: cited file exists (site/index.html) | exists | `site/index.html` | path | exists | VERIFICADO |
+| 599 | README: cited file exists (site/index.pt-BR.html) | exists | `site/index.pt-BR.html` | path | exists | VERIFICADO |
+| 600 | README: cited file exists (deploy/hf_space/montar_space.py) | exists | `deploy/hf_space/montar_space.py` | path | exists | VERIFICADO |
+| 601 | README: cited file exists (deploy/hf_space/LEIA-ME.md) | exists | `deploy/hf_space/LEIA-ME.md` | path | exists | VERIFICADO |
+| 602 | README: cited file exists (.pre-commit-config.yaml) | exists | `.pre-commit-config.yaml` | path | exists | VERIFICADO |
+| 603 | README: versioned demonstration weights in models_demo/ (three XGBoost) | 3 | `models_demo/*.ubj` | count of .ubj files | 3 | VERIFICADO |
+| 604 | README: no other versioned weight files outside models_demo/ | none | `git ls-files` | files ending in .ubj, .keras, .h5, .pkl, .joblib, .onnx, .pt, .safetensors | none | VERIFICADO |
+| 605 | README.md: 'is not' section says the API is in-sample and not deployed | present | `README.md` | 'in-sample' and 'not yet deployed' / 'ainda não está publicada' in the 'is not' section | present | VERIFICADO |
+| 606 | README.md: 'is not' section names the demonstration weights in models_demo/ | present | `README.md` | 'models_demo/MODEL_CARD.md' in the 'is not' section | present | VERIFICADO |
+| 607 | README.md: 'is not' section cites decision D8 for the CNES 2091550 daily series | present | `README.md` | 'CNES 2091550' and 'D8' in the 'is not' section | present | VERIFICADO |
+| 608 | README.md: old Saturday sentence ('worst day for every model') gone | absent | `README.md` | 'worst day for every model' / 'pior dia para todos' | absent | VERIFICADO |
+| 609 | README.pt-BR.md: 'is not' section says the API is in-sample and not deployed | present | `README.pt-BR.md` | 'in-sample' and 'not yet deployed' / 'ainda não está publicada' in the 'is not' section | present | VERIFICADO |
+| 610 | README.pt-BR.md: 'is not' section names the demonstration weights in models_demo/ | present | `README.pt-BR.md` | 'models_demo/MODEL_CARD.md' in the 'is not' section | present | VERIFICADO |
+| 611 | README.pt-BR.md: 'is not' section cites decision D8 for the CNES 2091550 daily series | present | `README.pt-BR.md` | 'CNES 2091550' and 'D8' in the 'is not' section | present | VERIFICADO |
+| 612 | README.pt-BR.md: old Saturday sentence ('worst day for every model') gone | absent | `README.pt-BR.md` | 'worst day for every model' / 'pior dia para todos' | absent | VERIFICADO |
+| 613 | DECISOES: D8 accepts the daily series of one establishment | present | `docs/DECISOES.md` | D8 row '**Aceitas como estão**' | present | VERIFICADO |
+| 614 | README/ARCHITECTURE/D9: metrics.json compared byte for byte | present | `tests/test_runner_mlflow.py` | ARQUIVOS_IDENTICOS | present | VERIFICADO |
+| 615 | README/ARCHITECTURE/D9: model_comparison.csv compared byte for byte | present | `tests/test_runner_mlflow.py` | ARQUIVOS_IDENTICOS | present | VERIFICADO |
+| 616 | README/ARCHITECTURE/D9: metrics_by_fold.csv compared byte for byte | present | `tests/test_runner_mlflow.py` | ARQUIVOS_IDENTICOS | present | VERIFICADO |
+| 617 | README/ARCHITECTURE/D9: folds.csv compared byte for byte | present | `tests/test_runner_mlflow.py` | ARQUIVOS_IDENTICOS | present | VERIFICADO |
+| 618 | README/ARCHITECTURE/D9: feature_ablation.csv compared byte for byte | present | `tests/test_runner_mlflow.py` | ARQUIVOS_IDENTICOS | present | VERIFICADO |
+| 619 | README/ARCHITECTURE/D9: predictions.csv compared after masking the run id | present | `tests/test_runner_mlflow.py` | '.replace(a["run_id"], "<RUN_ID>")' | present | VERIFICADO |
+| 620 | README/ARCHITECTURE/D9: manifest.json compared without run id and time fields | run_id, timestamp, inicio, fim, tempo* | `tests/test_runner_mlflow.py` | _sem_chaves_volateis | run_id, timestamp, inicio, fim, tempo* | VERIFICADO |
+| 621 | README/ARCHITECTURE/D9: against the pre-hook runner the git fields of the manifest are also ignored | present | `tests/test_runner_mlflow.py` | 'git_commit', 'git_branch', 'git_sujo', 'proveniencia' with ignorar_git | present | VERIFICADO |
+| 622 | ARCHITECTURE: reference commit of the pre-hook runner | 2be070b | `tests/test_runner_mlflow.py` | COMMIT_REFERENCIA[:7] | 2be070b | VERIFICADO |
+| 623 | README: CI job 'secrets' runs gitleaks on the whole history | present | `.github/workflows/ci.yml` | '  secrets:' and 'gitleaks" git --log-opts=--all --redact' | present | VERIFICADO |
+| 624 | DECISOES: D5 practical consequence marked as superseded | present | `docs/DECISOES.md` | '**Superada em 2026-11-23**' | present | VERIFICADO |
 
 ## Números narrativos sem arquivo em `results/` (não conferidos aqui, declarados no texto)
 

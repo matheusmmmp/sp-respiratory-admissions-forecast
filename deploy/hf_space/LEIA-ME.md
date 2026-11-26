@@ -2,8 +2,9 @@
 
 Passo a passo para o autor. Nada aqui é automático: conta, Space, token e
 `push` são feitos por você, no seu terminal. O que o repositório fornece é
-`api/Dockerfile` (imagem enxuta: FastAPI + XGBoost CPU, ~uma ordem de grandeza
-menor que a imagem principal, que carrega TensorFlow) e o script
+`api/Dockerfile` (imagem enxuta: FastAPI + XGBoost CPU; cerca de 6× menor que a
+imagem principal, que carrega TensorFlow: 920 MB contra 5,59 GB no passo
+"Tamanho das imagens" do job `docker` do CI, run 45868887453, 2026-11-26) e o script
 `deploy/hf_space/montar_space.py`, que monta a pasta do Space com o conteúdo
 exato e confere cada arquivo (sha256 contra `models_demo/metadata.json`).
 

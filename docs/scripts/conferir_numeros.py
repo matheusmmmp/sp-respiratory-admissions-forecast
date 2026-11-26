@@ -1,6 +1,10 @@
 """Audits every number written in README.md, README.pt-BR.md, docs/*.md and data/README.md against the file it cites.
 
     uv run python docs/scripts/conferir_numeros.py            # writes docs/CONFERENCIA_NUMEROS_WP5.md, exits 1 on any DIVERGENTE
+    uv run python docs/scripts/conferir_numeros.py --check    # writes nothing; exits 1 on any DIVERGENTE or if the file is stale
+
+The report is rewritten (LF line endings) only when its content changes; the "Gerado por ... em <timestamp>" line is
+ignored in that comparison, so rerunning on an unchanged tree leaves the working tree clean.
 
 Each check is (where the number appears, the number as displayed, the source file, the key or selector, the value read
 from the file). Status is VERIFICADO when the displayed number equals the value read from the file after the stated
@@ -10,6 +14,7 @@ the displayed values are the literal strings in the documents; the read values c
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import sys
@@ -30,6 +35,14 @@ DM = RAIZ / "results" / "testes_dm"
 PAINEL = RAIZ / "notebooks" / "dados_painel"
 PROC = RAIZ / "data" / "processed"
 H1 = "h1_v02_cetesb_cetesb_classicos_full_20261022-211834"
+
+_ap = argparse.ArgumentParser(description="Audits every number in the READMEs and docs against the files they cite.")
+_ap.add_argument(
+    "--check",
+    action="store_true",
+    help="write nothing; exit 1 on any DIVERGENTE or if docs/CONFERENCIA_NUMEROS_WP5.md is out of date",
+)
+args = _ap.parse_args()
 
 checks: list[dict] = []
 
@@ -1165,6 +1178,49 @@ add_prose(
     sab.loc[("urgencia", "XGBoost"), "razao"],
     "f2",
 )
+sab_total = sab.loc["total"]
+treinados = sab_total.drop(index="Naïve")
+add_prose(
+    "smallest Saturday ratio among trained models (total, LSTM)",
+    "2.04",
+    "2,04",
+    NTU / "erro_sabado_h1.csv",
+    "alvo=total, min razao without Naïve (LSTM)",
+    treinados["razao"].min() if treinados["razao"].idxmin() == "LSTM" else f"min is {treinados['razao'].idxmin()}",
+    "f2" if treinados["razao"].idxmin() == "LSTM" else None,
+)
+add_prose(
+    "largest Saturday ratio among trained models (total, GAM-NB)",
+    "2.39",
+    "2,39",
+    NTU / "erro_sabado_h1.csv",
+    "alvo=total, max razao without Naïve (GAM-NB)",
+    treinados["razao"].max() if treinados["razao"].idxmax() == "GAM-NB" else f"max is {treinados['razao'].idxmax()}",
+    "f2" if treinados["razao"].idxmax() == "GAM-NB" else None,
+)
+add_prose(
+    "Naïve Saturday ratio (total)",
+    "1.30",
+    "1,30",
+    NTU / "erro_sabado_h1.csv",
+    "alvo=total,modelo=Naïve,razao",
+    sab.loc[("total", "Naïve"), "razao"],
+    "f2",
+)
+add(
+    "README prose: Saturday MAE above other days for every model in the file (total)",
+    "all",
+    NTU / "erro_sabado_h1.csv",
+    "alvo=total, MAE_sab > MAE_demais",
+    "all" if (sab_total["MAE_sab"] > sab_total["MAE_demais"]).all() else "not all",
+)
+add(
+    "README prose: models in erro_sabado_h1.csv (five trained + Naïve, no Seasonal Naïve)",
+    "GAM-NB, INGARCH-NB, LSTM, Naïve, SARIMAX, XGBoost",
+    NTU / "erro_sabado_h1.csv",
+    "alvo=total, modelo (sorted)",
+    ", ".join(sorted(sab_total.index)),
+)
 for base, h, fam, con, en_, pt_ in (
     ("urgencia", 1, "ablacao_sarimax", "H2_media_sem_meteo", "0.005", "0,005"),
     ("urgencia", 1, "ablacao_sarimax", "POLUENTES_sem_meteo", "0.014", "0,014"),
@@ -1333,65 +1389,355 @@ PAGE_EN = "https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/"
 PAGE_PT = "https://matheusmmmp.github.io/sp-respiratory-admissions-forecast/index.pt-BR.html"
 CODESPACES_URL = "https://codespaces.new/matheusmmmp/sp-respiratory-admissions-forecast"
 RELEASE_URL = "https://github.com/matheusmmmp/sp-respiratory-admissions-forecast/releases/tag/v0.1.0"
-for nome, txt, readme, page in (("README.md", txt_en, README_EN, PAGE_EN), ("README.pt-BR.md", txt_pt, README_PT, PAGE_PT)):
-    add(f"{nome}: project page badge present", "present", readme, f"'GitHub%20Pages-blue)]({page})'",
-        "present" if f"GitHub%20Pages-blue)]({page})" in txt else "absent")
-    add(f"{nome}: Codespaces badge present", "present", readme, f"'codespaces/badge.svg)]({CODESPACES_URL})'",
-        "present" if f"codespaces/badge.svg)]({CODESPACES_URL})" in txt else "absent")
-    for selo in ("actions/workflows/ci.yml/badge.svg", "streamlit_badge_black_white.svg", "python-3.11-blue", "license-MIT-green"):
+for nome, txt, readme, page in (
+    ("README.md", txt_en, README_EN, PAGE_EN),
+    ("README.pt-BR.md", txt_pt, README_PT, PAGE_PT),
+):
+    add(
+        f"{nome}: project page badge present",
+        "present",
+        readme,
+        f"'GitHub%20Pages-blue)]({page})'",
+        "present" if f"GitHub%20Pages-blue)]({page})" in txt else "absent",
+    )
+    add(
+        f"{nome}: Codespaces badge present",
+        "present",
+        readme,
+        f"'codespaces/badge.svg)]({CODESPACES_URL})'",
+        "present" if f"codespaces/badge.svg)]({CODESPACES_URL})" in txt else "absent",
+    )
+    for selo in (
+        "actions/workflows/ci.yml/badge.svg",
+        "streamlit_badge_black_white.svg",
+        "python-3.11-blue",
+        "license-MIT-green",
+    ):
         add(f"{nome}: badge kept ({selo})", "present", readme, f"'{selo}'", "present" if selo in txt else "absent")
-    add(f"{nome}: both project page URLs present", "present", readme, "PAGE_EN and PAGE_PT", "present" if PAGE_EN in txt and PAGE_PT in txt else "absent")
-    add(f"{nome}: release link present", "present", readme, f"'{RELEASE_URL}'", "present" if RELEASE_URL in txt else "absent")
-    add(f"{nome}: no DOI cited", "absent", readme, "'doi.org' / '10.5281'", "absent" if "doi.org" not in txt.lower() and "10.5281" not in txt else "present")
-    add(f"{nome}: no Hugging Face Space URL (API not yet deployed)", "absent", readme, "'huggingface.co/spaces' / 'hf.space'",
-        "absent" if "huggingface.co/spaces" not in txt and "hf.space" not in txt else "present")
-    add(f"{nome}: states the API is not yet deployed", "present", readme, "'not yet deployed' / 'ainda não está publicada'",
-        "present" if ("not yet deployed" in txt or "ainda não está publicada" in txt) else "absent")
-    add(f"{nome}: --mlflow example command present", "present", readme, "'--smoke --mlflow --mlflow-uri sqlite:///mlruns/mlflow.db'",
-        "present" if "--smoke --mlflow --mlflow-uri sqlite:///mlruns/mlflow.db" in txt else "absent")
-    add(f"{nome}: pre-commit install line present", "present", readme, "'uv run pre-commit install'", "present" if "uv run pre-commit install" in txt else "absent")
+    add(
+        f"{nome}: both project page URLs present",
+        "present",
+        readme,
+        "PAGE_EN and PAGE_PT",
+        "present" if PAGE_EN in txt and PAGE_PT in txt else "absent",
+    )
+    add(
+        f"{nome}: release link present",
+        "present",
+        readme,
+        f"'{RELEASE_URL}'",
+        "present" if RELEASE_URL in txt else "absent",
+    )
+    add(
+        f"{nome}: no DOI cited",
+        "absent",
+        readme,
+        "'doi.org' / '10.5281'",
+        "absent" if "doi.org" not in txt.lower() and "10.5281" not in txt else "present",
+    )
+    add(
+        f"{nome}: no Hugging Face Space URL (API not yet deployed)",
+        "absent",
+        readme,
+        "'huggingface.co/spaces' / 'hf.space'",
+        "absent" if "huggingface.co/spaces" not in txt and "hf.space" not in txt else "present",
+    )
+    add(
+        f"{nome}: states the API is not yet deployed",
+        "present",
+        readme,
+        "'not yet deployed' / 'ainda não está publicada'",
+        "present" if ("not yet deployed" in txt or "ainda não está publicada" in txt) else "absent",
+    )
+    add(
+        f"{nome}: --mlflow example command present",
+        "present",
+        readme,
+        "'--smoke --mlflow --mlflow-uri sqlite:///mlruns/mlflow.db'",
+        "present" if "--smoke --mlflow --mlflow-uri sqlite:///mlruns/mlflow.db" in txt else "absent",
+    )
+    add(
+        f"{nome}: pre-commit install line present",
+        "present",
+        readme,
+        "'uv run pre-commit install'",
+        "present" if "uv run pre-commit install" in txt else "absent",
+    )
 # facts behind the new sentences
 tag = subprocess.run(["git", "tag", "--list", "v0.1.0"], cwd=RAIZ, capture_output=True, text=True).stdout.strip()
-add("README: release tag v0.1.0 exists in the repository", "v0.1.0", "git tag --list v0.1.0", "stdout", tag or "missing")
+add(
+    "README: release tag v0.1.0 exists in the repository", "v0.1.0", "git tag --list v0.1.0", "stdout", tag or "missing"
+)
 cff = (RAIZ / "CITATION.cff").read_text(encoding="utf-8")
-add("README: CITATION.cff has no DOI", "absent", RAIZ / "CITATION.cff", "'doi:' field", "absent" if "\ndoi:" not in cff and "10.5281" not in cff else "present")
+add(
+    "README: CITATION.cff has no DOI",
+    "absent",
+    RAIZ / "CITATION.cff",
+    "'doi:' field",
+    "absent" if "\ndoi:" not in cff and "10.5281" not in cff else "present",
+)
 dockerfile_api = (RAIZ / "api" / "Dockerfile").read_text(encoding="utf-8")
-add("README: slim API image port", "7860", RAIZ / "api" / "Dockerfile", "'7860' in file", "7860" if "7860" in dockerfile_api else "absent")
-add("README: slim API image non-root user", "uid 1000", RAIZ / "api" / "Dockerfile", "'--uid 1000'", "uid 1000" if "--uid 1000" in dockerfile_api else "absent")
+add(
+    "README: slim API image port",
+    "7860",
+    RAIZ / "api" / "Dockerfile",
+    "'7860' in file",
+    "7860" if "7860" in dockerfile_api else "absent",
+)
+add(
+    "README: slim API image non-root user",
+    "uid 1000",
+    RAIZ / "api" / "Dockerfile",
+    "'--uid 1000'",
+    "uid 1000" if "--uid 1000" in dockerfile_api else "absent",
+)
 req_api = (RAIZ / "api" / "requirements.txt").read_text(encoding="utf-8")
-add("README: slim API requirements have no TensorFlow", "absent", RAIZ / "api" / "requirements.txt", "lines starting with 'tensorflow'",
-    "absent" if not re.search(r"^tensorflow", req_api, re.M) else "present")
+add(
+    "README: slim API requirements have no TensorFlow",
+    "absent",
+    RAIZ / "api" / "requirements.txt",
+    "lines starting with 'tensorflow'",
+    "absent" if not re.search(r"^tensorflow", req_api, re.M) else "present",
+)
 runner_src = (RAIZ / "src" / "experiments" / "run_preliminary.py").read_text(encoding="utf-8")
-add("README: runner has --mlflow option", "present", RAIZ / "src" / "experiments" / "run_preliminary.py", "add_argument('--mlflow'",
-    "present" if 'add_argument("--mlflow"' in runner_src else "absent")
-add("README: runner has --mlflow-uri option", "present", RAIZ / "src" / "experiments" / "run_preliminary.py", "add_argument('--mlflow-uri'",
-    "present" if 'add_argument("--mlflow-uri"' in runner_src else "absent")
+add(
+    "README: runner has --mlflow option",
+    "present",
+    RAIZ / "src" / "experiments" / "run_preliminary.py",
+    "add_argument('--mlflow'",
+    "present" if 'add_argument("--mlflow"' in runner_src else "absent",
+)
+add(
+    "README: runner has --mlflow-uri option",
+    "present",
+    RAIZ / "src" / "experiments" / "run_preliminary.py",
+    "add_argument('--mlflow-uri'",
+    "present" if 'add_argument("--mlflow-uri"' in runner_src else "absent",
+)
 devc = json.loads((RAIZ / ".devcontainer" / "devcontainer.json").read_text(encoding="utf-8"))
-add("README: Codespaces postCreateCommand runs uv sync --frozen --all-extras", "present", RAIZ / ".devcontainer" / "devcontainer.json", "postCreateCommand",
-    "present" if "uv sync --frozen --all-extras" in devc["postCreateCommand"] else devc["postCreateCommand"])
-add("README: Codespaces forwards ports 8501, 8000, 5000", "8501, 8000, 5000", RAIZ / ".devcontainer" / "devcontainer.json", "forwardPorts",
-    ", ".join(str(x) for x in devc["forwardPorts"]))
-add("README: Codespaces opens the Streamlit app", "present", RAIZ / ".devcontainer" / "devcontainer.json", "postAttachCommand.app",
-    "present" if "streamlit run app/Home.py" in devc["postAttachCommand"]["app"] else devc["postAttachCommand"])
+add(
+    "README: Codespaces postCreateCommand runs uv sync --frozen --all-extras",
+    "present",
+    RAIZ / ".devcontainer" / "devcontainer.json",
+    "postCreateCommand",
+    "present" if "uv sync --frozen --all-extras" in devc["postCreateCommand"] else devc["postCreateCommand"],
+)
+add(
+    "README: Codespaces forwards ports 8501, 8000, 5000",
+    "8501, 8000, 5000",
+    RAIZ / ".devcontainer" / "devcontainer.json",
+    "forwardPorts",
+    ", ".join(str(x) for x in devc["forwardPorts"]),
+)
+add(
+    "README: Codespaces opens the Streamlit app",
+    "present",
+    RAIZ / ".devcontainer" / "devcontainer.json",
+    "postAttachCommand.app",
+    "present" if "streamlit run app/Home.py" in devc["postAttachCommand"]["app"] else devc["postAttachCommand"],
+)
 ci = (RAIZ / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
-add("README: CI job 'docker' exists", "present", RAIZ / ".github" / "workflows" / "ci.yml", "'name: docker'", "present" if "name: docker" in ci else "absent")
-add("README: CI docker job builds api/Dockerfile", "present", RAIZ / ".github" / "workflows" / "ci.yml", "'file: api/Dockerfile'", "present" if "file: api/Dockerfile" in ci else "absent")
-add("README: CI docker job waits for /health via compose", "present", RAIZ / ".github" / "workflows" / "ci.yml", "'docker compose up -d --no-build api' and '/health'",
-    "present" if "docker compose up -d --no-build api" in ci and "localhost:8000/health" in ci else "absent")
-add("README: CI docker job runs pytest + smoke in the test image", "present", RAIZ / ".github" / "workflows" / "ci.yml", "'pytest + smoke dentro do contêiner'",
-    "present" if "pytest + smoke dentro do contêiner" in ci else "absent")
+add(
+    "README: CI job 'docker' exists",
+    "present",
+    RAIZ / ".github" / "workflows" / "ci.yml",
+    "'name: docker'",
+    "present" if "name: docker" in ci else "absent",
+)
+add(
+    "README: CI docker job builds api/Dockerfile",
+    "present",
+    RAIZ / ".github" / "workflows" / "ci.yml",
+    "'file: api/Dockerfile'",
+    "present" if "file: api/Dockerfile" in ci else "absent",
+)
+add(
+    "README: CI docker job waits for /health via compose",
+    "present",
+    RAIZ / ".github" / "workflows" / "ci.yml",
+    "'docker compose up -d --no-build api' and '/health'",
+    "present" if "docker compose up -d --no-build api" in ci and "localhost:8000/health" in ci else "absent",
+)
+add(
+    "README: CI docker job runs pytest + smoke in the test image",
+    "present",
+    RAIZ / ".github" / "workflows" / "ci.yml",
+    "'pytest + smoke dentro do contêiner'",
+    "present" if "pytest + smoke dentro do contêiner" in ci else "absent",
+)
 pages = (RAIZ / ".github" / "workflows" / "pages.yml").read_text(encoding="utf-8")
-add("README: pages workflow is manual (workflow_dispatch)", "present", RAIZ / ".github" / "workflows" / "pages.yml", "'workflow_dispatch'", "present" if "workflow_dispatch:" in pages else "absent")
+add(
+    "README: pages workflow is manual (workflow_dispatch)",
+    "present",
+    RAIZ / ".github" / "workflows" / "pages.yml",
+    "'workflow_dispatch'",
+    "present" if "workflow_dispatch:" in pages else "absent",
+)
 mk = (RAIZ / "Makefile").read_text(encoding="utf-8")
 for alvo in ("docker-build", "docker-test", "docker-api", "precommit", "mlflow", "app", "api", "test", "smoke"):
-    add(f"README: make target '{alvo}' exists", "present", RAIZ / "Makefile", f"'{alvo}:' line", "present" if re.search(rf"^{alvo}:", mk, re.M) else "absent")
+    add(
+        f"README: make target '{alvo}' exists",
+        "present",
+        RAIZ / "Makefile",
+        f"'{alvo}:' line",
+        "present" if re.search(rf"^{alvo}:", mk, re.M) else "absent",
+    )
 dec = (RAIZ / "docs" / "DECISOES.md").read_text(encoding="utf-8")
-add("README: number of author decisions (D1 to D13)", 13, RAIZ / "docs" / "DECISOES.md", "rows starting with '| D'", len(re.findall(r"^\| D\d+ \|", dec, re.M)), "int")
-add("README: D9 says the dissertation runner is unchanged", "present", RAIZ / "docs" / "DECISOES.md", "D9 text", "present" if "O runner da dissertação **não** foi alterado" in dec else "absent")
-add("README: D10 says no DOI yet", "present", RAIZ / "docs" / "DECISOES.md", "D10 text '**sem DOI**'", "present" if "**sem DOI**" in dec else "absent")
-for f in ("tracking/registro_mlflow.py", "tracking/importar_pesquisa.py", "configs/smoke_mlflow.yaml", "tests/test_runner_mlflow.py", "docs/scripts/build_site.py",
-          "site/index.html", "site/index.pt-BR.html", "deploy/hf_space/montar_space.py", "deploy/hf_space/LEIA-ME.md", ".pre-commit-config.yaml"):
+add(
+    "README: number of author decisions (D1 to D13)",
+    13,
+    RAIZ / "docs" / "DECISOES.md",
+    "rows starting with '| D'",
+    len(re.findall(r"^\| D\d+ \|", dec, re.M)),
+    "int",
+)
+add(
+    "README: D9 says the dissertation runner is unchanged",
+    "present",
+    RAIZ / "docs" / "DECISOES.md",
+    "D9 text",
+    "present" if "O runner da dissertação **não** foi alterado" in dec else "absent",
+)
+add(
+    "README: D10 says no DOI yet",
+    "present",
+    RAIZ / "docs" / "DECISOES.md",
+    "D10 text '**sem DOI**'",
+    "present" if "**sem DOI**" in dec else "absent",
+)
+for f in (
+    "tracking/registro_mlflow.py",
+    "tracking/importar_pesquisa.py",
+    "configs/smoke_mlflow.yaml",
+    "tests/test_runner_mlflow.py",
+    "docs/scripts/build_site.py",
+    "site/index.html",
+    "site/index.pt-BR.html",
+    "deploy/hf_space/montar_space.py",
+    "deploy/hf_space/LEIA-ME.md",
+    ".pre-commit-config.yaml",
+):
     add(f"README: cited file exists ({f})", "exists", f, "path", "exists" if (RAIZ / f).exists() else "missing")
+
+# ----------------------------------------------------------------------------- 2026-11-26: second audit corrections
+pesos_demo = sorted(x.name for x in (RAIZ / "models_demo").glob("*.ubj"))
+add(
+    "README: versioned demonstration weights in models_demo/ (three XGBoost)",
+    3,
+    "models_demo/*.ubj",
+    "count of .ubj files",
+    len(pesos_demo),
+    "int",
+)
+_rastreados = subprocess.run(["git", "ls-files"], cwd=RAIZ, capture_output=True, text=True, encoding="utf-8").stdout
+_extensoes_peso = (".ubj", ".keras", ".h5", ".pkl", ".joblib", ".onnx", ".pt", ".safetensors")
+outros_pesos = sorted(
+    f for f in _rastreados.splitlines() if f.endswith(_extensoes_peso) and not f.startswith("models_demo/")
+)
+add(
+    "README: no other versioned weight files outside models_demo/",
+    "none",
+    "git ls-files",
+    "files ending in " + ", ".join(_extensoes_peso),
+    "none" if not outros_pesos else ", ".join(outros_pesos),
+)
+for nome, txt, readme in (("README.md", txt_en, README_EN), ("README.pt-BR.md", txt_pt, README_PT)):
+    nao = txt.split("## What this repository is not" if readme == README_EN else "## O que este repositório não é", 1)[
+        1
+    ]
+    nao = nao.split("\n## ", 1)[0]
+    add(
+        f"{nome}: 'is not' section says the API is in-sample and not deployed",
+        "present",
+        readme,
+        "'in-sample' and 'not yet deployed' / 'ainda não está publicada' in the 'is not' section",
+        "present"
+        if ("in-sample by construction" in nao and "not yet deployed" in nao)
+        or ("in-sample por construção" in nao and "ainda não está publicada" in nao)
+        else "absent",
+    )
+    add(
+        f"{nome}: 'is not' section names the demonstration weights in models_demo/",
+        "present",
+        readme,
+        "'models_demo/MODEL_CARD.md' in the 'is not' section",
+        "present" if "models_demo/MODEL_CARD.md" in nao else "absent",
+    )
+    add(
+        f"{nome}: 'is not' section cites decision D8 for the CNES 2091550 daily series",
+        "present",
+        readme,
+        "'CNES 2091550' and 'D8' in the 'is not' section",
+        "present" if "CNES 2091550" in nao and ("decision D8" in nao or "decisão D8" in nao) else "absent",
+    )
+    add(
+        f"{nome}: old Saturday sentence ('worst day for every model') gone",
+        "absent",
+        readme,
+        "'worst day for every model' / 'pior dia para todos'",
+        "absent" if "worst day for every model" not in txt and "pior dia para todos" not in txt else "present",
+    )
+add(
+    "DECISOES: D8 accepts the daily series of one establishment",
+    "present",
+    RAIZ / "docs" / "DECISOES.md",
+    "D8 row '**Aceitas como estão**'",
+    "present" if re.search(r"^\| D8 \|.*\*\*Aceitas como estão\*\*", dec, re.M) else "absent",
+)
+teste_mlflow = (RAIZ / "tests" / "test_runner_mlflow.py").read_text(encoding="utf-8")
+_identicos = teste_mlflow.split("ARQUIVOS_IDENTICOS = (", 1)[1].split(")", 1)[0]
+for arq in ("metrics.json", "model_comparison.csv", "metrics_by_fold.csv", "folds.csv", "feature_ablation.csv"):
+    add(
+        f"README/ARCHITECTURE/D9: {arq} compared byte for byte",
+        "present",
+        RAIZ / "tests" / "test_runner_mlflow.py",
+        "ARQUIVOS_IDENTICOS",
+        "present" if f'"{arq}",' in _identicos else "absent",
+    )
+add(
+    "README/ARCHITECTURE/D9: predictions.csv compared after masking the run id",
+    "present",
+    RAIZ / "tests" / "test_runner_mlflow.py",
+    '\'.replace(a["run_id"], "<RUN_ID>")\'',
+    "present" if '.replace(a["run_id"], "<RUN_ID>")' in teste_mlflow else "absent",
+)
+add(
+    "README/ARCHITECTURE/D9: manifest.json compared without run id and time fields",
+    "run_id, timestamp, inicio, fim, tempo*",
+    RAIZ / "tests" / "test_runner_mlflow.py",
+    "_sem_chaves_volateis",
+    "run_id, timestamp, inicio, fim, tempo*"
+    if '{"run_id", "timestamp", "inicio", "fim"}' in teste_mlflow and 'startswith("tempo")' in teste_mlflow
+    else "changed",
+)
+add(
+    "README/ARCHITECTURE/D9: against the pre-hook runner the git fields of the manifest are also ignored",
+    "present",
+    RAIZ / "tests" / "test_runner_mlflow.py",
+    "'git_commit', 'git_branch', 'git_sujo', 'proveniencia' with ignorar_git",
+    "present" if '{"git_commit", "git_branch", "git_sujo", "proveniencia"}' in teste_mlflow else "absent",
+)
+add(
+    "ARCHITECTURE: reference commit of the pre-hook runner",
+    "2be070b",
+    RAIZ / "tests" / "test_runner_mlflow.py",
+    "COMMIT_REFERENCIA[:7]",
+    re.search(r'^COMMIT_REFERENCIA = "([0-9a-f]{40})"', teste_mlflow, re.M).group(1)[:7],
+)
+add(
+    "README: CI job 'secrets' runs gitleaks on the whole history",
+    "present",
+    RAIZ / ".github" / "workflows" / "ci.yml",
+    "'  secrets:' and 'gitleaks\" git --log-opts=--all --redact'",
+    "present" if 'gitleaks" git --log-opts=--all --redact' in ci and "\n  secrets:\n" in ci else "absent",
+)
+add(
+    "DECISOES: D5 practical consequence marked as superseded",
+    "present",
+    RAIZ / "docs" / "DECISOES.md",
+    "'**Superada em 2026-11-23**'",
+    "present" if "**Superada em 2026-11-23**" in dec else "absent",
+)
 
 # ----------------------------------------------------------------------------- write
 linhas = [
@@ -1428,8 +1774,29 @@ linhas += [
     "- `docs/LESSONS.md`, história 3: a descrição da consulta BigQuery vem do cabeçalho de "
     "`src/ingestion/fetch_sih_bq_enriquecido.py` da dissertação (tabela `servicos_profissionais`, filtro por município do estabelecimento).",
 ]
-(RAIZ / "docs" / "CONFERENCIA_NUMEROS_WP5.md").write_text("\n".join(linhas) + "\n", encoding="utf-8")
-print(f"{len(checks)} checks; DIVERGENTE: {len(divergentes)}")
+RELATORIO = RAIZ / "docs" / "CONFERENCIA_NUMEROS_WP5.md"
+novo = "\n".join(linhas) + "\n"
+
+
+def _sem_carimbo(texto: str) -> str:
+    """The report with LF line endings and without the timestamp of the 'Gerado por ... em <data hora>.' line."""
+    texto = texto.replace("\r\n", "\n")
+    return re.sub(
+        r"(Gerado por `docs/scripts/conferir_numeros\.py` em )\d{4}-\d{2}-\d{2} \d{2}:\d{2}", r"\1<carimbo>", texto
+    )
+
+
+atual = RELATORIO.read_text(encoding="utf-8") if RELATORIO.exists() else None
+desatualizado = atual is None or _sem_carimbo(atual) != _sem_carimbo(novo)
+if args.check:
+    estado = "STALE (rerun without --check)" if desatualizado else "up to date"
+    print(f"{len(checks)} checks; DIVERGENTE: {len(divergentes)}; {rel(RELATORIO)}: {estado}")
+elif desatualizado:
+    with open(RELATORIO, "w", encoding="utf-8", newline="\n") as f:
+        f.write(novo)
+    print(f"{len(checks)} checks; DIVERGENTE: {len(divergentes)}; {rel(RELATORIO)} rewritten")
+else:
+    print(f"{len(checks)} checks; DIVERGENTE: {len(divergentes)}; {rel(RELATORIO)} unchanged (not rewritten)")
 for c in divergentes:
     print("DIVERGENTE:", c)
-sys.exit(1 if divergentes else 0)
+sys.exit(1 if divergentes or (args.check and desatualizado) else 0)
