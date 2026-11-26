@@ -50,3 +50,12 @@ app/ api/ tracking/ models_demo/   portfolio layers (Streamlit, FastAPI, MLflow 
 - A model that returns the wrong number of predictions, or models whose test timestamps differ: `RuntimeError` in the runner.
 - A SARIMAX forecast outside 5 × max of the target, or a degenerate fit: excluded or raised (`sarimax_model.py`).
 - A metric computed on NaN or on mismatched vectors: `ValueError` in `metrics.py`.
+
+## Optional MLflow logging during a run
+
+`src/experiments/run_preliminary.py` accepts `--mlflow --mlflow-uri <uri> [--mlflow-experimento <name>]`. The flag only logs. All the logic lives in `tracking/registro_mlflow.py`, and `mlflow` is imported only when the flag is set. The run outputs (`metrics.json`, `predictions.csv`, `model_comparison.csv`, `metrics_by_fold.csv`, `folds.csv`) are byte-identical with and without it (`tests/test_runner_mlflow.py`).
+
+With the flag, the runner creates one parent run per execution, one nested run per model and feature set with the same metrics as `metrics.json`, and one MLflow model per model, feature set, fold and seed. XGBoost uses the native flavor. LSTM, SARIMAX and GAM-NB use a pyfunc wrapper around the native artefact, because standardisation and refitting live outside the native object. INGARCH-NB and the baselines use pyfunc. Each model reloaded from MLflow reproduces the predictions of its fold and seed.
+
+The flag exists only in this portfolio copy of the runner; the dissertation runner is unchanged (decision D9 in `docs/DECISOES.md`). Light test config: `configs/smoke_mlflow.yaml` (never a result). The full research history is imported separately by `tracking/importar_pesquisa.py`.
+
