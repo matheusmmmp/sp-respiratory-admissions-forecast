@@ -1,6 +1,6 @@
 {
   "script": "docs/scripts/build_site.py",
-  "gerado_em": "2026-11-26T16:59:07",
+  "gerado_em": "2026-11-26T19:11:47",
   "status": "Provisional (pre-defence)",
   "ambiente": {
     "python": "3.11.0",
@@ -26,8 +26,8 @@
   },
   "entradas": {
     "CITATION.cff": "0c8732e0c3fe4815825c1985dfb726e11f3b6471fada2803f312c20aeb0fd458",
-    "README.md": "0bd3fff4cbae68377d3980d1920dfdacc7bb40ef4c0ce91108bfa20d88009b9c",
-    "README.pt-BR.md": "a23ef07562bacc50ad586072b487fededfce3355695eebe53f6d262fc43ab361",
+    "README.md": "e2f2217c50c7c24998407c2b1c58ab03c66ad9c858fa5f608c713f34ff1563ee",
+    "README.pt-BR.md": "2a036c72694414573350a667640c073399a65ea457e237ee7999a9e3a730fb9c",
     "app/graficos.py": "f73ac81494028f14f887ef24e04ad68253e4a70fb7a5ebefd1dc56eebe1a6e14",
     "data/README.md": "d2e47c8edf75661ec9c1c248371c27ec862df9595c8bd18beb711783bca089f2",
     "results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/A2_dm_modelos_por_h.csv": "986dd11c261ad930ed97fb088ca6f29d76c2cf924fcc00749d661ec489da0535",

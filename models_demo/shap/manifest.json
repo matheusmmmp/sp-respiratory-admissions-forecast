@@ -1,0 +1,146 @@
+{
+  "script": "models_demo/interpretabilidade.py",
+  "comando": "uv run python -m models_demo.interpretabilidade",
+  "metodo": "XGBoost native TreeSHAP: Booster.predict(DMatrix(X), pred_contribs=True); contributions on the log-margin scale of count:poisson (forecast = exp(base + sum of contributions))",
+  "status": "demonstration, not a dissertation result; provisional",
+  "versao_modelos": "ba6d6c40-20261123",
+  "modelos": {
+    "1": {
+      "arquivo": "models_demo/xgboost_ar_cal_h1.ubj",
+      "sha256": "ef5789c517f4a84ea2f4e9dddc77a3f20ec824aea6b22e585ff36e01e163f92b",
+      "versao": "ba6d6c40-20261123",
+      "horizonte": 1
+    },
+    "7": {
+      "arquivo": "models_demo/xgboost_ar_cal_h7.ubj",
+      "sha256": "a5350344370faa564953592b044be051e2599115769ad76187c102ee3ecb95e2",
+      "versao": "ba6d6c40-20261123",
+      "horizonte": 7
+    },
+    "30": {
+      "arquivo": "models_demo/xgboost_ar_cal_h30.ubj",
+      "sha256": "247c9f59f5a649ef4c3bc231c7ea7bc3e0f3ee843c2868b00cb8ce2b487c319a",
+      "versao": "ba6d6c40-20261123",
+      "horizonte": 30
+    }
+  },
+  "entradas": [
+    {
+      "caminho": "data/processed/sih_daily_lookahead.parquet",
+      "sha256": "ba6d6c40f227648e49cf730276957b7db41082ffde189fa402aa233de166dfa9"
+    }
+  ],
+  "tolerancia_aditividade": 0.0001,
+  "selecao_waterfall": {
+    "regra": "sabado = the Saturday of 2024 (target date) with the highest h=1 forecast, ties broken by the earliest date; quarta = sabado - 3 days (the Wednesday of the same Monday-Sunday week)",
+    "sabado": {
+      "data": "2024-04-06",
+      "previsao": 262.02288818359375,
+      "feriado": 0
+    },
+    "quarta": {
+      "data": "2024-04-03",
+      "previsao": 231.3717041015625,
+      "feriado": 0
+    }
+  },
+  "arquivos": {
+    "shap_valores_h1.parquet": "169a4863488082728bd9e74e8e7cd1f8f8825d40737e92567d523f23129be160",
+    "features_h1.parquet": "28ca4988771ce91394be896a0adb63b0ccf2c9cb2770486e66c1275a45ef4351",
+    "shap_valores_h7.parquet": "d69d72b995b39934dab2ed79896868361d519115963da5b212274c7905c660bc",
+    "features_h7.parquet": "ebd5721edb9b3a2a541c6711added8780e350f79f850dc061cc9936ccb99dc1f",
+    "shap_valores_h30.parquet": "a770bb217195db83e99a59b2a760daf5fc23e332c18d8f3ecf9ed9bbc76b7710",
+    "features_h30.parquet": "79896f5d1502fdf8f654c56adea6e441e3cb1fbba75981212e57c08ba76ebf85",
+    "resumo_importancia.csv": "d90f014103fbf83554a55d7580688f2d2e111dfe7ed36145386cc6dff851140c"
+  },
+  "figuras": [
+    {
+      "arquivo": "fig_importancia_h1_en.png",
+      "bytes": 57148,
+      "sha256": "aca0e5bfb113a8b2123bcc153627b20f3585f50042623c54afc56c36f8852cce"
+    },
+    {
+      "arquivo": "fig_importancia_h1_pt.png",
+      "bytes": 60907,
+      "sha256": "b2d4fe877b699c82a21d8c07a7558841fa654ed912e11ed81f62194453d2771c"
+    },
+    {
+      "arquivo": "fig_importancia_h7_en.png",
+      "bytes": 57712,
+      "sha256": "28ae3822241a4476510e6270423a5ee3d1f8dd6712876b141728dc93a76a35b1"
+    },
+    {
+      "arquivo": "fig_importancia_h7_pt.png",
+      "bytes": 61289,
+      "sha256": "be4a87555ba3a9a104a97e2faf992a804a64c25de54f4cab196e76f56fed5abd"
+    },
+    {
+      "arquivo": "fig_importancia_h30_en.png",
+      "bytes": 58502,
+      "sha256": "8b5b3af7801ce4746e84378e68c5c8e1e91f71e366800755ad46b673dd171103"
+    },
+    {
+      "arquivo": "fig_importancia_h30_pt.png",
+      "bytes": 62307,
+      "sha256": "81881bcf53fc777679dc336d3ac25834adeba93c06f3befca4c37ccff96c8027"
+    },
+    {
+      "arquivo": "fig_beeswarm_h1_en.png",
+      "bytes": 123462,
+      "sha256": "7f629625e1ddab8586c6853c49ec9bde1bcdfa22dfb1ea2480471f32685277fe"
+    },
+    {
+      "arquivo": "fig_beeswarm_h1_pt.png",
+      "bytes": 126033,
+      "sha256": "45d73e06be410b4497db7077ab5fee52a6c3281dec32fb0f1fda25ac64964983"
+    },
+    {
+      "arquivo": "fig_dependencia_dow_h1_en.png",
+      "bytes": 52354,
+      "sha256": "f6cf1e2c3bbbab5a24e934caff6424ad7b74c9f58b252218c970a33e960a270e"
+    },
+    {
+      "arquivo": "fig_dependencia_dow_h1_pt.png",
+      "bytes": 52619,
+      "sha256": "136dbaa4419197516b811f21ab2977061d7120dcc047e39564299724264f9356"
+    },
+    {
+      "arquivo": "fig_dependencia_lag_h1_en.png",
+      "bytes": 82182,
+      "sha256": "6efeb39ae04e380973afc4510078f3826ed02e5fa7423cf6b6387685b2301197"
+    },
+    {
+      "arquivo": "fig_dependencia_lag_h1_pt.png",
+      "bytes": 84608,
+      "sha256": "c5825a1d470333dcfdab77db20f2e5c9ac6d0e4cb10b410b693bb2f1819266e1"
+    },
+    {
+      "arquivo": "fig_waterfall_sabado_h1_en.png",
+      "bytes": 89598,
+      "sha256": "dea781fd9b4a1d06b5484c0480fb2d2e8d3817e701cce786309d1825940e69e3"
+    },
+    {
+      "arquivo": "fig_waterfall_sabado_h1_pt.png",
+      "bytes": 92513,
+      "sha256": "aba4df334bb72947dc110f3f43a50ab4124cf4705bb8673b5bc0720cb69ee018"
+    },
+    {
+      "arquivo": "fig_waterfall_quarta_h1_en.png",
+      "bytes": 91336,
+      "sha256": "bbdc6183301b0ff4a173a08d12d073443aa3f6ddbee7cbfc7bae66c287550ee2"
+    },
+    {
+      "arquivo": "fig_waterfall_quarta_h1_pt.png",
+      "bytes": 93898,
+      "sha256": "ee508972519e6004cf5e369b43f1150b492672f3c25f175e9903e2d2bb49e604"
+    }
+  ],
+  "gerado_em": "2026-11-26T22:06:47+00:00",
+  "ambiente": {
+    "python": "3.11.0",
+    "xgboost": "3.2.0",
+    "numpy": "2.4.1",
+    "pandas": "3.0.0",
+    "matplotlib": "3.10.8"
+  }
+}

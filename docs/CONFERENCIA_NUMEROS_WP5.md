@@ -1,6 +1,6 @@
 # Conferência de números — WP5 (README.md, README.pt-BR.md, docs/, data/README.md)
 
-Gerado por `docs/scripts/conferir_numeros.py` em 2026-11-26 17:02. Cada linha: onde o número aparece, o número como exibido, o arquivo de origem, a chave/seletor e o valor lido. Arredondamento: MAE 2 casas, MASE e skill 3 casas, contagens exatas. As tabelas dos dois READMEs são geradas por `docs/scripts/tabela_readme.py` (`--lang en` / `--lang pt`; mesmas células, ponto decimal dos arquivos de origem), que também exige igualdade (|diff| <= 1e-9) entre `model_comparison.csv`, `A_modelos_por_h.csv` e `arcal_por_horizonte_dois_alvos.csv`; a conferência verifica que cada bloco de tabela aparece literalmente em `README.md` e em `README.pt-BR.md`. Números do texto corrido do `README.pt-BR.md` usam vírgula decimal e são conferidos à parte (linhas 'README.pt-BR.md prose').
+Gerado por `docs/scripts/conferir_numeros.py` em 2026-11-26 19:11. Cada linha: onde o número aparece, o número como exibido, o arquivo de origem, a chave/seletor e o valor lido. Arredondamento: MAE 2 casas, MASE e skill 3 casas, contagens exatas. As tabelas dos dois READMEs são geradas por `docs/scripts/tabela_readme.py` (`--lang en` / `--lang pt`; mesmas células, ponto decimal dos arquivos de origem), que também exige igualdade (|diff| <= 1e-9) entre `model_comparison.csv`, `A_modelos_por_h.csv` e `arcal_por_horizonte_dois_alvos.csv`; a conferência verifica que cada bloco de tabela aparece literalmente em `README.md` e em `README.pt-BR.md`. Números do texto corrido do `README.pt-BR.md` usam vírgula decimal e são conferidos à parte (linhas 'README.pt-BR.md prose').
 
 Total: 627 números; VERIFICADO: 627; DIVERGENTE: 0.
 
@@ -598,7 +598,7 @@ Total: 627 números; VERIFICADO: 627; DIVERGENTE: 0.
 | 590 | README: make target 'api' exists | present | `Makefile` | 'api:' line | present | VERIFICADO |
 | 591 | README: make target 'test' exists | present | `Makefile` | 'test:' line | present | VERIFICADO |
 | 592 | README: make target 'smoke' exists | present | `Makefile` | 'smoke:' line | present | VERIFICADO |
-| 593 | README: number of author decisions (D1 to D14) | 14 | `docs/DECISOES.md` | rows starting with '| D' | 14 | VERIFICADO |
+| 593 | README: number of author decisions (D1 to D15) | 15 | `docs/DECISOES.md` | rows starting with '| D' | 15 | VERIFICADO |
 | 594 | README: D9 says the dissertation runner is unchanged | present | `docs/DECISOES.md` | D9 text | present | VERIFICADO |
 | 595 | README: D10 records v0.1.0 without DOI and both DOIs of v0.1.1 | present | `docs/DECISOES.md` | D10 text '**sem DOI**' + DOI_VERSAO + DOI_CONCEITO | present | VERIFICADO |
 | 596 | README: cited file exists (tracking/registro_mlflow.py) | exists | `tracking/registro_mlflow.py` | path | exists | VERIFICADO |

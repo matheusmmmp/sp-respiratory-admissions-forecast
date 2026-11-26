@@ -22,6 +22,8 @@ takes that row of the canonical frame and feeds it to the model for ``h``.
 Models and feature frames are loaded once, in the lifespan, and every input
 file is checked against the sha256 recorded at training time. Any mismatch
 aborts the startup: the service never serves a model whose data changed.
+With ``MODELO_FONTE=mlflow`` (opt-in, needs mlflow) the models come from the MLflow Model
+Registry instead, checked against the same sha256 (``api/registro.py``).
 
 Everything served here is a demonstration (see ``models_demo/MODEL_CARD.md``):
 single seed, whole-history training, and only target dates inside the history
@@ -32,6 +34,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from datetime import date, timedelta
@@ -136,17 +139,23 @@ class ServicoPrevisao:
                     f"h={h}: feature columns built now differ from the ones recorded at training time "
                     f"({len(colunas)} vs {len(m['features'])}); retrain"
                 )
-            p_modelo = comum.caminho_modelo(h)
-            if not p_modelo.exists():
-                raise RuntimeError(
-                    f"model file missing: {comum.caminho_relativo(p_modelo)}; train with `uv run python -m models_demo.treinar`"
-                )
-            sha = comum.sha256_arquivo(p_modelo)
-            if sha != m["arquivo_sha256"]:
-                raise RuntimeError(
-                    f"{comum.caminho_relativo(p_modelo)} does not match metadata.json (sha256 {sha[:12]}…); retrain"
-                )
-            modelo = comum.carregar_modelo(h)
+            if os.environ.get("MODELO_FONTE", "").strip().lower() not in ("", "ubj"):
+                # opt-in: MLflow Model Registry (api/registro.py; needs mlflow, absent from the slim image)
+                from api import registro
+
+                modelo = registro.carregar_modelo(h, m)
+            else:
+                p_modelo = comum.caminho_modelo(h)
+                if not p_modelo.exists():
+                    raise RuntimeError(
+                        f"model file missing: {comum.caminho_relativo(p_modelo)}; train with `uv run python -m models_demo.treinar`"
+                    )
+                sha = comum.sha256_arquivo(p_modelo)
+                if sha != m["arquivo_sha256"]:
+                    raise RuntimeError(
+                        f"{comum.caminho_relativo(p_modelo)} does not match metadata.json (sha256 {sha[:12]}…); retrain"
+                    )
+                modelo = comum.carregar_modelo(h)
             if int(modelo.n_features_in_) != len(colunas):
                 raise RuntimeError(f"h={h}: model expects {modelo.n_features_in_} features, frame has {len(colunas)}")
             por_h[h] = ModeloHorizonte(

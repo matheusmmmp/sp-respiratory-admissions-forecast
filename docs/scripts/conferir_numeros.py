@@ -1605,8 +1605,8 @@ for alvo in ("docker-build", "docker-test", "docker-api", "precommit", "mlflow",
     )
 dec = (RAIZ / "docs" / "DECISOES.md").read_text(encoding="utf-8")
 add(
-    "README: number of author decisions (D1 to D14)",
-    14,
+    "README: number of author decisions (D1 to D15)",
+    15,
     RAIZ / "docs" / "DECISOES.md",
     "rows starting with '| D'",
     len(re.findall(r"^\| D\d+ \|", dec, re.M)),

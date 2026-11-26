@@ -1,0 +1,14 @@
+# Configuração do gitleaks (hook do pre-commit e job "secrets" do CI).
+# Mantém todas as regras padrão e abre UMA exceção estreita:
+# a regra sumologic-access-token casa "sumo" dentro de "resumo_importancia.csv" seguido do
+# sha256 (64 hex) desse arquivo em models_demo/shap/manifest.json e nos .prov.json das figuras.
+# É um hash de conteúdo, não um token. A exceção vale só para essa chave seguida de 64 hex.
+title = "sp-respiratory-admissions-forecast"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "sha256 de resumo_importancia.csv nos manifestos de proveniência do SHAP (falso positivo da regra Sumo Logic)"
+regexTarget = "line"
+regexes = ['''"resumo_importancia\.csv":\s*"[0-9a-f]{64}"''']

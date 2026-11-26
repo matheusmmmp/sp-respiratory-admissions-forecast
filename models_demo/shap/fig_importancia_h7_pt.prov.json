@@ -1,0 +1,48 @@
+{
+  "figura": "fig_importancia_h7_pt",
+  "descricao": "Global importance (mean |SHAP|, log-margin) of the demo XGBoost AR_CAL model, h = 7.",
+  "script": "models_demo/interpretabilidade.py",
+  "comando": "uv run python -m models_demo.interpretabilidade",
+  "metodo": "XGBoost native TreeSHAP: Booster.predict(DMatrix(X), pred_contribs=True); contributions on the log-margin scale of count:poisson (forecast = exp(base + sum of contributions))",
+  "escala": "log-margin of count:poisson; forecast (admissions/day) = exp(base + sum of SHAP); a contribution phi multiplies the forecast by exp(phi)",
+  "modelo": {
+    "arquivo": "models_demo/xgboost_ar_cal_h7.ubj",
+    "sha256": "a5350344370faa564953592b044be051e2599115769ad76187c102ee3ecb95e2",
+    "versao": "ba6d6c40-20261123",
+    "horizonte": 7
+  },
+  "entradas": [
+    {
+      "caminho": "data/processed/sih_daily_lookahead.parquet",
+      "sha256": "ba6d6c40f227648e49cf730276957b7db41082ffde189fa402aa233de166dfa9"
+    }
+  ],
+  "artefatos_de_origem": [
+    {
+      "caminho": "models_demo/shap/shap_valores_h7.parquet",
+      "sha256": "d69d72b995b39934dab2ed79896868361d519115963da5b212274c7905c660bc"
+    },
+    {
+      "caminho": "models_demo/shap/features_h7.parquet",
+      "sha256": "ebd5721edb9b3a2a541c6711added8780e350f79f850dc061cc9936ccb99dc1f"
+    }
+  ],
+  "conjunto_de_features": "AR_CAL",
+  "parametros": {
+    "horizonte": 7,
+    "idioma": "pt",
+    "estatistica": "mean of |SHAP| over all target dates",
+    "n_datas": 2158
+  },
+  "png_sha256": "be4a87555ba3a9a104a97e2faf992a804a64c25de54f4cab196e76f56fed5abd",
+  "png_bytes": 61289,
+  "status": "demonstration, not a dissertation result; provisional",
+  "gerado_em": "2026-11-26T22:06:47+00:00",
+  "ambiente": {
+    "python": "3.11.0",
+    "xgboost": "3.2.0",
+    "numpy": "2.4.1",
+    "pandas": "3.0.0",
+    "matplotlib": "3.10.8"
+  }
+}

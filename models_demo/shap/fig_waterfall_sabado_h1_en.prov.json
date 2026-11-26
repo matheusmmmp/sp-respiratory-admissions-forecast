@@ -1,0 +1,60 @@
+{
+  "figura": "fig_waterfall_sabado_h1_en",
+  "descricao": "Waterfall (log-margin) of the h = 1 forecast for Saturday 2024-04-06.",
+  "script": "models_demo/interpretabilidade.py",
+  "comando": "uv run python -m models_demo.interpretabilidade",
+  "metodo": "XGBoost native TreeSHAP: Booster.predict(DMatrix(X), pred_contribs=True); contributions on the log-margin scale of count:poisson (forecast = exp(base + sum of contributions))",
+  "escala": "log-margin of count:poisson; forecast (admissions/day) = exp(base + sum of SHAP); a contribution phi multiplies the forecast by exp(phi)",
+  "modelo": {
+    "arquivo": "models_demo/xgboost_ar_cal_h1.ubj",
+    "sha256": "ef5789c517f4a84ea2f4e9dddc77a3f20ec824aea6b22e585ff36e01e163f92b",
+    "versao": "ba6d6c40-20261123",
+    "horizonte": 1
+  },
+  "entradas": [
+    {
+      "caminho": "data/processed/sih_daily_lookahead.parquet",
+      "sha256": "ba6d6c40f227648e49cf730276957b7db41082ffde189fa402aa233de166dfa9"
+    }
+  ],
+  "artefatos_de_origem": [
+    {
+      "caminho": "models_demo/shap/shap_valores_h1.parquet",
+      "sha256": "169a4863488082728bd9e74e8e7cd1f8f8825d40737e92567d523f23129be160"
+    },
+    {
+      "caminho": "models_demo/shap/features_h1.parquet",
+      "sha256": "28ca4988771ce91394be896a0adb63b0ccf2c9cb2770486e66c1275a45ef4351"
+    }
+  ],
+  "conjunto_de_features": "AR_CAL",
+  "parametros": {
+    "horizonte": 1,
+    "idioma": "en",
+    "data_alvo": "2024-04-06",
+    "selecao": {
+      "regra": "sabado = the Saturday of 2024 (target date) with the highest h=1 forecast, ties broken by the earliest date; quarta = sabado - 3 days (the Wednesday of the same Monday-Sunday week)",
+      "sabado": {
+        "data": "2024-04-06",
+        "previsao": 262.02288818359375,
+        "feriado": 0
+      },
+      "quarta": {
+        "data": "2024-04-03",
+        "previsao": 231.3717041015625,
+        "feriado": 0
+      }
+    }
+  },
+  "png_sha256": "dea781fd9b4a1d06b5484c0480fb2d2e8d3817e701cce786309d1825940e69e3",
+  "png_bytes": 89598,
+  "status": "demonstration, not a dissertation result; provisional",
+  "gerado_em": "2026-11-26T22:06:47+00:00",
+  "ambiente": {
+    "python": "3.11.0",
+    "xgboost": "3.2.0",
+    "numpy": "2.4.1",
+    "pandas": "3.0.0",
+    "matplotlib": "3.10.8"
+  }
+}
