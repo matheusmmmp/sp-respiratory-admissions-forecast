@@ -1,6 +1,6 @@
 {
   "script": "docs/scripts/build_site.py",
-  "gerado_em": "2026-11-26T13:23:54",
+  "gerado_em": "2026-11-26T14:33:56",
   "status": "Provisional (pre-defence)",
   "ambiente": {
     "python": "3.11.0",
@@ -25,9 +25,9 @@
     }
   },
   "entradas": {
-    "CITATION.cff": "4ce553ca27a64bbc53f1b696eba1f4372f1cd30e0a86453ce09a358ed8f7bc3d",
-    "README.md": "2ff8f617d50f848b02008ee2293133cd549170bc4fb9f62201281dd7b29a8e67",
-    "README.pt-BR.md": "546d7289241001b62f9ae5f26be8a8b92d25c043ed6f430a6fa2692b90d39801",
+    "CITATION.cff": "4f0472252360306f5c71923b9491977d064738eca7bac073781d65efc4351d18",
+    "README.md": "9415f384b2a923017d524cb806b950fc2e1960084f1a1b3bb8f4648c312090fc",
+    "README.pt-BR.md": "65a010af5f5fea1b2817bf20ff55ed3e2f2eb35b570a7605f3c4e664e0cc02a7",
     "app/graficos.py": "f73ac81494028f14f887ef24e04ad68253e4a70fb7a5ebefd1dc56eebe1a6e14",
     "data/README.md": "d2e47c8edf75661ec9c1c248371c27ec862df9595c8bd18beb711783bca089f2",
     "results/analise_multihorizonte/ANALISE_MULTIHORIZONTE_V02_20261118/A2_dm_modelos_por_h.csv": "986dd11c261ad930ed97fb088ca6f29d76c2cf924fcc00749d661ec489da0535",
@@ -104,8 +104,8 @@
     "data/runs/ur_h30_cetesb_cetesb_full_20261117-221426/model_comparison.csv": "950d594e1f347fd5a4e8bae7c294bd2af3870b16f1434c673c098e7799044b03",
     "data/runs/ur_h5_cetesb_cetesb_full_20261116-222823/model_comparison.csv": "ca096e45b8d87022b3533c3d6ce9ea8efb4676c228823f80d08a20dd04e41931",
     "data/runs/ur_h7_cetesb_cetesb_full_20261117-073926/model_comparison.csv": "117a8752d7455566db75ea74d074662ab2138dd4772c687a7a7e9bb5723b20e3",
-    "index.html": "d5a868fd2b6d5899446de17350150fa1012401b42d0d6308ea374dd8f16b3a77",
-    "index.pt-BR.html": "b2dcb29f1e25c7375c271ffd8892765a23235dc0161b3dca842ce98e0f4e284f",
+    "index.html": "b70c58debaca6cf058e8ae1788b5777beaa91302787ca26e2f6b7cf6af3eb952",
+    "index.pt-BR.html": "7c350aa3a58502f1babb854231601f1b259d82fa6d847a321e25d0cfc4fc32d9",
     "static/images/app_screenshot.png": "f2f7aeeaa728d2c33c29f00989e0e4f523c01cefdfd10747642f6f40fa997410",
     "static/images/fig_ablacao_h1_total_en.png": "dd8e5fdeee84df79311e417d9b66696bf0777de2d0f8dd9ec88a2570ef270cf3",
     "static/images/fig_ablacao_h1_total_pt.png": "2af3f85f0862580c33f8c180807fcaa61a4b1b700fd04ded8d2a59982e741a3a",

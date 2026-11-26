@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below. Results are provisional (pre-defence)."
 type: software
 title: "sp-respiratory-admissions-forecast: daily forecasting of respiratory hospital admissions in São Paulo city, 1 to 30 days ahead, with seven models under one temporal validation protocol"
-version: 0.1.0
-date-released: "2026-11-23"
+version: 0.1.1
+date-released: "2026-11-26"
 license: MIT
 repository-code: "https://github.com/matheusmmmp/sp-respiratory-admissions-forecast"
 url: "https://sp-respiratory-admissions-forecast.streamlit.app"
