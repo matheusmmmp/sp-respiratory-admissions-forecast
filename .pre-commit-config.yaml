@@ -7,6 +7,12 @@
 # repositório inteiro, inclusive data/ e results/ (sem `exclude` global).
 # Os hooks que reescrevem arquivos (whitespace, fim de arquivo, EOL) não
 # tocam em dados agregados nem em artefatos de runs.
+# Arquivos que os hooks de espaço/fim de arquivo/fim de linha NÃO podem tocar: dados e artefatos
+# com bytes preservados (sha256 nos manifests e no models_demo/metadata.json), configs das runs
+# (config_sha256 no manifest), código e lock copiados da dissertação (docs/INVENTARIO_FASE0.tsv) e
+# arquivos gerados por script (notebook do painel, model card, lista de conferência).
+x-intocaveis: &intocaveis ^(data/|results/|notebooks/|configs/|src/|docs/requirements-executado-|docs/CONFERENCIA_NUMEROS_WP5\.md|models_demo/(MODEL_CARD\.md|metadata\.json))
+
 default_language_version:
   python: python3.11
 
@@ -16,12 +22,12 @@ repos:
     hooks:
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
-        exclude: ^(data/|results/|notebooks/dados_painel/)
+        exclude: *intocaveis
       - id: end-of-file-fixer
-        exclude: ^(data/|results/|notebooks/dados_painel/)
+        exclude: *intocaveis
       - id: mixed-line-ending
         args: [--fix=lf]
-        exclude: ^(data/|results/|notebooks/dados_painel/)
+        exclude: *intocaveis
       - id: check-added-large-files
         args: [--maxkb=2500]       # maior arquivo versionado hoje: ~2,2 MB (notebooks/dados_painel)
       - id: check-yaml

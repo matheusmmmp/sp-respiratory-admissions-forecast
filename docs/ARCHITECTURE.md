@@ -58,4 +58,3 @@ app/ api/ tracking/ models_demo/   portfolio layers (Streamlit, FastAPI, MLflow 
 With the flag, the runner creates one parent run per execution, one nested run per model and feature set with the same metrics as `metrics.json`, and one MLflow model per model, feature set, fold and seed. XGBoost uses the native flavor. LSTM, SARIMAX and GAM-NB use a pyfunc wrapper around the native artefact, because standardisation and refitting live outside the native object. INGARCH-NB and the baselines use pyfunc. Each model reloaded from MLflow reproduces the predictions of its fold and seed.
 
 The flag exists only in this portfolio copy of the runner; the dissertation runner is unchanged (decision D9 in `docs/DECISOES.md`). Light test config: `configs/smoke_mlflow.yaml` (never a result). The full research history is imported separately by `tracking/importar_pesquisa.py`.
-

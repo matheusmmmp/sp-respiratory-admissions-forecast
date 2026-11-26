@@ -59,6 +59,8 @@ dev = [
   "ruff>=0.14",
   # TestClient da API (tests/test_api_forecast.py)
   "httpx==0.28.1",
+  # hooks de commit (.pre-commit-config.yaml): ruff, gitleaks, formatação
+  "pre-commit==4.7.0",
 ]
 
 [tool.uv]
