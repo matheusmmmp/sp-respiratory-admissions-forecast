@@ -31,5 +31,6 @@
 # fim de linha quebraria a verificação num clone).
 data/** -text
 results/** -text
+site/data/** -text
 notebooks/dados_painel/** -text
 configs/** -text
