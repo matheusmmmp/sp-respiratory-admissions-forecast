@@ -25,13 +25,14 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    name: deploy site/
+  # Build and deploy are separate jobs, as in GitHub's official Pages template: the job boundary
+  # guarantees the "github-pages" artifact is finalized before deploy-pages looks it up. With both
+  # steps in one job, deploy-pages found 0 artifacts right after a successful upload (2026-11-27,
+  # runs 45920351850 and 45920610685).
+  build:
+    name: package site/
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - name: Check that site/ exists and has both pages
@@ -43,5 +44,15 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
+
+  deploy:
+    name: deploy site/
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
